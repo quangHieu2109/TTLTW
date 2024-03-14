@@ -59,7 +59,7 @@ h1 {
 }
 
 label {
-	text-wrap: nowrap;
+	text-wrap: none;
 	font-size: 25px;
 }
 
@@ -121,6 +121,11 @@ label {
 					<button type="submit" class="btn"><fmt:message>dang_nhap</fmt:message></button>
 
 				</div>
+
+					<a href="https://accounts.google.com/o/oauth2/v2/auth?
+					client_id=847546457050-7ccq01atin7m0ke5v2nva6u7i3k7bn6r.apps.googleusercontent.com
+&response_type=code&scope=profile+email&redirect_uri=http://localhost:8080/googlehandle">Login with google</a>
+
 			</div>
 		</div>
 	</form>
