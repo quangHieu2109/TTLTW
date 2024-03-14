@@ -195,7 +195,8 @@ ul {
 	<c:if test="${param.lang == 'en'}">
 		<fmt:setLocale value="en_US" />
 	</c:if>
-	<fmt:setBundle basename="lang.lang" />
+
+	<fmt:setBundle basename="lang" />
 
 	<div
 		style="display: flex; margin: 0 10% 0 5%; justify-content: space-between;">

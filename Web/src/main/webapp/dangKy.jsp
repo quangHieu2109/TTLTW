@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,8 @@
 <c:if test="${param.lang == 'en'}">
 	<fmt:setLocale value="en_US" />
 </c:if>
-<fmt:setBundle basename="lang.lang" />
+
+<fmt:setBundle basename="lang" />
 <title><fmt:message>dang_ky</fmt:message></title>
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
@@ -33,7 +34,7 @@
 		<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
 		<div class="error">
 			<c:if test="${error.length() >0 }">
-				<label><fmt:message>${error }</fmt:message></label>
+				<label><fmt:message>${error}</fmt:message></label>
 			</c:if>
 		</div>
 		<h1>
@@ -88,7 +89,7 @@
 				href="${pageContext.request.contextPath}/${UserServlet}?type=dangNhap"
 				class="btn"><fmt:message>dang_nhap</fmt:message></a>
 			<button type="button" class="btn" onclick="submitForm()">
-				<fmt:message>dang_ky</fmt:message>
+			<fmt:message key="dang_ky"/>
 			</button>
 		</div>
 	</form>

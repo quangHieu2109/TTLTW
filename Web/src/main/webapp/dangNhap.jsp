@@ -5,11 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<fmt:setLocale value="vi_VN" />
+	<fmt:setLocale value="vi_VN" />
 	<c:if test="${param.lang == 'en'}">
 		<fmt:setLocale value="en_US" />
 	</c:if>
-	<fmt:setBundle basename="lang.lang" />
+
+	<fmt:setBundle basename="lang" />
 <meta charset="UTF-8">
 <title><fmt:message>dang_nhap</fmt:message></title>
 <link rel="icon"
@@ -59,7 +60,7 @@ h1 {
 }
 
 label {
-	text-wrap: nowrap;
+	text-wrap: none;
 	font-size: 25px;
 }
 
@@ -121,6 +122,11 @@ label {
 					<button type="submit" class="btn"><fmt:message>dang_nhap</fmt:message></button>
 
 				</div>
+
+					<a href="https://accounts.google.com/o/oauth2/v2/auth?
+					client_id=847546457050-7ccq01atin7m0ke5v2nva6u7i3k7bn6r.apps.googleusercontent.com
+&response_type=code&scope=profile+email&redirect_uri=http://localhost:8080/googlehandle">Login with google</a>
+				<a href="https://www.facebook.com/dialog/oauth?client_id=424799260070203&redirect_uri=http://localhost:8080/fbhandle">Login Facebook</a>
 			</div>
 		</div>
 	</form>

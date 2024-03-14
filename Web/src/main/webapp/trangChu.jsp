@@ -18,11 +18,17 @@
 	type="image/x-icon">
 </head>
 <body>
-	<fmt:setLocale value="vi_VN" />
-	<c:if test="${param.lang == 'en'}">
-		<fmt:setLocale value="en_US" />
-	</c:if>
-	<fmt:setBundle basename="lang.lang" />
+<fmt:setLocale value="vi_VN" />
+<c:if test="${param.lang == 'en'}">
+	<fmt:setLocale value="en_US" />
+</c:if>
+
+<fmt:setBundle basename="lang" /><fmt:setLocale value="vi_VN" />
+<c:if test="${param.lang == 'en'}">
+	<fmt:setLocale value="en_US" />
+</c:if>
+
+<fmt:setBundle basename="lang" />
 	<jsp:include page="header.jsp"></jsp:include>
 	<c:set value="${baos}" var="news"></c:set>
 <!-- 	EncodeRUL -->
