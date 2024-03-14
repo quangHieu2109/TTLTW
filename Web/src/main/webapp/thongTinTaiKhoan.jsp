@@ -6,11 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<fmt:setLocale value="vi_VN" />
+	<fmt:setLocale value="vi_VN" />
 	<c:if test="${param.lang == 'en'}">
 		<fmt:setLocale value="en_US" />
 	</c:if>
-	<fmt:setBundle basename="lang.lang" />
+
+	<fmt:setBundle basename="lang" /><fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+
+	<fmt:setBundle basename="lang" />
 <title><fmt:message>thong_tin_tai_khoan</fmt:message></title>
 <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
 <link rel="icon"
