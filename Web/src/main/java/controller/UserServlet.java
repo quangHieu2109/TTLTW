@@ -87,7 +87,7 @@ public class UserServlet extends HttpServlet {
 				request.getRequestDispatcher(newsService.rewriteURL("/dangNhap.jsp")).forward(request, response);
 			} else {
 				request.getSession().setAttribute("nguoiDung", nguoiDung);
-
+				System.out.println(nguoiDung);
 				response.sendRedirect(newsService.rewriteURL(request.getContextPath()+"/MainServlet"));
 			}
 		}

@@ -3,6 +3,7 @@ package controller;
 import com.google.gson.Gson;
 import dto.UserGoogleDTO;
 import model.Constants;
+import model.NewsService;
 import model.NguoiDung;
 import org.apache.hc.client5.http.fluent.Form;
 import org.apache.hc.client5.http.fluent.Request;
@@ -25,14 +26,15 @@ public class GoogleHandle extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+//        super.doGet(req, resp);
+        NewsService newsService = (NewsService) req.getSession().getAttribute("newsService");
         String accessToken =  getToken(req.getParameter("code"));
 
         UserGoogleDTO userGoogleDTO = getUserInfo(accessToken);
 
         NguoiDung nguoiDung = new NguoiDung(userGoogleDTO.getEmail(), "", userGoogleDTO.getName(), userGoogleDTO.getEmail(), null, userGoogleDTO.getPicture(), "user");
         req.getSession().setAttribute("nguoiDung", nguoiDung);
-        resp.sendRedirect("trangChu.jsp");
+        resp.sendRedirect(newsService.rewriteURL(req.getContextPath()+"/MainServlet"));
     }
     public String getToken(String code) throws IOException {// lấy access token từ code do google trả về
         String response = Request.post(Constants.GOOGLE_LINK_GET_TOKEN).bodyForm(Form.form().add("client_id", Constants.GOOGLE_CLIENT_ID)
