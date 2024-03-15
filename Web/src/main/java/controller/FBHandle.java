@@ -16,7 +16,7 @@ import java.io.IOException;
 public class FBHandle extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+//        super.doGet(req, resp);
         String code = req.getParameter("code");
         String accessToken = getToken(code);
         NguoiDung nguoiDung = getUserInfo(accessToken);
