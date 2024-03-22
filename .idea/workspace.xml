@@ -9,7 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29e5adf7-81e7-4ddb-9304-98bf88eea367" name="Changes" comment="" />
+    <list default="true" id="29e5adf7-81e7-4ddb-9304-98bf88eea367" name="Changes" comment="update project">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +32,26 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "doqhung"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="recentNewPullRequestHead">
+      <RepoCoordinatesHolder>
+        <option name="owner" value="quangHieu2109" />
+        <option name="repository" value="TTLTW" />
+      </RepoCoordinatesHolder>
+    </option>
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b0a3fa32-5ef4-4cec-9086-ca7d3064bec4" />
+        <option name="url" value="https://github.com/quangHieu2109/TTLTW.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -54,6 +76,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Tomcat Server.Tomcat 9.0.48.executor": "Run",
+    "git-widget-placeholder": "Hung",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/TTLTW/Web",
     "node.js.detected.package.eslint": "true",
@@ -193,7 +216,17 @@
       <workItem from="1710847251291" duration="9000" />
       <workItem from="1711079263466" duration="570000" />
       <workItem from="1711091316215" duration="837000" />
+      <workItem from="1711092201105" duration="560000" />
     </task>
+    <task id="LOCAL-00001" summary="update project">
+      <option name="closed" value="true" />
+      <created>1711092352062</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711092352062</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,5 +242,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update project" />
+    <option name="LAST_COMMIT_MESSAGE" value="update project" />
   </component>
 </project>
