@@ -6,8 +6,14 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
+
   <jsp:include page="_meta.jsp"/>
-  <title>Giỏ hàng</title>
+
 
   <!-- Custom Scripts -->
   <script src="${pageContext.request.contextPath}/js/toast.js" type="module"></script>
@@ -16,10 +22,10 @@
 
 <body>
 <jsp:include page="_header.jsp"/>
-
+<fmt:message key="gio_hang"/>
 <section class="section-pagetop bg-light">
   <div class="container">
-    <h2 class="title-page">Giỏ hàng</h2>
+    <h2 class="title-page"></h2>
   </div> <!-- container.// -->
 </section> <!-- section-pagetop.// -->
 
@@ -40,8 +46,8 @@
               <div id="cart-table"></div>
 
               <div class="card-body border-top">
-                <button type="button" class="btn btn-primary float-end" id="checkoutBtn" disabled>Đặt hàng</button>
-                <a href="${pageContext.request.contextPath}/" class="btn btn-light">Tiếp tục mua sắm</a>
+                <button type="button" class="btn btn-primary float-end" id="checkoutBtn" disabled><fmt:message key="dat_hang"/></button>
+                <a href="${pageContext.request.contextPath}/" class="btn btn-light"><fmt:message key="tiep_tuc_mua_sam"/></a>
               </div> <!-- card-body.// -->
 
             </div> <!-- card.// -->
@@ -51,17 +57,17 @@
 
             <div class="card mb-3">
               <div class="card-body">
-                <p class="card-title">Hình thức giao hàng</p>
+                <p class="card-title"><fmt:message key="hinh_thuc_giao_hang"/></p>
                 <form>
                   <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="delivery-method"
                            id="delivery-method-1" value="1" disabled>
-                    <label class="form-check-label" for="delivery-method-1">Giao tiêu chuẩn</label>
+                    <label class="form-check-label" for="delivery-method-1"><fmt:message key="giao_tieu_chuan"/></label>
                   </div>
                   <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="delivery-method"
                            id="delivery-method-2" value="2" disabled>
-                    <label class="form-check-label" for="delivery-method-2">Giao nhanh</label>
+                    <label class="form-check-label" for="delivery-method-2"><fmt:message key="giao_nhanh"/></label>
                   </div>
                 </form>
               </div> <!-- card-body.// -->
@@ -70,11 +76,11 @@
             <div class="card">
               <div class="card-body">
                 <dl class="row mb-0">
-                  <dt class="col-xxl-6 col-lg-12 col-6">Tạm tính:</dt>
+                  <dt class="col-xxl-6 col-lg-12 col-6"><fmt:message key="tam_tinh" />:</dt>
                   <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="temp-price">0</span>₫</dd>
-                  <dt class="col-xxl-6 col-lg-12 col-6">Phí vận chuyển:</dt>
+                  <dt class="col-xxl-6 col-lg-12 col-6"><fmt:message key="phi_van_chuyen"/>:</dt>
                   <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="delivery-price">0</span>₫</dd>
-                  <dt class="col-xxl-6 col-lg-12 col-6">Tổng cộng:</dt>
+                  <dt class="col-xxl-6 col-lg-12 col-6"><fmt:message key="tong_cong"/>:</dt>
                   <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><strong><span id="total-price">0</span>₫</strong></dd>
                 </dl>
               </div> <!-- card-body.// -->

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -10,17 +11,21 @@
 
 <body>
 <jsp:include page="_header.jsp"/>
-
+<fmt:setLocale value="vi_VN" />
+<c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+  <fmt:setLocale value="en_US" />
+</c:if>
+<fmt:setBundle basename="lang" />
 <section class="section-content" style="margin: 100px 0;">
   <div class="card mx-auto" style="max-width: 380px">
     <div class="card-body">
-      <h4 class="card-title mb-4">Đăng nhập</h4>
+      <h4 class="card-title mb-4"><fmt:message key="dang_nhap"/></h4>
       <form action="${pageContext.request.contextPath}/signin" method="post">
         <div class="mb-3">
           <input name="username"
                  class="form-control ${not empty requestScope.violations.usernameViolations
                    ? 'is-invalid' : (not empty requestScope.values.username ? 'is-valid' : '')}"
-                 placeholder="Tên đăng nhập"
+                 placeholder="<fmt:message key="ten_dang_nhap"/>"
                  type="text"
                  autocomplete="off"
                  value="${requestScope.values.username}">
@@ -38,7 +43,7 @@
           <input name="password"
                  class="form-control ${not empty requestScope.violations.passwordViolations
                    ? 'is-invalid' : (not empty requestScope.values.password ? 'is-valid' : '')}"
-                 placeholder="Mật khẩu"
+                 placeholder="<fmt:message key="mat_khau"/>"
                  type="password"
                  autocomplete="off"
                  value="${requestScope.values.password}">
@@ -52,14 +57,33 @@
             </div>
           </c:if>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+        <button type="submit" class="btn btn-primary w-100"><fmt:message key="dang_nhap"/></button>
       </form>
     </div> <!-- card-body.// -->
   </div> <!-- card .// -->
-  <p class="text-center mt-4">Không có tài khoản? <a href="${pageContext.request.contextPath}/signup">Đăng ký</a></p>
+
+  <p class="text-center mt-4"><fmt:message key="khong_co_tai_khoan"/>? <a href="${pageContext.request.contextPath}/signup"><fmt:message key="dang_ki"/></a></p>
+  <div class="card mx-auto" style="max-width: 380px">
+
+    <a id="siginInWithGoogle" href="https://accounts.google.com/o/oauth2/v2/auth?
+					client_id=847546457050-7ccq01atin7m0ke5v2nva6u7i3k7bn6r.apps.googleusercontent.com
+&response_type=code&scope=profile+email+https://www.googleapis.com/auth/user.gender.read+https://www.googleapis.com/auth/user.phonenumbers.read&redirect_uri=http://localhost:8080/googlehandle" class="btn"><img style="max-width: 30px;max-height: 30px;" src="./img/iconGoogle.png"> Đăng nhập bằng Google</a>
+  </div>
 </section> <!-- section-content.// -->
 
 <jsp:include page="_footer.jsp"/>
 </body>
+<style>
+  #siginInWithGoogle{
+    background-color: #FEFEFF;
+    color: black;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 
+  }
+
+</style>
 </html>
