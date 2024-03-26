@@ -1,0 +1,158 @@
+Index: Web/src/main/java/model/Constants.java
+===================================================================
+diff --git a/Web/src/main/java/model/Constants.java b/Web/src/main/java/model/Constants.java
+deleted file mode 100644
+--- a/Web/src/main/java/model/Constants.java	(revision effaa6e0d5d11b6ba67c33c712c81cd097fb77e6)
++++ /dev/null	(revision effaa6e0d5d11b6ba67c33c712c81cd097fb77e6)
+@@ -1,15 +0,0 @@
+-package model;
+-
+-public class Constants {
+-    public static String GOOGLE_CLIENT_ID = "847546457050-7ccq01atin7m0ke5v2nva6u7i3k7bn6r.apps.googleusercontent.com";
+-    public static String GOOGLE_CLIENT_SECRET = "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";
+-    public static String GOOGLE_REDIRECT_URI = "http://localhost:8080/googlehandle";
+-    public static String GOOGLE_LINK_GET_TOKEN= "https://accounts.google.com/o/oauth2/token";
+-    public static String GOOGLE_LINK_GET_USER_INFO = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=";
+-    public static String GOOGLE_GRANT_TYPE = "authorization_code";
+-
+-    public static String FACEBOOK_APP_ID = "424799260070203";
+-    public static String FACEBOOK_APP_SECRET = "dce8cd289e47cbda11f123796c246994";
+-    public static String FACEBOOK_REDIRECT_URL = "http://localhost:8080/fbhandle";
+-    public static String FACEBOOK_LINK_GET_TOKEN = "https://graph.facebook.com/oauth/access_token?client_id=%s&client_secret=%s&redirect_uri=%s&code=%s";
+-}
+Index: Web/src/main/java/controller/FBHandle.java
+===================================================================
+diff --git a/Web/src/main/java/controller/FBHandle.java b/Web/src/main/java/controller/FBHandle.java
+deleted file mode 100644
+--- a/Web/src/main/java/controller/FBHandle.java	(revision effaa6e0d5d11b6ba67c33c712c81cd097fb77e6)
++++ /dev/null	(revision effaa6e0d5d11b6ba67c33c712c81cd097fb77e6)
+@@ -1,48 +0,0 @@
+-package controller;
+-
+-import model.Constants;
+-import model.NguoiDung;
+-import org.apache.hc.client5.http.fluent.Request;
+-import org.json.JSONObject;
+-
+-import javax.servlet.ServletException;
+-import javax.servlet.annotation.WebServlet;
+-import javax.servlet.http.HttpServlet;
+-import javax.servlet.http.HttpServletRequest;
+-import javax.servlet.http.HttpServletResponse;
+-import java.io.IOException;
+-
+-@WebServlet("/fbhandle")
+-public class FBHandle extends HttpServlet {
+-    @Override
+-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+-//        super.doGet(req, resp);
+-        String code = req.getParameter("code");
+-        String accessToken = getToken(code);
+-        NguoiDung nguoiDung = getUserInfo(accessToken);
+-        req.getSession().setAttribute("nguoiDung",nguoiDung);
+-        req.getRequestDispatcher("trangchu.jsp").forward(req,resp);
+-
+-
+-    }
+-    public String getToken(String code) throws IOException {
+-        String response = Request.get("https://graph.facebook.com/v19.0/oauth/access_token?"+
+-                "client_id="+Constants.FACEBOOK_APP_ID+"&"+
+-                "redirect_uri="+ Constants.FACEBOOK_REDIRECT_URL +"&"+
+-                "client_secret="+Constants.FACEBOOK_APP_SECRET+"&code="+code+"&scope=email,user_birthday").execute().returnContent().asString();
+-        JSONObject jsonObject = new JSONObject(response);
+-
+-        String accessToken =  jsonObject.getString("access_token");
+-        return accessToken;
+-    }
+-    public NguoiDung getUserInfo(String accessToken) throws IOException{
+-       String response = Request.get("https://graph.facebook.com/v19.0/me?fields=id,name,email,birthday&access_token="+accessToken).execute().returnContent().asString();
+-         JSONObject jsonObject = new JSONObject(response);
+-         String name = jsonObject.getString("name");
+-
+-            String id = jsonObject.getString("id");
+-
+-        NguoiDung nguoiDung = new NguoiDung(id,"",name,"",null);
+-        return nguoiDung;
+-    }
+-}
+Index: Web/src/main/java/controller/GoogleHandle.java
+===================================================================
+diff --git a/Web/src/main/java/controller/GoogleHandle.java b/Web/src/main/java/controller/GoogleHandle.java
+deleted file mode 100644
+--- a/Web/src/main/java/controller/GoogleHandle.java	(revision effaa6e0d5d11b6ba67c33c712c81cd097fb77e6)
++++ /dev/null	(revision effaa6e0d5d11b6ba67c33c712c81cd097fb77e6)
+@@ -1,54 +0,0 @@
+-package controller;
+-
+-import com.google.gson.Gson;
+-import dto.UserGoogleDTO;
+-import model.Constants;
+-import model.NewsService;
+-import model.NguoiDung;
+-import org.apache.hc.client5.http.fluent.Form;
+-import org.apache.hc.client5.http.fluent.Request;
+-import org.json.JSONObject;
+-
+-import javax.servlet.ServletException;
+-import javax.servlet.annotation.WebServlet;
+-import javax.servlet.http.HttpServlet;
+-import javax.servlet.http.HttpServletRequest;
+-import javax.servlet.http.HttpServletResponse;
+-import java.io.IOException;
+-
+-@WebServlet("/googlehandle")
+-public class GoogleHandle extends HttpServlet {
+-
+-    @Override
+-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+-        super.doPost(req, resp);
+-    }
+-
+-    @Override
+-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+-//        super.doGet(req, resp);
+-        NewsService newsService = (NewsService) req.getSession().getAttribute("newsService");
+-        String accessToken =  getToken(req.getParameter("code"));
+-
+-        UserGoogleDTO userGoogleDTO = getUserInfo(accessToken);
+-
+-        NguoiDung nguoiDung = new NguoiDung(userGoogleDTO.getEmail(), "", userGoogleDTO.getName(), userGoogleDTO.getEmail(), null, userGoogleDTO.getPicture(), "user");
+-        req.getSession().setAttribute("nguoiDung", nguoiDung);
+-        resp.sendRedirect(newsService.rewriteURL(req.getContextPath()+"/MainServlet"));
+-    }
+-    public String getToken(String code) throws IOException {// lấy access token từ code do google trả về
+-        String response = Request.post(Constants.GOOGLE_LINK_GET_TOKEN).bodyForm(Form.form().add("client_id", Constants.GOOGLE_CLIENT_ID)
+-                .add("client_secret", Constants.GOOGLE_CLIENT_SECRET)
+-                .add("redirect_uri", Constants.GOOGLE_REDIRECT_URI).add("code", code)
+-                .add("grant_type", Constants.GOOGLE_GRANT_TYPE).build()).execute().returnContent().asString();
+-        JSONObject jsonObject = new JSONObject(response);
+-        String accessToken = jsonObject.getString("access_token").toString().replaceAll("\"", "");
+-        return accessToken;
+-    }
+-    public UserGoogleDTO getUserInfo(final String accessToken) throws IOException {// lấy thông tin user từ access token
+-        String link = Constants.GOOGLE_LINK_GET_USER_INFO + accessToken;
+-        String response = Request.get(link).execute().returnContent().asString();
+-        UserGoogleDTO googlePojo = new Gson().fromJson(response, UserGoogleDTO.class);
+-        return googlePojo;
+-    }
+-}
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"FrameworkDetectionExcludesConfiguration\">\r\n    <file type=\"web\" url=\"file://$PROJECT_DIR$/Web\" />\r\n  </component>\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/Web/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_21\" default=\"true\" project-jdk-name=\"21\" project-jdk-type=\"JavaSDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision effaa6e0d5d11b6ba67c33c712c81cd097fb77e6)
++++ b/.idea/misc.xml	(date 1711092683690)
+@@ -11,5 +11,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="18" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/Web/target" />
++  </component>
+ </project>
+\ No newline at end of file
