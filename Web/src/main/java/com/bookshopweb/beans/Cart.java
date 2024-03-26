@@ -1,5 +1,7 @@
 package com.bookshopweb.beans;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.jetbrains.annotations.Nullable;
 
 import java.sql.Timestamp;
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class Cart {
+public class Cart extends AbsModel<Cart>{
     private long id;
     private long userId;
     private Timestamp createdAt;
@@ -67,13 +69,4 @@ public class Cart {
         this.updatedAt = updatedAt;
     }
 
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", Cart.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("userId=" + userId)
-                .add("createdAt=" + createdAt)
-                .add("updatedAt=" + updatedAt)
-                .toString();
-    }
 }

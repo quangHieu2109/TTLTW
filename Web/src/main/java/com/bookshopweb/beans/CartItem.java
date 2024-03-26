@@ -1,12 +1,13 @@
 package com.bookshopweb.beans;
 
+import com.google.gson.Gson;
 import org.jdbi.v3.core.mapper.Nested;
 import org.jetbrains.annotations.Nullable;
 
 import java.sql.Timestamp;
 import java.util.StringJoiner;
 
-public class CartItem {
+public class CartItem extends AbsModel<CartItem> {
     private long id;
     private long cartId;
     private long productId;
@@ -92,16 +93,5 @@ public class CartItem {
         this.product = product;
     }
 
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", CartItem.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("cartId=" + cartId)
-                .add("productId=" + productId)
-                .add("quantity=" + quantity)
-                .add("createdAt=" + createdAt)
-                .add("updatedAt=" + updatedAt)
-                .add("product=" + product)
-                .toString();
-    }
+
 }

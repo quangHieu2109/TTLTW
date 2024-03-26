@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 import java.util.StringJoiner;
 
-public class Product {
+public class Product extends AbsModel<Product>{
     private long id;
     private String name;
     private double price;

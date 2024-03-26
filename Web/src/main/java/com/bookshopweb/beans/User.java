@@ -2,7 +2,7 @@ package com.bookshopweb.beans;
 
 import java.util.StringJoiner;
 
-public class User {
+public class User extends AbsModel<User>{
     private long id;
     private String username;
     private String password;

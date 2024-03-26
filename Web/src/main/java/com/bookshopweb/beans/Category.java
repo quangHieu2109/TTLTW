@@ -4,7 +4,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.StringJoiner;
 
-public class Category {
+public class Category extends AbsModel<Category>{
     private long id;
     private String name;
     @Nullable

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
 import java.sql.Timestamp;
 import java.util.StringJoiner;
 
-public class OrderItem {
+public class OrderItem extends AbsModel<OrderItem>{
     private long id;
     private long orderId;
     private long productId;

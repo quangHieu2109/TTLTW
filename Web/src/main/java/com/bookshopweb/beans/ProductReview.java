@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.sql.Timestamp;
 import java.util.StringJoiner;
 
-public class ProductReview {
+public class ProductReview extends AbsModel<ProductReview> {
     private long id;
     private long userId;
     private long productId;

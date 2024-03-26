@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class Order {
+public class Order extends AbsModel<Order> {
     private long id;
     private long userId;
     private int status;

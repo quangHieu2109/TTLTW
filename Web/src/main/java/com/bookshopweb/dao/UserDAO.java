@@ -109,6 +109,6 @@ public class UserDAO extends AbsDAO<User> {
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
         User user = new User(10, "hiu", "456456456", "Quang Hieu", "","123123123", 1,"","");
-        System.out.println(dao.selectByUserName("hiu"));
+        System.out.println(dao.insert(user));
     }
 }

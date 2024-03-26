@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import java.sql.Timestamp;
 import java.util.StringJoiner;
 
-public class WishlistItem {
+public class WishlistItem extends AbsModel<WishlistItem> {
     private long id;
     private long userId;
     private long productId;
