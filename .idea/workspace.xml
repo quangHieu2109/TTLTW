@@ -10,9 +10,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29e5adf7-81e7-4ddb-9304-98bf88eea367" name="Changes" comment="update project">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/data2.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/OrderDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/OrderItemDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/WishlistItemDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Text Document.txt" beforeDir="false" afterPath="$PROJECT_DIR$/New Text Document.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ProductReviewDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ProductReviewDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2.sql" beforeDir="false" />
+    </list>
+    <list id="37102546-a93f-4d52-9ed0-8d4ca81331dc" name="Changes by Sinhvien" comment="">
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/AbsModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CategoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/CartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/CartItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/ProductReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/ProductReview.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/WishlistItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/WishlistItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ProductReviewDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ProductReviewDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +76,20 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ProductReviewDAO.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="3" changelist="29e5adf7-81e7-4ddb-9304-98bf88eea367" />
+        <range start1="5" end1="5" start2="6" end2="9" changelist="29e5adf7-81e7-4ddb-9304-98bf88eea367" />
+        <range start1="7" end1="7" start2="11" end2="38" changelist="29e5adf7-81e7-4ddb-9304-98bf88eea367" />
+        <range start1="9" end1="10" start2="40" end2="41" changelist="37102546-a93f-4d52-9ed0-8d4ca81331dc" />
+        <range start1="12" end1="13" start2="43" end2="44" changelist="37102546-a93f-4d52-9ed0-8d4ca81331dc" />
+        <range start1="37" end1="37" start2="68" end2="81" changelist="29e5adf7-81e7-4ddb-9304-98bf88eea367" />
+        <range start1="48" end1="48" start2="92" end2="98" changelist="29e5adf7-81e7-4ddb-9304-98bf88eea367" />
+        <range start1="49" end1="49" start2="99" end2="102" changelist="29e5adf7-81e7-4ddb-9304-98bf88eea367" />
+      </ranges>
+    </file>
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -69,43 +104,99 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2dj2NoJoTZ2lx7Q6HuPYE0mqKFr" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaScript Debug.index.jsp.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 9.0.48.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.Tomcat 9.0.83.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Hung&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Program/JavaWeb/TTLTW&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CartItemDAO.executor": "Run",
+    "Application.JDBCUtils.executor": "Run",
+    "Application.UserDAO.executor": "Run",
+    "JUnit.All in Web.executor": "Run",
+    "JavaScript Debug.index.jsp.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 9.0.48.executor": "Run",
+    "Tomcat Server.Tomcat 9.0.83.executor": "Run",
+    "git-widget-placeholder": "Hung",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Program/JavaWeb/TTLTW/Web",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mariadb&quot;,
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb",
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Program\JavaWeb\TTLTW\Web" />
       <recent name="D:\TTLTW\Web" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.jsp">
+  <component name="RunManager" selected="Application.UserDAO">
+    <configuration name="CartItemDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.CartItemDAO" />
+      <module name="Web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bookshopweb.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JDBCUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.utils.JDBCUtils" />
+      <module name="Web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bookshopweb.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.UserDAO" />
+      <module name="Web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bookshopweb.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in Web" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Web" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="index.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/index.jsp">
       <method v="2" />
     </configuration>
@@ -198,12 +289,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.CartItemDAO" />
+      <item itemvalue="Application.JDBCUtils" />
+      <item itemvalue="Application.UserDAO" />
       <item itemvalue="JavaScript Debug.index.jsp" />
+      <item itemvalue="JUnit.All in Web" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.83" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.UserDAO" />
+        <item itemvalue="Application.CartItemDAO" />
+        <item itemvalue="Application.JDBCUtils" />
         <item itemvalue="JavaScript Debug.index.jsp" />
+        <item itemvalue="JUnit.All in Web" />
       </list>
     </recent_temporary>
   </component>
@@ -232,7 +331,11 @@
       <workItem from="1711092201105" duration="560000" />
       <workItem from="1711209333557" duration="968000" />
       <workItem from="1711273239662" duration="1187000" />
-      <workItem from="1711286128133" duration="705000" />
+      <workItem from="1711286128133" duration="3994000" />
+      <workItem from="1711374948121" duration="9038000" />
+      <workItem from="1711421717877" duration="16000" />
+      <workItem from="1711421758131" duration="6464000" />
+      <workItem from="1711430533959" duration="4025000" />
     </task>
     <task id="LOCAL-00001" summary="update project">
       <option name="closed" value="true" />
