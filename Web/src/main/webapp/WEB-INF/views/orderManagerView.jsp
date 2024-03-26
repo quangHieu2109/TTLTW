@@ -7,8 +7,13 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Quản lý đơn hàng</title>
+  <title><fmt:message key="quan_ly_don_hang"/></title>
 </head>
 
 <body>
@@ -30,7 +35,7 @@
     <c:remove var="errorMessage" scope="session"/>
 
     <header class="section-heading py-4">
-      <h3 class="section-title">Quản lý đơn hàng</h3>
+      <h3 class="section-title"><fmt:message key="quan_ly_don_hang"/></h3>
     </header> <!-- section-heading.// -->
 
     <main class="table-responsive-xl mb-5">
@@ -38,14 +43,14 @@
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Mã</th>
-          <th scope="col">Người dùng</th>
-          <th scope="col">Ngày tạo</th>
-          <th scope="col">Ngày cập nhật</th>
-          <th scope="col">Số sản phẩm</th>
-          <th scope="col">Tổng tiền</th>
-          <th scope="col">Trạng thái</th>
-          <th scope="col" style="width: 250px;">Thao tác</th>
+          <th scope="col"><fmt:message key="ma"/></th>
+          <th scope="col"><fmt:message key="nguoi_dung"/></th>
+          <th scope="col"><fmt:message key="ngay_tao"/></th>
+          <th scope="col"><fmt:message key="ngay_cap_nhat"/></th>
+          <th scope="col"><fmt:message key="so_san_pham"/></th>
+          <th scope="col"><fmt:message key="tong_tien"/></th>
+          <th scope="col"><fmt:message key="trang_thai"/></th>
+          <th scope="col" style="width: 250px;"><fmt:message key="thao_tac"/></th>
         </tr>
         </thead>
         <tbody>
@@ -65,7 +70,7 @@
             <td class="text-end">
               <c:choose>
                 <c:when test="${order.deliveryMethod == 2}">
-                  <i class="bi bi-truck me-1" title="Giao nhanh"></i>
+                  <i class="bi bi-truck me-1" title="<fmt:message key="giao_nhanh"/>"></i>
                 </c:when>
               </c:choose>
               <fmt:formatNumber pattern="#,##0" value="${order.totalPrice}"/>₫
@@ -73,13 +78,13 @@
             <td>
               <c:choose>
                 <c:when test="${order.status == 1}">
-                  <span class="badge bg-warning text-dark">Đang giao hàng</span>
+                  <span class="badge bg-warning text-dark"><fmt:message key="dang_giao_hang"/></span>
                 </c:when>
                 <c:when test="${order.status == 2}">
-                  <span class="badge bg-success">Giao hàng thành công</span>
+                  <span class="badge bg-success"><fmt:message key="giao_hang_thanh_cong"/></span>
                 </c:when>
                 <c:when test="${order.status == 3}">
-                  <span class="badge bg-danger">Hủy đơn hàng</span>
+                  <span class="badge bg-danger"><fmt:message key="huy_don_hang"/></span>
                 </c:when>
               </c:choose>
             </td>
@@ -93,21 +98,21 @@
                       class="btn ${order.status == 2 || order.status == 3 ? 'btn-secondary' : 'btn-success'} me-2"
                       form="update-confirm-${order.id}" ${order.status == 2 || order.status == 3 ? 'disabled' : ''}
                       onclick="return confirm('Bạn có muốn xác nhận đã giao đơn hàng này?')"
-                      title="Xác nhận đã giao">
+                      title="<fmt:message key="xac_nhan_da_giao"/>">
                 <i class="bi bi-check-circle"></i>
               </button>
               <button type="submit"
                       class="btn  ${order.status == 2 || order.status == 3 ? 'btn-secondary' : 'btn-danger'} me-2"
                       form="update-cancel-${order.id}" ${order.status == 2 || order.status == 3 ? 'disabled' : ''}
                       onclick="return confirm('Bạn có muốn hủy đơn hàng này?')"
-                      title="Hủy đơn hàng">
+                      title="<fmt:message key="huy_don_hang"/>">
                 <i class="bi bi-x-circle"></i>
               </button>
               <button type="submit"
                       class="btn  ${order.status == 1 ? 'btn-secondary' : 'btn-warning'}"
                       form="update-reset-${order.id}" ${order.status == 1 ? 'disabled' : ''}
                       onclick="return confirm('Bạn có muốn đặt lại trạng thái là đang giao hàng cho đơn hàng này?')"
-                      title="Đặt lại trạng thái là đang giao hàng">
+                      title="<fmt:message key="dat_lai_trang_thai_la_dang_giao_hang"/>">
                 <i class="bi bi-arrow-clockwise"></i>
               </button>
               <form action="${pageContext.request.contextPath}/admin/orderManager/update" method="post"
@@ -138,7 +143,7 @@
           <li class="page-item ${requestScope.page == 1 ? 'disabled' : ''}">
             <a class="page-link"
                href="${pageContext.request.contextPath}/admin/orderManager?page=${requestScope.page - 1}">
-              Trang trước
+              <fmt:message key="trang_truoc"/>
             </a>
           </li>
 
@@ -163,7 +168,7 @@
           <li class="page-item ${requestScope.page == requestScope.totalPages ? 'disabled' : ''}">
             <a class="page-link"
                href="${pageContext.request.contextPath}/admin/orderManager?page=${requestScope.page + 1}">
-              Trang sau
+              <fmt:message key="trang_sau"/>
             </a>
           </li>
         </ul>

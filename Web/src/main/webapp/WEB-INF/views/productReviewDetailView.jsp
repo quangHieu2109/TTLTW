@@ -7,8 +7,13 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Thông tin đánh giá #${requestScope.productReview.id}</title>
+  <title><fmt:message key="thong_tin_danh_gia"/> #${requestScope.productReview.id}</title>
 </head>
 
 <body>
@@ -17,7 +22,7 @@
 <section class="section-content">
   <div class="container">
     <header class="section-heading py-4">
-      <h3 class="section-title">Thông tin đánh giá</h3>
+      <h3 class="section-title"><fmt:message key="thong_tin_danh_gia"/></h3>
     </header> <!-- section-heading.// -->
 
     <div class="card mb-5">
@@ -26,7 +31,7 @@
           <dt class="col-md-3">ID</dt>
           <dd class="col-md-9">${requestScope.productReview.id}</dd>
 
-          <dt class="col-md-3">Người dùng</dt>
+          <dt class="col-md-3"><fmt:message key="nguoi_dung"/></dt>
           <dd class="col-md-9">
             <a href="${pageContext.request.contextPath}/admin/userManager/detail?id=${requestScope.productReview.user.id}">
               ${requestScope.productReview.user.username}
@@ -34,17 +39,17 @@
             (${requestScope.productReview.user.fullname})
           </dd>
 
-          <dt class="col-md-3">Ngày tạo</dt>
+          <dt class="col-md-3"><fmt:message key="ngay_tao"/></dt>
           <dd class="col-md-9">
             ${requestScope.productReview.createdAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
           </dd>
 
-          <dt class="col-md-3">Ngày cập nhật</dt>
+          <dt class="col-md-3"><fmt:message key="ngay_cap_nhat"/></dt>
           <dd class="col-md-9">
             ${requestScope.productReview.updatedAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
           </dd>
 
-          <dt class="col-md-3">Số sao</dt>
+          <dt class="col-md-3"><fmt:message key="so_sao"/></dt>
           <dd class="col-md-9">
             <div class="ratting-star">
               <span class="rating-stars">
@@ -56,10 +61,10 @@
             </div>
           </dd>
 
-          <dt class="col-md-3">Nội dung đánh giá</dt>
+          <dt class="col-md-3"><fmt:message key="noi_dung_danh_gia"/></dt>
           <dd class="col-md-9">${requestScope.productReview.content}</dd>
 
-          <dt class="col-md-3">Sản phẩm</dt>
+          <dt class="col-md-3"><fmt:message key="san_pham"/></dt>
           <dd class="col-md-9">
             <a href="${pageContext.request.contextPath}/product?id=${requestScope.productReview.product.id}#review"
                target="_blank">

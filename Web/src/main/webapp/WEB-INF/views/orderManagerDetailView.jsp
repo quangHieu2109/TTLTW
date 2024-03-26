@@ -7,36 +7,42 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Thông tin đơn hàng #${requestScope.order.id}</title>
+  <title><fmt:message key="thong_tin_don_hang"/> #${requestScope.order.id}</title>
 </head>
 
 <body>
+
 <jsp:include page="_headerAdmin.jsp"/>
 
 <section class="section-content">
   <div class="container">
     <header class="section-heading py-4">
-      <h3 class="section-title">Thông tin đơn hàng</h3>
+      <h3 class="section-title"><fmt:message key="thong_tin_don_hang"/></h3>
     </header> <!-- section-heading.// -->
 
     <div class="card mb-5">
       <div class="card-body">
         <dl class="row">
-          <dt class="col-md-3">Mã đơn hàng</dt>
+          <dt class="col-md-3"><fmt:message key="ma_don_hang"/></dt>
           <dd class="col-md-9">${requestScope.order.id}</dd>
 
-          <dt class="col-md-3">Ngày tạo</dt>
+          <dt class="col-md-3"><fmt:message key="ngay_tao"/></dt>
           <dd class="col-md-9">
             ${requestScope.order.createdAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
           </dd>
 
-          <dt class="col-md-3">Ngày cập nhật</dt>
+          <dt class="col-md-3"><fmt:message key="ngay_cap_nhat"/></dt>
           <dd class="col-md-9">
             ${requestScope.order.updatedAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
           </dd>
 
-          <dt class="col-md-3">Người đặt/nhận</dt>
+          <dt class="col-md-3"><fmt:message key="nguoi_dat_nhan"/></dt>
           <dd class="col-md-9">
             <a href="${pageContext.request.contextPath}/admin/userManager/detail?id=${requestScope.order.user.id}">
               ${requestScope.order.user.username}
@@ -46,49 +52,49 @@
 
           <dt class="col-md-3">Hình thức thanh toán</dt>
           <dd class="col-md-9">
-            ${requestScope.order.deliveryMethod == 1 ? 'Giao tiêu chuẩn' : 'Giao nhanh'}
+            ${requestScope.order.deliveryMethod == 1 ? '<fmt:message key="giao_tieu_chuan"/>' : '<fmt:message key="giao_nhanh"/>'}
           </dd>
 
-          <dt class="col-md-3">Tạm tính</dt>
+          <dt class="col-md-3"><fmt:message key="tam_tinh"/></dt>
           <dd class="col-md-9">
             <fmt:formatNumber pattern="#,##0"
                               value="${requestScope.order.totalPrice - requestScope.order.deliveryPrice}"/>₫
           </dd>
 
-          <dt class="col-md-3">Phí vận chuyển</dt>
+          <dt class="col-md-3"><fmt:message key="phi_van_chuyen"/></dt>
           <dd class="col-md-9">
             <fmt:formatNumber pattern="#,##0" value="${requestScope.order.deliveryPrice}"/>₫
           </dd>
 
-          <dt class="col-md-3">Tổng tiền</dt>
+          <dt class="col-md-3"><fmt:message key="tong_tien"/></dt>
           <dd class="col-md-9">
             <fmt:formatNumber pattern="#,##0" value="${requestScope.order.totalPrice}"/>₫
           </dd>
 
-          <dt class="col-md-3">Trạng thái</dt>
+          <dt class="col-md-3"><fmt:message key="trang_thai"/></dt>
           <dd class="col-md-9">
             <c:choose>
               <c:when test="${requestScope.order.status == 1}">
-                <span class="badge bg-warning text-dark">Đang giao hàng</span>
+                <span class="badge bg-warning text-dark"><fmt:message key="dang_giao_hang"/></span>
               </c:when>
               <c:when test="${requestScope.order.status == 2}">
-                <span class="badge bg-success">Giao hàng thành công</span>
+                <span class="badge bg-success"><fmt:message key="giao_hang_thanh_cong"/></span>
               </c:when>
               <c:when test="${requestScope.order.status == 3}">
-                <span class="badge bg-danger">Hủy đơn hàng</span>
+                <span class="badge bg-danger"><fmt:message key="huy_don_hang"/></span>
               </c:when>
             </c:choose>
           </dd>
 
-          <dt class="col-md-3">Sản phẩm</dt>
+          <dt class="col-md-3"><fmt:message key="san_pham"/></dt>
           <dd class="col-md-9">
             <div class="table-responsive border rounded">
               <table class="table table-borderless">
                 <thead class="text-muted">
                 <tr class="small text-uppercase">
-                  <th scope="col" style="min-width: 280px;">Sản phẩm</th>
-                  <th scope="col" style="min-width: 150px;">Giá</th>
-                  <th scope="col" style="min-width: 150px;">Số lượng</th>
+                  <th scope="col" style="min-width: 280px;"><fmt:message key="san_pham"/></th>
+                  <th scope="col" style="min-width: 150px;"><fmt:message key="gia"/></th>
+                  <th scope="col" style="min-width: 150px;"><fmt:message key="so_luong"/></th>
                 </tr>
                 </thead>
                 <tbody>

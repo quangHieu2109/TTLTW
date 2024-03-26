@@ -47,6 +47,6 @@
   </section> <!-- footer-top.// -->
 
   <section class="footer-bottom text-center bg-light border-top py-3">
-    <div class="container-fluid">© 2022 — Shop Bán Sách</div> <!-- container-fluid.// -->
+    <div class="container-fluid">© 2022 — <fmt:message key="shop_ban_sach"/></div> <!-- container-fluid.// -->
   </section> <!-- footer-bottom.// -->
 </footer> <!-- section-footer.// -->

@@ -6,8 +6,13 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Đơn hàng</title>
+  <title><fmt:message key="don_hang"/></title>
 </head>
 
 <body>
@@ -15,7 +20,7 @@
 
 <section class="section-pagetop bg-light">
   <div class="container">
-    <h2 class="title-page">Đơn hàng</h2>
+    <h2 class="title-page"><fmt:message key="don_hang"/></h2>
   </div> <!-- container.// -->
 </section> <!-- section-pagetop.// -->
 
@@ -34,12 +39,12 @@
               <table class="table table-bordered table-striped table-hover align-middle">
                 <thead>
                 <tr>
-                  <th scope="col" style="min-width: 125px;">Mã đơn hàng</th>
-                  <th scope="col" style="min-width: 100px;">Ngày mua</th>
-                  <th scope="col" style="min-width: 300px;">Sản phẩm</th>
-                  <th scope="col" style="min-width: 100px;">Tổng tiền</th>
-                  <th scope="col" style="min-width: 175px;">Trạng thái đơn hàng</th>
-                  <th scope="col">Thao tác</th>
+                  <th scope="col" style="min-width: 125px;"><fmt:message key="ma_don_hang"/></th>
+                  <th scope="col" style="min-width: 100px;"><fmt:message key="ngay_mua"/></th>
+                  <th scope="col" style="min-width: 300px;"><fmt:message key="san_pham"/></th>
+                  <th scope="col" style="min-width: 100px;"><fmt:message key="tong_tien"/></th>
+                  <th scope="col" style="min-width: 175px;"><fmt:message key="trang_thai_don_hang"/></th>
+                  <th scope="col"><fmt:message key="thao_tac"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,13 +57,13 @@
                     <td>
                       <c:choose>
                         <c:when test="${order.status == 1}">
-                          <span class="badge bg-warning text-dark">Đang giao hàng</span>
+                          <span class="badge bg-warning text-dark"><fmt:message key="dang_giao_hang"/></span>
                         </c:when>
                         <c:when test="${order.status == 2}">
-                          <span class="badge bg-success">Giao hàng thành công</span>
+                          <span class="badge bg-success"><fmt:message key="giao_hang_thanh_cong"/></span>
                         </c:when>
                         <c:when test="${order.status == 3}">
-                          <span class="badge bg-danger">Hủy đơn hàng</span>
+                          <span class="badge bg-danger"><fmt:message key="huy_don_hang"/></span>
                         </c:when>
                       </c:choose>
                     </td>
@@ -66,7 +71,7 @@
                       <a class="btn btn-primary me-2"
                          href="${pageContext.request.contextPath}/orderDetail?id=${order.id}"
                          role="button">
-                        Xem đơn hàng
+                        <fmt:message key="xem_don_hang"/>
                       </a>
                     </td>
                   </tr>
@@ -81,7 +86,7 @@
                   <li class="page-item ${requestScope.page == 1 ? 'disabled' : ''}">
                     <a class="page-link"
                        href="${pageContext.request.contextPath}/order?page=${requestScope.page - 1}">
-                      Trang trước
+                      <fmt:message key="trang_truoc"/>
                     </a>
                   </li>
 
@@ -106,7 +111,7 @@
                   <li class="page-item ${requestScope.page == requestScope.totalPages ? 'disabled' : ''}">
                     <a class="page-link"
                        href="${pageContext.request.contextPath}/order?page=${requestScope.page + 1}">
-                      Trang sau
+                      <fmt:message key="trang_sau"/>
                     </a>
                   </li>
                 </ul>
@@ -117,7 +122,7 @@
         </c:when>
         <c:otherwise>
           <p>
-            Vui lòng <a href="${pageContext.request.contextPath}/signin">đăng nhập</a> để sử dụng trang này.
+            <fmt:message key="vui_long"/> <a href="${pageContext.request.contextPath}/signin"><fmt:message key="dang_nhap"/></a> <fmt:message key="de_su_dung_trang_nay"/>.
           </p>
         </c:otherwise>
       </c:choose>

@@ -6,18 +6,24 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Kết quả tìm kiếm cho "${requestScope.query}"</title>
+
+  <title><fmt:message key="ket_qua_tim_kiem_cho"/> "${requestScope.query}"</title>
 </head>
 
 <body>
-<jsp:include page="_header.jsp"/>
 
+<jsp:include page="_header.jsp"/>
 <section class="section-content mb-5">
   <div class="container">
     <header class="section-heading py-4">
       <h3 class="section-title">
-        Kết quả tìm kiếm cho "${requestScope.query}": ${requestScope.totalProducts} sản phẩm
+        <fmt:message key="ket_qua_tim_kiem_cho"/> "${requestScope.query}": ${requestScope.totalProducts} <fmt:message key="san_pham"/>
       </h3>
     </header> <!-- section-heading.// -->
 
@@ -79,7 +85,7 @@
           <li class="page-item ${requestScope.page == 1 ? 'disabled' : ''}">
             <a class="page-link"
                href="${pageContext.request.contextPath}/search?q=${requestScope.query}&page=${requestScope.page - 1}">
-              Trang trước
+              <fmt:message key="trang_truoc"/>
             </a>
           </li>
 
@@ -104,7 +110,7 @@
           <li class="page-item ${requestScope.page == requestScope.totalPages ? 'disabled' : ''}">
             <a class="page-link"
                href="${pageContext.request.contextPath}/search?q=${requestScope.query}&page=${requestScope.page + 1}">
-              Trang sau
+              <fmt:message key="trang_sau"/>
             </a>
           </li>
         </ul>

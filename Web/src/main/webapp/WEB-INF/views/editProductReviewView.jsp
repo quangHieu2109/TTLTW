@@ -7,8 +7,13 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Sửa đánh giá #${requestScope.productReview.id}</title>
+  <title><fmt:message key="sua_danh_gia"/> #${requestScope.productReview.id}</title>
 </head>
 
 <body>
@@ -17,19 +22,19 @@
 <section class="section-content">
   <div class="container">
     <header class="section-heading py-4">
-      <h3 class="section-title">Sửa đánh giá #${requestScope.productReview.id}</h3>
+      <h3 class="section-title"><fmt:message key="sua_danh_gia"/> #${requestScope.productReview.id}</h3>
     </header> <!-- section-heading.// -->
 
     <main class="row mb-5">
       <p>
-        Đánh giá của <strong>${requestScope.productReview.user.fullname}</strong> tại
+        <fmt:message key="danh_gia_cua"/> <strong>${requestScope.productReview.user.fullname}</strong> <fmt:message key="tai"/>
         <strong>
           <a href="${pageContext.request.contextPath}/product?id=${requestScope.productReview.product.id}#review"
              target="_blank">
             ${requestScope.productReview.product.name}
           </a>
         </strong>
-        lúc ${requestScope.productReview.createdAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
+        <fmt:message key="luc"/> ${requestScope.productReview.createdAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
       </p>
       <form class="col-lg-6" method="POST" action="${pageContext.request.contextPath}/editProductReview">
         <c:if test="${not empty requestScope.successMessage}">
@@ -50,7 +55,7 @@
                   name="ratingScore"
                   required>
             <option disabled ${not empty requestScope.productReview.ratingScore ? '' : 'selected'}>
-              Cho sao
+              <fmt:message key="cho_sao"/>
             </option>
             <c:forEach var="i" begin="1" end="5">
               <option value="${i}" ${requestScope.productReview.ratingScore == i ? 'selected' : ''}>${i}</option>
@@ -72,7 +77,7 @@
                       ? 'is-invalid' : (not empty requestScope.productReview.content ? 'is-valid' : '')}"
                     id="productReview-content"
                     name="content"
-                    placeholder="Nội dung đánh giá"
+                    placeholder="<fmt:message key="noi_dung_danh_gia"/>"
                     rows="5">${requestScope.productReview.content}</textarea>
           <c:if test="${not empty requestScope.violations.contentViolations}">
             <div class="invalid-feedback">
@@ -86,18 +91,18 @@
         </div>
         <input type="hidden" name="id" value="${requestScope.productReview.id}">
         <button type="submit" class="btn btn-primary me-2 mb-3">
-          Sửa
+          <fmt:message key="sua"/>
         </button>
         <button type="reset"
                 class="btn btn-warning me-2 mb-3"
                 onclick="return confirm('Bạn có muốn để giá trị mặc định?')">
-          Mặc định
+          <fmt:message key="mac_dinh"/>
         </button>
         <a class="btn btn-danger mb-3"
            href="${pageContext.request.contextPath}/product?id=${requestScope.productReview.product.id}#review"
            role="button"
            onclick="return confirm('Bạn có muốn hủy?')">
-          Hủy
+          <fmt:message key="huy"/>
         </a>
       </form>
     </main>
