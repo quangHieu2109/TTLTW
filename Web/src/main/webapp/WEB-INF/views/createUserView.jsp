@@ -6,17 +6,23 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Thêm người dùng</title>
+  <title><fmt:message key="them_nguoi_dung"/></title>
 </head>
 
 <body>
 <jsp:include page="_headerAdmin.jsp"/>
 
+
 <section class="section-content">
   <div class="container">
     <header class="section-heading py-4">
-      <h3 class="section-title">Thêm người dùng</h3>
+      <h3 class="section-title"><fmt:message key="them_nguoi_dung"/></h3>
     </header> <!-- section-heading.// -->
 
     <main class="row mb-5">
@@ -32,7 +38,7 @@
           </div>
         </c:if>
         <div class="mb-3">
-          <label for="user-username" class="form-label">Tên đăng nhập <span class="text-danger">*</span></label>
+          <label for="user-username" class="form-label"><fmt:message key="ten_dang_nhap"/> <span class="text-danger">*</span></label>
           <input type="text"
                  class="form-control ${not empty requestScope.violations.usernameViolations
                    ? 'is-invalid' : (not empty requestScope.user.username ? 'is-valid' : '')}"
@@ -51,7 +57,7 @@
           </c:if>
         </div>
         <div class="mb-3">
-          <label for="user-password" class="form-label">Mật khẩu <span class="text-danger">*</span></label>
+          <label for="user-password" class="form-label"><fmt:message key="mat_khau"/> <span class="text-danger">*</span></label>
           <input type="password"
                  class="form-control ${not empty requestScope.violations.passwordViolations
                    ? 'is-invalid' : (not empty requestScope.user.password ? 'is-valid' : '')}"
@@ -70,7 +76,7 @@
           </c:if>
         </div>
         <div class="mb-3">
-          <label for="user-fullname" class="form-label">Họ và tên <span class="text-danger">*</span></label>
+          <label for="user-fullname" class="form-label"><fmt:message key="ho_va_ten"/> <span class="text-danger">*</span></label>
           <input type="text"
                  class="form-control ${not empty requestScope.violations.fullnameViolations
                    ? 'is-invalid' : (not empty requestScope.user.fullname ? 'is-valid' : '')}"
@@ -108,7 +114,7 @@
           </c:if>
         </div>
         <div class="mb-3">
-          <label for="user-phoneNumber" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+          <label for="user-phoneNumber" class="form-label"><fmt:message key="so_dien_thoai"/> <span class="text-danger">*</span></label>
           <input type="text"
                  class="form-control ${not empty requestScope.violations.phoneNumberViolations
                    ? 'is-invalid' : (not empty requestScope.user.phoneNumber ? 'is-valid' : '')}"
@@ -127,7 +133,7 @@
           </c:if>
         </div>
         <div class="mb-3">
-          <label class="form-label d-block">Giới tính <span class="text-danger">*</span></label>
+          <label class="form-label d-block"><fmt:message key="gioi_tinh"/> <span class="text-danger">*</span></label>
           <div class="form-check d-inline-block me-4">
             <input class="form-check-input ${not empty requestScope.violations.genderViolations
                      ? 'is-invalid' : (not empty requestScope.user.gender ? 'is-valid' : '')}"
@@ -136,7 +142,7 @@
                    id="user-gender-male"
                    value="0" ${requestScope.user.gender == '0' ? 'checked' : ''}
                    required>
-            <label class="form-check-label" for="user-gender-male">Nam</label>
+            <label class="form-check-label" for="user-gender-male"><fmt:message key="nam"/></label>
           </div>
           <div class="form-check d-inline-block">
             <input class="form-check-input ${not empty requestScope.violations.genderViolations
@@ -146,7 +152,7 @@
                    id="user-gender-female"
                    value="1" ${requestScope.user.gender == '1' ? 'checked' : ''}
                    required>
-            <label class="form-check-label" for="user-gender-female">Nữ</label>
+            <label class="form-check-label" for="user-gender-female"><fmt:message key="nu"/></label>
           </div>
           <c:if test="${not empty requestScope.violations.genderViolations}">
             <div class="is-invalid"></div>
@@ -160,7 +166,7 @@
           </c:if>
         </div>
         <div class="mb-3">
-          <label for="user-address" class="form-label">Địa chỉ <span class="text-danger">*</span></label>
+          <label for="user-address" class="form-label"><fmt:message key="dia_chi"/> <span class="text-danger">*</span></label>
           <input type="text"
                  class="form-control ${not empty requestScope.violations.addressViolations
                    ? 'is-invalid' : (not empty requestScope.user.address ? 'is-valid' : '')}"
@@ -179,23 +185,23 @@
           </c:if>
         </div>
         <div class="mb-3">
-          <label for="user-role" class="form-label">Quyền <span class="text-danger">*</span></label>
+          <label for="user-role" class="form-label"><fmt:message key="quyen"/> <span class="text-danger">*</span></label>
           <select class="form-select ${not empty requestScope.violations.roleViolations
                     ? 'is-invalid' : (not empty requestScope.user.role ? 'is-valid' : '')}"
                   id="user-role"
                   name="role"
                   required>
             <option ${empty requestScope.user.role ? 'selected' : ''} disabled>
-              Chọn một quyền...
+              <fmt:message key="chon_mot_quyen"/>...
             </option>
             <option value="ADMIN" ${requestScope.user.role == 'ADMIN' ? 'selected' : ''}>
-              Quản trị viên
+              <fmt:message key="quan_tri_vien"/>
             </option>
             <option value="EMPLOYEE" ${requestScope.user.role == 'EMPLOYEE' ? 'selected' : ''}>
-              Nhân viên
+              <fmt:message key="nhan_vien"/>
             </option>
             <option value="CUSTOMER" ${requestScope.user.role == 'CUSTOMER' ? 'selected' : ''}>
-              Khách hàng
+              <fmt:message key="khach_hang"/>
             </option>
           </select>
           <c:if test="${not empty requestScope.violations.roleViolations}">
@@ -209,18 +215,18 @@
           </c:if>
         </div>
         <button type="submit" class="btn btn-primary me-2 mb-3">
-          Thêm
+          <fmt:message key="them"/>
         </button>
         <button type="reset"
                 class="btn btn-warning me-2 mb-3"
                 onclick="return confirm('Bạn có muốn để giá trị mặc định?')">
-          Mặc định
+          <fmt:message key="mac_dinh"/>
         </button>
         <a class="btn btn-danger mb-3"
            href="${pageContext.request.contextPath}/admin/userManager"
            role="button"
            onclick="return confirm('Bạn có muốn hủy?')">
-          Hủy
+          <fmt:message key="huy"/>
         </a>
       </form>
     </main>

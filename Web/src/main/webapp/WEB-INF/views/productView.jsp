@@ -16,13 +16,17 @@
 
 <body>
 <jsp:include page="_header.jsp"/>
-
+<fmt:setLocale value="vi_VN" />
+<c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+  <fmt:setLocale value="en_US" />
+</c:if>
+<fmt:setBundle basename="lang" />
 <section class="section-pagetop-2 bg-light">
   <div class="container">
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item" aria-current="page">
-          <a href="${pageContext.request.contextPath}/">Trang chủ</a>
+          <a href="${pageContext.request.contextPath}/"><fmt:message key="trang_chu"/></a>
         </li>
         <li class="breadcrumb-item" aria-current="page">
           <a href="${pageContext.request.contextPath}/category?id=${requestScope.category.id}">${requestScope.category.name}</a>
@@ -96,19 +100,19 @@
         </div>
 
         <dl class="row mb-4">
-          <dt class="col-xl-4 col-sm-5 col-6">Tác giả</dt>
+          <dt class="col-xl-4 col-sm-5 col-6"><fmt:message key="tac_gia"/></dt>
           <dd class="col-xl-8 col-sm-7 col-6">${requestScope.product.author}</dd>
 
-          <dt class="col-xl-4 col-sm-5 col-6">Số trang</dt>
+          <dt class="col-xl-4 col-sm-5 col-6"><fmt:message key="so_trang"/></dt>
           <dd class="col-xl-8 col-sm-7 col-6">${requestScope.product.pages}</dd>
 
-          <dt class="col-xl-4 col-sm-5 col-6">Nhà xuất bản</dt>
+          <dt class="col-xl-4 col-sm-5 col-6"><fmt:message key="nha_xuat_ban"/></dt>
           <dd class="col-xl-8 col-sm-7 col-6">${requestScope.product.publisher}</dd>
 
-          <dt class="col-xl-4 col-sm-5 col-6">Năm xuất bản</dt>
+          <dt class="col-xl-4 col-sm-5 col-6"><fmt:message key="nam_xuat_ban"/></dt>
           <dd class="col-xl-8 col-sm-7 col-6">${requestScope.product.yearPublishing}</dd>
 
-          <dt class="col-xl-4 col-sm-5 col-6">Số lượng</dt>
+          <dt class="col-xl-4 col-sm-5 col-6"><fmt:message key="so_luong"/></dt>
           <dd class="col-xl-8 col-sm-7 col-6">
             <input type="number" id="cart-item-quantity" class="form-control w-50" value="1" min="1"
                    max="${requestScope.product.quantity}" step="1"/>
@@ -120,8 +124,8 @@
                   title="Thêm vào danh sách yêu thích" ${requestScope.isWishlistItem == 1 ? 'disabled' : ''}>
             <i class="bi bi-heart"></i>
           </button>
-          <button type="button" class="btn btn-primary ms-2" id="buy-now">Mua ngay</button>
-          <button type="button" class="btn btn-light ms-2" id="add-cart-item">Thêm vào giỏ hàng</button>
+          <button type="button" class="btn btn-primary ms-2" id="buy-now"><fmt:message key="mua_ngay"/></button>
+          <button type="button" class="btn btn-light ms-2" id="add-cart-item"><fmt:message key="them_gio_hang"/></button>
         </div>
 
       </main>
@@ -134,7 +138,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h3 class="pb-2">Mô tả sản phẩm</h3>
+        <h3 class="pb-2"><fmt:message key="mo_ta_san_pham"/></h3>
         <div>${requestScope.product.description}</div>
       </div>
     </div>
@@ -146,7 +150,7 @@
     <div class="row">
       <div class="col">
         <c:if test="${requestScope.totalProductReviews != 0}">
-          <h3 id="review" class="pb-2">${requestScope.totalProductReviews} đánh giá</h3>
+          <h3 id="review" class="pb-2">${requestScope.totalProductReviews} <fmt:message key="danh_gia"/></h3>
 
           <c:if test="${not empty sessionScope.successMessage}">
             <div class="alert alert-success" role="alert">${sessionScope.successMessage}</div>
@@ -184,7 +188,7 @@
                       ${productReview.content}
                     </c:when>
                     <c:otherwise>
-                      <em>Nội dung đánh giá đã được ẩn bởi quản trị viên</em>
+                      <em><fmt:message key="noi_dung_danh_gia_duoc_an_boi_quan_tri_vien"/></em>
                     </c:otherwise>
                   </c:choose>
                 </div>
@@ -198,10 +202,10 @@
                       <a href="${pageContext.request.contextPath}/editProductReview?id=${productReview.id}"
                          role="button"
                          class="btn btn-primary btn-sm">
-                        Sửa
+                        <fmt:message key="sua"/>
                       </a>
                       <button type="submit" class="btn btn-danger btn-sm"
-                              onclick="return confirm('Bạn có muốn xóa?')">Xóa
+                              onclick="return confirm('Bạn có muốn xóa?')"><fmt:message key="xoa"/>
                       </button>
                     </div>
                   </form>
@@ -214,7 +218,7 @@
                 <li class="page-item ${requestScope.pageReview == 1 ? 'disabled' : ''}">
                   <a class="page-link"
                      href="${pageContext.request.contextPath}/product?id=${requestScope.product.id}&pageReview=${requestScope.pageReview - 1}#review">
-                    Trang trước
+                    <fmt:message key="trang_truoc"/>
                   </a>
                 </li>
 
@@ -239,7 +243,7 @@
                 <li class="page-item ${requestScope.pageReview == requestScope.totalPagesOfProductReviews ? 'disabled' : ''}">
                   <a class="page-link"
                      href="${pageContext.request.contextPath}/product?id=${requestScope.product.id}&pageReview=${requestScope.pageReview + 1}#review">
-                    Trang sau
+                    <fmt:message key="trang_sau"/>
                   </a>
                 </li>
               </ul>
@@ -247,7 +251,7 @@
           </div>
         </c:if>
 
-        <h3 id="review-form" class="pb-2">Thêm đánh giá</h3>
+        <h3 id="review-form" class="pb-2"><fmt:message key="them_danh_gia"/></h3>
 
         <c:if test="${not empty sessionScope.errorAddReviewMessage}">
           <div class="alert alert-danger" role="alert">${sessionScope.errorAddReviewMessage}</div>
@@ -264,7 +268,7 @@
                                 ? 'is-invalid' : (not empty sessionScope.values.ratingScore ? 'is-valid' : '')}"
                               name="ratingScore">
                         <option disabled ${not empty sessionScope.values.ratingScore ? '' : 'selected'}>
-                          Cho sao
+                          <fmt:message key="cho_sao"/>
                         </option>
                         <c:forEach var="i" begin="1" end="5">
                           <option value="${i}" ${sessionScope.values.ratingScore == i ? 'selected' : ''}>${i}</option>
@@ -287,7 +291,7 @@
                       <textarea class="form-control ${not empty sessionScope.violations.contentViolations
                                   ? 'is-invalid' : (not empty sessionScope.values.content ? 'is-valid' : '')}"
                                 name="content"
-                                placeholder="Nội dung đánh giá"
+                                placeholder="<fmt:message key="noi_dung_danh_gia"/>"
                                 rows="3">${sessionScope.values.content}</textarea>
                       <c:if test="${not empty sessionScope.violations.contentViolations}">
                         <div class="invalid-feedback">
@@ -303,14 +307,13 @@
                   </div>
                   <input type="hidden" name="userId" value="${sessionScope.currentUser.id}">
                   <input type="hidden" name="productId" value="${requestScope.product.id}">
-                  <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+                  <button type="submit" class="btn btn-primary"><fmt:message key="gui_danh_gia"/></button>
                 </form>
               </div>
             </div>
           </c:when>
           <c:otherwise>
-            <p>Vui lòng <a href="${pageContext.request.contextPath}/signin">đăng nhập</a> để đánh giá sản
-              phẩm.</p>
+            <p>Vui lòng <a href="${pageContext.request.contextPath}/signin"><fmt:message key="dang_nhap"/></a> <fmt:message key="de_danh_gia_san_pham"/>.</p>
           </c:otherwise>
         </c:choose>
         <%-- Xóa các attribute của AddProductReviewServlet khỏi session --%>
@@ -326,7 +329,7 @@
 
 <section class="section-content mb-5">
   <div class="container">
-    <h3 class="pb-2">Sản phẩm liên quan</h3>
+    <h3 class="pb-2"><fmt:message key="san_pham_lien_quan"/></h3>
     <div class="row item-grid">
       <c:forEach var="relatedProduct" items="${requestScope.relatedProducts}">
         <div class="col-xl-3 col-lg-4 col-md-6">

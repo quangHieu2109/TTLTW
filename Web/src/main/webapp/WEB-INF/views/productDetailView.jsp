@@ -7,8 +7,13 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Thông tin sản phẩm #${requestScope.product.id}</title>
+  <title><fmt:message key="thong_tin_san_pham"/> #${requestScope.product.id}</title>
 </head>
 
 <body>
@@ -17,7 +22,7 @@
 <section class="section-content">
   <div class="container">
     <header class="section-heading py-4">
-      <h3 class="section-title">Thông tin sản phẩm</h3>
+      <h3 class="section-title"><fmt:message key="thong_tin_san_pham"/></h3>
     </header> <!-- section-heading.// -->
 
     <div class="card mb-5">
@@ -26,27 +31,27 @@
           <dt class="col-md-3">ID</dt>
           <dd class="col-md-9">${requestScope.product.id}</dd>
 
-          <dt class="col-md-3">Tên sản phẩm</dt>
+          <dt class="col-md-3"><fmt:message key="ten_san_pham"/></dt>
           <dd class="col-md-9">
             <a href="${pageContext.request.contextPath}/product?id=${requestScope.product.id}" target="_blank">
               ${requestScope.product.name}
             </a>
           </dd>
 
-          <dt class="col-md-3">Thể loại</dt>
+          <dt class="col-md-3"><fmt:message key="the_loai"/></dt>
           <dd class="col-md-9">
             <a href="${pageContext.request.contextPath}/category?id=${requestScope.category.id}" target="_blank">
               ${requestScope.category.name}
             </a>
           </dd>
 
-          <dt class="col-md-3">Giá gốc</dt>
+          <dt class="col-md-3"><fmt:message key="gia_goc"/></dt>
           <dd class="col-md-9"><fmt:formatNumber pattern="#,##0" value="${requestScope.product.price}"/>₫</dd>
 
-          <dt class="col-md-3">Khuyến mãi</dt>
+          <dt class="col-md-3"><fmt:message key="khuyen_mai"/></dt>
           <dd class="col-md-9"><fmt:formatNumber pattern="#,##0" value="${requestScope.product.discount}"/>%</dd>
 
-          <dt class="col-md-3">Giá bán</dt>
+          <dt class="col-md-3"><fmt:message key="gia_ban"/></dt>
           <dd class="col-md-9">
             <c:choose>
               <c:when test="${requestScope.product.discount == 0}">
@@ -60,28 +65,28 @@
             </c:choose>
           </dd>
 
-          <dt class="col-md-3">Tồn kho</dt>
+          <dt class="col-md-3"><fmt:message key="ton_kho"/></dt>
           <dd class="col-md-9">${requestScope.product.quantity}</dd>
 
-          <dt class="col-md-3">Lượt mua</dt>
+          <dt class="col-md-3"><fmt:message key="luot_mua"/></dt>
           <dd class="col-md-9">${requestScope.product.totalBuy}</dd>
 
-          <dt class="col-md-3">Tác giả</dt>
+          <dt class="col-md-3"><fmt:message key="tac_gia"/></dt>
           <dd class="col-md-9">${requestScope.product.author}</dd>
 
-          <dt class="col-md-3">Số trang</dt>
+          <dt class="col-md-3"><fmt:message key="so_trang"/></dt>
           <dd class="col-md-9">${requestScope.product.pages}</dd>
 
-          <dt class="col-md-3">Nhà xuất bản</dt>
+          <dt class="col-md-3"><fmt:message key="nha_xuat_ban"/></dt>
           <dd class="col-md-9">${requestScope.product.publisher}</dd>
 
-          <dt class="col-md-3">Năm xuất bản</dt>
+          <dt class="col-md-3"><fmt:message key="nam_xuat_ban"/></dt>
           <dd class="col-md-9">${requestScope.product.yearPublishing}</dd>
 
-          <dt class="col-md-3">Mô tả sản phẩm</dt>
+          <dt class="col-md-3"><fmt:message key="mo_ta_san_pham"/></dt>
           <dd class="col-md-9">${requestScope.product.description}</dd>
 
-          <dt class="col-md-3">Hình sản phẩm</dt>
+          <dt class="col-md-3"><fmt:message key="hinh_san_pham"/></dt>
           <dd class="col-md-9">
             <c:choose>
               <c:when test="${empty requestScope.product.imageName}">
@@ -99,19 +104,19 @@
             </c:choose>
           </dd>
 
-          <dt class="col-md-3">Được giao dịch?</dt>
-          <dd class="col-md-9">${requestScope.product.shop == 0 ? 'Không' : 'Có'}</dd>
+          <dt class="col-md-3"><fmt:message key="duoc_giao_dich"/>?</dt>
+          <dd class="col-md-9">${requestScope.product.shop == 0 ? '<fmt:message key="khong"/>' : '<fmt:message key="co"/>'}</dd>
 
-          <dt class="col-md-3">Ngày tạo</dt>
+          <dt class="col-md-3"><fmt:message key="ngay_tao"/></dt>
           <dd class="col-md-9">${requestScope.product.createdAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</dd>
 
-          <dt class="col-md-3">Ngày cập nhật</dt>
+          <dt class="col-md-3"><fmt:message key="ngay_cap_nhat"/></dt>
           <dd class="col-md-9">${requestScope.product.updatedAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</dd>
 
-          <dt class="col-md-3">Ngày bắt đầu khuyến mãi</dt>
+          <dt class="col-md-3"><fmt:message key="ngay_bat_dau_khuyen_mai"/></dt>
           <dd class="col-md-9">${requestScope.product.startsAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</dd>
 
-          <dt class="col-md-3">Ngày kết thúc khuyến mãi</dt>
+          <dt class="col-md-3"><fmt:message key="ngay_ket_thuc_khuyen_mai"/></dt>
           <dd class="col-md-9">${requestScope.product.endsAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</dd>
         </dl>
       </div>

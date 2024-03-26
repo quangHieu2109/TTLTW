@@ -6,8 +6,13 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Quản lý sản phẩm</title>
+  <title><fmt:message key="quan_li_san_pham"/></title>
 </head>
 
 <body>
@@ -29,12 +34,12 @@
     <c:remove var="errorMessage" scope="session"/>
 
     <header class="section-heading py-4 d-flex justify-content-between">
-      <h3 class="section-title">Quản lý sản phẩm</h3>
+      <h3 class="section-title"><fmt:message key="quan_li_san_pham"/></h3>
       <a class="btn btn-primary"
          href="${pageContext.request.contextPath}/admin/productManager/create"
          role="button"
          style="height: fit-content;">
-        Thêm sản phẩm
+        <fmt:message key="them_san_pham"/>
       </a>
     </header> <!-- section-heading.// -->
 
@@ -44,14 +49,14 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">ID</th>
-          <th scope="col">Hình</th>
-          <th scope="col">Tên sản phẩm</th>
-          <th scope="col">Giá gốc</th>
-          <th scope="col">Khuyến mãi</th>
-          <th scope="col">Giá bán</th>
-          <th scope="col">Tồn kho</th>
-          <th scope="col">Lượt mua</th>
-          <th scope="col" style="width: 225px;">Thao tác</th>
+          <th scope="col"><fmt:message key="hinh"/></th>
+          <th scope="col"><fmt:message key="ten_san_pham"/></th>
+          <th scope="col"><fmt:message key="gia_goc"/></th>
+          <th scope="col"><fmt:message key="khuyen_mai"/></th>
+          <th scope="col"><fmt:message key="gia_ban"/></th>
+          <th scope="col"><fmt:message key="ton_kho"/></th>
+          <th scope="col"><fmt:message key="luot_mua"/></th>
+          <th scope="col" style="width: 225px;"><fmt:message key="thao_tac"/></th>
         </tr>
         </thead>
         <tbody>
@@ -92,18 +97,18 @@
               <a class="btn btn-primary me-2"
                  href="${pageContext.request.contextPath}/admin/productManager/detail?id=${product.id}"
                  role="button">
-                Xem
+                <fmt:message key="xem"/>
               </a>
               <a class="btn btn-success me-2"
                  href="${pageContext.request.contextPath}/admin/productManager/update?id=${product.id}"
                  role="button">
-                Sửa
+                <fmt:message key="sua"/>
               </a>
               <a class="btn btn-danger"
                  href="${pageContext.request.contextPath}/admin/productManager/delete?id=${product.id}"
                  role="button"
                  onclick="return confirm('Bạn có muốn xóa?')">
-                Xóa
+                <fmt:message key="xoa"/>
               </a>
             </td>
           </tr>
@@ -118,7 +123,7 @@
           <li class="page-item ${requestScope.page == 1 ? 'disabled' : ''}">
             <a class="page-link"
                href="${pageContext.request.contextPath}/admin/productManager?page=${requestScope.page - 1}">
-              Trang trước
+              <fmt:message key="trang_truoc"/>
             </a>
           </li>
 
@@ -143,7 +148,7 @@
           <li class="page-item ${requestScope.page == requestScope.totalPages ? 'disabled' : ''}">
             <a class="page-link"
                href="${pageContext.request.contextPath}/admin/productManager?page=${requestScope.page + 1}">
-              Trang sau
+              <fmt:message key="trang_sau"/>
             </a>
           </li>
         </ul>

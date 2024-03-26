@@ -6,17 +6,23 @@
 <html lang="vi">
 
 <head>
+   <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Sửa thể loại</title>
+  <title><fmt:message key="sua_the_loai"/></title>
 </head>
 
 <body>
 <jsp:include page="_headerAdmin.jsp"/>
 
 <section class="section-content">
+
   <div class="container">
     <header class="section-heading py-4">
-      <h3 class="section-title">Sửa thể loại</h3>
+      <h3 class="section-title"><fmt:message key="sua_the_loai"/></h3>
     </header> <!-- section-heading.// -->
 
     <main class="row mb-5">
@@ -33,7 +39,7 @@
           </div>
         </c:if>
         <div class="mb-3">
-          <label for="category-name" class="form-label">Tên thể loại <span class="text-danger">*</span></label>
+          <label for="category-name" class="form-label"><fmt:message key="ten_the_loai"/> <span class="text-danger">*</span></label>
           <input type="text"
                  class="form-control ${not empty requestScope.violations.nameViolations
                    ? 'is-invalid' : (not empty requestScope.category.name ? 'is-valid' : '')}"
@@ -52,7 +58,7 @@
           </c:if>
         </div>
         <div class="mb-3">
-          <label for="category-description" class="form-label">Mô tả thể loại</label>
+          <label for="category-description" class="form-label"><fmt:message key="mo_ta_the_loai"/></label>
           <textarea class="form-control ${not empty requestScope.violations.descriptionViolations
                       ? 'is-invalid' : (not empty requestScope.category.description ? 'is-valid' : '')}"
                     id="category-description"
@@ -69,7 +75,7 @@
           </c:if>
         </div>
         <div class="mb-3">
-          <label for="category-imageName" class="form-label d-block">Hình thể loại</label>
+          <label for="category-imageName" class="form-label d-block"><fmt:message key="hinh_the_loai"/></label>
           <c:choose>
             <c:when test="${not empty requestScope.category.imageName}">
               <img width="50"
@@ -83,11 +89,11 @@
                        value="deleteImage"
                        id="delete-image"
                        name="deleteImage" ${not empty requestScope.deleteImage ? 'checked' : ''}>
-                <label class="form-check-label" for="delete-image">Xóa hình này?</label>
+                <label class="form-check-label" for="delete-image"><fmt:message key="xoa_hinh_nay"/>?</label>
               </div>
             </c:when>
             <c:otherwise>
-              <div class="fst-italic mb-3">Không có hình</div>
+              <div class="fst-italic mb-3"><fmt:message key="khong_co_hinh"/></div>
             </c:otherwise>
           </c:choose>
           <input type="file"
@@ -99,18 +105,18 @@
         <input type="hidden" name="id" value="${requestScope.category.id}">
         <input type="hidden" name="imageName" value="${requestScope.category.imageName}">
         <button type="submit" class="btn btn-primary me-2 mb-3">
-          Sửa
+          <fmt:message key="sua"/>
         </button>
         <button type="reset"
                 class="btn btn-warning me-2 mb-3"
                 onclick="return confirm('Bạn có muốn để giá trị mặc định?')">
-          Mặc định
+          <fmt:message key="mac_dinh"/>
         </button>
         <a class="btn btn-danger mb-3"
            href="${pageContext.request.contextPath}/admin/categoryManager"
            role="button"
            onclick="return confirm('Bạn có muốn hủy?')">
-          Hủy
+          <fmt:message key="huy"/>
         </a>
       </form>
     </main>

@@ -6,17 +6,18 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Thông tin thể loại #${requestScope.category.id}</title>
+  <title><fmt:message key="thong_tin_the_loai"/> #${requestScope.category.id}</title>
 </head>
 
 <body>
 <jsp:include page="_headerAdmin.jsp"/>
-<fmt:setLocale value="vi_VN" />
-<c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
-  <fmt:setLocale value="en_US" />
-</c:if>
-<fmt:setBundle basename="lang" />
+
 <section class="section-content">
   <div class="container">
     <header class="section-heading py-4">

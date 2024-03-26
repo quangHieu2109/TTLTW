@@ -6,8 +6,13 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Thiết đặt</title>
+  <title><fmt:message key="thiet_dat" /></title>
 </head>
 
 <body>
@@ -15,7 +20,7 @@
 
 <section class="section-pagetop bg-light">
   <div class="container">
-    <h2 class="title-page">Thiết đặt</h2>
+    <h2 class="title-page"><fmt:message key="thiet_dat"/></h2>
   </div> <!-- container.// -->
 </section> <!-- section-pagetop.// -->
 
@@ -25,7 +30,7 @@
       <c:choose>
         <c:when test="${empty sessionScope.currentUser}">
           <p>
-            Vui lòng <a href="${pageContext.request.contextPath}/signin">đăng nhập</a> để sử dụng chức năng thiết đặt.
+            <fmt:message key="vui_long"/> <a href="${pageContext.request.contextPath}/signin"><fmt:message key="dang_nhap"/></a> <fmt:message key="de_su_dung_thiet_dat"/>.
           </p>
         </c:when>
         <c:otherwise>
@@ -45,7 +50,7 @@
                 <div class="col-lg-6">
                   <form action="${pageContext.request.contextPath}/setting" method="post">
                     <div class="mb-3">
-                      <label for="inputUsername" class="form-label">Tên đăng nhập</label>
+                      <label for="inputUsername" class="form-label"><fmt:message key="ten_dang_nhap"/></label>
                       <input type="text"
                              class="form-control"
                              id="inputUsername"
@@ -53,7 +58,7 @@
                              value="${requestScope.user.username}">
                     </div>
                     <div class="mb-3">
-                      <label for="inputFullname" class="form-label">Họ và tên</label>
+                      <label for="inputFullname" class="form-label"><fmt:message key="ho_va_ten"/></label>
                       <input type="text"
                              class="form-control"
                              id="inputFullname"
@@ -69,7 +74,7 @@
                              value="${requestScope.user.email}">
                     </div>
                     <div class="mb-3">
-                      <label for="inputPhoneNumber" class="form-label">Số điện thoại</label>
+                      <label for="inputPhoneNumber" class="form-label"><fmt:message key="so_dien_thoai"/></label>
                       <input type="text"
                              class="form-control"
                              id="inputPhoneNumber"
@@ -84,7 +89,7 @@
                                id="radioGender1"
                                value="0"
                           ${requestScope.user.gender == 0 ? 'checked' : ''}>
-                        <label class="form-check-label" for="radioGender1">Nam</label>
+                        <label class="form-check-label" for="radioGender1"><fmt:message key="nam"/></label>
                       </div>
                       <div class="form-check d-inline-block">
                         <input class="form-check-input"
@@ -93,18 +98,18 @@
                                id="radioGender2"
                                value="1"
                           ${requestScope.user.gender == 1 ? 'checked' : ''}>
-                        <label class="form-check-label" for="radioGender2">Nữ</label>
+                        <label class="form-check-label" for="radioGender2"><fmt:message key="nu"/></label>
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label for="inputAddress" class="form-label">Địa chỉ</label>
+                      <label for="inputAddress" class="form-label"><fmt:message key="dia_chi"/></label>
                       <input type="text"
                              class="form-control"
                              id="inputAddress"
                              name="address"
                              value="${requestScope.user.address}">
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Cập nhật thông tin mới</button>
+                    <button type="submit" class="btn btn-primary w-100"><fmt:message key="cap_nhat_thong_tin_moi"/></button>
                   </form>
                 </div>
               </div> <!-- card-body.// -->

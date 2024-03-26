@@ -7,8 +7,13 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Quản lý đánh giá</title>
+  <title><fmt:message key="quan_li_danh_gia"/></title>
 </head>
 
 <body>
@@ -30,7 +35,7 @@
     <c:remove var="errorMessage" scope="session"/>
 
     <header class="section-heading py-4">
-      <h3 class="section-title">Quản lý đánh giá</h3>
+      <h3 class="section-title"><fmt:message key="quan_li_danh_gia"/></h3>
     </header> <!-- section-heading.// -->
 
     <main class="table-responsive-xl mb-5">
@@ -39,12 +44,12 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">ID</th>
-          <th scope="col">Người dùng</th>
-          <th scope="col">Ngày tạo</th>
-          <th scope="col">Ngày cập nhật</th>
-          <th scope="col">Số sao</th>
-          <th scope="col">Sản phẩm</th>
-          <th scope="col" style="width: 200px;">Thao tác</th>
+          <th scope="col"><fmt:message key="nguoi_dung"/></th>
+          <th scope="col"><fmt:message key="ngay_tao"/></th>
+          <th scope="col"><fmt:message key="ngay_cap_nhat"/></th>
+          <th scope="col"><fmt:message key="so_sao"/></th>
+          <th scope="col"><fmt:message key="san_pham"/></th>
+          <th scope="col" style="width: 200px;"><fmt:message key="thao_tac"/></th>
         </tr>
         </thead>
         <tbody>
@@ -87,13 +92,13 @@
                         class="btn ${productReview.isShow == 0 ? 'btn-secondary' : 'btn-success'}"
                         form="update-hide-${productReview.id}" ${productReview.isShow == 0 ? 'disabled' : ''}
                         onclick="return confirm('Bạn có muốn ẩn đánh giá này?')">
-                  Ẩn
+                  <fmt:message key="an"/>
                 </button>
                 <button type="submit"
                         class="btn ${productReview.isShow == 1 ? 'btn-secondary' : 'btn-warning'}"
                         form="update-show-${productReview.id}" ${productReview.isShow == 1 ? 'disabled' : ''}
                         onclick="return confirm('Bạn có muốn hiện đánh giá này?')">
-                  Hiện
+                  <fmt:message key="hien"/>
                 </button>
               </div>
               <form action="${pageContext.request.contextPath}/admin/reviewManager/update" method="post"
@@ -119,7 +124,7 @@
           <li class="page-item ${requestScope.page == 1 ? 'disabled' : ''}">
             <a class="page-link"
                href="${pageContext.request.contextPath}/admin/reviewManager?page=${requestScope.page - 1}">
-              Trang trước
+              <fmt:message key="trang_truoc"/>
             </a>
           </li>
 
@@ -144,7 +149,7 @@
           <li class="page-item ${requestScope.page == requestScope.totalPages ? 'disabled' : ''}">
             <a class="page-link"
                href="${pageContext.request.contextPath}/admin/reviewManager?page=${requestScope.page + 1}">
-              Trang sau
+              <fmt:message key="trang_sau"/>
             </a>
           </li>
         </ul>

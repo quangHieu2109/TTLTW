@@ -6,17 +6,18 @@
 <html lang="vi">
 
 <head>
+
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
   <title>${requestScope.category.name}</title>
 </head>
 
 <body>
 <jsp:include page="_header.jsp"/>
-<fmt:setLocale value="vi_VN" />
-<c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
-  <fmt:setLocale value="en_US" />
-</c:if>
-<fmt:setBundle basename="lang" />
 <section class="section-pagetop bg-light">
   <div class="container">
     <h2 class="title-page">${requestScope.category.name}</h2>

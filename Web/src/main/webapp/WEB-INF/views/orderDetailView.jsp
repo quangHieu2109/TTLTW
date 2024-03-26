@@ -7,7 +7,12 @@
 
 <head>
   <jsp:include page="_meta.jsp"/>
-  <title>Thông tin đơn hàng #${requestScope.order.id}</title>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
+  <title><fmt:message key="thong_tin_don_hang"/> #${requestScope.order.id}</title>
 </head>
 
 <body>
@@ -15,7 +20,7 @@
 
 <section class="section-pagetop bg-light">
   <div class="container">
-    <h2 class="title-page">Thông tin đơn hàng #${requestScope.order.id}</h2>
+    <h2 class="title-page"><fmt:message key="thong_tin_don_hang"/> #${requestScope.order.id}</h2>
   </div> <!-- container.// -->
 </section> <!-- section-pagetop.// -->
 
@@ -32,17 +37,17 @@
             <article class="card mb-4">
 
               <header class="card-header">
-                <strong class="d-inline-block me-4">Mã đơn hàng: ${requestScope.order.id}</strong>
-                <span>Ngày mua: ${requestScope.createdAt}</span>
+                <strong class="d-inline-block me-4"><fmt:message key="ma_don_hang"/>: ${requestScope.order.id}</strong>
+                <span><fmt:message key="ngay_mua"/>: ${requestScope.createdAt}</span>
                 <c:choose>
                   <c:when test="${requestScope.order.status == 1}">
-                    <span class="badge bg-warning text-dark float-end">Đang giao hàng</span>
+                    <span class="badge bg-warning text-dark float-end"><fmt:message key="dang_giao_hang"/></span>
                   </c:when>
                   <c:when test="${requestScope.order.status == 2}">
-                    <span class="badge bg-success float-end">Giao hàng thành công</span>
+                    <span class="badge bg-success float-end"><fmt:message key="giao_hang_thanh_cong"/></span>
                   </c:when>
                   <c:when test="${requestScope.order.status == 3}">
-                    <span class="badge bg-danger float-end">Hủy đơn hàng</span>
+                    <span class="badge bg-danger float-end"><fmt:message key="huy_don_hang"/></span>
                   </c:when>
                 </c:choose>
               </header> <!-- card-header.// -->
@@ -50,25 +55,25 @@
               <div class="card-body pb-0">
                 <div class="row">
                   <div class="col-lg-8">
-                    <h6 class="text-muted">Địa chỉ người nhận</h6>
+                    <h6 class="text-muted"><fmt:message key="dia_chi_nguoi_nhan"/></h6>
                     <p class="lh-lg">
                         ${sessionScope.currentUser.fullname} <br>
-                      Số điện thoại: ${sessionScope.currentUser.phoneNumber} <br>
-                      Địa chỉ: ${sessionScope.currentUser.address}
+                          <fmt:message key="so_dien_thoai"/>: ${sessionScope.currentUser.phoneNumber} <br>
+                          <fmt:message key="dia_chi"/>: ${sessionScope.currentUser.address}
                     </p>
                   </div>
                   <div class="col-lg-4">
-                    <h6 class="text-muted">Hình thức thanh toán</h6>
+                    <h6 class="text-muted"><fmt:message key="hinh_thuc_thanh_toan"/></h6>
                     <span class="text-success">
                     <i class="fab fa-lg fa-cc-visa"></i>
-                    ${requestScope.order.deliveryMethod == 1 ? "Giao tiêu chuẩn" : "Giao nhanh"}
+                    ${requestScope.order.deliveryMethod == 1 ? '<fmt:message key="giao_tieu_chuan"/>' : '<fmt:message key="giao_nhanh"/>'}
                   </span>
                     <p class="lh-lg">
-                      Tạm tính: <fmt:formatNumber pattern="#,##0" value="${requestScope.tempPrice}"/>₫ <br>
-                      Phí vận chuyển: <fmt:formatNumber pattern="#,##0" value="${requestScope.order.deliveryPrice}"/>₫
+                      <fmt:message key="tam_tinh"/>: <fmt:formatNumber pattern="#,##0" value="${requestScope.tempPrice}"/>₫ <br>
+                      <fmt:message key="phi_van_chuyen"/>: <fmt:formatNumber pattern="#,##0" value="${requestScope.order.deliveryPrice}"/>₫
                       <br>
                       <strong>
-                        Tổng cộng: <fmt:formatNumber
+                        <fmt:message key="tong_cong"/>: <fmt:formatNumber
                               pattern="#,##0"
                               value="${requestScope.tempPrice + requestScope.order.deliveryPrice}"/>₫
                       </strong>
@@ -83,9 +88,9 @@
                 <table class="cart-table table table-borderless">
                   <thead class="text-muted">
                   <tr class="small text-uppercase">
-                    <th scope="col" style="min-width: 280px;">Sản phẩm</th>
-                    <th scope="col" style="min-width: 150px;">Giá</th>
-                    <th scope="col" style="min-width: 150px;">Số lượng</th>
+                    <th scope="col" style="min-width: 280px;"><fmt:message key="san_pham"/></th>
+                    <th scope="col" style="min-width: 150px;"><fmt:message key="gia"/></th>
+                    <th scope="col" style="min-width: 150px;"><fmt:message key="so_luong"/></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -152,12 +157,12 @@
 
               <form action="${pageContext.request.contextPath}/orderDetail" method="post">
                 <div class="card-footer py-3">
-                  <a href="#" class="btn btn-primary me-2">Theo dõi đơn hàng</a>
+                  <a href="#" class="btn btn-primary me-2"><fmt:message key="theo_doi_don_hang"/></a>
                   <input type="hidden" name="id" value="${requestScope.order.id}">
                   <button type="submit"
                           class="btn btn-danger ${requestScope.order.status != 1 ? "disabled" : ""}"
-                          onclick="return confirm('Bạn có muốn hủy đơn hàng?')">
-                    Hủy đơn hàng
+                          onclick="return confirm('<fmt:message key="ban_co_muon_huy_don_hang"/>?')">
+                    <fmt:message key="huy_don_hang"/>
                   </button>
                 </div> <!-- card-footer.// -->
               </form>
@@ -167,7 +172,7 @@
         </c:when>
         <c:otherwise>
           <p>
-            Vui lòng <a href="${pageContext.request.contextPath}/signin">đăng nhập</a> để sử dụng trang này.
+            <fmt:message key="vui_long"/> <a href="${pageContext.request.contextPath}/signin"><fmt:message key="dang_nhap"/></a> <fmt:message key="de_su_dung_trang_nay"/>.
           </p>
         </c:otherwise>
       </c:choose>
