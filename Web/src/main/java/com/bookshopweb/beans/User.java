@@ -13,17 +13,10 @@ public class User {
     private String address;
     private String role;
 
-    public User() {}
+    public User() {
+    }
 
-    public User(long id,
-                String username,
-                String password,
-                String fullname,
-                String email,
-                String phoneNumber,
-                int gender,
-                String address,
-                String role) {
+    public User(long id, String username, String password, String fullname, String email, String phoneNumber, int gender, String address, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -109,16 +102,6 @@ public class User {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("username='" + username + "'")
-                .add("password='" + password + "'")
-                .add("fullname='" + fullname + "'")
-                .add("email='" + email + "'")
-                .add("phoneNumber='" + phoneNumber + "'")
-                .add("gender=" + gender)
-                .add("address='" + address + "'")
-                .add("role='" + role + "'")
-                .toString();
+        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]").add("id=" + id).add("username='" + username + "'").add("password='" + password + "'").add("fullname='" + fullname + "'").add("email='" + email + "'").add("phoneNumber='" + phoneNumber + "'").add("gender=" + gender).add("address='" + address + "'").add("role='" + role + "'").toString();
     }
 }

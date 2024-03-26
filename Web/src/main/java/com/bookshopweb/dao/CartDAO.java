@@ -1,61 +1,95 @@
 package com.bookshopweb.dao;
 
 import com.bookshopweb.beans.Cart;
-import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
-import org.jdbi.v3.sqlobject.customizer.Bind;
-import org.jdbi.v3.sqlobject.customizer.BindBean;
-import org.jdbi.v3.sqlobject.customizer.Define;
-import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys;
-import org.jdbi.v3.sqlobject.statement.SqlQuery;
-import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+import com.bookshopweb.beans.User;
+import com.bookshopweb.utils.JDBCUtils;
 
-import java.util.List;
-import java.util.Optional;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
 
-@RegisterBeanMapper(Cart.class)
-public interface CartDAO extends DAO<Cart> {
+public class CartDAO extends AbsDAO<Cart> {
+
+    Connection conn = JDBCUtils.getConnection();
+    public Cart selectByUser(User user){
+        Cart result = null;
+        CartItemDAO dao = new CartItemDAO();
+        try {
+            String sql="select * from cart where userId=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, user.getId());
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                long id = rs.getLong("id");
+                Timestamp createdAt = rs.getTimestamp("createdAt");
+                Timestamp updatedAt = rs.getTimestamp("updatedAt");
+                result = new Cart(id, user.getId(), createdAt, updatedAt);
+                result.addCartItem(dao.selectByCart(result));
+                rs.close();
+                st.close();
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
     @Override
-    @SqlUpdate("INSERT INTO cart VALUES (default, :userId, :createdAt, :updatedAt)")
-    @GetGeneratedKeys("id")
-    long insert(@BindBean Cart cart);
+
+    public int insert(Cart cart) {
+         super.insert(cart);
+         int result = 0;
+
+        try {
+            String sql = "insert into cart (id, userId, createdAt, updatedAt) " +
+                    "values (?,?,?,?)";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, cart.getId());
+            st.setLong(2,cart.getUserId());
+            st.setTimestamp(3, cart.getCreatedAt());
+            st.setTimestamp(4, cart.getUpdatedAt());
+
+            result = st.executeUpdate();
+            st.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return result;
+
+    }
 
     @Override
-    @SqlUpdate("UPDATE cart SET userId = :userId, createdAt = :createdAt, updatedAt = :updatedAt WHERE id = :id")
-    void update(@BindBean Cart cart);
+    public int update(Cart cart) {
+        super.update(cart);
+        int result =0;
+        try {
+            String sql = "update cart set updatedAt=? where id=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setTimestamp(1, cart.getUpdatedAt());
+            st.setLong(2, cart.getId());
+            result = st.executeUpdate();
+            st.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
 
     @Override
-    @SqlUpdate("DELETE FROM cart WHERE id = :id")
-    void delete(@Bind("id") long id);
+    public int delete(Cart cart) {
+        super.delete(cart);
+        int result =0;
+        try {
+            String sql = "delete from cart where id=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            result = st.executeUpdate();
+            st.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-    @Override
-    @SqlQuery("SELECT * FROM cart WHERE id = :id")
-    Optional<Cart> getById(@Bind("id") long id);
-
-    @Override
-    @SqlQuery("SELECT * FROM cart")
-    List<Cart> getAll();
-
-    @Override
-    @SqlQuery("SELECT * FROM cart LIMIT :limit OFFSET :offset")
-    List<Cart> getPart(@Bind("limit") int limit, @Bind("offset") int offset);
-
-    @Override
-    @SqlQuery("SELECT * FROM cart ORDER BY <orderBy> <orderDir> LIMIT :limit OFFSET :offset")
-    List<Cart> getOrderedPart(@Bind("limit") int limit, @Bind("offset") int offset,
-                              @Define("orderBy") String orderBy, @Define("orderDir") String orderDir);
-
-    @SqlQuery("SELECT * FROM cart WHERE userId = :userId")
-    Optional<Cart> getByUserId(@Bind("userId") long userId);
-
-    @SqlQuery("SELECT SUM(ci.quantity) FROM cart c JOIN cart_item ci ON c.id = ci.cartId WHERE c.userId = :userId")
-    int countCartItemQuantityByUserId(@Bind("userId") long userId);
-
-    @SqlQuery("SELECT COUNT(orders.id) FROM orders WHERE userId = :userId")
-    int countOrderByUserId(@Bind("userId") long userId);
-
-    @SqlQuery("SELECT COUNT(orders.id) FROM orders WHERE userId = :userId AND status = 1")
-    int countOrderDeliverByUserId(@Bind("userId") long userId);
-
-    @SqlQuery("SELECT COUNT(orders.id) FROM orders WHERE userId = :userId AND status = 2")
-    int countOrderReceivedByUserId(@Bind("userId") long userId);
+        return result;
+    }
 }

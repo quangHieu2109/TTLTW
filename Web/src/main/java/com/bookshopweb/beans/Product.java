@@ -2,7 +2,8 @@ package com.bookshopweb.beans;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+
 import java.util.StringJoiner;
 
 public class Product {
@@ -21,13 +22,13 @@ public class Product {
     @Nullable
     private String imageName;
     private int shop;
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
     @Nullable
-    private LocalDateTime updatedAt;
+    private Timestamp updatedAt;
     @Nullable
-    private LocalDateTime startsAt;
+    private Timestamp startsAt;
     @Nullable
-    private LocalDateTime endsAt;
+    private Timestamp endsAt;
 
     public Product() {}
 
@@ -44,10 +45,10 @@ public class Product {
                    @Nullable String description,
                    @Nullable String imageName,
                    int shop,
-                   LocalDateTime createdAt,
-                   @Nullable LocalDateTime updatedAt,
-                   @Nullable LocalDateTime startsAt,
-                   @Nullable LocalDateTime endsAt) {
+                   Timestamp createdAt,
+                   @Nullable Timestamp updatedAt,
+                   @Nullable Timestamp startsAt,
+                   @Nullable Timestamp endsAt) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -173,38 +174,38 @@ public class Product {
         this.shop = shop;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
     @Nullable
-    public LocalDateTime getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(@Nullable LocalDateTime updatedAt) {
+    public void setUpdatedAt(@Nullable Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
     @Nullable
-    public LocalDateTime getStartsAt() {
+    public Timestamp getStartsAt() {
         return startsAt;
     }
 
-    public void setStartsAt(@Nullable LocalDateTime startsAt) {
+    public void setStartsAt(@Nullable Timestamp startsAt) {
         this.startsAt = startsAt;
     }
 
     @Nullable
-    public LocalDateTime getEndsAt() {
+    public Timestamp getEndsAt() {
         return endsAt;
     }
 
-    public void setEndsAt(@Nullable LocalDateTime endsAt) {
+    public void setEndsAt(@Nullable Timestamp endsAt) {
         this.endsAt = endsAt;
     }
 

@@ -1,61 +1,110 @@
 package com.bookshopweb.dao;
 
+import com.bookshopweb.beans.Cart;
 import com.bookshopweb.beans.CartItem;
-import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
-import org.jdbi.v3.sqlobject.customizer.Bind;
-import org.jdbi.v3.sqlobject.customizer.BindBean;
-import org.jdbi.v3.sqlobject.customizer.Define;
-import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys;
-import org.jdbi.v3.sqlobject.statement.SqlQuery;
-import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+import com.bookshopweb.utils.JDBCUtils;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
-import java.util.Optional;
 
-@RegisterBeanMapper(CartItem.class)
-public interface CartItemDAO extends DAO<CartItem> {
+public class CartItemDAO extends AbsDAO<CartItem> {
+
+    public List<CartItem> selectByCart(Cart cart){
+        List<CartItem> result = new ArrayList<>();
+        Connection conn = JDBCUtils.getConnection();
+        try {
+            String sql = "select * from cart_item where cartId=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1,cart.getId());
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                Long id = rs.getLong("id");
+                Long productId = rs.getLong("productId");
+                int quantity = rs.getInt("quantity");
+                Timestamp createdAt = rs.getTimestamp("createdAt");
+                Timestamp updatedAt = rs.getTimestamp("updatedAt");
+                result.add(new CartItem(id, cart.getId(), productId, quantity, createdAt, updatedAt));
+
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
     @Override
-    @SqlUpdate("INSERT INTO cart_item VALUES (default, :cartId, :productId, :quantity, :createdAt, :updatedAt)")
-    @GetGeneratedKeys("id")
-    long insert(@BindBean CartItem cartItem);
+    public int delete(CartItem cartItem) {
+         super.delete(cartItem);
+         int result =0;
+        Connection conn = JDBCUtils.getConnection();
+
+        try {
+            String sql = "delete from cart_item where id =?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, cartItem.getId());
+            result = st.executeUpdate();
+            st.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+         return result;
+    }
 
     @Override
-    @SqlUpdate("UPDATE cart_item SET cartId = :cartId, productId = :productId, quantity = :quantity, " +
-               "createdAt = :createdAt, updatedAt = :updatedAt WHERE id = :id")
-    void update(@BindBean CartItem cartItem);
+    public int update(CartItem cartItem) {
+         super.update(cartItem);
+         int result =0;
+         Connection conn = JDBCUtils.getConnection();
+         try {
+             String sql = "update cart_item set " +
+                     "quantity=?, updatedAt=? where id=?";
+             PreparedStatement st = conn.prepareStatement(sql);
+             st.setInt(1, cartItem.getQuantity());
+             st.setTimestamp(2, cartItem.getUpdatedAt());
+             st.setLong(3, cartItem.getId());
+             result = st.executeUpdate();
+             st.close();
+         } catch (Exception e) {
+             throw new RuntimeException(e);
+         }
+        return result;
+    }
 
     @Override
-    @SqlUpdate("DELETE FROM cart_item WHERE id = :id")
-    void delete(@Bind("id") long id);
+    public int insert(CartItem cartItem) {
+         super.insert(cartItem);
+         int result = 0;
+         Connection conn = JDBCUtils.getConnection();
+         try {
+             String sql = "insert into cart_item (id, cartId, productId, quantity, createdAt, updatedAt) " +
+                     "values(?,?,?,?,?,?)";
+             PreparedStatement st = conn.prepareStatement(sql);
+             st.setLong(1, cartItem.getId());
+             st.setLong(2, cartItem.getCartId());
+             st.setLong(3, cartItem.getProductId());
+             st.setInt(4, cartItem.getQuantity());
+             st.setTimestamp(5, cartItem.getCreatedAt());
+             st.setTimestamp(6, cartItem.getUpdatedAt());
+             result = st.executeUpdate();
+             st.close();
+         } catch (Exception e) {
+             throw new RuntimeException(e);
+         }
 
-    @Override
-    @SqlQuery("SELECT * FROM cart_item WHERE id = :id")
-    Optional<CartItem> getById(@Bind("id") long id);
+        return result;
+    }
 
-    @Override
-    @SqlQuery("SELECT * FROM cart_item")
-    List<CartItem> getAll();
-
-    @Override
-    @SqlQuery("SELECT * FROM cart_item LIMIT :limit OFFSET :offset")
-    List<CartItem> getPart(@Bind("limit") int limit, @Bind("offset") int offset);
-
-    @Override
-    @SqlQuery("SELECT * FROM cart_item ORDER BY <orderBy> <orderDir> LIMIT :limit OFFSET :offset")
-    List<CartItem> getOrderedPart(@Bind("limit") int limit, @Bind("offset") int offset,
-                                  @Define("orderBy") String orderBy, @Define("orderDir") String orderDir);
-
-    @SqlQuery("SELECT ci.*, p.name product_name, p.price product_price, p.discount product_discount, " +
-              "p.quantity product_quantity, p.imageName product_imageName " +
-              "FROM cart_item ci " +
-              "JOIN product p on p.id = ci.productId " +
-              "WHERE cartId = :cartId " +
-              "ORDER BY createdAt DESC")
-    List<CartItem> getByCartId(@Bind("cartId") long cartId);
-
-    @SqlQuery("SELECT * FROM cart_item WHERE cartId = :cartId AND productId = :productId")
-    Optional<CartItem> getByCartIdAndProductId(@Bind("cartId") long cartId, @Bind("productId") long productId);
-
-    @SqlQuery("SELECT SUM(ci.quantity) FROM cart_item ci JOIN cart c on c.id = ci.cartId WHERE c.userId = :userId;")
-    int sumQuantityByUserId(@Bind("userId") long userId);
+    public static void main(String[] args) {
+        CartItemDAO dao = new CartItemDAO();
+        Cart cart = new Cart(1, 1, null, null);
+        CartItem cartItem = new CartItem(10, 1,1,100,new Timestamp(Calendar.getInstance().getTimeInMillis()), null);
+        for(CartItem c : dao.selectByCart(cart)) {
+            System.out.println(c);
+        }
+    }
 }
