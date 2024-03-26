@@ -85,7 +85,7 @@
               <a class="btn btn-primary me-2"
                  href="${pageContext.request.contextPath}/admin/reviewManager/detail?id=${productReview.id}"
                  role="button">
-                Xem
+                <fmt:message key="xem"/>
               </a>
               <div class="btn-group" role="group">
                 <button type="submit"

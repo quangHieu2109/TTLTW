@@ -10,30 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="idea">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dto/UserGoogleDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignInGoogleServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_vi_VN.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/img/iconGoogle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_22_2024_2_31_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_22_2024_2_31_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_22_2024_2_52_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_22_2024_2_52_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_en_US.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_en_US.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_vi_VN.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_vi_VN.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/categoryDetailView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/categoryDetailView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/categoryManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/categoryManagerView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/categoryView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/categoryView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/signinView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/signinView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderDetailView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderDetailView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderManagerDetailView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderManagerDetailView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderManagerView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/productReviewManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/productReviewManagerView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userDetailView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userDetailView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userManagerView.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,10 +82,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20240326_0002",
+    "com.google.cloudcode.ide_session_index": "20240326_0003",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Problems",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -103,7 +101,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Tomcat 9.0.48" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.48" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.48" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.48" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="21" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Web:war">
@@ -212,6 +210,7 @@
       <workItem from="1711414010087" duration="2335000" />
       <workItem from="1711417109435" duration="1298000" />
       <workItem from="1711421641786" duration="1804000" />
+      <workItem from="1711460373478" duration="1851000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />

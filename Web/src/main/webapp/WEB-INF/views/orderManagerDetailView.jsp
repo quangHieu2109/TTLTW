@@ -50,9 +50,9 @@
             (${requestScope.order.user.fullname})
           </dd>
 
-          <dt class="col-md-3">Hình thức thanh toán</dt>
+          <dt class="col-md-3"><fmt:message key="hinh_thuc_giao_hang"/></dt>
           <dd class="col-md-9">
-            ${requestScope.order.deliveryMethod == 1 ? '<fmt:message key="giao_tieu_chuan"/>' : '<fmt:message key="giao_nhanh"/>'}
+           <fmt:message key="${requestScope.order.deliveryMethod == 1 ? 'giao_tieu_chuan' : 'giao_nhanh'}"/>
           </dd>
 
           <dt class="col-md-3"><fmt:message key="tam_tinh"/></dt>
