@@ -3,12 +3,14 @@ package com.bookshopweb.dao;
 import com.bookshopweb.beans.WishlistItem;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
 
 public class WishlistItemDAO extends AbsDAO<WishlistItem>{
 
     @Override
-    public int delete(WishlistItem wishlistItem) {
-        super.delete(wishlistItem);
+    public int delete(WishlistItem wishlistItem, String ip) {
+
         int result = 0;
         try{
             String sql = "delete from wishlist_item where id=?";
@@ -20,13 +22,13 @@ public class WishlistItemDAO extends AbsDAO<WishlistItem>{
         } catch (Exception e) {
            e.printStackTrace();
         }
+        super.delete(wishlistItem, ip);
         return result;
     }
 
     @Override
-    public int update(WishlistItem wishlistItem) {
-        super.update(wishlistItem);
-        int result = 0;
+    public int update(WishlistItem wishlistItem, String ip) {
+        super.update(wishlistItem, ip);        int result = 0;
         try{
             String sql = "update wishlist_item set id=?, userId=?, productId=?,createdAt=?" +
                     " where id=?";
@@ -42,12 +44,33 @@ public class WishlistItemDAO extends AbsDAO<WishlistItem>{
         }   catch (Exception e) {
 
         }
+
         return result;
     }
 
     @Override
-    public int insert(WishlistItem wishlistItem) {
-        super.insert(wishlistItem);
+    public WishlistItem selectPrevalue(Long id) {
+        WishlistItem result = null;
+        try {
+            String sql = "select * from wishlist_item where id =?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                long userId = rs.getLong("userId");
+                long productId= rs.getLong("productId");
+                Timestamp createdAt = rs.getTimestamp("createdAt");
+                result = new WishlistItem(id, userId, productId, createdAt);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+    @Override
+    public int insert(WishlistItem wishlistItem, String ip) {
+
       int result = 0;
       try{
           String sql = "insert into product_review (id, userId, productId, createdAt)" +
@@ -64,6 +87,7 @@ public class WishlistItemDAO extends AbsDAO<WishlistItem>{
           e.printStackTrace();
 
       }
+        super.insert(wishlistItem, ip);
       return result;
     }
 }

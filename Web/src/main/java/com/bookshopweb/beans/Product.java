@@ -208,7 +208,9 @@ public class Product extends AbsModel<Product>{
     public void setEndsAt(@Nullable Timestamp endsAt) {
         this.endsAt = endsAt;
     }
-
+    public String getResource() {
+        return "Product";
+    }
     @Override
     public String toString() {
         return new StringJoiner(", ", Product.class.getSimpleName() + "[", "]")
@@ -230,5 +232,10 @@ public class Product extends AbsModel<Product>{
                 .add("startsAt=" + startsAt)
                 .add("endsAt=" + endsAt)
                 .toString();
+    }
+
+    @Override
+    public Timestamp getCreateAt() {
+        return createdAt;
     }
 }

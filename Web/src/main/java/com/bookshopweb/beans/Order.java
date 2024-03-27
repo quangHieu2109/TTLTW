@@ -121,7 +121,9 @@ public class Order extends AbsModel<Order> {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-
+    public String getResource() {
+        return "Order";
+    }
     @Override
     public String toString() {
         return new StringJoiner(", ", Order.class.getSimpleName() + "[", "]")
@@ -136,5 +138,10 @@ public class Order extends AbsModel<Order> {
                 .add("orderItems=" + orderItems)
                 .add("totalPrice=" + totalPrice)
                 .toString();
+    }
+
+    @Override
+    public Timestamp getCreateAt() {
+        return createdAt;
     }
 }

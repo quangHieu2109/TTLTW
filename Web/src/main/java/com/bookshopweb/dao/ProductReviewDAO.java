@@ -9,6 +9,32 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 public class ProductReviewDAO extends AbsDAO<ProductReview> {
+    public ProductReview selectPrevalue(Long id){
+        ProductReview result = null;
+        try {
+            String sql = "select * from product_review where id=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, id);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                long userId = rs.getLong("userId");
+                long productId = rs.getLong("productId");
+                int ratingScore = rs.getInt("ratingScore");
+                String content = rs.getString("content");
+                int isShow = rs.getInt("isShow");
+                Timestamp createdAt = rs.getTimestamp("createdAt");
+                Timestamp updatedAt = rs.getTimestamp("updatedAt");
+                result = new ProductReview(id, userId, productId, ratingScore, content, isShow, createdAt, updatedAt);
+                rs.close();
+                st.close();
+            }
+            st.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
     public ProductReview selectByProduct(Product product){
         ProductReview result = null;
         try {
@@ -37,8 +63,8 @@ public class ProductReviewDAO extends AbsDAO<ProductReview> {
         return result;
     }
     @Override
-    public int insert(ProductReview productReview) {
-        super.insert(productReview);
+    public int insert(ProductReview productReview, String ip) {
+
          int result = 0;
          try {
              String sql = "insert into wishlist_item (id, userId, productId, ratingScore, content, isShow, createdAt, updatedAt)" +
@@ -58,12 +84,13 @@ public class ProductReviewDAO extends AbsDAO<ProductReview> {
          } catch (Exception e) {
              throw new RuntimeException(e);
          }
+        super.insert(productReview, ip);
         return result;
     }
 
     @Override
-    public int update(ProductReview productReview) {
-         super.update(productReview);
+    public int update(ProductReview productReview, String ip) {
+        super.update(productReview, ip);
         int result = 0;
         try {
             String sql = "update product_review set id=?, userId=?, productId=?, ratingScore=?, content=?, isShow=?, createdAt=?, updatedAt=?" +
@@ -83,12 +110,13 @@ public class ProductReviewDAO extends AbsDAO<ProductReview> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
         return result;
     }
 
     @Override
-    public int delete(ProductReview productReview) {
-         super.delete(productReview);
+    public int delete(ProductReview productReview, String ip) {
+
         int result = 0;
         try {
             String sql = "delete from product_review where id=?";
@@ -100,6 +128,7 @@ public class ProductReviewDAO extends AbsDAO<ProductReview> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        super.delete(productReview, ip);
         return result;
     }
 }

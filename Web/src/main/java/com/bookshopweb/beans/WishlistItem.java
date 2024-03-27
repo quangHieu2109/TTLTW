@@ -65,7 +65,9 @@ public class WishlistItem extends AbsModel<WishlistItem> {
     public void setProduct(@Nullable Product product) {
         this.product = product;
     }
-
+    public String getResource() {
+        return "WishListItem";
+    }
     @Override
     public String toString() {
         return new StringJoiner(", ", WishlistItem.class.getSimpleName() + "[", "]")
@@ -75,5 +77,10 @@ public class WishlistItem extends AbsModel<WishlistItem> {
                 .add("createdAt=" + createdAt)
                 .add("product=" + product)
                 .toString();
+    }
+
+    @Override
+    public Timestamp getCreateAt() {
+        return createdAt;
     }
 }

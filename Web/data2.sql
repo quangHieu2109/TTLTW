@@ -87,6 +87,23 @@ INSERT INTO `category` (`id`, `name`, `description`, `imageName`) VALUES
 	(14, 'Sách thiếu nhi', 'Ex eu ad adipisicing magna tempor occaecat id cupidatat dolor dolor aliquip dolore.', 'sach-thieu-nhi.png'),
 	(15, 'Sách kỹ năng sống', 'Ad exercitation anim in magna qui ipsum ipsum proident magna.', 'sach-ky-nang-song.png');
 
+-- Dumping structure for table bookshopdb.log
+CREATE TABLE IF NOT EXISTS `log` (
+  `id` bigint(20) NOT NULL,
+  `ip` varchar(255) DEFAULT NULL,
+  `levelLog` int(11) DEFAULT NULL,
+  `res` varchar(255) DEFAULT NULL,
+  `preValue` text DEFAULT NULL,
+  `curValue` text DEFAULT NULL,
+  `createAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updateAt` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table bookshopdb.log: ~1 rows (approximately)
+INSERT INTO `log` (`id`, `ip`, `levelLog`, `res`, `preValue`, `curValue`, `createAt`, `updateAt`) VALUES
+	(1711553190592, '123123', 3, 'Update on table User', '{"id":10,"username":"hiu","password":"111","fullname":"Quang Hieu","email":"","phoneNumber":"123123123","gender":1,"address":"","role":"","createAt":"Mar 27, 2024, 10:25:59 PM"}', '{"id":10,"username":"hiu","password":"111","fullname":"Quang Hieu","email":"","phoneNumber":"123123123","gender":1,"address":"","role":""}', '2024-03-27 15:25:59', '2024-03-27 15:25:59');
+
 -- Dumping structure for table bookshopdb.orders
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -631,21 +648,22 @@ CREATE TABLE IF NOT EXISTS `user` (
   `gender` bit(1) NOT NULL,
   `address` varchar(200) NOT NULL,
   `role` varchar(10) NOT NULL,
+  `createAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_username` (`username`),
   UNIQUE KEY `uq_email` (`email`),
   UNIQUE KEY `uq_phoneNumber` (`phoneNumber`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.user: ~5 rows (approximately)
-INSERT INTO `user` (`id`, `username`, `password`, `fullname`, `email`, `phoneNumber`, `gender`, `address`, `role`) VALUES
-	(1, 'user1', '202CB962AC59075B964B07152D234B70', 'Dunn Mcpherson', 'dunnmcpherson@recrisys.com', '0989894900', b'0', '8 Virginia Place, Troy, Norway', 'ADMIN'),
-	(2, 'user2', '202CB962AC59075B964B07152D234B70', 'Foreman Carter', 'foremancarter@recrisys.com', '0993194154', b'0', '28 Richardson Street, Layhill, Netherlands', 'EMPLOYEE'),
-	(3, 'user3', '202CB962AC59075B964B07152D234B70', 'Felecia Cabrera', 'feleciacabrera@recrisys.com', '0930174351', b'1', '41 Linden Street, Slovan, S. Georgia and S. Sandwich Isls.', 'EMPLOYEE'),
-	(4, 'user4', '202CB962AC59075B964B07152D234B70', 'Juliette Mcdowell', 'juliettemcdowell@recrisys.com', '0911925643', b'1', '5 Schenck Court, Dana, Cyprus', 'CUSTOMER'),
-	(5, 'user5', '202CB962AC59075B964B07152D234B70', 'Vilma Spencer', 'vilmaspencer@recrisys.com', '0987509391', b'1', '5 Pooles Lane, Allentown, Zambia', 'CUSTOMER'),
-	(6, 'hao', '32791E666FEF96B588DB16200D5FDA94', 'Quang Hiu', 'abc@gmail.com', '0123123123', b'0', '12', 'CUSTOMER'),
-	(10, 'hiu', '456456456', 'Quang Hieu', '', '123123123', b'1', '', '');
+-- Dumping data for table bookshopdb.user: ~7 rows (approximately)
+INSERT INTO `user` (`id`, `username`, `password`, `fullname`, `email`, `phoneNumber`, `gender`, `address`, `role`, `createAt`) VALUES
+	(1, 'user1', '202CB962AC59075B964B07152D234B70', 'Dunn Mcpherson', 'dunnmcpherson@recrisys.com', '0989894900', b'0', '8 Virginia Place, Troy, Norway', 'ADMIN', '2024-03-27 14:08:39'),
+	(2, 'user2', '202CB962AC59075B964B07152D234B70', 'Foreman Carter', 'foremancarter@recrisys.com', '0993194154', b'0', '28 Richardson Street, Layhill, Netherlands', 'EMPLOYEE', '2024-03-27 14:08:39'),
+	(3, 'user3', '202CB962AC59075B964B07152D234B70', 'Felecia Cabrera', 'feleciacabrera@recrisys.com', '0930174351', b'1', '41 Linden Street, Slovan, S. Georgia and S. Sandwich Isls.', 'EMPLOYEE', '2024-03-27 14:08:39'),
+	(4, 'user4', '202CB962AC59075B964B07152D234B70', 'Juliette Mcdowell', 'juliettemcdowell@recrisys.com', '0911925643', b'1', '5 Schenck Court, Dana, Cyprus', 'CUSTOMER', '2024-03-27 14:08:39'),
+	(5, 'user5', '202CB962AC59075B964B07152D234B70', 'Vilma Spencer', 'vilmaspencer@recrisys.com', '0987509391', b'1', '5 Pooles Lane, Allentown, Zambia', 'CUSTOMER', '2024-03-27 14:08:39'),
+	(6, 'hao', '32791E666FEF96B588DB16200D5FDA94', 'Quang Hiu', 'abc@gmail.com', '0123123123', b'0', '12', 'CUSTOMER', '2024-03-27 14:08:39'),
+	(10, 'hiu', '111', 'Quang Hieu', '', '123123123', b'1', '', '', '2024-03-27 15:25:59');
 
 -- Dumping structure for table bookshopdb.wishlist_item
 CREATE TABLE IF NOT EXISTS `wishlist_item` (

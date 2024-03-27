@@ -37,9 +37,31 @@ public class CartItemDAO extends AbsDAO<CartItem> {
         }
         return result;
     }
+    public CartItem selectPrevalue(Long id){
+      CartItem result = null;
+        try {
+            String sql = "select * from cart_item where id=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1,id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                Long productId = rs.getLong("productId");
+                int quantity = rs.getInt("quantity");
+                Timestamp createdAt = rs.getTimestamp("createdAt");
+                Timestamp updatedAt = rs.getTimestamp("updatedAt");
+                long cartId = rs.getLong("cartId");
+                result=(new CartItem(id, cartId, productId, quantity, createdAt, updatedAt));
+
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
     @Override
-    public int delete(CartItem cartItem) {
-         super.delete(cartItem);
+    public int delete(CartItem cartItem, String ip) {
+
          int result =0;
         Connection conn = JDBCUtils.getConnection();
 
@@ -52,12 +74,13 @@ public class CartItemDAO extends AbsDAO<CartItem> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        super.delete(cartItem, ip);
          return result;
     }
 
     @Override
-    public int update(CartItem cartItem) {
-         super.update(cartItem);
+    public int update(CartItem cartItem, String ip) {
+        super.update(cartItem, ip);
          int result =0;
          Connection conn = JDBCUtils.getConnection();
          try {
@@ -72,12 +95,13 @@ public class CartItemDAO extends AbsDAO<CartItem> {
          } catch (Exception e) {
              throw new RuntimeException(e);
          }
+
         return result;
     }
 
     @Override
-    public int insert(CartItem cartItem) {
-         super.insert(cartItem);
+    public int insert(CartItem cartItem, String ip) {
+
          int result = 0;
          Connection conn = JDBCUtils.getConnection();
          try {
@@ -95,7 +119,7 @@ public class CartItemDAO extends AbsDAO<CartItem> {
          } catch (Exception e) {
              throw new RuntimeException(e);
          }
-
+        super.insert(cartItem, ip);
         return result;
     }
 

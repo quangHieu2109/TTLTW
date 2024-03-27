@@ -10,6 +10,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderItemDAO extends AbsDAO<OrderItem> {
+    public OrderItem selectPrevalue(Long id){
+        OrderItem result = null;
+        try {
+            String sql = "select * from order_item where id=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, id);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                long orderId = rs.getLong("orderId");
+                long productId = rs.getLong("productId");
+                double price = rs.getDouble("price");
+                double discount = rs.getDouble("discount");
+                int quantity = rs.getInt("quantity");
+                Timestamp createdAt = rs.getTimestamp("createdAt");
+                Timestamp updatedAt = rs.getTimestamp("updatedAt");
+                result=(new OrderItem(id, orderId, productId, price, discount, quantity, createdAt, updatedAt));
+            }
+            rs.close();
+            st.close();
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return  result;
+    }
     public List<OrderItem> selectByOrder(Order order){
         List<OrderItem> result = new ArrayList<>();
         try {
@@ -39,8 +65,8 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
     }
 
     @Override
-    public int insert(OrderItem orderItem) {
-         super.insert(orderItem);
+    public int insert(OrderItem orderItem, String ip) {
+
          int result =0;
          try {
              String sql="insert into order_item (id, orderId, productId, price, discount, quantity, createdAt, updatedAt) " +
@@ -59,13 +85,13 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
          } catch (Exception e) {
              throw new RuntimeException(e);
          }
-
+        super.insert(orderItem, ip);
         return result;
     }
 
     @Override
-    public int update(OrderItem orderItem) {
-         super.update(orderItem);
+    public int update(OrderItem orderItem, String ip) {
+        super.update(orderItem, ip);
         int result =0;
         try {
             String sql = "update order_item set id=?, orderId=?, productId=?, price=?, discount=?, quantity=?, createdAt=?, updatedAt=?" +
@@ -90,8 +116,8 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
     }
 
     @Override
-    public int delete(OrderItem orderItem) {
-         super.delete(orderItem);
+    public int delete(OrderItem orderItem, String ip) {
+
         int result =0;
         try {
             String sql = "delete from order_item where id=?";
@@ -103,7 +129,7 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+        super.delete(orderItem, ip);
         return result;
     }
 }

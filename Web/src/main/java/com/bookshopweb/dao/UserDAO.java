@@ -6,8 +6,34 @@ import com.bookshopweb.utils.JDBCUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 
 public class UserDAO extends AbsDAO<User> {
+    public User selectPrevalue(Long id){
+        User result = null;
+        Connection conn = JDBCUtils.getConnection();
+        try {
+            String sql = "select * from user where id =?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, id);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String fullname = rs.getString("fullname");
+                String email = rs.getString("email");
+                String phoneNumber = rs.getString("phoneNumber");
+                int gender = rs.getInt("gender");
+                String address = rs.getString("address");
+                String role = rs.getString("role");
+                Timestamp createAt = rs.getTimestamp("createAt");
+                result = new User(id, username, password, fullname, email, phoneNumber, gender, address, role, createAt);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
     public User selectByUserName(String userName){
         User result = null;
         Connection conn = JDBCUtils.getConnection();
@@ -25,7 +51,8 @@ public class UserDAO extends AbsDAO<User> {
                 int gender = rs.getInt("gender");
                 String address = rs.getString("address");
                 String role = rs.getString("role");
-               result = new User(id, userName, password, fullname, email, phoneNumber, gender, address, role);
+                Timestamp createAt = rs.getTimestamp("createAt");
+               result = new User(id, userName, password, fullname, email, phoneNumber, gender, address, role, createAt);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -33,8 +60,8 @@ public class UserDAO extends AbsDAO<User> {
         return result;
     }
     @Override
-    public int delete(User user) {
-        super.delete(user);
+    public int delete(User user, String ip) {
+
         int result =0;
         Connection conn = JDBCUtils.getConnection();
 
@@ -47,12 +74,13 @@ public class UserDAO extends AbsDAO<User> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        super.delete(user, ip);
         return result;
     }
 
     @Override
-    public int update(User user) {
-        super.update(user);
+    public int update(User user, String ip) {
+        super.update(user,ip);
         int result  = 0;
         Connection conn = JDBCUtils.getConnection();
         try {
@@ -79,8 +107,8 @@ public class UserDAO extends AbsDAO<User> {
     }
 
     @Override
-    public int insert(User user) {
-         super.insert(user);
+    public int insert(User user, String ip) {
+
          int result = 0;
          Connection conn = JDBCUtils.getConnection();
          try {
@@ -103,12 +131,13 @@ public class UserDAO extends AbsDAO<User> {
          } catch (Exception e) {
              throw new RuntimeException(e);
          }
+        super.insert(user, ip);
         return result;
     }
 
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        User user = new User(10, "hiu", "456456456", "Quang Hieu", "","123123123", 1,"","");
-        System.out.println(dao.insert(user));
+        User user = new User(10, "hiu", "111", "Quang Hieu", "","123123123", 1,"","",null);
+        System.out.println(dao.update(user, "123123"));
     }
 }

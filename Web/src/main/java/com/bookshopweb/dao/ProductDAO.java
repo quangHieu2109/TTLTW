@@ -8,7 +8,42 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 public class ProductDAO extends AbsDAO<Product>{
+    public Product selectPrevalue(Long id){
+        Product result = null;
+        try {
+            String sql = "select * from product where id =?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, id);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
 
+                String name = rs.getString("name");
+                double price = rs.getDouble("price");
+                double discount = rs.getDouble("discount");
+                int quantity = rs.getInt("quantity");
+                int totalBuy = rs.getInt("totalBuy");
+                String author = rs.getString("author");
+                int pages = rs.getInt("pages");
+                String publisher = rs.getString("publisher");
+                int yearPublishing = rs.getInt("yearPublishing");
+                String description = rs.getString("description");
+                String imageName = rs.getString("imageName");
+                int shop = rs.getInt("shop");
+                Timestamp createdAt = rs.getTimestamp("createdAt");
+                Timestamp updatedAt = rs.getTimestamp("updatedAt");
+                Timestamp startsAt = rs.getTimestamp("startsAt");
+                Timestamp endsAt = rs.getTimestamp("endsAt");
+
+                result = new Product(id, name, price, discount, quantity, totalBuy, author, pages, publisher,
+                        yearPublishing, description, imageName, shop, createdAt, updatedAt, startsAt, endsAt);
+                rs.close();
+                st.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
     public Product selectById(Long id){
         Product result = null;
         try {
@@ -46,9 +81,9 @@ public class ProductDAO extends AbsDAO<Product>{
         return result;
     }
     @Override
-    public int insert(Product product) {
+    public int insert(Product product, String ip) {
 
-         super.insert(product);
+
          int result = 0;
         try {
             String sql = "insert into product (id, name, price, discount, quantity, totalBuy, author, pages" +
@@ -78,12 +113,13 @@ public class ProductDAO extends AbsDAO<Product>{
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        super.insert(product, ip);
         return result;
     }
 
     @Override
-    public int update(Product product) {
-         super.update(product);
+    public int update(Product product, String ip) {
+        super.update(product, ip);
         int result = 0;
         try {
             String sql="update product set " +
@@ -115,13 +151,14 @@ public class ProductDAO extends AbsDAO<Product>{
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
         return result;
 
     }
 
     @Override
-    public int delete(Product product) {
-         super.delete(product);
+    public int delete(Product product, String ip) {
+
         int result = 0;
         try {
            String sql = "delete from product where id =?";
@@ -133,6 +170,7 @@ public class ProductDAO extends AbsDAO<Product>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        super.delete(product, ip);
         return result;
     }
 }

@@ -1,5 +1,6 @@
 package com.bookshopweb.dao;
 
+import com.bookshopweb.beans.AbsModel;
 import com.bookshopweb.beans.Cart;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.utils.JDBCUtils;
@@ -12,6 +13,31 @@ import java.sql.Timestamp;
 public class CartDAO extends AbsDAO<Cart> {
 
     Connection conn = JDBCUtils.getConnection();
+    public Cart selectPrevalue(Long id){
+        Cart result = null;
+        CartItemDAO dao = new CartItemDAO();
+        try {
+            String sql="select * from cart where id=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+
+                Timestamp createdAt = rs.getTimestamp("createdAt");
+                Timestamp updatedAt = rs.getTimestamp("updatedAt");
+                long userId = rs.getLong("userId");
+                result = new Cart(id, userId, createdAt, updatedAt);
+                result.addCartItem(dao.selectByCart(result));
+
+            }
+            rs.close();
+            st.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
     public Cart selectByUser(User user){
         Cart result = null;
         CartItemDAO dao = new CartItemDAO();
@@ -26,9 +52,10 @@ public class CartDAO extends AbsDAO<Cart> {
                 Timestamp updatedAt = rs.getTimestamp("updatedAt");
                 result = new Cart(id, user.getId(), createdAt, updatedAt);
                 result.addCartItem(dao.selectByCart(result));
-                rs.close();
-                st.close();
+
             }
+            rs.close();
+            st.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -37,8 +64,8 @@ public class CartDAO extends AbsDAO<Cart> {
     }
     @Override
 
-    public int insert(Cart cart) {
-         super.insert(cart);
+    public int insert(Cart cart, String ip) {
+
          int result = 0;
 
         try {
@@ -55,14 +82,14 @@ public class CartDAO extends AbsDAO<Cart> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+        super.insert(cart, ip);
         return result;
 
     }
 
     @Override
-    public int update(Cart cart) {
-        super.update(cart);
+    public int update(Cart cart, String ip) {
+        super.update(cart, ip);
         int result =0;
         try {
             String sql = "update cart set updatedAt=? where id=?";
@@ -74,12 +101,13 @@ public class CartDAO extends AbsDAO<Cart> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
         return result;
     }
 
     @Override
-    public int delete(Cart cart) {
-        super.delete(cart);
+    public int delete(Cart cart, String ip) {
+
         int result =0;
         try {
             String sql = "delete from cart where id=?";
@@ -89,7 +117,7 @@ public class CartDAO extends AbsDAO<Cart> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+        super.delete(cart, ip);
         return result;
     }
 }

@@ -125,7 +125,9 @@ public class ProductReview extends AbsModel<ProductReview> {
     public void setProduct(@Nullable Product product) {
         this.product = product;
     }
-
+    public String getResource() {
+        return "ProductReview";
+    }
     @Override
     public String toString() {
         return new StringJoiner(", ", ProductReview.class.getSimpleName() + "[", "]")
@@ -140,5 +142,10 @@ public class ProductReview extends AbsModel<ProductReview> {
                 .add("user=" + user)
                 .add("product=" + product)
                 .toString();
+    }
+
+    @Override
+    public Timestamp getCreateAt() {
+        return createdAt;
     }
 }

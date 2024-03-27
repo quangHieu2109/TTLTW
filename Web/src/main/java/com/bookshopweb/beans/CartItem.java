@@ -92,6 +92,12 @@ public class CartItem extends AbsModel<CartItem> {
     public void setProduct(@Nullable Product product) {
         this.product = product;
     }
+    public String getResource() {
+        return "CartItem";
+    }
 
-
+    @Override
+    public Timestamp getCreateAt() {
+        return createdAt;
+    }
 }

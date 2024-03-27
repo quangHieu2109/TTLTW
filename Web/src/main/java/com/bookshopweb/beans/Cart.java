@@ -69,4 +69,13 @@ public class Cart extends AbsModel<Cart>{
         this.updatedAt = updatedAt;
     }
 
+    @Override
+    public String getResource() {
+        return "Cart";
+    }
+
+    @Override
+    public Timestamp getCreateAt() {
+        return createdAt;
+    }
 }

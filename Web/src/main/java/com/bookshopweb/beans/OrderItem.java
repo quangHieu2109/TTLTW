@@ -109,7 +109,9 @@ public class OrderItem extends AbsModel<OrderItem>{
     public Product getProduct() {
         return product;
     }
-
+    public String getResource() {
+        return "OrderItem";
+    }
     public void setProduct(@Nullable Product product) {
         this.product = product;
     }
@@ -127,5 +129,10 @@ public class OrderItem extends AbsModel<OrderItem>{
                 .add("updatedAt=" + updatedAt)
                 .add("product=" + product)
                 .toString();
+    }
+
+    @Override
+    public Timestamp getCreateAt() {
+        return createdAt;
     }
 }
