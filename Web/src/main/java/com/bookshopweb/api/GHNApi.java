@@ -24,8 +24,9 @@ public class GHNApi {
 
 
     public static void main(String[] args) {
-//        GHNApi ghnApi = new GHNApi();
-//        System.out.println(ghnApi.getInfoShip(3440,"907557",1442,"20109",520,10,10,10));
+        GHNApi ghnApi = new GHNApi();
+//        System.out.println(ghnApi.getWards(3695));
+        System.out.println(ghnApi.getInfoShip(3695,"90737",3695,"90737",520,10,10,10));
 
     }
     public List<InfoShip> getInfoShip(int fromDistrictID, String fromWardCode, int toDistrictID, String toWardCode, int weight, int height, int length, int width){
@@ -50,6 +51,7 @@ public class GHNApi {
 //            System.out.println(fee);
 
             String estimatedTime = getEstimatedTime(fromDistrictID,fromWardCode,toDistrictID,toWardCode,service.getService_id());
+
             infoShips.add(new InfoShip(service.getShort_name(),estimatedTime,String.valueOf(fee)));
         }
         return infoShips;
@@ -71,6 +73,7 @@ public class GHNApi {
         request.setEntity(enity);
         connection.setRequest(request);
         connection.connect();
+//        System.out.println(connection.getResponseString());
 
         long date = new JSONObject(connection.getResponseString()).getJSONObject("data").getLong("leadtime");
         LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(date), ZoneId.systemDefault());
@@ -164,45 +167,47 @@ public class GHNApi {
         return Arrays.asList(district);
     }
 
-    public List<Ward> getWards(int districtID) {
+    public List<Ward> getWards(String districtID) {
 
 
-        HttpGet request = new HttpGet(BASE_URL_ADDRESS + "ward?district_id=" + String.valueOf(districtID));
+        HttpGet request = new HttpGet(BASE_URL_ADDRESS + "ward?district_id=" + districtID);
 
         request.setHeader("Token", TOKEN);
         request.setHeader("district_id", String.valueOf(districtID));
+        request.setHeader("Content-Type", "application/json");
         connection.setRequest(request);
         connection.connect();
 
         Gson gson = new Gson();
-        Ward[] ward = gson.fromJson(new JSONObject(connection.getResponseString()).getJSONArray("data").toString(), Ward[].class);
+        Ward[] ward= gson.fromJson(new JSONObject(connection.getResponseString()).getJSONArray("data").toString(), Ward[].class);
         return Arrays.asList(ward);
     }
 
     public class Ward {
-        private int WardCode;
-        private int DistrictID;
+        private String WardCode;
+        private String DistrictID;
         private String WardName;
 
-        public Ward(int wardCode, int districtID, String wardName) {
+
+        public Ward(String wardCode, String districtID, String wardName) {
             WardCode = wardCode;
             DistrictID = districtID;
             WardName = wardName;
         }
 
-        public int getWardCode() {
+        public String getWardCode() {
             return WardCode;
         }
 
-        public void setWardCode(int wardCode) {
+        public void setWardCode(String wardCode) {
             WardCode = wardCode;
         }
 
-        public int getDistrictID() {
+        public String getDistrictID() {
             return DistrictID;
         }
 
-        public void setDistrictID(int districtID) {
+        public void setDistrictID(String districtID) {
             DistrictID = districtID;
         }
 

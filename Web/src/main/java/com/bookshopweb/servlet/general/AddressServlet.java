@@ -16,8 +16,9 @@ public class AddressServlet extends HttpServlet {
     private static List<ViettelPostApi.Province> provinces = null;
     private static List<ViettelPostApi.District> districts = null;
     private static List<ViettelPostApi.Ward> wards = null;
+    private static final ViettelPostApi vietelPostApi = new ViettelPostApi();
     static {
-        ViettelPostApi vietelPostApi = new ViettelPostApi();
+
         provinces = vietelPostApi.getProvinces(null);
         districts = vietelPostApi.getDistricts(null);
         wards = vietelPostApi.getWards(null);
@@ -28,13 +29,13 @@ public class AddressServlet extends HttpServlet {
         String provinceID = req.getParameter("provinceID");
         String districtID = req.getParameter("districtID");
         String wardID = req.getParameter("wardID");
-        Map<String,String> provincesName = new HashMap<>();
-        Map<String,String> districtsName = new HashMap<>();
-        Map<String,String> wardsName = new HashMap<>();
+        List<ViettelPostApi.Province> provincesName = new ArrayList<>();
+        List<ViettelPostApi.District> districtsName = new ArrayList<>();
+       List<ViettelPostApi.Ward> wardsName = new ArrayList<>();
         if(provinceID!=null) {
             for (ViettelPostApi.District district : districts) {
                 if (district.getPROVINCE_ID().equals(provinceID)) {
-                    districtsName.put(district.getDISTRICT_ID(), district.getDISTRICT_NAME());
+                    districtsName.add(district);
                 }
             }
 
@@ -42,14 +43,14 @@ public class AddressServlet extends HttpServlet {
        else if(districtID!=null) {
             for (ViettelPostApi.Ward ward : wards) {
                 if (ward.getDISTRICT_ID().equals(districtID)) {
-                    wardsName.put(ward.getWARDS_ID(), ward.getWARDS_NAME());
+                    wardsName.add(ward);
                 }
             }
 
         }
         else if(provinceID == null&&districtID==null&&wardID==null) {
            for (ViettelPostApi.Province province : provinces) {
-               provincesName.put(province.getPROVINCE_ID(),province.getPROVINCE_NAME());
+               provincesName.add(province);
            }
         }
 
@@ -61,8 +62,21 @@ public class AddressServlet extends HttpServlet {
         resp.setContentType("application/json");
         resp.getWriter().write("{\"provinces\":"+jsonProvinces+",\"districts\":"+jsonDistricts+",\"wards\":"+jsonWards+"}");
         resp.getWriter().flush();
+        resp.getWriter().close();
         resp.setStatus(200);
 
 
+    }
+
+    public static List<ViettelPostApi.Province> getProvinces() {
+        return provinces;
+    }
+
+    public static List<ViettelPostApi.District> getDistricts() {
+        return districts;
+    }
+
+    public static List<ViettelPostApi.Ward> getWards() {
+        return wards;
     }
 }

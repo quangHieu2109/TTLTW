@@ -52,12 +52,12 @@ public class ViettelPostApi {
         connection.setRequest(request);
         connection.connect();
         String response = connection.getResponseString();
+        System.out.println(response);
         JSONArray jsonArray = new JSONArray(response);
         return Arrays.asList(new Gson().fromJson(jsonArray.toString(), InfoShip[].class));
 
     }
     public class InfoShip{
-
         private String TEN_DICHVU;
         private String THOI_GIAN;
         private String GIA_CUOC;
