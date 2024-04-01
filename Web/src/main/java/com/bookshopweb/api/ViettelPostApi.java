@@ -56,7 +56,7 @@ public class ViettelPostApi {
         return Arrays.asList(new Gson().fromJson(jsonArray.toString(), InfoShip[].class));
 
     }
-    class InfoShip{
+    public class InfoShip{
 
         private String TEN_DICHVU;
         private String THOI_GIAN;
@@ -147,7 +147,7 @@ public class ViettelPostApi {
         Ward[] wards = new Gson().fromJson(jsonObject.toString(), Ward[].class);
         return Arrays.asList(wards);
     }
-    class Ward {
+    public class Ward {
         private String WARDS_ID;
         private String WARDS_NAME;
         private String DISTRICT_ID;
@@ -191,7 +191,7 @@ public class ViettelPostApi {
                     '}';
         }
     }
-    class District{
+    public class District{
         private String DISTRICT_ID;
         private String DISTRICT_VALUE;
         private String DISTRICT_NAME;
@@ -247,7 +247,7 @@ public class ViettelPostApi {
         }
     }
 
-    class Province {
+    public class Province {
         private String PROVINCE_ID;
         private String PROVINCE_NAME;
         private String PROVINCE_CODE;

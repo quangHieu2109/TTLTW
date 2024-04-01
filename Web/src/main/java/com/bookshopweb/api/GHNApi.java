@@ -24,14 +24,14 @@ public class GHNApi {
 
 
     public static void main(String[] args) {
-        GHNApi ghnApi = new GHNApi();
+//        GHNApi ghnApi = new GHNApi();
 //        System.out.println(ghnApi.getInfoShip(3440,"907557",1442,"20109",520,10,10,10));
 
     }
     public List<InfoShip> getInfoShip(int fromDistrictID, String fromWardCode, int toDistrictID, String toWardCode, int weight, int height, int length, int width){
         List<InfoShip> infoShips = new ArrayList<>();
         List<Service> services = getServiceType(String.valueOf(fromDistrictID),String.valueOf(toDistrictID));
-        System.out.println(services);
+//        System.out.println(services);
         for (Service service : services) {
             if(service.getService_type_id() == 5) {
                 continue;
@@ -47,7 +47,7 @@ public class GHNApi {
                     width,
                     String.valueOf(service.getService_id())
             );
-            System.out.println(fee);
+//            System.out.println(fee);
 
             String estimatedTime = getEstimatedTime(fromDistrictID,fromWardCode,toDistrictID,toWardCode,service.getService_id());
             infoShips.add(new InfoShip(service.getShort_name(),estimatedTime,String.valueOf(fee)));
@@ -77,7 +77,7 @@ public class GHNApi {
         return dateTime.toString().replace("T"," ");
 
     }
-    public List<Service> getServiceType(String fromDistrict, String toDistrict) {
+    private List<Service> getServiceType(String fromDistrict, String toDistrict) {
         HttpPost request = new HttpPost(BASE_URL_FEE + "shipping-order/available-services");
         request.setHeader("Token", TOKEN);
         request.setHeader("Content-Type", "application/json");
@@ -179,7 +179,7 @@ public class GHNApi {
         return Arrays.asList(ward);
     }
 
-    class Ward {
+    public class Ward {
         private int WardCode;
         private int DistrictID;
         private String WardName;
@@ -223,7 +223,7 @@ public class GHNApi {
                     '}';
         }
     }
-    class InfoShip{
+    public class InfoShip{
 
         private String TEN_DICHVU;
         private String THOI_GIAN;
@@ -269,7 +269,7 @@ public class GHNApi {
             this.GIA_CUOC = GIA_CUOC;
         }
     }
-    class District {
+   public class District {
         private int DistrictID;
         private String DistrictName;
         private int ProvinceID;
@@ -328,7 +328,7 @@ public class GHNApi {
         }
     }
 
-    class Province {
+    public class Province {
         private int ProvinceID;
         private String ProvinceName;
         private int CountryID;
@@ -405,7 +405,7 @@ public class GHNApi {
                     '}';
         }
     }
-    class Service{
+    public class Service{
         private int service_id;
         private String short_name;
         private int service_type_id;
