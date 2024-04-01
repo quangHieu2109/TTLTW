@@ -1,29 +1,41 @@
 package com.bookshopweb.beans;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.jetbrains.annotations.Nullable;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringJoiner;
 
-public class Cart {
+public class Cart extends AbsModel<Cart>{
     private long id;
     private long userId;
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
     @Nullable
-    private LocalDateTime updatedAt;
-
+    private Timestamp updatedAt;
+    private List<CartItem> listCartItem = new ArrayList<>();
     public Cart() {}
 
     public Cart(long id,
                 long userId,
-                LocalDateTime createdAt,
-                @Nullable LocalDateTime updatedAt) {
+                Timestamp createdAt,
+                @Nullable Timestamp updatedAt) {
         this.id = id;
         this.userId = userId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
-
+    public void addCartItem(CartItem cartItem){
+        this.listCartItem.add(cartItem);
+    }
+    public void addCartItem(List<CartItem> cartItems){
+        this.listCartItem.addAll(cartItems);
+    }
+    public List<CartItem> getListCartItem(){
+        return this.listCartItem;
+    }
     public long getId() {
         return id;
     }
@@ -40,30 +52,30 @@ public class Cart {
         this.userId = userId;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
     @Nullable
-    public LocalDateTime getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(@Nullable LocalDateTime updatedAt) {
+    public void setUpdatedAt(@Nullable Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
     @Override
-    public String toString() {
-        return new StringJoiner(", ", Cart.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("userId=" + userId)
-                .add("createdAt=" + createdAt)
-                .add("updatedAt=" + updatedAt)
-                .toString();
+    public String getResource() {
+        return "Cart";
+    }
+
+    @Override
+    public Timestamp getCreateAt() {
+        return createdAt;
     }
 }

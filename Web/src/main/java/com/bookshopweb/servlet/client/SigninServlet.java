@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.client;
 
 import com.bookshopweb.beans.User;
-import com.bookshopweb.service.UserService;
+import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.HashingUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @WebServlet(name = "SigninServlet", value = "/signin")
 public class SigninServlet extends HttpServlet {
-    private final UserService userService = new UserService();
+    private final UserDAO userDAO = new UserDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,7 +33,7 @@ public class SigninServlet extends HttpServlet {
         values.put("password", request.getParameter("password"));
 
         Map<String, List<String>> violations = new HashMap<>();
-        Optional<User> userFromServer = Protector.of(() -> userService.getByUsername(values.get("username")))
+        Optional<User> userFromServer = Protector.of(() -> userDAO.getByUsername(values.get("username")))
                 .get(Optional::empty);
         violations.put("usernameViolations", Validator.of(values.get("username"))
                 .isNotNullAndEmpty()

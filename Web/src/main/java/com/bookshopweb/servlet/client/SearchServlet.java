@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.client;
 
 import com.bookshopweb.beans.Product;
-import com.bookshopweb.service.ProductService;
+import com.bookshopweb.dao.ProductDAO;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @WebServlet(name = "SearchServlet", value = "/search")
 public class SearchServlet extends HttpServlet {
-    private final ProductService productService = new ProductService();
+    private final ProductDAO productDAO = new ProductDAO();
 
     private static final int PRODUCTS_PER_PAGE = 12;
 
@@ -27,7 +27,7 @@ public class SearchServlet extends HttpServlet {
         if (query.isPresent()) {
             String queryStr = query.get();
 
-            int totalProducts = Protector.of(() -> productService.countByQuery(queryStr)).get(0);
+            int totalProducts = Protector.of(() -> productDAO.countByQuery(queryStr)).get(0);
             int totalPages = totalProducts / PRODUCTS_PER_PAGE + (totalProducts % PRODUCTS_PER_PAGE != 0 ? 1 : 0);
 
             String pageParam = Optional.ofNullable(request.getParameter("page")).orElse("1");
@@ -38,7 +38,7 @@ public class SearchServlet extends HttpServlet {
 
             int offset = (page - 1) * PRODUCTS_PER_PAGE;
 
-            List<Product> products = Protector.of(() -> productService.getByQuery(
+            List<Product> products = Protector.of(() -> productDAO.getByQuery(
                     queryStr, PRODUCTS_PER_PAGE, offset
             )).get(ArrayList::new);
 

@@ -1,6 +1,7 @@
 package com.bookshopweb.servlet.admin.productreview;
 
-import com.bookshopweb.service.ProductReviewService;
+import com.bookshopweb.dao.ProductReviewDAO;
+import com.bookshopweb.dao.ProductReviewDAO;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet(name = "UpdateProductReviewServlet", value = "/admin/reviewManager/update")
 public class UpdateProductReviewServlet extends HttpServlet {
-    private final ProductReviewService productReviewService = new ProductReviewService();
+    private final ProductReviewDAO productReviewDAO = new ProductReviewDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
@@ -26,14 +27,14 @@ public class UpdateProductReviewServlet extends HttpServlet {
 
         if ("HIDE".equals(action)) {
             String successMessage = String.format("Đã ẩn đánh giá #%s thành công!", id);
-            Protector.of(() -> productReviewService.hide(id))
+            Protector.of(() -> productReviewDAO.hide(id))
                     .done(r -> request.getSession().setAttribute("successMessage", successMessage))
                     .fail(e -> request.getSession().setAttribute("errorMessage", errorMessage));
         }
 
         if ("SHOW".equals(action)) {
             String successMessage = String.format("Đã hiện đánh giá #%s thành công!", id);
-            Protector.of(() -> productReviewService.show(id))
+            Protector.of(() -> productReviewDAO.show(id))
                     .done(r -> request.getSession().setAttribute("successMessage", successMessage))
                     .fail(e -> request.getSession().setAttribute("errorMessage", errorMessage));
         }

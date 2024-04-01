@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.client.productreview;
 
 import com.bookshopweb.beans.ProductReview;
-import com.bookshopweb.service.ProductReviewService;
+import com.bookshopweb.dao.ProductReviewDAO;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
 
@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +21,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @WebServlet(name = "AddProductReviewServlet", value = "/addProductReview")
 public class AddProductReviewServlet extends HttpServlet {
-    private final ProductReviewService productReviewService = new ProductReviewService();
+    private final ProductReviewDAO productReviewDAO = new ProductReviewDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
@@ -54,10 +56,10 @@ public class AddProductReviewServlet extends HttpServlet {
                     Protector.of(() -> Integer.parseInt(values.get("ratingScore"))).get(0),
                     values.get("content"),
                     1,
-                    LocalDateTime.now(),
+                    Timestamp.from(Instant.now()),
                     null
             );
-            Protector.of(() -> productReviewService.insert(productReview))
+            Protector.of(() -> productReviewDAO.insert(productReview,""))
                     .done(r -> {
                         request.getSession().setAttribute("successMessage", successMessage);
                         anchor.set("#review");

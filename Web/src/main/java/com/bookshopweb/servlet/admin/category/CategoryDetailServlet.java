@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.admin.category;
 
 import com.bookshopweb.beans.Category;
-import com.bookshopweb.service.CategoryService;
+import com.bookshopweb.dao.CategoryDAO;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.TextUtils;
 
@@ -15,12 +15,12 @@ import java.util.Optional;
 
 @WebServlet(name = "CategoryDetailServlet", value = "/admin/categoryManager/detail")
 public class CategoryDetailServlet extends HttpServlet {
-    private final CategoryService categoryService = new CategoryService();
+    private final CategoryDAO categoryDAO = new CategoryDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Optional<Category> categoryFromServer = Protector.of(() -> categoryService.getById(id)).get(Optional::empty);
+        Optional<Category> categoryFromServer = Protector.of(() -> categoryDAO.selectPrevalue(id)).get();
 
         if (categoryFromServer.isPresent()) {
             Category category = categoryFromServer.get();

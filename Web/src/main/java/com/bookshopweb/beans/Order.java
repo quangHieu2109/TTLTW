@@ -2,19 +2,19 @@ package com.bookshopweb.beans;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class Order {
+public class Order extends AbsModel<Order> {
     private long id;
     private long userId;
     private int status;
     private int deliveryMethod;
     private double deliveryPrice;
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
     @Nullable
-    private LocalDateTime updatedAt;
+    private Timestamp updatedAt;
     @Nullable
     private User user;
     @Nullable
@@ -28,8 +28,8 @@ public class Order {
                  int status,
                  int deliveryMethod,
                  double deliveryPrice,
-                 LocalDateTime createdAt,
-                 @Nullable LocalDateTime updatedAt) {
+                 Timestamp createdAt,
+                 @Nullable Timestamp updatedAt) {
         this.id = id;
         this.userId = userId;
         this.status = status;
@@ -79,20 +79,20 @@ public class Order {
         this.deliveryPrice = deliveryPrice;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
     @Nullable
-    public LocalDateTime getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(@Nullable LocalDateTime updatedAt) {
+    public void setUpdatedAt(@Nullable Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -121,7 +121,9 @@ public class Order {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-
+    public String getResource() {
+        return "Order";
+    }
     @Override
     public String toString() {
         return new StringJoiner(", ", Order.class.getSimpleName() + "[", "]")
@@ -136,5 +138,10 @@ public class Order {
                 .add("orderItems=" + orderItems)
                 .add("totalPrice=" + totalPrice)
                 .toString();
+    }
+
+    @Override
+    public Timestamp getCreateAt() {
+        return createdAt;
     }
 }

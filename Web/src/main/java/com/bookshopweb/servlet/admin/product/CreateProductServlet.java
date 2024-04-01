@@ -2,8 +2,8 @@ package com.bookshopweb.servlet.admin.product;
 
 import com.bookshopweb.beans.Category;
 import com.bookshopweb.beans.Product;
-import com.bookshopweb.service.CategoryService;
-import com.bookshopweb.service.ProductService;
+import com.bookshopweb.dao.CategoryDAO;
+import com.bookshopweb.dao.ProductDAO;
 import com.bookshopweb.utils.ImageUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,12 +31,12 @@ import java.util.Optional;
         maxRequestSize = 1024 * 1024 * 10 // 10 MB
 )
 public class CreateProductServlet extends HttpServlet {
-    private final ProductService productService = new ProductService();
-    private final CategoryService categoryService = new CategoryService();
+    private final ProductDAO productDAO = new ProductDAO();
+    private final CategoryDAO categoryDAO = new CategoryDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Category> categories = Protector.of(categoryService::getAll).get(ArrayList::new);
+        List<Category> categories = Protector.of(categoryDAO::getAll).get(ArrayList::new);
         request.setAttribute("categories", categories);
         request.getRequestDispatcher("/WEB-INF/views/createProductView.jsp").forward(request, response);
     }
@@ -55,12 +56,11 @@ public class CreateProductServlet extends HttpServlet {
         product.setDescription(request.getParameter("description").trim().isEmpty()
                 ? null : request.getParameter("description"));
         product.setShop(Protector.of(() -> Integer.parseInt(request.getParameter("shop"))).get(1));
-        product.setCreatedAt(LocalDateTime.now());
+        product.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         product.setStartsAt(request.getParameter("startsAt").trim().isEmpty()
-                ? null : LocalDateTime.parse(request.getParameter("startsAt")));
+                ? null : Timestamp.valueOf(request.getParameter("startsAt")));
         product.setEndsAt(request.getParameter("endsAt").trim().isEmpty()
-                ? null : LocalDateTime.parse(request.getParameter("endsAt")));
-
+                ? null : Timestamp.valueOf(request.getParameter("endsAt")));
         long categoryId = Protector.of(() -> Long.parseLong(request.getParameter("category"))).get(0L);
 
         Map<String, List<String>> violations = new HashMap<>();
@@ -123,8 +123,8 @@ public class CreateProductServlet extends HttpServlet {
             ImageUtils.setServletContext(getServletContext());
             ImageUtils.upload(request).ifPresent(product::setImageName);
             Protector.of(() -> {
-                        long productId = productService.insert(product);
-                        productService.insertProductCategory(productId, categoryId);
+                        long productId = productDAO.insert(product,"");
+                        productDAO.insertProductCategory(productId, categoryId);
                     })
                     .done(r -> request.setAttribute("successMessage", successMessage))
                     .fail(e -> {
@@ -138,7 +138,7 @@ public class CreateProductServlet extends HttpServlet {
             request.setAttribute("violations", violations);
         }
 
-        List<Category> categories = Protector.of(categoryService::getAll).get(ArrayList::new);
+        List<Category> categories = Protector.of(categoryDAO::getAll).get(ArrayList::new);
         request.setAttribute("categories", categories);
         request.getRequestDispatcher("/WEB-INF/views/createProductView.jsp").forward(request, response);
     }

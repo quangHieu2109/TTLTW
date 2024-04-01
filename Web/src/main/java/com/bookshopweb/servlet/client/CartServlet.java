@@ -5,9 +5,9 @@ import com.bookshopweb.beans.OrderItem;
 import com.bookshopweb.dto.ErrorMessage;
 import com.bookshopweb.dto.OrderRequest;
 import com.bookshopweb.dto.SuccessMessage;
-import com.bookshopweb.service.CartService;
-import com.bookshopweb.service.OrderItemService;
-import com.bookshopweb.service.OrderService;
+import com.bookshopweb.dao.CartDAO;
+import com.bookshopweb.dao.OrderItemDAO;
+import com.bookshopweb.dao.OrderDAO;
 import com.bookshopweb.utils.JsonUtils;
 import com.bookshopweb.utils.Protector;
 
@@ -17,15 +17,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @WebServlet(name = "CartServlet", value = "/cart")
 public class CartServlet extends HttpServlet {
-    private final OrderService orderService = new OrderService();
-    private final OrderItemService orderItemService = new OrderItemService();
-    private final CartService cartService = new CartService();
+    private final OrderDAO orderDAO = new OrderDAO();
+    private final OrderItemDAO orderItemDAO = new OrderItemDAO();
+    private final CartDAO cartDAO = new CartDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,10 +46,10 @@ public class CartServlet extends HttpServlet {
                 1,
                 orderRequest.getDeliveryMethod(),
                 orderRequest.getDeliveryPrice(),
-                LocalDateTime.now(),
+                Timestamp.from(Instant.now()),
                 null
         );
-        long orderId = Protector.of(() -> orderService.insert(order)).get(0L);
+        long orderId = Protector.of(() -> orderDAO.insert(order,"")).get(0);
 
         String successMessage = "Đã đặt hàng và tạo đơn hàng thành công!";
         String errorMessage = "Đã có lỗi truy vấn!";
@@ -69,13 +71,13 @@ public class CartServlet extends HttpServlet {
                     orderItemRequest.getPrice(),
                     orderItemRequest.getDiscount(),
                     orderItemRequest.getQuantity(),
-                    LocalDateTime.now(),
+                    Timestamp.from(Instant.now()),
                     null
             )).collect(Collectors.toList());
 
             Protector.of(() -> {
-                        orderItemService.bulkInsert(orderItems);
-                        cartService.delete(orderRequest.getCartId());
+                        orderItemDAO.bulkInsert(orderItems);
+                        cartDAO.delete(cartDAO.selectPrevalue(orderRequest.getCartId()),"");
                     })
                     .done(r -> doneFunction.run())
                     .fail(e -> failFunction.run());

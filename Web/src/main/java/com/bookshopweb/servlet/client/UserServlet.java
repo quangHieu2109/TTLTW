@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.client;
 
 import com.bookshopweb.beans.User;
-import com.bookshopweb.service.CartService;
+import com.bookshopweb.dao.CartDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +14,7 @@ import java.io.IOException;
 @WebServlet(name = "UserServlet", value = "/user")
 public class UserServlet extends HttpServlet {
 
-    private final CartService cartService = new CartService();
+    private final CartDAO cartDAO = new CartDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,16 +22,16 @@ public class UserServlet extends HttpServlet {
         User user = (User) session.getAttribute("currentUser");
 
         if (user != null) {
-            int countCartItemQuantityByUserId = cartService.countCartItemQuantityByUserId(user.getId());
+            int countCartItemQuantityByUserId = cartDAO.countCartItemQuantityByUserId(user.getId());
             request.setAttribute("countCartItemQuantity", countCartItemQuantityByUserId);
 
-            int countOrderByUserId = cartService.countOrderByUserId(user.getId());
+            int countOrderByUserId = cartDAO.countOrderByUserId(user.getId());
             request.setAttribute("countOrder", countOrderByUserId);
 
-            int countOrderDeliverByUserId = cartService.countOrderDeliverByUserId(user.getId());
+            int countOrderDeliverByUserId = cartDAO.countOrderDeliverByUserId(user.getId());
             request.setAttribute("countOrderDeliver", countOrderDeliverByUserId);
 
-            int countOrderReceivedByUserId = cartService.countOrderReceivedByUserId(user.getId());
+            int countOrderReceivedByUserId = cartDAO.countOrderReceivedByUserId(user.getId());
             request.setAttribute("countOrderReceived", countOrderReceivedByUserId);
         }
 
