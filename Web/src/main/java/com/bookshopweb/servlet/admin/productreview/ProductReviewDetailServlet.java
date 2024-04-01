@@ -1,9 +1,9 @@
 package com.bookshopweb.servlet.admin.productreview;
 
 import com.bookshopweb.beans.ProductReview;
-import com.bookshopweb.service.ProductReviewService;
-import com.bookshopweb.service.ProductService;
-import com.bookshopweb.service.UserService;
+import com.bookshopweb.dao.ProductReviewDAO;
+import com.bookshopweb.dao.ProductDAO;
+import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.TextUtils;
 
@@ -17,22 +17,22 @@ import java.util.Optional;
 
 @WebServlet(name = "ProductReviewDetailServlet", value = "/admin/reviewManager/detail")
 public class ProductReviewDetailServlet extends HttpServlet {
-    private final ProductReviewService productReviewService = new ProductReviewService();
-    private final UserService userService = new UserService();
-    private final ProductService productService = new ProductService();
+    private final ProductReviewDAO productReviewDAO = new ProductReviewDAO();
+    private final UserDAO userDAO = new UserDAO();
+    private final ProductDAO productDAO = new ProductDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Optional<ProductReview> productReviewFromServer = Protector.of(() -> productReviewService.getById(id))
-                .get(Optional::empty);
+        Optional<ProductReview> productReviewFromServer = Protector.of(() -> productReviewDAO.selectPrevalue(id))
+                .get();
 
         if (productReviewFromServer.isPresent()) {
             ProductReview productReview = productReviewFromServer.get();
             productReview.setContent(TextUtils.toParagraph(productReview.getContent()));
-            Protector.of(() -> userService.getById(productReview.getUserId())).get(Optional::empty)
+            Protector.of(() -> userDAO.selectPrevalue(productReview.getUserId())).get()
                     .ifPresent(productReview::setUser);
-            Protector.of(() -> productService.getById(productReview.getProductId())).get(Optional::empty)
+            Protector.of(() -> productDAO.selectPrevalue(productReview.getProductId())).get()
                     .ifPresent(productReview::setProduct);
             request.setAttribute("productReview", productReview);
             request.getRequestDispatcher("/WEB-INF/views/productReviewDetailView.jsp").forward(request, response);

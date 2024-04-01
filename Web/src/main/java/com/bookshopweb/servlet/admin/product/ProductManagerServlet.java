@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.admin.product;
 
 import com.bookshopweb.beans.Product;
-import com.bookshopweb.service.ProductService;
+import com.bookshopweb.dao.ProductDAO;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @WebServlet(name = "ProductManagerServlet", value = "/admin/productManager")
 public class ProductManagerServlet extends HttpServlet {
-    private final ProductService productService = new ProductService();
+    private final ProductDAO productService = new ProductDAO();
 
     private static final int PRODUCTS_PER_PAGE = 15;
 

@@ -2,8 +2,8 @@ package com.bookshopweb.servlet.admin.product;
 
 import com.bookshopweb.beans.Category;
 import com.bookshopweb.beans.Product;
-import com.bookshopweb.service.CategoryService;
-import com.bookshopweb.service.ProductService;
+import com.bookshopweb.dao.CategoryDAO;
+import com.bookshopweb.dao.ProductDAO;
 import com.bookshopweb.utils.ImageUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,17 +31,17 @@ import java.util.Optional;
         maxRequestSize = 1024 * 1024 * 10 // 10 MB
 )
 public class UpdateProductServlet extends HttpServlet {
-    private final ProductService productService = new ProductService();
-    private final CategoryService categoryService = new CategoryService();
+    private final ProductDAO productDAO = new ProductDAO();
+    private final CategoryDAO categoryDAO = new CategoryDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Optional<Product> productFromServer = Protector.of(() -> productService.getById(id)).get(Optional::empty);
+        Optional<Product> productFromServer = Protector.of(() -> productDAO.selectPrevalue(id)).get();
 
         if (productFromServer.isPresent()) {
-            List<Category> categories = Protector.of(categoryService::getAll).get(ArrayList::new);
-            Optional<Category> categoryFromServer = Protector.of(() -> categoryService.getByProductId(id)).get(Optional::empty);
+            List<Category> categories = Protector.of(categoryDAO::getAll).get(ArrayList::new);
+            Optional<Category> categoryFromServer = Protector.of(() -> categoryDAO.getByProductId(id)).get(Optional::empty);
 
             request.setAttribute("product", productFromServer.get());
             request.setAttribute("categories", categories);
@@ -69,11 +70,35 @@ public class UpdateProductServlet extends HttpServlet {
         product.setImageName(request.getParameter("imageName").trim().isEmpty()
                 ? null : request.getParameter("imageName"));
         product.setShop(Protector.of(() -> Integer.parseInt(request.getParameter("shop"))).get(1));
-        product.setUpdatedAt(LocalDateTime.now());
-        product.setStartsAt(request.getParameter("startsAt").trim().isEmpty()
-                ? null : LocalDateTime.parse(request.getParameter("startsAt")));
-        product.setEndsAt(request.getParameter("endsAt").trim().isEmpty()
-                ? null : LocalDateTime.parse(request.getParameter("endsAt")));
+        product.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+
+// Chuyển đổi startsAt thành Timestamp (nếu startsAt không rỗng)
+        if (!request.getParameter("startsAt").trim().isEmpty()) {
+            try {
+                Timestamp startsAt = Timestamp.valueOf(request.getParameter("startsAt"));
+                product.setStartsAt(startsAt);
+            } catch (IllegalArgumentException e) {
+                // Xử lý ngoại lệ nếu định dạng không hợp lệ
+                e.printStackTrace();
+                // Hoặc thông báo cho người dùng về lỗi định dạng
+            }
+        } else {
+            product.setStartsAt(null);
+        }
+
+// Chuyển đổi endsAt thành Timestamp (nếu endsAt không rỗng)
+        if (!request.getParameter("endsAt").trim().isEmpty()) {
+            try {
+                Timestamp endsAt = Timestamp.valueOf(request.getParameter("endsAt"));
+                product.setEndsAt(endsAt);
+            } catch (IllegalArgumentException e) {
+                // Xử lý ngoại lệ nếu định dạng không hợp lệ
+                e.printStackTrace();
+                // Hoặc thông báo cho người dùng về lỗi định dạng
+            }
+        } else {
+            product.setEndsAt(null);
+        }
 
         long categoryId = Protector.of(() -> Long.parseLong(request.getParameter("category"))).get(0L);
         String deleteImage = request.getParameter("deleteImage");
@@ -152,15 +177,15 @@ public class UpdateProductServlet extends HttpServlet {
                 ImageUtils.upload(request).ifPresent(product::setImageName);
             }
 
-            Optional<Category> categoryFromServer = Protector.of(() -> categoryService.getByProductId(product.getId()))
+            Optional<Category> categoryFromServer = Protector.of(() -> categoryDAO.getByProductId(product.getId()))
                     .get(Optional::empty);
 
             Protector.of(() -> {
-                        productService.update(product);
+                        productDAO.update(product,"");
                         if (categoryFromServer.isPresent()) {
-                            productService.updateProductCategory(product.getId(), categoryId);
+                            productDAO.updateProductCategory(product.getId(), categoryId);
                         } else {
-                            productService.insertProductCategory(product.getId(), categoryId);
+                            productDAO.insertProductCategory(product.getId(), categoryId);
                         }
                     })
                     .done(r -> request.setAttribute("successMessage", successMessage))
@@ -170,7 +195,7 @@ public class UpdateProductServlet extends HttpServlet {
             request.setAttribute("deleteImage", deleteImage);
         }
 
-        List<Category> categories = Protector.of(categoryService::getAll).get(ArrayList::new);
+        List<Category> categories = Protector.of(categoryDAO::getAll).get(ArrayList::new);
         request.setAttribute("product", product);
         request.setAttribute("categories", categories);
         request.setAttribute("categoryId", categoryId);

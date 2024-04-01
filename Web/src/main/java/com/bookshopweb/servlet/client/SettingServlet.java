@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.client;
 
 import com.bookshopweb.beans.User;
-import com.bookshopweb.service.UserService;
+import com.bookshopweb.dao.UserDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,13 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 @WebServlet(name = "SettingServlet", value = "/setting")
 public class SettingServlet extends HttpServlet {
-    private final UserService userService = new UserService();
+    private final UserDAO userDAO = new UserDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,19 +50,20 @@ public class SettingServlet extends HttpServlet {
                 values.get("phoneNumber"),
                 Integer.parseInt(values.get("gender")),
                 values.get("address"),
-                "CUSTOMER"
+                "CUSTOMER",
+                Timestamp.from(Instant.now())
         );
 
         String successMessage = "Cập nhật thành công!";
         String errorMessage = "Cập nhật không thành công!";
 
-        Optional<User> userWithNewUsername = userService.getByUsername(values.get("username"));
+        Optional<User> userWithNewUsername = userDAO.getByUsername(values.get("username"));
 
         if (!user.getUsername().equals(values.get("username")) && userWithNewUsername.isPresent()) {
             request.setAttribute("errorMessage", errorMessage);
             request.setAttribute("user", user);
         } else {
-            userService.update(newUser);
+            userDAO.update(newUser,"");
             request.setAttribute("successMessage", successMessage);
             request.setAttribute("user", newUser);
             request.getSession().setAttribute("currentUser", newUser);

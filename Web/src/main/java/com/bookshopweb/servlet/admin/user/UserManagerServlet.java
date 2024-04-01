@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.admin.user;
 
 import com.bookshopweb.beans.User;
-import com.bookshopweb.service.UserService;
+import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -16,13 +16,13 @@ import java.util.Optional;
 
 @WebServlet(name = "UserManagerServlet", value = "/admin/userManager")
 public class UserManagerServlet extends HttpServlet {
-    private final UserService userService = new UserService();
+    private final UserDAO userDAO = new UserDAO();
 
     private static final int USERS_PER_PAGE = 3;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int totalUsers = Protector.of(userService::count).get(0);
+        int totalUsers = Protector.of(userDAO::count).get(0);
         int totalPages = totalUsers / USERS_PER_PAGE + (totalUsers % USERS_PER_PAGE != 0 ? 1 : 0);
 
         String pageParam = Optional.ofNullable(request.getParameter("page")).orElse("1");
@@ -33,7 +33,7 @@ public class UserManagerServlet extends HttpServlet {
 
         int offset = (page - 1) * USERS_PER_PAGE;
 
-        List<User> users = Protector.of(() -> userService.getOrderedPart(
+        List<User> users = Protector.of(() -> userDAO.getOrderedPart(
                 USERS_PER_PAGE, offset, "id", "DESC"
         )).get(ArrayList::new);
 

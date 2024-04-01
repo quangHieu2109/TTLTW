@@ -3,9 +3,9 @@ package com.bookshopweb.servlet.client;
 import com.bookshopweb.beans.Order;
 import com.bookshopweb.beans.OrderItem;
 import com.bookshopweb.beans.Product;
-import com.bookshopweb.service.OrderItemService;
-import com.bookshopweb.service.OrderService;
-import com.bookshopweb.service.ProductService;
+import com.bookshopweb.dao.OrderItemDAO;
+import com.bookshopweb.dao.OrderDAO;
+import com.bookshopweb.dao.ProductDAO;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -14,26 +14,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.bookshopweb.utils.DateHelper.formatTimestamp;
+
 @WebServlet(name = "OrderDetailServlet", value = "/orderDetail")
 public class OrderDetailServlet extends HttpServlet {
-    private final OrderService orderService = new OrderService();
-    private final OrderItemService orderItemService = new OrderItemService();
-    private final ProductService productService = new ProductService();
+    private final OrderDAO orderDAO = new OrderDAO();
+    private final OrderItemDAO orderItemDAO = new OrderItemDAO();
+    private final ProductDAO productDAO = new ProductDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Lấy id của order và đối tượng order từ database theo id này
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Optional<Order> orderFromServer = Protector.of(() -> orderService.getById(id)).get(Optional::empty);
+        Optional<Order> orderFromServer = Protector.of(() -> orderDAO.getById(id)).get(Optional::empty);
 
         if (orderFromServer.isPresent()) {
             Order order = orderFromServer.get();
-            List<OrderItem> orderItems = Protector.of(() -> orderItemService.getByOrderId(id)).get(ArrayList::new);
+            List<OrderItem> orderItems = Protector.of(() -> orderItemDAO.getByOrderId(id)).get(ArrayList::new);
 
             double tempPrice = 0;
 
@@ -43,11 +46,13 @@ public class OrderDetailServlet extends HttpServlet {
                 } else {
                     tempPrice += (orderItem.getPrice() * (100 - orderItem.getDiscount()) / 100) * orderItem.getQuantity();
                 }
-                orderItem.setProduct(productService.getById(orderItem.getProductId()).orElseGet(Product::new));
+                orderItem.setProduct(productDAO.getById(orderItem.getProductId()).orElseGet(Product::new));
             }
 
             request.setAttribute("order", order);
-            request.setAttribute("createdAt", order.getCreatedAt().format(DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy")));
+            Timestamp createdAt = order.getCreatedAt(); // Đây là Timestamp của trường createdAt
+            String formattedCreatedAt = formatTimestamp(createdAt);
+            request.setAttribute("createdAt", formattedCreatedAt);
             request.setAttribute("tempPrice", tempPrice);
             request.setAttribute("orderItems", orderItems);
             request.getRequestDispatcher("/WEB-INF/views/orderDetailView.jsp").forward(request, response);
@@ -59,7 +64,7 @@ public class OrderDetailServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Protector.of(() -> orderService.cancelOrder(id));
+        Protector.of(() -> orderDAO.cancelOrder(id));
         response.sendRedirect(request.getContextPath() + "/orderDetail?id=" + id);
     }
 }

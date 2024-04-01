@@ -2,8 +2,8 @@ package com.bookshopweb.servlet.client;
 
 import com.bookshopweb.beans.Category;
 import com.bookshopweb.beans.Product;
-import com.bookshopweb.service.CategoryService;
-import com.bookshopweb.service.ProductService;
+import com.bookshopweb.dao.CategoryDAO;
+import com.bookshopweb.dao.ProductDAO;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -19,8 +19,8 @@ import java.util.Optional;
 
 @WebServlet(name = "CategoryServlet", value = "/category")
 public class CategoryServlet extends HttpServlet {
-    private final CategoryService categoryService = new CategoryService();
-    private final ProductService productService = new ProductService();
+    private final CategoryDAO categoryDAO = new CategoryDAO();
+    private final ProductDAO productDAO = new ProductDAO();
 
     private static final int PRODUCTS_PER_PAGE = 6;
 
@@ -28,7 +28,7 @@ public class CategoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Lấy id của category và đối tượng category từ database theo id này
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Optional<Category> categoryFromServer = Protector.of(() -> categoryService.getById(id)).get(Optional::empty);
+        Optional<Category> categoryFromServer = Protector.of(() -> categoryDAO.getById(id)).get(Optional::empty);
 
         // Nếu id là số nguyên dương và có hiện diện trong bảng category
         if (id > 0L && categoryFromServer.isPresent()) {
@@ -42,23 +42,23 @@ public class CategoryServlet extends HttpServlet {
 
             // Tiêu chí sắp xếp
             Optional<String> orderParam = Optional.ofNullable(request.getParameter("order"));
-            String orderBy = orderParam.map(productService::getFirst).orElse("totalBuy");
-            String orderDir = orderParam.map(productService::getLast).orElse("DESC");
+            String orderBy = orderParam.map(productDAO::getFirst).orElse("totalBuy");
+            String orderDir = orderParam.map(productDAO::getLast).orElse("DESC");
 
             // Tổng hợp các tiêu chí lọc
             List<String> filters = new ArrayList<>();
-            checkedPublishersParam.ifPresent(p -> filters.add(productService.filterByPublishers(checkedPublishers)));
-            priceRangesParam.ifPresent(p -> filters.add(productService.filterByPriceRanges(priceRanges)));
-            String filtersQuery = productService.createFiltersQuery(filters);
+            checkedPublishersParam.ifPresent(p -> filters.add(productDAO.filterByPublishers(checkedPublishers)));
+            priceRangesParam.ifPresent(p -> filters.add(productDAO.filterByPriceRanges(priceRanges)));
+            String filtersQuery = productDAO.createFiltersQuery(filters);
 
             // Tính tổng số sản phẩm của thể loại (và có thể là tiêu chí lọc)
             int totalProducts;
 
             // Nếu không có tiêu chí lọc
             if (filters.isEmpty()) {
-                totalProducts = Protector.of(() -> productService.countByCategoryId(id)).get(0);
+                totalProducts = Protector.of(() -> productDAO.countByCategoryId(id)).get(0);
             } else {
-                totalProducts = Protector.of(() -> productService.countByCategoryIdAndFilters(id, filtersQuery)).get(0);
+                totalProducts = Protector.of(() -> productDAO.countByCategoryIdAndFilters(id, filtersQuery)).get(0);
             }
 
             // Tính tổng số trang (= tổng số sản phẩm / số sản phẩm trên mỗi trang)
@@ -82,17 +82,17 @@ public class CategoryServlet extends HttpServlet {
 
             // Nếu không có tiêu chí lọc
             if (filters.isEmpty()) {
-                products = Protector.of(() -> productService.getOrderedPartByCategoryId(
+                products = Protector.of(() -> productDAO.getOrderedPartByCategoryId(
                         PRODUCTS_PER_PAGE, offset, orderBy, orderDir, id
                 )).get(ArrayList::new);
             } else {
-                products = Protector.of(() -> productService.getOrderedPartByCategoryIdAndFilters(
+                products = Protector.of(() -> productDAO.getOrderedPartByCategoryIdAndFilters(
                         PRODUCTS_PER_PAGE, offset, orderBy, orderDir, id, filtersQuery
                 )).get(ArrayList::new);
             }
 
             // Lấy danh sách nhà xuất bản (tiêu chí lọc 1)
-            List<String> publishers = Protector.of(() -> productService.getPublishersByCategoryId(id)).get(ArrayList::new);
+            List<String> publishers = Protector.of(() -> productDAO.getPublishersByCategoryId(id)).get(ArrayList::new);
 
             request.setAttribute("category", categoryFromServer.get());
             request.setAttribute("totalProducts", totalProducts);

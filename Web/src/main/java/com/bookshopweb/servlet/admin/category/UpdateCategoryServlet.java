@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.admin.category;
 
 import com.bookshopweb.beans.Category;
-import com.bookshopweb.service.CategoryService;
+import com.bookshopweb.dao.CategoryDAO;
 import com.bookshopweb.utils.ImageUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
@@ -25,12 +25,12 @@ import java.util.Optional;
         maxRequestSize = 1024 * 1024 * 10 // 10 MB
 )
 public class UpdateCategoryServlet extends HttpServlet {
-    private final CategoryService categoryService = new CategoryService();
+    private final CategoryDAO categoryDAO = new CategoryDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Optional<Category> categoryFromServer = Protector.of(() -> categoryService.getById(id)).get(Optional::empty);
+        Optional<Category> categoryFromServer = Optional.ofNullable(categoryDAO.selectPrevalue(id));
 
         if (categoryFromServer.isPresent()) {
             request.setAttribute("category", categoryFromServer.get());
@@ -84,7 +84,7 @@ public class UpdateCategoryServlet extends HttpServlet {
                 ImageUtils.setServletContext(getServletContext());
                 ImageUtils.upload(request).ifPresent(category::setImageName);
             }
-            Protector.of(() -> categoryService.update(category))
+            Protector.of(() -> categoryDAO.update(category,""))
                     .done(r -> {
                         request.setAttribute("category", category);
                         request.setAttribute("successMessage", successMessage);

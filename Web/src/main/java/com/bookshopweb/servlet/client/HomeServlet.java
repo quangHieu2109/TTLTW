@@ -2,8 +2,8 @@ package com.bookshopweb.servlet.client;
 
 import com.bookshopweb.beans.Category;
 import com.bookshopweb.beans.Product;
-import com.bookshopweb.service.CategoryService;
-import com.bookshopweb.service.ProductService;
+import com.bookshopweb.dao.CategoryDAO;
+import com.bookshopweb.dao.ProductDAO;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -17,14 +17,14 @@ import java.util.List;
 
 @WebServlet(name = "HomeServlet", value = "")
 public class HomeServlet extends HttpServlet {
-    private final CategoryService categoryService = new CategoryService();
-    private final ProductService productService = new ProductService();
+    private final CategoryDAO categoryDAO = new CategoryDAO();
+    private final ProductDAO productDAO = new ProductDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Category> categories = Protector.of(() -> categoryService.getPart(12, 0))
+        List<Category> categories = Protector.of(() -> categoryDAO.getPart(12, 0))
                 .get(ArrayList::new);
-        List<Product> products = Protector.of(() -> productService.getOrderedPart(12, 0, "createdAt", "DESC"))
+        List<Product> products = Protector.of(() -> productDAO.getOrderedPart(12, 0, "createdAt", "DESC"))
                 .get(ArrayList::new);
         request.setAttribute("categories", categories);
         request.setAttribute("products", products);

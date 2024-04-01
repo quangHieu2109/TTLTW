@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.client;
 
 import com.bookshopweb.beans.User;
-import com.bookshopweb.service.UserService;
+import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.HashingUtils;
 
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ import java.util.Map;
 
 @WebServlet(name = "ChangePassword", value = "/changePassword")
 public class ChangePasswordServlet extends HomeServlet {
-    private final UserService userService = new UserService();
+    private final UserDAO userDAO = new UserDAO();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("WEB-INF/views/changePasswordView.jsp").forward(request, response);
@@ -36,7 +36,7 @@ public class ChangePasswordServlet extends HomeServlet {
 
         if (currentPasswordEqualsUserPassword && newPasswordEqualsNewPasswordAgain) {
             String newPassword = HashingUtils.hash(values.get("newPassword"));
-            userService.changePassword(user.getId(), newPassword);
+            userDAO.changePassword(user.getId(), newPassword);
             String successMessage = "Đổi mật khẩu thành công!";
             request.setAttribute("successMessage", successMessage);
         } else {

@@ -6,8 +6,8 @@ import com.bookshopweb.beans.WishlistItem;
 import com.bookshopweb.dto.ErrorMessage;
 import com.bookshopweb.dto.SuccessMessage;
 import com.bookshopweb.dto.WishlistItemRequest;
-import com.bookshopweb.service.ProductService;
-import com.bookshopweb.service.WishlistItemService;
+import com.bookshopweb.dao.ProductDAO;
+import com.bookshopweb.dao.WishlistItemDAO;
 import com.bookshopweb.utils.JsonUtils;
 import com.bookshopweb.utils.Protector;
 
@@ -23,8 +23,8 @@ import java.util.List;
 
 @WebServlet(name = "WishlistServlet", value = "/wishlist")
 public class WishlistServlet extends HttpServlet {
-    private final WishlistItemService wishlistItemService = new WishlistItemService();
-    private final ProductService productService = new ProductService();
+    private final WishlistItemDAO wishlistItemDAO = new WishlistItemDAO();
+    private final ProductDAO productDAO = new ProductDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,11 +32,11 @@ public class WishlistServlet extends HttpServlet {
         User user = (User) session.getAttribute("currentUser");
 
         if (user != null) {
-            List<WishlistItem> wishlistItems = Protector.of(() -> wishlistItemService.getByUserId(user.getId()))
+            List<WishlistItem> wishlistItems = Protector.of(() -> wishlistItemDAO.getByUserId(user.getId()))
                     .get(ArrayList::new);
 
             for (WishlistItem wishlistItem : wishlistItems) {
-                wishlistItem.setProduct(productService.getById(wishlistItem.getProductId()).orElseGet(Product::new));
+                wishlistItem.setProduct(productDAO.getById(wishlistItem.getProductId()).orElseGet(Product::new));
             }
 
             request.setAttribute("wishlistItems", wishlistItems);
@@ -48,7 +48,7 @@ public class WishlistServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Protector.of(() -> wishlistItemService.delete(id));
+        Protector.of(() -> wishlistItemDAO.delete(wishlistItemDAO.selectPrevalue(id),""));
         response.sendRedirect(request.getContextPath() + "/wishlist");
     }
 
@@ -72,7 +72,7 @@ public class WishlistServlet extends HttpServlet {
         wishlistItem.setUserId(wishlistItemRequest.getUserId());
         wishlistItem.setProductId(wishlistItemRequest.getProductId());
 
-        Protector.of(() -> wishlistItemService.insert(wishlistItem))
+        Protector.of(() -> wishlistItemDAO.insert(wishlistItem,""))
                 .done(r -> doneFunction.run())
                 .fail(e -> failFunction.run());
     }

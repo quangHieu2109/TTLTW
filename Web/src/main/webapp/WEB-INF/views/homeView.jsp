@@ -12,7 +12,7 @@
   </c:if>
   <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title><fmt:message key="trang_chu"/></title>
+  <title>Trang chủ</title>
 </head>
 
 <body>

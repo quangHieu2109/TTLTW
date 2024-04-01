@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.admin.category;
 
 import com.bookshopweb.beans.Category;
-import com.bookshopweb.service.CategoryService;
+import com.bookshopweb.dao.CategoryDAO;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -16,13 +16,13 @@ import java.util.Optional;
 
 @WebServlet(name = "CategoryManagerServlet", value = "/admin/categoryManager")
 public class CategoryManagerServlet extends HttpServlet {
-    private final CategoryService categoryService = new CategoryService();
+    private final CategoryDAO categoryDAO = new CategoryDAO();
 
     private static final int CATEGORIES_PER_PAGE = 5;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int totalCategories = Protector.of(categoryService::count).get(0);
+        int totalCategories = categoryDAO.count();
         int totalPages = totalCategories / CATEGORIES_PER_PAGE + (totalCategories % CATEGORIES_PER_PAGE != 0 ? 1 : 0);
 
         String pageParam = Optional.ofNullable(request.getParameter("page")).orElse("1");
@@ -33,9 +33,7 @@ public class CategoryManagerServlet extends HttpServlet {
 
         int offset = (page - 1) * CATEGORIES_PER_PAGE;
 
-        List<Category> categories = Protector.of(() -> categoryService.getOrderedPart(
-                CATEGORIES_PER_PAGE, offset, "id", "DESC"
-        )).get(ArrayList::new);
+        List<Category> categories = categoryDAO.getOrderedPart(CATEGORIES_PER_PAGE, offset, "id", "DESC");
 
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("page", page);

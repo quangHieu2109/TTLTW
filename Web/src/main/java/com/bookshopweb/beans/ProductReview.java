@@ -3,19 +3,20 @@ package com.bookshopweb.beans;
 import org.jdbi.v3.core.mapper.Nested;
 import org.jetbrains.annotations.Nullable;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import java.sql.Timestamp;
 import java.util.StringJoiner;
 
-public class ProductReview {
+public class ProductReview extends AbsModel<ProductReview> {
     private long id;
     private long userId;
     private long productId;
     private int ratingScore;
     private String content;
     private int isShow;
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
     @Nullable
-    private LocalDateTime updatedAt;
+    private Timestamp updatedAt;
     @Nullable
     private User user;
     @Nullable
@@ -29,8 +30,8 @@ public class ProductReview {
                          int ratingScore,
                          String content,
                          int isShow,
-                         LocalDateTime createdAt,
-                         @Nullable LocalDateTime updatedAt) {
+                         Timestamp createdAt,
+                         @Nullable Timestamp updatedAt) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
@@ -89,20 +90,20 @@ public class ProductReview {
         this.isShow = isShow;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
     @Nullable
-    public LocalDateTime getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(@Nullable LocalDateTime updatedAt) {
+    public void setUpdatedAt(@Nullable Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -124,7 +125,9 @@ public class ProductReview {
     public void setProduct(@Nullable Product product) {
         this.product = product;
     }
-
+    public String getResource() {
+        return "ProductReview";
+    }
     @Override
     public String toString() {
         return new StringJoiner(", ", ProductReview.class.getSimpleName() + "[", "]")
@@ -139,5 +142,10 @@ public class ProductReview {
                 .add("user=" + user)
                 .add("product=" + product)
                 .toString();
+    }
+
+    @Override
+    public Timestamp getCreateAt() {
+        return createdAt;
     }
 }

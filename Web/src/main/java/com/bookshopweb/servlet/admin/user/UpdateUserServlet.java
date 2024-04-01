@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.admin.user;
 
 import com.bookshopweb.beans.User;
-import com.bookshopweb.service.UserService;
+import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.HashingUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
@@ -19,12 +19,12 @@ import java.util.Optional;
 
 @WebServlet(name = "UpdateUserServlet", value = "/admin/userManager/update")
 public class UpdateUserServlet extends HttpServlet {
-    private final UserService userService = new UserService();
+    private final UserDAO userDAO = new UserDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Optional<User> userFromServer = Protector.of(() -> userService.getById(id)).get(Optional::empty);
+        Optional<User> userFromServer = Protector.of(() -> userDAO.getById(id)).get(Optional::empty);
 
         if (userFromServer.isPresent()) {
             User user = userFromServer.get();
@@ -50,9 +50,9 @@ public class UpdateUserServlet extends HttpServlet {
         user.setRole(request.getParameter("role"));
 
         Map<String, List<String>> violations = new HashMap<>();
-        Optional<User> userByUsername = Protector.of(() -> userService.getByUsername(user.getUsername())).get(Optional::empty);
-        Optional<User> userByEmail = Protector.of(() -> userService.getByEmail(user.getEmail())).get(Optional::empty);
-        Optional<User> userByPhoneNumber = Protector.of(() -> userService.getByPhoneNumber(user.getPhoneNumber())).get(Optional::empty);
+        Optional<User> userByUsername = Protector.of(() -> userDAO.getByUsername(user.getUsername())).get(Optional::empty);
+        Optional<User> userByEmail = Protector.of(() -> userDAO.getByEmail(user.getEmail())).get(Optional::empty);
+        Optional<User> userByPhoneNumber = Protector.of(() -> userDAO.getByPhoneNumber(user.getPhoneNumber())).get(Optional::empty);
         violations.put("usernameViolations", Validator.of(user.getUsername())
                 .isNotNullAndEmpty()
                 .isNotBlankAtBothEnds()
@@ -96,12 +96,12 @@ public class UpdateUserServlet extends HttpServlet {
 
         if (sumOfViolations == 0) {
             if (user.getPassword().trim().isEmpty()) {
-                Optional<User> userFromServer = Protector.of(() -> userService.getById(user.getId())).get(Optional::empty);
+                Optional<User> userFromServer = Protector.of(() -> userDAO.getById(user.getId())).get(Optional::empty);
                 userFromServer.ifPresent(u -> user.setPassword(u.getPassword()));
             } else {
                 user.setPassword(HashingUtils.hash(user.getPassword()));
             }
-            Protector.of(() -> userService.update(user))
+            Protector.of(() -> userDAO.update(user,""))
                     .done(r -> {
                         user.setPassword("");
                         request.setAttribute("user", user);
