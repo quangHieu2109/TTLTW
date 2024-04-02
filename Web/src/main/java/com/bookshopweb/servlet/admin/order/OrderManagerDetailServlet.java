@@ -2,10 +2,10 @@ package com.bookshopweb.servlet.admin.order;
 
 import com.bookshopweb.beans.Order;
 import com.bookshopweb.beans.OrderItem;
-import com.bookshopweb.service.OrderItemService;
-import com.bookshopweb.service.OrderService;
-import com.bookshopweb.service.ProductService;
-import com.bookshopweb.service.UserService;
+import com.bookshopweb.dao.OrderItemDAO;
+import com.bookshopweb.dao.OrderDAO;
+import com.bookshopweb.dao.ProductDAO;
+import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -22,23 +22,23 @@ import static com.bookshopweb.servlet.admin.order.OrderManagerServlet.calculateT
 
 @WebServlet(name = "OrderManagerDetailServlet", value = "/admin/orderManager/detail")
 public class OrderManagerDetailServlet extends HttpServlet {
-    private final OrderService orderService = new OrderService();
-    private final UserService userService = new UserService();
-    private final OrderItemService orderItemService = new OrderItemService();
-    private final ProductService productService = new ProductService();
+    private final OrderDAO orderDAO = new OrderDAO();
+    private final UserDAO userDAO = new UserDAO();
+    private final OrderItemDAO orderItemDAO = new OrderItemDAO();
+    private final ProductDAO productDAO = new ProductDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Optional<Order> orderFromServer = Protector.of(() -> orderService.getById(id)).get(Optional::empty);
+        Optional<Order> orderFromServer = Protector.of(() -> orderDAO.selectPrevalue(id)).get();
 
         if (orderFromServer.isPresent()) {
             Order order = orderFromServer.get();
 
-            Protector.of(() -> userService.getById(order.getUserId())).get(Optional::empty).ifPresent(order::setUser);
-            List<OrderItem> orderItems = Protector.of(() -> orderItemService.getByOrderId(order.getId())).get(ArrayList::new);
-            orderItems.forEach(orderItem -> Protector.of(() -> productService.getById(orderItem.getProductId()))
-                    .get(Optional.empty())
+            Protector.of(() -> userDAO.selectPrevalue(order.getUserId())).get().ifPresent(order::setUser);
+            List<OrderItem> orderItems = Protector.of(() -> orderItemDAO.getByOrderId(order.getId())).get(ArrayList::new);
+            orderItems.forEach(orderItem -> Protector.of(() -> productDAO.selectById(orderItem.getProductId()))
+                    .get()
                     .ifPresent(orderItem::setProduct));
             order.setOrderItems(orderItems);
             order.setTotalPrice(calculateTotalPrice(orderItems, order.getDeliveryPrice()));

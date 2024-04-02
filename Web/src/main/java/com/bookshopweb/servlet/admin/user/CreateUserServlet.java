@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.admin.user;
 
 import com.bookshopweb.beans.User;
-import com.bookshopweb.service.UserService;
+import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.HashingUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @WebServlet(name = "CreateUserServlet", value = "/admin/userManager/create")
 public class CreateUserServlet extends HttpServlet {
-    private final UserService userService = new UserService();
+    private final UserDAO userDAO = new UserDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,9 +39,9 @@ public class CreateUserServlet extends HttpServlet {
         user.setRole(request.getParameter("role"));
 
         Map<String, List<String>> violations = new HashMap<>();
-        Optional<User> userByUsername = Protector.of(() -> userService.getByUsername(user.getUsername())).get(Optional::empty);
-        Optional<User> userByEmail = Protector.of(() -> userService.getByEmail(user.getEmail())).get(Optional::empty);
-        Optional<User> userByPhoneNumber = Protector.of(() -> userService.getByPhoneNumber(user.getPhoneNumber())).get(Optional::empty);
+        Optional<User> userByUsername = Protector.of(() -> userDAO.getByUsername(user.getUsername())).get(Optional::empty);
+        Optional<User> userByEmail = Protector.of(() -> userDAO.getByEmail(user.getEmail())).get(Optional::empty);
+        Optional<User> userByPhoneNumber = Protector.of(() -> userDAO.getByPhoneNumber(user.getPhoneNumber())).get(Optional::empty);
         violations.put("usernameViolations", Validator.of(user.getUsername())
                 .isNotNullAndEmpty()
                 .isNotBlankAtBothEnds()
@@ -86,7 +86,7 @@ public class CreateUserServlet extends HttpServlet {
 
         if (sumOfViolations == 0) {
             user.setPassword(HashingUtils.hash(user.getPassword()));
-            Protector.of(() -> userService.insert(user))
+            Protector.of(() -> userDAO.insert(user,""))
                     .done(r -> request.setAttribute("successMessage", successMessage))
                     .fail(e -> {
                         request.setAttribute("user", user);

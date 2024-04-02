@@ -2,8 +2,8 @@ package com.bookshopweb.servlet.admin.product;
 
 import com.bookshopweb.beans.Category;
 import com.bookshopweb.beans.Product;
-import com.bookshopweb.service.CategoryService;
-import com.bookshopweb.service.ProductService;
+import com.bookshopweb.dao.CategoryDAO;
+import com.bookshopweb.dao.ProductDAO;
 import com.bookshopweb.utils.ImageUtils;
 import com.bookshopweb.utils.Protector;
 
@@ -17,24 +17,24 @@ import java.util.Optional;
 
 @WebServlet(name = "DeleteProductServlet", value = "/admin/productManager/delete")
 public class DeleteProductServlet extends HttpServlet {
-    private final ProductService productService = new ProductService();
-    private final CategoryService categoryService = new CategoryService();
+    private final ProductDAO productDAO = new ProductDAO();
+    private final CategoryDAO categoryDAO = new CategoryDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Optional<Product> productFromServer = Protector.of(() -> productService.getById(id)).get(Optional::empty);
+        Optional<Product> productFromServer = Protector.of(() -> productDAO.selectById(id)).get();
 
         if (productFromServer.isPresent()) {
             String successMessage = String.format("Xóa sản phẩm #%s thành công!", id);
             String errorMessage = String.format("Xóa sản phẩm #%s thất bại!", id);
 
-            Optional<Category> categoryFromServer = Protector.of(() -> categoryService.getByProductId(id)).get(Optional::empty);
+            Optional<Category> categoryFromServer = Protector.of(() -> categoryDAO.getByProductId(id)).get(Optional::empty);
 
             Protector.of(() -> {
                         ImageUtils.setServletContext(getServletContext());
-                        categoryFromServer.ifPresent(category -> productService.deleteProductCategory(id, category.getId()));
-                        productService.delete(id);
+                        categoryFromServer.ifPresent(category -> productDAO.deleteProductCategory(id, category.getId()));
+                        productDAO.delete(productDAO.selectPrevalue(id),"");
                         Optional.ofNullable(productFromServer.get().getImageName()).ifPresent(ImageUtils::delete);
                     })
                     .done(r -> request.getSession().setAttribute("successMessage", successMessage))

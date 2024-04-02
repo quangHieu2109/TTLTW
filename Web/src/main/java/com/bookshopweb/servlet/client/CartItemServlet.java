@@ -8,9 +8,9 @@ import com.bookshopweb.dto.CartItemResponse;
 import com.bookshopweb.dto.CartResponse;
 import com.bookshopweb.dto.ErrorMessage;
 import com.bookshopweb.dto.SuccessMessage;
-import com.bookshopweb.service.CartItemService;
-import com.bookshopweb.service.CartService;
-import com.bookshopweb.service.UserService;
+import com.bookshopweb.dao.CartItemDAO;
+import com.bookshopweb.dao.CartDAO;
+import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.JsonUtils;
 import com.bookshopweb.utils.Protector;
 
@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,25 +31,25 @@ import java.util.stream.Collectors;
 
 @WebServlet(name = "CartItemServlet", value = "/cartItem")
 public class CartItemServlet extends HttpServlet {
-    private final CartService cartService = new CartService();
-    private final CartItemService cartItemService = new CartItemService();
-    private final UserService userService = new UserService();
+    private final CartDAO cartDAO = new CartDAO();
+    private final CartItemDAO cartItemDAO = new CartItemDAO();
+    private final UserDAO userDAO = new UserDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Lấy userId và đối tượng user từ database theo userId này
         long userId = Protector.of(() -> Long.parseLong(request.getParameter("userId"))).get(0L);
-        Optional<User> userFromServer = Protector.of(() -> userService.getById(userId)).get(Optional::empty);
+        Optional<User> userFromServer = Protector.of(() -> userDAO.selectPrevalue(userId)).get();
 
         // Nếu userId là số nguyên dương và có hiện diện trong bảng user
         if (userId > 0L && userFromServer.isPresent()) {
             // Lấy đối tượng cart từ database theo userId
-            Optional<Cart> cartFromServer = Protector.of(() -> cartService.getByUserId(userId)).get(Optional::empty);
+            Optional<Cart> cartFromServer = Protector.of(() -> cartDAO.getByUserId(userId)).get(Optional::empty);
 
             // Nếu cart của user này đã có trong database
             if (cartFromServer.isPresent()) {
                 long cartId = cartFromServer.get().getId();
-                List<CartItem> cartItems = Protector.of(() -> cartItemService.getByCartId(cartId)).get(ArrayList::new);
+                List<CartItem> cartItems = Protector.of(() -> cartItemDAO.getByCartId(cartId)).get(ArrayList::new);
 
                 List<CartItemResponse> cartItemResponses = cartItems.stream().map(cartItem -> new CartItemResponse(
                         cartItem.getId(),
@@ -79,7 +81,7 @@ public class CartItemServlet extends HttpServlet {
         CartItemRequest cartItemRequest = JsonUtils.get(request, CartItemRequest.class);
 
         // Lấy đối tượng cart từ database theo userId từ cartItemRequest
-        Optional<Cart> cartFromServer = Protector.of(() -> cartService.getByUserId(cartItemRequest.getUserId()))
+        Optional<Cart> cartFromServer = Protector.of(() -> cartDAO.getByUserId(cartItemRequest.getUserId()))
                 .get(Optional::empty);
 
         // Nhận cartId từ cartFromServer (nếu đã có) hoặc cart mới (nếu chưa có)
@@ -88,8 +90,8 @@ public class CartItemServlet extends HttpServlet {
         if (cartFromServer.isPresent()) {
             cartId = cartFromServer.get().getId();
         } else {
-            Cart cart = new Cart(0L, cartItemRequest.getUserId(), LocalDateTime.now(), null);
-            cartId = Protector.of(() -> cartService.insert(cart)).get(0L);
+            Cart cart = new Cart(0L, cartItemRequest.getUserId(), Timestamp.from(Instant.now()), null);
+            cartId = Protector.of(() -> cartDAO.insert(cart,"")).get(0);
         }
 
         String successMessage = "Đã thêm sản phẩm vào giỏ hàng thành công!";
@@ -107,7 +109,7 @@ public class CartItemServlet extends HttpServlet {
         // Nếu cart của user này đã có trong database (cardId lớn hơn O)
         if (cartId > 0L) {
             // Lấy đối tượng cartItem từ database theo cartId và productId của cartItemRequest
-            Optional<CartItem> cartItemFromServer = Protector.of(() -> cartItemService.getByCartIdAndProductId(
+            Optional<CartItem> cartItemFromServer = Protector.of(() -> cartItemDAO.getByCartIdAndProductId(
                     cartId, cartItemRequest.getProductId()
             )).get(Optional::empty);
 
@@ -115,8 +117,8 @@ public class CartItemServlet extends HttpServlet {
             if (cartItemFromServer.isPresent()) {
                 CartItem cartItem = cartItemFromServer.get();
                 cartItem.setQuantity(cartItem.getQuantity() + cartItemRequest.getQuantity());
-                cartItem.setUpdatedAt(LocalDateTime.now());
-                Protector.of(() -> cartItemService.update(cartItem))
+                cartItem.setUpdatedAt(Timestamp.from(Instant.now()));
+                Protector.of(() -> cartItemDAO.update(cartItem,""))
                         .done(r -> doneFunction.run())
                         .fail(e -> failFunction.run());
             } else {
@@ -125,10 +127,10 @@ public class CartItemServlet extends HttpServlet {
                         cartId,
                         cartItemRequest.getProductId(),
                         cartItemRequest.getQuantity(),
-                        LocalDateTime.now(),
+                        Timestamp.from(Instant.now()),
                         null
                 );
-                Protector.of(() -> cartItemService.insert(cartItem))
+                Protector.of(() -> cartItemDAO.insert(cartItem,""))
                         .done(r -> doneFunction.run())
                         .fail(e -> failFunction.run());
             }
@@ -142,7 +144,7 @@ public class CartItemServlet extends HttpServlet {
         CartItemRequest cartItemRequest = JsonUtils.get(request, CartItemRequest.class);
 
         long cartItemId = Protector.of(() -> Long.parseLong(request.getParameter("cartItemId"))).get(0L);
-        Optional<CartItem> cartItemFromServer = Protector.of(() -> cartItemService.getById(cartItemId)).get(Optional::empty);
+        Optional<CartItem> cartItemFromServer = Protector.of(() -> cartItemDAO.getById(cartItemId)).get(Optional::empty);
 
         String successMessage = "Đã cập nhật số lượng của sản phẩm thành công!";
         String errorMessage = "Đã có lỗi truy vấn!";
@@ -159,8 +161,8 @@ public class CartItemServlet extends HttpServlet {
         if (cartItemId > 0L && cartItemFromServer.isPresent()) {
             CartItem cartItem = cartItemFromServer.get();
             cartItem.setQuantity(cartItemRequest.getQuantity());
-            cartItem.setUpdatedAt(LocalDateTime.now());
-            Protector.of(() -> cartItemService.update(cartItem))
+            cartItem.setUpdatedAt(Timestamp.from(Instant.now()));
+            Protector.of(() -> cartItemDAO.update(cartItem,""))
                     .done(r -> doneFunction.run())
                     .fail(e -> failFunction.run());
         } else {
@@ -185,7 +187,7 @@ public class CartItemServlet extends HttpServlet {
                 HttpServletResponse.SC_NOT_FOUND);
 
         if (cartItemId > 0L) {
-            Protector.of(() -> cartItemService.delete(cartItemId))
+            Protector.of(() -> cartItemDAO.delete(cartItemDAO.selectPrevalue(cartItemId),""))
                     .done(r -> doneFunction.run())
                     .fail(e -> failFunction.run());
         } else {

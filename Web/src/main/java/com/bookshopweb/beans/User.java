@@ -1,8 +1,9 @@
 package com.bookshopweb.beans;
 
+import java.sql.Timestamp;
 import java.util.StringJoiner;
 
-public class User {
+public class User extends AbsModel<User> {
     private long id;
     private String username;
     private String password;
@@ -12,18 +13,13 @@ public class User {
     private int gender;
     private String address;
     private String role;
+    private Timestamp createAt;
 
-    public User() {}
+    public User() {
+    }
 
-    public User(long id,
-                String username,
-                String password,
-                String fullname,
-                String email,
-                String phoneNumber,
-                int gender,
-                String address,
-                String role) {
+    public User(long id, String username, String password, String fullname, String email, String phoneNumber, int gender, String address, String role, Timestamp createAt) {
+
         this.id = id;
         this.username = username;
         this.password = password;
@@ -33,6 +29,7 @@ public class User {
         this.gender = gender;
         this.address = address;
         this.role = role;
+        this.createAt = createAt;
     }
 
     public long getId() {
@@ -107,18 +104,34 @@ public class User {
         this.role = role;
     }
 
+    public void setCreateAt(Timestamp createAt) {
+        this.createAt = createAt;
+    }
+
     @Override
     public String toString() {
-        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("username='" + username + "'")
-                .add("password='" + password + "'")
-                .add("fullname='" + fullname + "'")
-                .add("email='" + email + "'")
-                .add("phoneNumber='" + phoneNumber + "'")
-                .add("gender=" + gender)
-                .add("address='" + address + "'")
-                .add("role='" + role + "'")
-                .toString();
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", gender=" + gender +
+                ", address='" + address + '\'' +
+                ", role='" + role + '\'' +
+                ", createAt=" + createAt +
+                '}';
     }
+
+    @Override
+    public String getResource() {
+        return "User";
+    }
+
+    @Override
+    public Timestamp getCreateAt() {
+        return createAt;
+    }
+
 }

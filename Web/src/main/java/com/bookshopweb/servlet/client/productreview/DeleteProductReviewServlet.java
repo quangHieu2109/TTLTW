@@ -1,6 +1,6 @@
 package com.bookshopweb.servlet.client.productreview;
 
-import com.bookshopweb.service.ProductReviewService;
+import com.bookshopweb.dao.ProductReviewDAO;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet(name = "DeleteProductReviewServlet", value = "/deleteProductReview")
 public class DeleteProductReviewServlet extends HttpServlet {
-    private final ProductReviewService productReviewService = new ProductReviewService();
+    private final ProductReviewDAO productReviewDAO = new ProductReviewDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
@@ -25,7 +25,7 @@ public class DeleteProductReviewServlet extends HttpServlet {
         String successMessage = "Đã xóa đánh giá thành công!";
         String errorDeleteReviewMessage = "Đã có lỗi truy vấn!";
 
-        Protector.of(() -> productReviewService.delete(productReviewId))
+        Protector.of(() -> productReviewDAO.delete(productReviewDAO.selectPrevalue(productReviewId),""))
                 .done(r -> request.getSession().setAttribute("successMessage", successMessage))
                 .fail(e -> request.getSession().setAttribute("errorDeleteReviewMessage", errorDeleteReviewMessage));
 

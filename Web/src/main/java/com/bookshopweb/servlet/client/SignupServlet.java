@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.client;
 
 import com.bookshopweb.beans.User;
-import com.bookshopweb.service.UserService;
+import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.HashingUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +21,7 @@ import java.util.Optional;
 
 @WebServlet(name = "SignupServlet", value = "/signup")
 public class SignupServlet extends HttpServlet {
-    private final UserService userService = new UserService();
+    private final UserDAO userDAO = new UserDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,7 +43,7 @@ public class SignupServlet extends HttpServlet {
 
         // Kiểm tra các parameter, lưu các vi phạm (nếu có) vào map violations
         Map<String, List<String>> violations = new HashMap<>();
-        Optional<User> userFromServer = Protector.of(() -> userService.getByUsername(values.get("username")))
+        Optional<User> userFromServer = Protector.of(() -> userDAO.getByUsername(values.get("username")))
                 .get(Optional::empty);
         violations.put("usernameViolations", Validator.of(values.get("username"))
                 .isNotNullAndEmpty()
@@ -95,9 +97,10 @@ public class SignupServlet extends HttpServlet {
                     values.get("phoneNumber"),
                     Protector.of(() -> Integer.parseInt(values.get("gender"))).get(0),
                     values.get("address"),
-                    "CUSTOMER"
+                    "CUSTOMER",
+                    Timestamp.from(Instant.now())
             );
-            Protector.of(() -> userService.insert(user))
+            Protector.of(() -> userDAO.insert(user,""))
                     .done(r -> request.setAttribute("successMessage", successMessage))
                     .fail(e -> {
                         request.setAttribute("values", values);

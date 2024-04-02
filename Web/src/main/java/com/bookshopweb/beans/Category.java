@@ -2,9 +2,10 @@ package com.bookshopweb.beans;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.sql.Timestamp;
 import java.util.StringJoiner;
 
-public class Category {
+public class Category extends AbsModel<Category>{
     private long id;
     private String name;
     @Nullable
@@ -57,7 +58,9 @@ public class Category {
     public void setImageName(@Nullable String imageName) {
         this.imageName = imageName;
     }
-
+    public String getResource() {
+        return "Category";
+    }
     @Override
     public String toString() {
         return new StringJoiner(", ", Category.class.getSimpleName() + "[", "]")
@@ -66,5 +69,10 @@ public class Category {
                 .add("description='" + description + "'")
                 .add("imageName='" + imageName + "'")
                 .toString();
+    }
+
+    @Override
+    public Timestamp getCreateAt() {
+        return null;
     }
 }

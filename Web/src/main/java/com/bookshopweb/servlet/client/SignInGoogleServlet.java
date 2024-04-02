@@ -3,7 +3,7 @@ package com.bookshopweb.servlet.client;
 import com.bookshopweb.beans.Constants;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.dto.UserGoogleDTO;
-import com.bookshopweb.service.UserService;
+import com.bookshopweb.dao.UserDAO;
 import com.google.gson.Gson;
 import org.apache.hc.client5.http.fluent.Form;
 import org.apache.hc.client5.http.fluent.Request;
@@ -18,7 +18,7 @@ import java.io.IOException;
 
 @WebServlet("/googlehandle")
 public class SignInGoogleServlet extends HttpServlet {
-    UserService userService = new UserService();
+    UserDAO userDAO = new UserDAO();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,15 +34,15 @@ public class SignInGoogleServlet extends HttpServlet {
         UserGoogleDTO userGoogleDTO = getUserInfo(accessToken);
 //        System.out.print(userGoogleDTO.getId());
 //        long id = Long.valueOf(userGoogleDTO.getId().replaceAll("\"\"",""));
-//        if(userService.getById(id) == null) {
+//        if(userDAO.getById(id) == null) {
             User user = new User();
 //            user.setId(id);
             user.setUsername(userGoogleDTO.getFamily_name());
             user.setFullname(userGoogleDTO.getName());
             user.setEmail(userGoogleDTO.getEmail());
             user.setRole("user");
-//            userService.insert(user);
-            
+//            userDAO.insert(user);
+
 //        }
 //        System.out.println(userGoogleDTO);
     }

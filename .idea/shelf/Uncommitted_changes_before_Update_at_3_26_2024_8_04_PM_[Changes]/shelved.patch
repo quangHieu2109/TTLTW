@@ -1,0 +1,164 @@
+Index: Web/src/main/webapp/WEB-INF/views/_header.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page contentType=\"text/html; charset=UTF-8\" pageEncoding=\"UTF-8\" %>\r\n<%@ taglib uri=\"http://java.sun.com/jsp/jstl/core\" prefix=\"c\" %>\r\n<header class=\"section-header\">\r\n  <section class=\"header-main border-bottom\">\r\n    <div class=\"container\">\r\n      <div class=\"row align-items-center\">\r\n        <div class=\"col-lg-3 py-3\">\r\n          <a class=\"text-body\" href=\"${pageContext.request.contextPath}/\">\r\n            <h3>Shop Bán Sách</h3>\r\n          </a>\r\n        </div> <!-- col.// -->\r\n        <div class=\"col-lg-4 col-xl-5 ${empty sessionScope.currentUser ? 'mb-3 mb-lg-0' : ''}\">\r\n          <form action=\"${pageContext.request.contextPath}/search\" method=\"post\" class=\"search\">\r\n            <div class=\"input-group w-100\">\r\n              <input type=\"text\"\r\n                     class=\"form-control\"\r\n                     placeholder=\"Nhập từ khóa cần tìm ...\"\r\n                     name=\"q\"\r\n                     value=\"${requestScope.query}\">\r\n              <button class=\"btn btn-primary\" type=\"submit\">\r\n                <i class=\"bi bi-search\"></i>\r\n              </button>\r\n            </div>\r\n          </form>\r\n        </div> <!-- col.// -->\r\n        <div class=\"col-lg-5 col-xl-4\">\r\n          <c:if test=\"${not empty sessionScope.currentUser}\">\r\n            <ul class=\"nav col-12 col-lg-auto my-2 my-lg-0 justify-content-center justify-content-lg-end text-small\">\r\n              <li>\r\n                <a href=\"${pageContext.request.contextPath}/user\" class=\"nav-link text-body\">\r\n                  <i class=\"bi bi-person d-block text-center fs-3\"></i>\r\n                  Tài khoản\r\n                </a>\r\n              </li>\r\n              <li>\r\n                <a href=\"${pageContext.request.contextPath}/order\" class=\"nav-link text-body\">\r\n                  <i class=\"bi bi-list-check d-block text-center fs-3\"></i>\r\n                  Đơn hàng\r\n                </a>\r\n              </li>\r\n              <li>\r\n                <a href=\"${pageContext.request.contextPath}/cart\" class=\"nav-link text-body position-relative\">\r\n                  <span id=\"total-cart-items-quantity\" class=\"position-absolute top-0 end-0 mt-2 badge rounded-pill bg-primary\">\r\n                    ...\r\n                  </span>\r\n                  <i class=\"bi bi-cart d-block text-center fs-3 position-relative\"></i>\r\n                  Giỏ hàng\r\n                </a>\r\n              </li>\r\n            </ul>\r\n          </c:if>\r\n        </div> <!-- col.// -->\r\n      </div> <!-- row.// -->\r\n    </div> <!-- container.// -->\r\n  </section> <!-- header-main.// -->\r\n</header> <!-- section-header.// -->\r\n\r\n<nav class=\"navbar navbar-main navbar-expand-lg navbar-light border-bottom\">\r\n  <div class=\"container\">\r\n    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\"\r\n            data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\"\r\n            aria-label=\"Toggle navigation\">\r\n      <span class=\"navbar-toggler-icon\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n      <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">\r\n        <li class=\"nav-item dropdown\">\r\n          <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\"\r\n             data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\r\n            <strong><i class=\"bi bi-list\"></i> Danh mục sản phẩm</strong>\r\n          </a>\r\n          <ul class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\r\n            <li><a class=\"dropdown-item\" href=\"#\">Sách giáo khoa</a></li>\r\n            <li><a class=\"dropdown-item\" href=\"#\">Sách khoa học</a></li>\r\n            <li><a class=\"dropdown-item\" href=\"#\">Truyện tranh</a></li>\r\n            <li><a class=\"dropdown-item\" href=\"#\">Tiểu thuyết</a></li>\r\n            <li>\r\n              <hr class=\"dropdown-divider\">\r\n            </li>\r\n            <li><a class=\"dropdown-item\" href=\"#\">Tất cả danh mục</a></li>\r\n          </ul>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#\">Sản phẩm mới</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#\">Sản phẩm bán chạy</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#\">Khuyến mãi</a>\r\n        </li>\r\n      </ul>\r\n      <c:choose>\r\n        <c:when test=\"${not empty sessionScope.currentUser}\">\r\n          <span>Xin chào <strong>${sessionScope.currentUser.fullname}</strong>!</span>\r\n          <a class=\"btn btn-light ms-2\" href=\"${pageContext.request.contextPath}/signout\" role=\"button\">\r\n            Đăng xuất\r\n          </a>\r\n        </c:when>\r\n        <c:otherwise>\r\n          <a class=\"btn btn-light me-2\" href=\"${pageContext.request.contextPath}/signup\" role=\"button\">\r\n            Đăng ký\r\n          </a>\r\n          <a class=\"btn btn-primary\" href=\"${pageContext.request.contextPath}/signin\" role=\"button\">\r\n            Đăng nhập\r\n          </a>\r\n        </c:otherwise>\r\n      </c:choose>\r\n    </div>\r\n  </div> <!-- container.// -->\r\n</nav> <!-- navbar-main.// -->\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Web/src/main/webapp/WEB-INF/views/_header.jsp b/Web/src/main/webapp/WEB-INF/views/_header.jsp
+--- a/Web/src/main/webapp/WEB-INF/views/_header.jsp	(revision ab7a0919fb19b3d41a522fad113b8d8061d1211c)
++++ b/Web/src/main/webapp/WEB-INF/views/_header.jsp	(date 1711454369324)
+@@ -70,10 +70,10 @@
+             <strong><i class="bi bi-list"></i> Danh mục sản phẩm</strong>
+           </a>
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+-            <li><a class="dropdown-item" href="#">Sách giáo khoa</a></li>
+-            <li><a class="dropdown-item" href="#">Sách khoa học</a></li>
+-            <li><a class="dropdown-item" href="#">Truyện tranh</a></li>
+-            <li><a class="dropdown-item" href="#">Tiểu thuyết</a></li>
++            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/category?id=1">Sách giáo khoa</a></li>
++            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/category?id=2">Sách khoa học</a></li>
++            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/category?id=3">Truyện tranh</a></li>
++            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/category?id=4">Tiểu thuyết</a></li>
+             <li>
+               <hr class="dropdown-divider">
+             </li>
+Index: Web/src/main/webapp/WEB-INF/views/homeView.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page contentType=\"text/html; charset=UTF-8\" pageEncoding=\"UTF-8\" %>\r\n<%@ taglib uri=\"http://java.sun.com/jsp/jstl/core\" prefix=\"c\" %>\r\n<%@ taglib uri=\"http://java.sun.com/jsp/jstl/fmt\" prefix=\"fmt\" %>\r\n<fmt:setLocale value=\"vi_VN\"/>\r\n<!DOCTYPE html>\r\n<html lang=\"vi\">\r\n\r\n<head>\r\n  <jsp:include page=\"_meta.jsp\"/>\r\n  <title>Trang chủ</title>\r\n</head>\r\n\r\n<body>\r\n<jsp:include page=\"_header.jsp\"/>\r\n\r\n<section class=\"section-content mb-2\">\r\n  <div class=\"container\">\r\n    <header class=\"section-heading py-4 d-flex justify-content-between\">\r\n      <h3 class=\"section-title\">Danh mục sản phẩm</h3>\r\n      <a class=\"btn btn-secondary\" href=\"#\" role=\"button\" style=\"height: fit-content;\">Xem tất cả</a>\r\n    </header> <!-- section-heading.// -->\r\n    <div class=\"row item-grid\">\r\n      <c:forEach var=\"category\" items=\"${requestScope.categories}\">\r\n        <div class=\"col-lg-3 col-md-6\">\r\n          <div class=\"card mb-4\">\r\n            <div class=\"card-body\">\r\n              <a href=\"${pageContext.request.contextPath}/category?id=${category.id}\" class=\"stretched-link\">\r\n                <div class=\"d-flex align-items-center\">\r\n                  <c:choose>\r\n                    <c:when test=\"${empty category.imageName}\">\r\n                      <img width=\"50\" height=\"50\" src=\"${pageContext.request.contextPath}/img/50px.png\"\r\n                           alt=\"50px.png\">\r\n                    </c:when>\r\n                    <c:otherwise>\r\n                      <img width=\"50\" height=\"50\" src=\"${pageContext.request.contextPath}/image/${category.imageName}\"\r\n                           alt=\"${category.imageName}\">\r\n                    </c:otherwise>\r\n                  </c:choose>\r\n                  <span class=\"category-title ms-3\">${category.name}</span>\r\n                </div>\r\n              </a>\r\n            </div>\r\n          </div>\r\n        </div> <!-- col.// -->\r\n      </c:forEach>\r\n    </div> <!-- row.// -->\r\n  </div> <!-- container.// -->\r\n</section> <!-- section-content.// -->\r\n\r\n<section class=\"section-content mb-5\">\r\n  <div class=\"container\">\r\n    <header class=\"section-heading py-4 d-flex justify-content-between\">\r\n      <h3 class=\"section-title\">Sản phẩm mới nhất</h3>\r\n      <a class=\"btn btn-secondary\" href=\"#\" role=\"button\" style=\"height: fit-content;\">Xem tất cả</a>\r\n    </header> <!-- section-heading.// -->\r\n    <div class=\"row item-grid\">\r\n      <c:forEach var=\"product\" items=\"${requestScope.products}\">\r\n        <div class=\"col-xl-3 col-lg-4 col-md-6\">\r\n          <div class=\"card p-3 mb-4\">\r\n            <a href=\"${pageContext.request.contextPath}/product?id=${product.id}\" class=\"img-wrap text-center\">\r\n              <c:choose>\r\n                <c:when test=\"${empty product.imageName}\">\r\n                  <img width=\"200\"\r\n                       height=\"200\"\r\n                       class=\"img-fluid\"\r\n                       src=\"${pageContext.request.contextPath}/img/280px.png\"\r\n                       alt=\"280px.png\">\r\n                </c:when>\r\n                <c:otherwise>\r\n                  <img width=\"200\"\r\n                       height=\"200\"\r\n                       class=\"img-fluid\"\r\n                       src=\"${pageContext.request.contextPath}/image/${product.imageName}\"\r\n                       alt=\"${product.imageName}\">\r\n                </c:otherwise>\r\n              </c:choose>\r\n            </a>\r\n            <figcaption class=\"info-wrap mt-2\">\r\n              <a href=\"${pageContext.request.contextPath}/product?id=${product.id}\" class=\"title\">${product.name}</a>\r\n              <div>\r\n                <c:choose>\r\n                  <c:when test=\"${product.discount == 0}\">\r\n                    <span class=\"price mt-1 fw-bold\">\r\n                      <fmt:formatNumber pattern=\"#,##0\" value=\"${product.price}\"/>₫\r\n                    </span>\r\n                  </c:when>\r\n                  <c:otherwise>\r\n                    <span class=\"price mt-1 fw-bold\">\r\n                      <fmt:formatNumber\r\n                              pattern=\"#,##0\"\r\n                              value=\"${product.price * (100 - product.discount) / 100}\"/>₫\r\n                    </span>\r\n                    <span class=\"ms-2 text-muted text-decoration-line-through\">\r\n                      <fmt:formatNumber pattern=\"#,##0\" value=\"${product.price}\"/>₫\r\n                    </span>\r\n                    <span class=\"ms-2 badge bg-info\">\r\n                      -<fmt:formatNumber pattern=\"#,##0\" value=\"${product.discount}\"/>%\r\n                    </span>\r\n                  </c:otherwise>\r\n                </c:choose>\r\n              </div>\r\n            </figcaption>\r\n          </div>\r\n        </div> <!-- col.// -->\r\n      </c:forEach>\r\n    </div> <!-- row.// -->\r\n  </div> <!-- container.// -->\r\n</section> <!-- section-content.// -->\r\n\r\n<jsp:include page=\"_footer.jsp\"/>\r\n</body>\r\n\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Web/src/main/webapp/WEB-INF/views/homeView.jsp b/Web/src/main/webapp/WEB-INF/views/homeView.jsp
+--- a/Web/src/main/webapp/WEB-INF/views/homeView.jsp	(revision ab7a0919fb19b3d41a522fad113b8d8061d1211c)
++++ b/Web/src/main/webapp/WEB-INF/views/homeView.jsp	(date 1711455324570)
+@@ -12,12 +12,11 @@
+ 
+ <body>
+ <jsp:include page="_header.jsp"/>
+-
+ <section class="section-content mb-2">
+   <div class="container">
+     <header class="section-heading py-4 d-flex justify-content-between">
+       <h3 class="section-title">Danh mục sản phẩm</h3>
+-      <a class="btn btn-secondary" href="#" role="button" style="height: fit-content;">Xem tất cả</a>
++      <a class="btn btn-secondary" href="${pageContext.request.contextPath}/categoryViewAll" role="button" style="height: fit-content;">Xem tất cả</a>
+     </header> <!-- section-heading.// -->
+     <div class="row item-grid">
+       <c:forEach var="category" items="${requestScope.categories}">
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"Web:war exploded\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"29e5adf7-81e7-4ddb-9304-98bf88eea367\" name=\"Changes\" comment=\"update project\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\r\n  \"lastFilter\": {\r\n    \"state\": \"OPEN\",\r\n    \"assignee\": \"doqhung\"\r\n  }\r\n}]]></component>\r\n  <component name=\"GithubPullRequestsUISettings\">\r\n    <option name=\"recentNewPullRequestHead\">\r\n      <RepoCoordinatesHolder>\r\n        <option name=\"owner\" value=\"quangHieu2109\" />\r\n        <option name=\"repository\" value=\"TTLTW\" />\r\n      </RepoCoordinatesHolder>\r\n    </option>\r\n    <option name=\"selectedUrlAndAccountId\">\r\n      <UrlAndAccount>\r\n        <option name=\"accountId\" value=\"b0a3fa32-5ef4-4cec-9086-ca7d3064bec4\" />\r\n        <option name=\"url\" value=\"https://github.com/quangHieu2109/TTLTW.git\" />\r\n      </UrlAndAccount>\r\n    </option>\r\n  </component>\r\n  <component name=\"LogFilters\">\r\n    <option name=\"FILTER_ERRORS\" value=\"false\" />\r\n    <option name=\"FILTER_WARNINGS\" value=\"false\" />\r\n    <option name=\"FILTER_INFO\" value=\"true\" />\r\n    <option name=\"FILTER_DEBUG\" value=\"true\" />\r\n    <option name=\"CUSTOM_FILTER\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2dj2NoJoTZ2lx7Q6HuPYE0mqKFr\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"Tomcat Server.Tomcat 9.0.48.executor\": \"Run\",\r\n    \"git-widget-placeholder\": \"Hung\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"D:/TTLTW/Web\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  },\r\n  \"keyToStringList\": {\r\n    \"DatabaseDriversLRU\": [\r\n      \"mariadb\",\r\n      \"mysql\"\r\n    ]\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\TTLTW\\Web\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Tomcat 9.0.48\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Local\" APPLICATION_SERVER_NAME=\"Tomcat 9.0.48\" ALTERNATIVE_JRE_ENABLED=\"false\" nameIsGenerated=\"true\">\r\n      <option name=\"OPEN_IN_BROWSER_URL\" value=\"http://localhost:8080/Web_war_exploded\" />\r\n      <option name=\"UPDATING_POLICY\" value=\"restart-server\" />\r\n      <deployment>\r\n        <artifact name=\"Web:war exploded\">\r\n          <settings>\r\n            <option name=\"CONTEXT_PATH\" value=\"/Web_war_exploded\" />\r\n          </settings>\r\n        </artifact>\r\n      </deployment>\r\n      <server-settings>\r\n        <option name=\"BASE_DIRECTORY_NAME\" value=\"04cbb017-df9f-4dff-a8b9-825d41ab2c5d\" />\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat Catalina\" />\r\n      <predefined_log_file id=\"Tomcat Manager\" />\r\n      <predefined_log_file id=\"Tomcat Host Manager\" />\r\n      <predefined_log_file id=\"Tomcat Localhost Access\" />\r\n      <RunnerSettings RunnerId=\"Debug\">\r\n        <option name=\"DEBUG_PORT\" value=\"53346\" />\r\n      </RunnerSettings>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Cover\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Debug\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Profile\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Run\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n        <option name=\"BuildArtifacts\" enabled=\"true\">\r\n          <artifact name=\"Web:war exploded\" />\r\n        </option>\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-11.0.22-semeru-11.0.22-f644763e9732-d90ddd3d\" />\r\n        <option value=\"jdk-18.0.2-corretto-18.0.2-f644763e9732-da6bd485\" />\r\n        <option value=\"jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351\" />\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"29e5adf7-81e7-4ddb-9304-98bf88eea367\" name=\"Changes\" comment=\"\" />\r\n      <created>1710507129998</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1710507129998</updated>\r\n      <workItem from=\"1710507131036\" duration=\"1018000\" />\r\n      <workItem from=\"1710562766148\" duration=\"3000\" />\r\n      <workItem from=\"1710673330004\" duration=\"62000\" />\r\n      <workItem from=\"1710845811260\" duration=\"1403000\" />\r\n      <workItem from=\"1710847251291\" duration=\"9000\" />\r\n      <workItem from=\"1711079263466\" duration=\"570000\" />\r\n      <workItem from=\"1711091316215\" duration=\"837000\" />\r\n      <workItem from=\"1711092201105\" duration=\"560000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"update project\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711092352062</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711092352062</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"update project\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"update project\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision ab7a0919fb19b3d41a522fad113b8d8061d1211c)
++++ b/.idea/workspace.xml	(date 1711456980380)
+@@ -10,7 +10,10 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="29e5adf7-81e7-4ddb-9304-98bf88eea367" name="Changes" comment="update project">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_header.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/homeView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/homeView.jsp" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -21,6 +24,7 @@
+     <option name="RECENT_TEMPLATES">
+       <list>
+         <option value="Interface" />
++        <option value="Jsp File" />
+         <option value="Class" />
+       </list>
+     </option>
+@@ -32,13 +36,14 @@
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-  "lastFilter": {
+-    "state": "OPEN",
+-    "assignee": "doqhung"
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;doqhung&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="GithubPullRequestsUISettings">
+     <option name="recentNewPullRequestHead">
+       <RepoCoordinatesHolder>
+@@ -71,31 +76,31 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "Tomcat Server.Tomcat 9.0.48.executor": "Run",
+-    "git-widget-placeholder": "Hung",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "D:/TTLTW/Web",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "project.structure.last.edited": "Project",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.0",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;Tomcat Server.Tomcat 9.0.48.executor&quot;: &quot;Run&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;Hung&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;D:/TTLTW/Web&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   },
+-  "keyToStringList": {
+-    "DatabaseDriversLRU": [
+-      "mariadb",
+-      "mysql"
++  &quot;keyToStringList&quot;: {
++    &quot;DatabaseDriversLRU&quot;: [
++      &quot;mariadb&quot;,
++      &quot;mysql&quot;
+     ]
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="D:\TTLTW\Web" />
+@@ -217,6 +222,11 @@
+       <workItem from="1711079263466" duration="570000" />
+       <workItem from="1711091316215" duration="837000" />
+       <workItem from="1711092201105" duration="560000" />
++      <workItem from="1711095371699" duration="487000" />
++      <workItem from="1711095902148" duration="1399000" />
++      <workItem from="1711099049481" duration="403000" />
++      <workItem from="1711099512448" duration="108000" />
++      <workItem from="1711453635624" duration="3342000" />
+     </task>
+     <task id="LOCAL-00001" summary="update project">
+       <option name="closed" value="true" />

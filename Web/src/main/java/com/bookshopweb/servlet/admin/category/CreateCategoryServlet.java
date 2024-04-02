@@ -1,7 +1,8 @@
 package com.bookshopweb.servlet.admin.category;
 
 import com.bookshopweb.beans.Category;
-import com.bookshopweb.service.CategoryService;
+import com.bookshopweb.dao.CategoryDAO;
+
 import com.bookshopweb.utils.ImageUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
@@ -24,7 +25,7 @@ import java.util.Map;
         maxRequestSize = 1024 * 1024 * 10 // 10 MB
 )
 public class CreateCategoryServlet extends HttpServlet {
-    private final CategoryService categoryService = new CategoryService();
+    private final CategoryDAO categoryDAO = new CategoryDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,7 +56,7 @@ public class CreateCategoryServlet extends HttpServlet {
         if (sumOfViolations == 0) {
             ImageUtils.setServletContext(getServletContext());
             ImageUtils.upload(request).ifPresent(category::setImageName);
-            Protector.of(() -> categoryService.insert(category))
+            Protector.of(() -> categoryDAO.insert(category,""))
                     .done(r -> request.setAttribute("successMessage", successMessage))
                     .fail(e -> {
                         request.setAttribute("category", category);

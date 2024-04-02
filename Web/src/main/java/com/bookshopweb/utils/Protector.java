@@ -34,6 +34,8 @@ public class Protector<R> {
         return p;
     }
 
+
+
     // Lấy ra đối tượng trả về
     public Optional<R> get() {
         return Optional.ofNullable(returnObject);

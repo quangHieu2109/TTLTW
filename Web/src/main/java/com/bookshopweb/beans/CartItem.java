@@ -1,19 +1,20 @@
 package com.bookshopweb.beans;
 
+import com.google.gson.Gson;
 import org.jdbi.v3.core.mapper.Nested;
 import org.jetbrains.annotations.Nullable;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.StringJoiner;
 
-public class CartItem {
+public class CartItem extends AbsModel<CartItem> {
     private long id;
     private long cartId;
     private long productId;
     private int quantity;
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
     @Nullable
-    private LocalDateTime updatedAt;
+    private Timestamp updatedAt;
     @Nullable
     private Product product;
 
@@ -23,8 +24,8 @@ public class CartItem {
                     long cartId,
                     long productId,
                     int quantity,
-                    LocalDateTime createdAt,
-                    @Nullable LocalDateTime updatedAt) {
+                    Timestamp createdAt,
+                    @Nullable Timestamp updatedAt) {
         this.id = id;
         this.cartId = cartId;
         this.productId = productId;
@@ -65,20 +66,20 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
     @Nullable
-    public LocalDateTime getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(@Nullable LocalDateTime updatedAt) {
+    public void setUpdatedAt(@Nullable Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -91,17 +92,12 @@ public class CartItem {
     public void setProduct(@Nullable Product product) {
         this.product = product;
     }
+    public String getResource() {
+        return "CartItem";
+    }
 
     @Override
-    public String toString() {
-        return new StringJoiner(", ", CartItem.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("cartId=" + cartId)
-                .add("productId=" + productId)
-                .add("quantity=" + quantity)
-                .add("createdAt=" + createdAt)
-                .add("updatedAt=" + updatedAt)
-                .add("product=" + product)
-                .toString();
+    public Timestamp getCreateAt() {
+        return createdAt;
     }
 }

@@ -1,7 +1,7 @@
 package com.bookshopweb.servlet.admin.user;
 
 import com.bookshopweb.beans.User;
-import com.bookshopweb.service.UserService;
+import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -14,18 +14,18 @@ import java.util.Optional;
 
 @WebServlet(name = "DeleteUserServlet", value = "/admin/userManager/delete")
 public class DeleteUserServlet extends HttpServlet {
-    private final UserService userService = new UserService();
+    private final UserDAO userDAO = new UserDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Optional<User> userFromServer = Protector.of(() -> userService.getById(id)).get(Optional::empty);
+        Optional<User> userFromServer = Protector.of(() -> userDAO.getById(id)).get(Optional::empty);
 
         if (userFromServer.isPresent()) {
             String successMessage = String.format("Xóa người dùng #%s thành công!", id);
             String errorMessage = String.format("Xóa người dùng #%s thất bại!", id);
 
-            Protector.of(() -> userService.delete(id))
+            Protector.of(() -> userDAO.delete(userDAO.selectPrevalue(id),""))
                     .done(r -> request.getSession().setAttribute("successMessage", successMessage))
                     .fail(e -> request.getSession().setAttribute("errorMessage", errorMessage));
         }
