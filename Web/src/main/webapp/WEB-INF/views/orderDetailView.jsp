@@ -66,7 +66,8 @@
                     <h6 class="text-muted"><fmt:message key="hinh_thuc_thanh_toan"/></h6>
                     <span class="text-success">
                     <i class="fab fa-lg fa-cc-visa"></i>
-                    ${requestScope.order.deliveryMethod == 1 ? '<fmt:message key="giao_tieu_chuan"/>' : '<fmt:message key="giao_nhanh"/>'}
+                    <fmt:message key="${requestScope.order.deliveryMethod == 1 ? 'giao_tieu_chuan' : 'giao_nhanh'}"/>
+
                   </span>
                     <p class="lh-lg">
                       <fmt:message key="tam_tinh"/>: <fmt:formatNumber pattern="#,##0" value="${requestScope.tempPrice}"/>₫ <br>

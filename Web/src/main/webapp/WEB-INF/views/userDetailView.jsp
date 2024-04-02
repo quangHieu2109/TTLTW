@@ -43,7 +43,7 @@
           <dd class="col-md-9">${requestScope.user.phoneNumber}</dd>
 
           <dt class="col-md-3"><fmt:message key="gioi_tinh"/></dt>
-          <dd class="col-md-9">${requestScope.user.gender == 0 ? '<fmt:message key="nam"/>' : '<fmt:message key="nu"/>'}</dd>
+         <dd class="col-md-9"><fmt:message key="${requestScope.user.gender == 0 ? 'nam' : 'nu'}"/></dd>
 
           <dt class="col-md-3"><fmt:message key="dia_chi"/></dt>
           <dd class="col-md-9">${requestScope.user.address}</dd>

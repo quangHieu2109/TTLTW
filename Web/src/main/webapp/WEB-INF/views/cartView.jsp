@@ -36,7 +36,7 @@
       <c:choose>
         <c:when test="${empty sessionScope.currentUser}">
           <p>
-            Vui lòng <a href="${pageContext.request.contextPath}/signin">đăng nhập</a> để sử dụng chức năng giỏ hàng.
+            <fmt:message key="vui_long"/> <a href="${pageContext.request.contextPath}/signin"><fmt:message key="dang_nhap"/></a> <fmt:message key="de_su_dung_chuc_nang_gio_hang"/>.
           </p>
         </c:when>
         <c:otherwise>

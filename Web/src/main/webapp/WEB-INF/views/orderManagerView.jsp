@@ -92,7 +92,7 @@
               <a class="btn btn-primary me-2"
                  href="${pageContext.request.contextPath}/admin/orderManager/detail?id=${order.id}"
                  role="button">
-                Xem
+                <fmt:message key="xem"/>
               </a>
               <button type="submit"
                       class="btn ${order.status == 2 || order.status == 3 ? 'btn-secondary' : 'btn-success'} me-2"

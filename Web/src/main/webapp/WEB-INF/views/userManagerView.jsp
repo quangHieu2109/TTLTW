@@ -65,7 +65,7 @@
             <td>${user.fullname}</td>
             <td>${user.email}</td>
             <td>${user.phoneNumber}</td>
-            <td>${user.gender == 0 ? '<fmt:message key="nam"/>' : '<fmt:message key="nu"/>'}</td>
+           <td><fmt:message key="${user.gender == 0 ? 'nam' : 'nu'}"/></td>
             <td>
               <c:choose>
                 <c:when test="${user.role == 'ADMIN'}"><fmt:message key="quan_tri_vien"/></c:when>

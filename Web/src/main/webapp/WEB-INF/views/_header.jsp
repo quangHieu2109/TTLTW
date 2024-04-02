@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <header class="section-header">
   <fmt:setLocale value="vi_VN" />
-  ${sessionScope.lang='en'}
   <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
     <fmt:setLocale value="en_US" />
   </c:if>
