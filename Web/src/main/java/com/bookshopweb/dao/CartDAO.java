@@ -63,6 +63,7 @@ package com.bookshopweb.dao;
 
 import com.bookshopweb.beans.AbsModel;
 import com.bookshopweb.beans.Cart;
+import com.bookshopweb.beans.CartItem;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.utils.JDBCUtils;
 
@@ -336,7 +337,6 @@ public class CartDAO extends AbsDAO<Cart> {
         return count;
     }
 
-    // Other methods go here...
 
     private Cart mapResultSetToCart(ResultSet resultSet) throws SQLException {
         Cart cart = new Cart();
@@ -344,6 +344,8 @@ public class CartDAO extends AbsDAO<Cart> {
         cart.setUserId(resultSet.getLong("userId"));
         cart.setCreatedAt(resultSet.getTimestamp("createdAt"));
         cart.setUpdatedAt(resultSet.getTimestamp("updatedAt"));
+        CartItemDAO cartItemDAO = new CartItemDAO();
+        cart.addCartItem(cartItemDAO.getByCartId(Long.parseLong("id")));
         return cart;
     }
 }
