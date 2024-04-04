@@ -249,6 +249,14 @@ public class WishlistItemDAO extends AbsDAO<WishlistItem>{
     private WishlistItem mapResultSetToWishlistItem(ResultSet resultSet) throws SQLException {
         WishlistItem wishlistItem = new WishlistItem();
         wishlistItem.setId(resultSet.getLong("id"));
+        wishlistItem.setUserId(resultSet.getLong("userId"));
+        wishlistItem.setProductId(resultSet.getLong("productId"));
+        wishlistItem.setCreatedAt(resultSet.getTimestamp("createdAt"));
+
+        // Map product
+        ProductDAO productDAO = new ProductDAO();
+        wishlistItem.setProduct( productDAO.selectPrevalue(resultSet.getLong("productId")));
+
         return wishlistItem;
     }
 }
