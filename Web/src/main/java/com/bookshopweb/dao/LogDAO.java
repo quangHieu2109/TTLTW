@@ -94,8 +94,8 @@ public class LogDAO {
     public static void main(String[] args) {
         Log log = new Log(1, "4564256", 11, "rs11", "pre", "cur", null, null);
         LogDAO dao = new LogDAO();
-       for(Log l : dao.selectAll()){
-           System.out.println(l);
-       }
+        for(Log l : dao.selectAll()){
+            System.out.println(l);
+        }
     }
 }

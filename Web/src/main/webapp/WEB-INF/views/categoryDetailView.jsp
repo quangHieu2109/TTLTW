@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+/<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <fmt:setLocale value="vi_VN"/>
@@ -6,8 +6,13 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Thông tin thể loại #${requestScope.category.id}</title>
+  <title><fmt:message key="thong_tin_the_loai"/> #${requestScope.category.id}</title>
 </head>
 
 <body>
@@ -16,7 +21,7 @@
 <section class="section-content">
   <div class="container">
     <header class="section-heading py-4">
-      <h3 class="section-title">Thông tin thể loại</h3>
+      <h3 class="section-title"><fmt:message key="thong_tin_the_loai"/></h3>
     </header> <!-- section-heading.// -->
 
     <div class="card mb-5">
@@ -25,17 +30,17 @@
           <dt class="col-md-3">ID</dt>
           <dd class="col-md-9">${requestScope.category.id}</dd>
 
-          <dt class="col-md-3">Tên thể loại</dt>
+          <dt class="col-md-3"><fmt:message key="ten_the_loai"/></dt>
           <dd class="col-md-9">
             <a href="${pageContext.request.contextPath}/category?id=${requestScope.category.id}" target="_blank">
               ${requestScope.category.name}
             </a>
           </dd>
 
-          <dt class="col-md-3">Mô tả thể loại</dt>
+          <dt class="col-md-3"><fmt:message key="mo_ta_the_loai"/></dt>
           <dd class="col-md-9">${requestScope.category.description}</dd>
 
-          <dt class="col-md-3">Hình thể loại</dt>
+          <dt class="col-md-3"><fmt:message key="hinh_the_loai"/></dt>
           <dd class="col-md-9">
             <c:choose>
               <c:when test="${empty requestScope.category.imageName}">

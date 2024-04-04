@@ -6,6 +6,11 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
   <title>Trang chủ</title>
 </head>
@@ -16,8 +21,8 @@
 <section class="section-content mb-2">
   <div class="container">
     <header class="section-heading py-4 d-flex justify-content-between">
-      <h3 class="section-title">Danh mục sản phẩm</h3>
-      <a class="btn btn-secondary" href="#" role="button" style="height: fit-content;">Xem tất cả</a>
+      <h3 class="section-title"><fmt:message key="danh_muc_san_pham"/></h3>
+      <a class="btn btn-secondary" href="#" role="button" style="height: fit-content;"><fmt:message key="xem_tat_ca"/></a>
     </header> <!-- section-heading.// -->
     <div class="row item-grid">
       <c:forEach var="category" items="${requestScope.categories}">
@@ -50,8 +55,8 @@
 <section class="section-content mb-5">
   <div class="container">
     <header class="section-heading py-4 d-flex justify-content-between">
-      <h3 class="section-title">Sản phẩm mới nhất</h3>
-      <a class="btn btn-secondary" href="#" role="button" style="height: fit-content;">Xem tất cả</a>
+      <h3 class="section-title"><fmt:message key="san_pham_moi_nhat"/></h3>
+      <a class="btn btn-secondary" href="#" role="button" style="height: fit-content;"><fmt:message key="xem_tat_ca"/></a>
     </header> <!-- section-heading.// -->
     <div class="row item-grid">
       <c:forEach var="product" items="${requestScope.products}">

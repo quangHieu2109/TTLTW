@@ -7,14 +7,20 @@
 
 <head>
   <jsp:include page="_meta.jsp"/>
-  <title>Sản phẩm yêu thích</title>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
+  <title><fmt:message key="san_pham_yeu_thich"/></title>
 </head>
 <body>
 <jsp:include page="_header.jsp"/>
 
+
 <section class="section-pagetop bg-light">
   <div class="container">
-    <h2 class="title-page">Sản phẩm yêu thích</h2>
+    <h2 class="title-page"><fmt:message key="san_pham_yeu_thich"/></h2>
   </div> <!-- container.// -->
 </section> <!-- section-pagetop.// -->
 
@@ -31,13 +37,12 @@
             <c:choose>
               <c:when test="${empty sessionScope.currentUser}">
                 <p>
-                  Vui lòng <a href="${pageContext.request.contextPath}/signin">đăng nhập</a> để sử dụng chức năng sản
-                  phẩm yêu thích.
+                  <fmt:message key="vui_long"/> <a href="${pageContext.request.contextPath}/signin"><fmt:message key="dang_nhap"/></a> <fmt:message key="de_su_dung_chuc_nang_san_pham_yeu_thich"/>
                 </p>
               </c:when>
               <c:when test="${empty requestScope.wishlistItems}">
                 <p>
-                  Người dùng không có sản phẩm yêu thích.
+                  <fmt:message key="nguoi_dung_khong_co_san_pham_yeu_thich"/>
                 </p>
               </c:when>
               <c:otherwise>

@@ -2,16 +2,38 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Web:war exploded" />
+      <artifact name="Web:war" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29e5adf7-81e7-4ddb-9304-98bf88eea367" name="Changes" comment="log">
+    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="idea">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dto/UserGoogleDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignInGoogleServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_vi_VN.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/img/iconGoogle.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AbsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AbsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/categoryDetailView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/categoryDetailView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/categoryManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/categoryManagerView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/categoryView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/categoryView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/signinView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/signinView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +43,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -29,30 +50,13 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Hai" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;doqhung&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="recentNewPullRequestHead">
-      <RepoCoordinatesHolder>
-        <option name="owner" value="quangHieu2109" />
-        <option name="repository" value="TTLTW" />
-      </RepoCoordinatesHolder>
-    </option>
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="b0a3fa32-5ef4-4cec-9086-ca7d3064bec4" />
-        <option name="url" value="https://github.com/quangHieu2109/TTLTW.git" />
-      </UrlAndAccount>
-    </option>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Web/pom.xml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -64,10 +68,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
-}</component>
-  <component name="ProjectId" id="2dj2NoJoTZ2lx7Q6HuPYE0mqKFr" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2e2kV03FYkfoefUaEdoTYdevhk1" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -75,53 +79,63 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.google.cloudcode.ide_session_index": "20240401_0002",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "File.Encoding",
+    "vue.rearranger.settings.migration": "true"
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Application.CartItemDAO.executor&quot;: &quot;Run&quot;,
-    &quot;Application.JDBCUtils.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Log.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LogDAO.executor&quot;: &quot;Run&quot;,
-    &quot;Application.UserDAO.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in Web.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.index.jsp.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;Tomcat Server.Tomcat 9.0.48.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.Tomcat 9.0.83.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20240326_0002&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Hung&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Program/JavaWeb/TTLTW/Web&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mariadb&quot;,
-      &quot;mysql&quot;
-    ]
   }
 }</component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Program\JavaWeb\TTLTW\Web" />
-      <recent name="D:\TTLTW\Web" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\.EclipseWeb\TTLTW\Web\src\main\java\com\bookshopweb\beans" />
+      <recent name="C:\.EclipseWeb\TTLTW\Web\src\main\webapp\img" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UserDAO">
-    <configuration name="CartItemDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.CartItemDAO" />
+  <component name="RunDashboard">
+    <option name="excludedTypes">
+      <set>
+        <option value="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.48">
+    <configuration name="GHNApi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.api.GHNApi" />
       <module name="Web" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.bookshopweb.dao.*" />
+          <option name="PATTERN" value="com.bookshopweb.api.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -129,12 +143,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JDBCUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.utils.JDBCUtils" />
+    <configuration name="TestAPI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.api.TestAPI" />
       <module name="Web" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.bookshopweb.utils.*" />
+          <option name="PATTERN" value="com.bookshopweb.api.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -142,57 +156,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Log" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.beans.Log" />
-      <module name="Web" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.bookshopweb.beans.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LogDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.LogDAO" />
-      <module name="Web" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.bookshopweb.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.UserDAO" />
-      <module name="Web" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.bookshopweb.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tomcat 9.0.83" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.83" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/Web_war_exploded" />
+    <configuration name="Tomcat 9.0.48" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.48" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="21" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Web:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="" />
+            <option name="CONTEXT_PATH" value="/Web_war_exploded" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="04cbb017-df9f-4dff-a8b9-825d41ab2c5d" />
+        <option name="BASE_DIRECTORY_NAME" value="771117b6-c288-4da7-b8c5-ec9e3363feb3" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -200,7 +174,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="53346" />
+        <option name="DEBUG_PORT" value="52898" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -269,74 +243,69 @@
         </option>
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.Log" />
-      <item itemvalue="Application.LogDAO" />
-      <item itemvalue="Application.CartItemDAO" />
-      <item itemvalue="Application.JDBCUtils" />
-      <item itemvalue="Application.UserDAO" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.83" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UserDAO" />
-        <item itemvalue="Application.Log" />
-        <item itemvalue="Application.LogDAO" />
-        <item itemvalue="Application.CartItemDAO" />
-        <item itemvalue="Application.JDBCUtils" />
+        <item itemvalue="Application.GHNApi" />
+        <item itemvalue="Application.TestAPI" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+        <option value="jdk-11.0.22-semeru-11.0.22-f644763e9732-d90ddd3d" />
+        <option value="jdk-18.0.2-corretto-18.0.2-f644763e9732-da6bd485" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="29e5adf7-81e7-4ddb-9304-98bf88eea367" name="Changes" comment="" />
-      <created>1710507129998</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1710507129998</updated>
-      <workItem from="1710507131036" duration="1018000" />
-      <workItem from="1710562766148" duration="3000" />
-      <workItem from="1710673330004" duration="62000" />
-      <workItem from="1710845811260" duration="1403000" />
-      <workItem from="1710847251291" duration="9000" />
-      <workItem from="1711079263466" duration="570000" />
-      <workItem from="1711091316215" duration="837000" />
-      <workItem from="1711092201105" duration="560000" />
-      <workItem from="1711209333557" duration="968000" />
-      <workItem from="1711273239662" duration="1187000" />
-      <workItem from="1711286128133" duration="3994000" />
-      <workItem from="1711374948121" duration="9038000" />
-      <workItem from="1711421717877" duration="16000" />
-      <workItem from="1711421758131" duration="6464000" />
-      <workItem from="1711430533959" duration="4602000" />
-      <workItem from="1711544008062" duration="11510000" />
-      <workItem from="1711617839942" duration="459000" />
-    </task>
-    <task id="LOCAL-00001" summary="update project">
-      <option name="closed" value="true" />
-      <created>1711092352062</created>
+    <task id="LOCAL-00001" summary="idea">
+      <created>1711095317461</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1711092352062</updated>
+      <updated>1711095317461</updated>
     </task>
-    <task id="LOCAL-00002" summary="log">
-      <option name="closed" value="true" />
-      <created>1711556324031</created>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="idea" />
+      <created>1711110081989</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711110081989</updated>
+      <workItem from="1711110085992" duration="408000" />
+      <workItem from="1711184995759" duration="4000" />
+      <workItem from="1711283763816" duration="5049000" />
+      <workItem from="1711414010087" duration="2335000" />
+      <workItem from="1711417109435" duration="1298000" />
+      <workItem from="1711421641786" duration="1804000" />
+      <workItem from="1711460373478" duration="1851000" />
+      <workItem from="1711947677890" duration="7102000" />
+      <workItem from="1711955378246" duration="1950000" />
+      <workItem from="1711973761940" duration="12798000" />
+      <workItem from="1711622711510" duration="115000" />
+      <workItem from="1711624374575" duration="257000" />
+      <workItem from="1711629938210" duration="1760000" />
+      <workItem from="1711801130749" duration="990000" />
+      <workItem from="1711881712731" duration="5017000" />
+      <workItem from="1711968994718" duration="7510000" />
+    </task>
+    <task id="LOCAL-00002" summary="update api GHNApi add api AddressServlet">
+      <created>1711950725908</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1711556324031</updated>
+      <updated>1711950725908</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update AddressServlet">
+      <created>1711956982856</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711956982856</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,30 +316,53 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Hai" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update project" />
-    <MESSAGE value="log" />
-    <option name="LAST_COMMIT_MESSAGE" value="log" />
+    <MESSAGE value="idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="idea" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/CartItem.java</url>
-          <line>94</line>
-          <properties class="com.bookshopweb.beans.CartItem" method="getResource">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/OrderItemDAO.java</url>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/productreview/ProductReviewManagerServlet.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Product.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <MESSAGE value="update api GHNApi add api AddressServlet" />
+    <MESSAGE value="update AddressServlet" />
+    <option name="LAST_COMMIT_MESSAGE" value="update AddressServlet" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

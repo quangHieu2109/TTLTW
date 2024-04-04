@@ -5,6 +5,8 @@ import com.bookshopweb.beans.Log;
 import com.bookshopweb.utils.JDBCUtils;
 
 import java.sql.Connection;
+import java.util.List;
+import java.util.Optional;
 
 public abstract class AbsDAO<T extends AbsModel> implements IDAO<T> {
     protected Connection conn = JDBCUtils.getConnection();
@@ -15,7 +17,6 @@ public abstract class AbsDAO<T extends AbsModel> implements IDAO<T> {
 
     @Override
     public int insert(T t, String ip) {
-
         Log log = new Log(ip, 2,"Insert on table "+ t.getResource(), "null", t.toJson(), t.getCreateAt());
         logDAO.insert(log);
         return 0;
@@ -34,6 +35,21 @@ public abstract class AbsDAO<T extends AbsModel> implements IDAO<T> {
 
         Log log = new Log(ip, 4, "Delete on table "+t.getResource(), t.toJson(), "null", t.getCreateAt());
         logDAO.insert(log);
-        return 0;
+        return  0;
+    }
+
+    @Override
+    public List<T> getAll() {
+        return null;
+    }
+
+    @Override
+    public List<T> getPart(int limit, int offset) {
+        return null;
+    }
+
+    @Override
+    public List<T> getOrderedPart(int limit, int offset, String orderBy, String orderDir) {
+        return null;
     }
 }

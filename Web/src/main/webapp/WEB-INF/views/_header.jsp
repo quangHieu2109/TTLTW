@@ -1,12 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <header class="section-header">
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <section class="header-main border-bottom">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-3 py-3">
           <a class="text-body" href="${pageContext.request.contextPath}/">
-            <h3>Shop Bán Sách</h3>
+            <h3><fmt:message key="shop_ban_sach"/></h3>
           </a>
         </div> <!-- col.// -->
         <div class="col-lg-4 col-xl-5 ${empty sessionScope.currentUser ? 'mb-3 mb-lg-0' : ''}">
@@ -14,7 +20,7 @@
             <div class="input-group w-100">
               <input type="text"
                      class="form-control"
-                     placeholder="Nhập từ khóa cần tìm ..."
+                     placeholder="<fmt:message key="nhap_tu_khoa_can_tim"/> ..."
                      name="q"
                      value="${requestScope.query}">
               <button class="btn btn-primary" type="submit">
@@ -29,13 +35,13 @@
               <li>
                 <a href="${pageContext.request.contextPath}/user" class="nav-link text-body">
                   <i class="bi bi-person d-block text-center fs-3"></i>
-                  Tài khoản
+                  <fmt:message key="tai_khoan"/>
                 </a>
               </li>
               <li>
                 <a href="${pageContext.request.contextPath}/order" class="nav-link text-body">
                   <i class="bi bi-list-check d-block text-center fs-3"></i>
-                  Đơn hàng
+                  <fmt:message key="don_hang"/>
                 </a>
               </li>
               <li>
@@ -44,7 +50,7 @@
                     ...
                   </span>
                   <i class="bi bi-cart d-block text-center fs-3 position-relative"></i>
-                  Giỏ hàng
+                  <fmt:message key="gio_hang"/>
                 </a>
               </li>
             </ul>
@@ -67,42 +73,42 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">
-            <strong><i class="bi bi-list"></i> Danh mục sản phẩm</strong>
+            <strong><i class="bi bi-list"></i> <fmt:message key="danh_muc_san_pham"/></strong>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Sách giáo khoa</a></li>
-            <li><a class="dropdown-item" href="#">Sách khoa học</a></li>
-            <li><a class="dropdown-item" href="#">Truyện tranh</a></li>
-            <li><a class="dropdown-item" href="#">Tiểu thuyết</a></li>
+            <li><a class="dropdown-item" href="#"><fmt:message key="sach_giao_khoa"/></a></li>
+            <li><a class="dropdown-item" href="#"><fmt:message key="sach_khoa_hoc"/></a></li>
+            <li><a class="dropdown-item" href="#"><fmt:message key="truyen_tranh"/></a></li>
+            <li><a class="dropdown-item" href="#"><fmt:message key="tieu_thuyet"/></a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Tất cả danh mục</a></li>
+            <li><a class="dropdown-item" href="#"><fmt:message key="tat_ca_danh_muc"/></a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sản phẩm mới</a>
+          <a class="nav-link" href="#"><fmt:message key="san_pham_moi"/></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sản phẩm bán chạy</a>
+          <a class="nav-link" href="#"><fmt:message key="san_pham_ban_chay"/></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Khuyến mãi</a>
+          <a class="nav-link" href="#"><fmt:message key="khuyen_mai"/></a>
         </li>
       </ul>
       <c:choose>
         <c:when test="${not empty sessionScope.currentUser}">
           <span>Xin chào <strong>${sessionScope.currentUser.fullname}</strong>!</span>
           <a class="btn btn-light ms-2" href="${pageContext.request.contextPath}/signout" role="button">
-            Đăng xuất
+            <fmt:message key="dang_xuat"/>
           </a>
         </c:when>
         <c:otherwise>
           <a class="btn btn-light me-2" href="${pageContext.request.contextPath}/signup" role="button">
-            Đăng ký
+            <fmt:message key="dang_ki"/>
           </a>
           <a class="btn btn-primary" href="${pageContext.request.contextPath}/signin" role="button">
-            Đăng nhập
+            <fmt:message key="dang_nhap"/>
           </a>
         </c:otherwise>
       </c:choose>

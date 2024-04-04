@@ -6,16 +6,22 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Đổi mật khẩu</title>
+  <title><fmt:message key="doi_mat_khau"/></title>
 </head>
 
 <body>
 <jsp:include page="_header.jsp"/>
 
+
 <section class="section-pagetop bg-light">
   <div class="container">
-    <h2 class="title-page">Đổi mật khẩu</h2>
+    <h2 class="title-page"><fmt:message key="doi_mat_khau"/></h2>
   </div> <!-- container.// -->
 </section> <!-- section-pagetop.// -->
 
@@ -25,7 +31,7 @@
       <c:choose>
         <c:when test="${empty sessionScope.currentUser}">
           <p>
-            Vui lòng <a href="${pageContext.request.contextPath}/signin">đăng nhập</a> để đổi mật khẩu.
+            <fmt:message key="vui_long"/> <a href="${pageContext.request.contextPath}/signin"><fmt:message key="dang_nhap"/></a> <fmt:message key="de_doi_mat_khau"/>.
           </p>
         </c:when>
         <c:otherwise>
@@ -46,7 +52,7 @@
                   <form action="${pageContext.request.contextPath}/changePassword" method="post">
                     <div class="mb-3">
                       <label for="inputCurrentPassword" class="form-label">
-                        Nhập mật khẩu hiện tại
+                        <fmt:message key="nhap_mat_khau_hien_tai"/>
                       </label>
                       <input type="password"
                              class="form-control"
@@ -55,7 +61,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="inputNewPassword" class="form-label">
-                        Nhập mật khẩu mới
+                        <fmt:message key="nhap_mat_khau_moi"/>
                       </label>
                       <input type="password"
                              class="form-control"
@@ -64,14 +70,14 @@
                     </div>
                     <div class="mb-3">
                       <label for="inputNewPasswordAgain" class="form-label">
-                        Nhập mật khẩu mới một lần nữa
+                        <fmt:message key="nhap_mat_khau_moi_mot_lan_nua"/>
                       </label>
                       <input type="password"
                              class="form-control"
                              id="inputNewPasswordAgain"
                              name="newPasswordAgain">
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Đổi mật khẩu</button>
+                    <button type="submit" class="btn btn-primary w-100"><fmt:message key="doi_mat_khau"/></button>
                   </form>
                 </div>
               </div> <!-- card-body.// -->

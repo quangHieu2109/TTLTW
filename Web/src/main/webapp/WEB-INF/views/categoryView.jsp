@@ -6,20 +6,25 @@
 <html lang="vi">
 
 <head>
+
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
   <title>${requestScope.category.name}</title>
 </head>
 
 <body>
 <jsp:include page="_header.jsp"/>
-
 <section class="section-pagetop bg-light">
   <div class="container">
     <h2 class="title-page">${requestScope.category.name}</h2>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item" aria-current="page">
-          <a href="${pageContext.request.contextPath}/">Trang chủ</a>
+          <a href="${pageContext.request.contextPath}/"><fmt:message key="trang_chu"/></a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">${requestScope.category.name}</li>
       </ol>
@@ -38,7 +43,7 @@
                 <a data-bs-toggle="collapse" href="#collapse_1" aria-expanded="true"
                    aria-controls="collapse_1">
                   <i class="float-end bi bi-chevron-down"></i>
-                  <h6 class="title fw-bold">Nhà xuất bản</h6>
+                  <h6 class="title fw-bold"><fmt:message key="nha_xuat_ban"/></h6>
                 </a>
               </header>
               <div class="filter-content collapse show" id="collapse_1">
@@ -58,7 +63,7 @@
                       </c:forEach>
                     </c:when>
                     <c:otherwise>
-                      Không có
+                      <fmt:message key="khong_co"/>
                     </c:otherwise>
                   </c:choose>
                 </div> <!-- card-body.// -->
@@ -69,7 +74,7 @@
                 <a data-bs-toggle="collapse" href="#collapse_2" aria-expanded="true"
                    aria-controls="collapse_2">
                   <i class="float-end bi bi-chevron-down"></i>
-                  <h6 class="title fw-bold">Giá bán</h6>
+                  <h6 class="title fw-bold"><fmt:message key="gia_ban"/></h6>
                 </a>
               </header>
               <div class="filter-content collapse show" id="collapse_2">
@@ -79,7 +84,7 @@
                            id="checkbox_price_1" name="priceRanges"
                     ${requestScope.priceRanges.contains('0-50000') ? 'checked' : ''}>
                     <label class="form-check-label" for="checkbox_price_1">
-                      Dưới 50.000₫
+                      <fmt:message key="duoi"/> 50.000₫
                     </label>
                   </div>
                   <div class="form-check">
@@ -87,7 +92,7 @@
                            id="checkbox_price_2" name="priceRanges"
                     ${requestScope.priceRanges.contains('50000-200000') ? 'checked' : ''}>
                     <label class="form-check-label" for="checkbox_price_2">
-                      Từ 50.000₫ đến 200.000₫
+                      <fmt:message key="tu"/> 50.000₫  <fmt:message key="den"/> 200.000₫
                     </label>
                   </div>
                   <div class="form-check">
@@ -95,7 +100,7 @@
                            id="checkbox_price_3" name="priceRanges"
                     ${requestScope.priceRanges.contains('200000-infinity') ? 'checked' : ''}>
                     <label class="form-check-label" for="checkbox_price_3">
-                      Trên 200.000₫
+                      <fmt:message key="tren"/> 200.000₫
                     </label>
                   </div>
                 </div> <!-- card-body.// -->
@@ -106,7 +111,7 @@
                 <a data-bs-toggle="collapse" href="#collapse_3" aria-expanded="true"
                    aria-controls="collapse_3">
                   <i class="float-end bi bi-chevron-down"></i>
-                  <h6 class="title fw-bold">Sắp xếp theo</h6>
+                  <h6 class="title fw-bold"><fmt:message key="sap_xep_theo"/></h6>
                 </a>
               </header>
               <div class="filter-content collapse show" id="collapse_3">
@@ -115,21 +120,21 @@
                     <input class="form-check-input" type="radio" value="totalBuy-DESC" name="order"
                            id="radio_order_1" ${requestScope.order == 'totalBuy-DESC' ? 'checked' : ''}>
                     <label class="form-check-label" for="radio_order_1">
-                      Bán chạy nhất
+                      <fmt:message key="ban_chay_nhat"/>
                     </label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="radio" value="createdAt-DESC" name="order"
                            id="radio_order_2" ${requestScope.order == 'createdAt-DESC' ? 'checked' : ''}>
                     <label class="form-check-label" for="radio_order_2">
-                      Mới nhất
+                      <fmt:message key="moi_nhat"/>
                     </label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="radio" value="price-ASC" name="order"
                            id="radio_order_3" ${requestScope.order == 'price-ASC' ? 'checked' : ''}>
                     <label class="form-check-label" for="radio_order_3">
-                      Giá thấp nhất
+                      <fmt:message key="gia_thap_nhat"/>
                     </label>
                   </div>
                 </div> <!-- card-body.// -->
@@ -146,7 +151,7 @@
 
         <header class="border-bottom mb-4 pb-3">
           <div class="form-inline d-flex justify-content-between align-items-center">
-            <span>${requestScope.totalProducts} sản phẩm</span>
+            <span>${requestScope.totalProducts} <fmt:message key="san_pham"/></span>
           </div>
         </header> <!-- sect-heading -->
 
@@ -210,7 +215,7 @@
               <li class="page-item ${requestScope.page == 1 ? 'disabled' : ''}">
                 <a class="page-link"
                    href="${pageContext.request.contextPath}/category?id=${requestScope.category.id}&page=${requestScope.page - 1}${requestScope.filterQueryString}">
-                  Trang trước
+                  <fmt:message key="trang_truoc"/>
                 </a>
               </li>
 
@@ -235,7 +240,7 @@
               <li class="page-item ${requestScope.page == requestScope.totalPages ? 'disabled' : ''}">
                 <a class="page-link"
                    href="${pageContext.request.contextPath}/category?id=${requestScope.category.id}&page=${requestScope.page + 1}${requestScope.filterQueryString}">
-                  Trang sau
+                  <fmt:message key="trang_sau"/>
                 </a>
               </li>
             </ul>

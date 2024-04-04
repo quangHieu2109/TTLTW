@@ -6,8 +6,13 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Tài khoản</title>
+  <title><fmt:message key="tai_khoan"/></title>
 </head>
 
 <body>
@@ -15,7 +20,7 @@
 
 <section class="section-pagetop bg-light">
   <div class="container">
-    <h2 class="title-page">Tài khoản</h2>
+    <h2 class="title-page"><fmt:message key="tai_khoan"/></h2>
   </div> <!-- container.// -->
 </section> <!-- section-pagetop.// -->
 
@@ -25,7 +30,7 @@
       <c:choose>
         <c:when test="${empty sessionScope.currentUser}">
           <p>
-            Vui lòng <a href="${pageContext.request.contextPath}/signin">đăng nhập</a> để xem thông tin tài khoản.
+            <fmt:message key="vui_long"/> <a href="${pageContext.request.contextPath}/signin"><fmt:message key="dang_nhap"/></a><fmt:message key="de_xem_thong_tin_tai_khoan"/>.
           </p>
         </c:when>
         <c:otherwise>
@@ -43,7 +48,7 @@
                 <hr>
                 <div>
                   <p class="bi bi-map d-block lh-lg">
-                    Địa chỉ:
+                    <fmt:message key="dia_chi"/>:
                     <br>
                       ${sessionScope.currentUser.address}
                   </p>
@@ -52,25 +57,25 @@
                   <figure class="card bg-light">
                     <div class="p-3">
                       <h4 class="title">${requestScope.countCartItemQuantity}</h4>
-                      <span>Sản phẩm trong giỏ</span>
+                      <span><fmt:message key="san_pham_trong_gio"/></span>
                     </div>
                   </figure>
                   <figure class="card bg-light">
                     <div class="p-3">
                       <h4 class="title">${requestScope.countOrder}</h4>
-                      <span>Đơn hàng</span>
+                      <span><fmt:message key="don_hang"/></span>
                     </div>
                   </figure>
                   <figure class="card bg-light">
                     <div class="p-3">
                       <h4 class="title">${requestScope.countOrderDeliver}</h4>
-                      <span>Đơn hàng đang giao</span>
+                      <span><fmt:message key="don_hang_dang_giao"/></span>
                     </div>
                   </figure>
                   <figure class="card bg-light">
                     <div class="p-3">
                       <h4 class="title">${requestScope.countOrderReceived}</h4>
-                      <span>Đơn hàng đã nhận</span>
+                      <span><fmt:message key="don_hang_da_nhan"/></span>
                     </div>
                   </figure>
                 </article> <!-- row .//  -->

@@ -1,36 +1,43 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <footer class="section-footer">
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <section class="footer-top py-5 bg-light">
     <div class="container">
       <div class="row">
         <aside class="col-sm-6 col-lg-3">
-          <h6 class="pb-2">Giới thiệu</h6>
+          <h6 class="pb-2"><fmt:message key="gioi_thieu"/></h6>
           <ul class="list-unstyled">
-            <li><a href="#">Về Shop</a></li>
-            <li><a href="#">Tuyển dụng</a></li>
-            <li><a href="#">Chính sách thanh toán</a></li>
-            <li><a href="#">Chính sách bảo mật</a></li>
-            <li><a href="#">Giải quyết khiếu nại</a></li>
-            <li><a href="#">Hợp tác</a></li>
+            <li><a href="#"><fmt:message key="ve_shop"/></a></li>
+            <li><a href="#"><fmt:message key="tuyen_dung"/></a></li>
+            <li><a href="#"><fmt:message key="chinh_sach_thanh_toan"/></a></li>
+            <li><a href="#"><fmt:message key="chinh_sach_bao_mat"/></a></li>
+            <li><a href="#"><fmt:message key="giai_quyet_khieu_nai"/></a></li>
+            <li><a href="#"><fmt:message key="hop_tac"/></a></li>
           </ul>
         </aside>
         <aside class="col-sm-6 col-lg-3">
-          <h6 class="pb-2">Hỗ trợ khách hàng</h6>
+          <h6 class="pb-2"><fmt:message key="ho_tro_khach_hang"/></h6>
           <ul class="list-unstyled">
             <li>Hotline: 1900-80xx</li>
-            <li><a href="#">Câu hỏi thường gặp</a></li>
-            <li><a href="#">Hướng dẫn đặt hàng</a></li>
-            <li><a href="#">Phương thức vận chuyển</a></li>
-            <li><a href="#">Chính sách đổi trả</a></li>
+            <li><a href="#"><fmt:message key="cau_hoi_thuong_gap"/></a></li>
+            <li><a href="#"><fmt:message key="huong_dan_dat_hang"/></a></li>
+            <li><a href="#"><fmt:message key="phuong_thuc_van_chuyen"/></a></li>
+            <li><a href="#"><fmt:message key="chinh_sach_doi_tra"/></a></li>
           </ul>
         </aside>
         <aside class="col-lg-5">
-          <h6 class="pb-2">Đăng ký nhận tin</h6>
+          <h6 class="pb-2"><fmt:message key="dang_ki_nhan_tin"/></h6>
           <form action="#">
             <div class="input-group w-100">
-              <input type="text" class="form-control" placeholder="Email của bạn ...">
+              <input type="text" class="form-control" placeholder="<fmt:message key="email_cua_ban"/> ...">
               <button class="btn btn-primary" type="button">
-                Đăng ký
+                <fmt:message key="dang_ki"/>
               </button>
             </div>
           </form>
@@ -40,6 +47,6 @@
   </section> <!-- footer-top.// -->
 
   <section class="footer-bottom text-center bg-light border-top py-3">
-    <div class="container-fluid">© 2022 — Shop Bán Sách</div> <!-- container-fluid.// -->
+    <div class="container-fluid">© 2022 — <fmt:message key="shop_ban_sach"/></div> <!-- container-fluid.// -->
   </section> <!-- footer-bottom.// -->
 </footer> <!-- section-footer.// -->

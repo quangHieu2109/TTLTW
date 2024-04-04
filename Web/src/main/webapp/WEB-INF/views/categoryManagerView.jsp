@@ -6,8 +6,13 @@
 <html lang="vi">
 
 <head>
+  <fmt:setLocale value="vi_VN" />
+  <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
+    <fmt:setLocale value="en_US" />
+  </c:if>
+  <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
-  <title>Quản lý thể loại</title>
+  <title><fmt:message key="quan_ly_the_loai"/></title>
 </head>
 
 <body>
@@ -29,12 +34,12 @@
     <c:remove var="errorMessage" scope="session"/>
 
     <header class="section-heading py-4 d-flex justify-content-between">
-      <h3 class="section-title">Quản lý thể loại</h3>
+      <h3 class="section-title"><fmt:message key="quan_ly_the_loai"/></h3>
       <a class="btn btn-primary"
          href="${pageContext.request.contextPath}/admin/categoryManager/create"
          role="button"
          style="height: fit-content;">
-        Thêm thể loại
+        <fmt:message key="them_the_loai"/>
       </a>
     </header> <!-- section-heading.// -->
 
@@ -44,9 +49,9 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">ID</th>
-          <th scope="col">Hình</th>
-          <th scope="col">Tên thể loại</th>
-          <th scope="col" style="width: 225px;">Thao tác</th>
+          <th scope="col"><fmt:message key="hinh"/></th>
+          <th scope="col"><fmt:message key="ten_the_loai"/></th>
+          <th scope="col" style="width: 225px;"><fmt:message key="thao_tac"/></th>
         </tr>
         </thead>
         <tbody>
@@ -74,18 +79,18 @@
               <a class="btn btn-primary me-2"
                  href="${pageContext.request.contextPath}/admin/categoryManager/detail?id=${category.id}"
                  role="button">
-                Xem
+                <fmt:message key="xem"/>
               </a>
               <a class="btn btn-success me-2"
                  href="${pageContext.request.contextPath}/admin/categoryManager/update?id=${category.id}"
                  role="button">
-                Sửa
+                <fmt:message key="sua"/>
               </a>
               <a class="btn btn-danger"
                  href="${pageContext.request.contextPath}/admin/categoryManager/delete?id=${category.id}"
                  role="button"
                  onclick="return confirm('Bạn có muốn xóa?')">
-                Xóa
+                <fmt:message key="xoa"/>
               </a>
             </td>
           </tr>
@@ -100,7 +105,7 @@
           <li class="page-item ${requestScope.page == 1 ? 'disabled' : ''}">
             <a class="page-link"
                href="${pageContext.request.contextPath}/admin/categoryManager?page=${requestScope.page - 1}">
-              Trang trước
+              <fmt:message key="trang_truoc"/>
             </a>
           </li>
 
@@ -125,7 +130,7 @@
           <li class="page-item ${requestScope.page == requestScope.totalPages ? 'disabled' : ''}">
             <a class="page-link"
                href="${pageContext.request.contextPath}/admin/categoryManager?page=${requestScope.page + 1}">
-              Trang sau
+              <fmt:message key="trang_sau"/>
             </a>
           </li>
         </ul>

@@ -9,6 +9,13 @@ public interface IDAO<T> {
     int update(T t, String ip);
 
     int delete(T t, String ip);
+
+    List<T> getAll();
+
+    List<T> getPart(int limit, int offset);
+
+    List<T> getOrderedPart(int limit, int offset, String orderBy, String orderDir);
+
     T selectPrevalue(Long id);
 
 }
