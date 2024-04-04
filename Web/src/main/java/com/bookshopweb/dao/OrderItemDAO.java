@@ -59,6 +59,7 @@ package com.bookshopweb.dao;
 
 import com.bookshopweb.beans.Order;
 import com.bookshopweb.beans.OrderItem;
+import com.bookshopweb.beans.Product;
 import com.bookshopweb.utils.JDBCUtils;
 
 import java.sql.*;
@@ -309,6 +310,10 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
         orderItem.setQuantity(resultSet.getInt("quantity"));
         orderItem.setCreatedAt(resultSet.getTimestamp("createdAt"));
         orderItem.setUpdatedAt(resultSet.getTimestamp("updatedAt"));
+        Product product = new Product();
+        product.setId(resultSet.getLong("productId"));
+        // Thực hiện các thao tác khác để map dữ liệu từ ResultSet vào đối tượng Product
+        orderItem.setProduct(product);
         return orderItem;
     }
 }

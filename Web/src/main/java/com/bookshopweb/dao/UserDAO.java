@@ -345,12 +345,17 @@ public class UserDAO extends AbsDAO<User> {
     private User mapResultSetToUser(ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId(resultSet.getLong("id"));
+        user.setUsername(resultSet.getString("username"));
+        user.setPassword(resultSet.getString("password"));
+        user.setFullname(resultSet.getString("fullname"));
+        user.setEmail(resultSet.getString("email"));
+        user.setPhoneNumber(resultSet.getString("phoneNumber"));
+        user.setGender(resultSet.getInt("gender"));
+        user.setAddress(resultSet.getString("address"));
+        user.setRole(resultSet.getString("role"));
+        user.setCreateAt(resultSet.getTimestamp("create_at"));
 
         return user;
     }
-    public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-        User user = new User(10, "hiu", "111", "Quang Hieu", "","123123123", 1,"","",null);
-        System.out.println(dao.update(user, "123123"));
-    }
+
 }

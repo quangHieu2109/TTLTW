@@ -74,6 +74,7 @@ package com.bookshopweb.dao;
 
 import com.bookshopweb.beans.Product;
 import com.bookshopweb.beans.ProductReview;
+import com.bookshopweb.beans.User;
 import com.bookshopweb.utils.JDBCUtils;
 
 import java.sql.*;
@@ -357,7 +358,19 @@ public class ProductReviewDAO extends AbsDAO<ProductReview> {
     private ProductReview mapResultSetToProductReview(ResultSet resultSet) throws SQLException {
         ProductReview review = new ProductReview();
         review.setId(resultSet.getLong("id"));
-        // Map other fields as needed
+        review.setUserId(resultSet.getLong("userId"));
+        review.setProductId(resultSet.getLong("productId"));
+        review.setRatingScore(resultSet.getInt("ratingScore"));
+        review.setContent(resultSet.getString("content"));
+        review.setIsShow(resultSet.getInt("isShow"));
+        review.setCreatedAt(resultSet.getTimestamp("createdAt"));
+        review.setUpdatedAt(resultSet.getTimestamp("updatedAt"));
+        UserDAO userDao = new UserDAO();
+        review.setUser(userDao.selectPrevalue(resultSet.getLong("userId")));
+
+        ProductDAO productDAO = new ProductDAO();
+        review.setProduct( productDAO.selectPrevalue(resultSet.getLong("productId")));
+
         return review;
     }
 }
