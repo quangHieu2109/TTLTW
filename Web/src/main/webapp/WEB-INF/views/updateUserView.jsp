@@ -23,7 +23,8 @@
     <header class="section-heading py-4">
       <h3 class="section-title"><fmt:message key="sua_nguoi_dung"/> #${requestScope.user.id}</h3>
     </header> <!-- section-heading.// -->
-
+    <c:if test="${sessionScope.currentUser.googleUser}">
+      <s:set var="disable" value="disabled"/>  </c:if>
     <main class="row mb-5">
       <form class="col-lg-6" method="POST" action="${pageContext.request.contextPath}/admin/userManager/update">
         <c:if test="${not empty requestScope.successMessage}">
@@ -44,7 +45,8 @@
                  id="user-username"
                  name="username"
                  value="${requestScope.user.username}"
-                 required>
+                 required
+                 >
           <c:if test="${not empty requestScope.violations.usernameViolations}">
             <div class="invalid-feedback">
               <ul class="list-unstyled">
@@ -63,7 +65,8 @@
                  id="user-password"
                  name="password"
                  value="${requestScope.user.password}"
-                 placeholder="<fmt:message key="nhap_mat_khau_moi_hoac_de_trong"/>">
+                 placeholder="<fmt:message key="nhap_mat_khau_moi_hoac_de_trong"/>"
+          >
           <c:if test="${not empty requestScope.violations.passwordViolations}">
             <div class="invalid-feedback">
               <ul class="list-unstyled">

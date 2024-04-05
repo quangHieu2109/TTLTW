@@ -41,16 +41,17 @@ public class CartItemServlet extends HttpServlet {
         long userId = Protector.of(() -> Long.parseLong(request.getParameter("userId"))).get(0L);
         Optional<User> userFromServer = Protector.of(() -> userDAO.selectPrevalue(userId)).get();
 
+
         // Nếu userId là số nguyên dương và có hiện diện trong bảng user
-        if (userId > 0L && userFromServer.isPresent()) {
+        if (userId > 0 && userFromServer.isPresent()) {
             // Lấy đối tượng cart từ database theo userId
             Optional<Cart> cartFromServer = Protector.of(() -> cartDAO.getByUserId(userId)).get(Optional::empty);
 
             // Nếu cart của user này đã có trong database
+
             if (cartFromServer.isPresent()) {
                 long cartId = cartFromServer.get().getId();
                 List<CartItem> cartItems = Protector.of(() -> cartItemDAO.getByCartId(cartId)).get(ArrayList::new);
-
                 List<CartItemResponse> cartItemResponses = cartItems.stream().map(cartItem -> new CartItemResponse(
                         cartItem.getId(),
                         cartItem.getCartId(),
@@ -66,6 +67,9 @@ public class CartItemServlet extends HttpServlet {
                 CartResponse cartResponse = new CartResponse(cartId, userId, cartItemResponses);
                 JsonUtils.out(response, cartResponse, HttpServletResponse.SC_OK);
             } else {
+                CartDAO cartDAO = new CartDAO();
+                Cart cart = new Cart(0L, userId, Timestamp.from(Instant.now()), null);
+                cartDAO.insert(cart,"");
                 CartResponse cartResponse = new CartResponse(0L, userId, Collections.emptyList());
                 JsonUtils.out(response, cartResponse, HttpServletResponse.SC_OK);
             }

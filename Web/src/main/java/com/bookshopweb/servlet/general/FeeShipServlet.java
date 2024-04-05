@@ -28,12 +28,12 @@ public class FeeShipServlet extends HttpServlet {
         String provinceID = "";
         String districtID = "";
         String wardID = "";
-        int quantity = Integer.valueOf(req.getParameter("quantity"));
-        int weight = Integer.valueOf(req.getParameter("weight")) * quantity;
-        int length = Integer.valueOf(req.getParameter("length"));
-        int width = Integer.valueOf(req.getParameter("width"));
-        int height = Integer.valueOf(req.getParameter("height")) * quantity;
-        int unitShipping = Integer.valueOf(req.getParameter("unitShip"));
+        int quantity = Integer.valueOf(req.getParameter("quantity"));// số lượng sản phẩm
+        int weight = Integer.valueOf(req.getParameter("weight")) * quantity;// trọng lượng sản phẩm (kg)
+        int length = Integer.valueOf(req.getParameter("length"));// chiều dài sản phẩm (cm)
+        int width = Integer.valueOf(req.getParameter("width"));// chiều rộng sản phẩm (cm)
+        int height = Integer.valueOf(req.getParameter("height")) * quantity;// chiều cao sản phẩm (cm)
+        int unitShipping = Integer.valueOf(req.getParameter("unitShip"));// đơn vị vận chuyển
         Gson gson = new Gson();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
@@ -41,9 +41,6 @@ public class FeeShipServlet extends HttpServlet {
             GHNApi ghnApi = new GHNApi();
             shopDistrictID = 3695;
             shopWardID = "90737";
-//            System.out.println(district);
-//            System.out.println(province);
-//            System.out.println(ward);
 
             List<GHNApi.Province> provincesGHN = ghnApi.getProvinces();
             List<GHNApi.District> districtsGHN = new ArrayList<>();

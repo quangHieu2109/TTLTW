@@ -64,6 +64,7 @@ public class SettingServlet extends HttpServlet {
             request.setAttribute("user", user);
         } else {
             userDAO.update(newUser,"");
+
             request.setAttribute("successMessage", successMessage);
             request.setAttribute("user", newUser);
             request.getSession().setAttribute("currentUser", newUser);

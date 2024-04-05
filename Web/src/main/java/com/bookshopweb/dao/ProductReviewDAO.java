@@ -74,6 +74,7 @@ package com.bookshopweb.dao;
 
 import com.bookshopweb.beans.Product;
 import com.bookshopweb.beans.ProductReview;
+import com.bookshopweb.beans.User;
 import com.bookshopweb.utils.JDBCUtils;
 
 import java.sql.*;
@@ -98,9 +99,9 @@ public class ProductReviewDAO extends AbsDAO<ProductReview> {
                 Timestamp createdAt = rs.getTimestamp("createdAt");
                 Timestamp updatedAt = rs.getTimestamp("updatedAt");
                 result = new ProductReview(id, userId, productId, ratingScore, content, isShow, createdAt, updatedAt);
-                rs.close();
-                st.close();
+
             }
+            rs.close();
             st.close();
 
         } catch (Exception e) {
@@ -140,7 +141,7 @@ public class ProductReviewDAO extends AbsDAO<ProductReview> {
 
         int result = 0;
         try {
-            String sql = "insert into wishlist_item (id, userId, productId, ratingScore, content, isShow, createdAt, updatedAt)" +
+            String sql = "insert into product_review (id, userId, productId,ratingScore,content,isShow ,createdAt,updatedAt)" +
                     " values(?,?,?,?,?,?,?,?)";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setLong(1,productReview.getId());
@@ -153,6 +154,7 @@ public class ProductReviewDAO extends AbsDAO<ProductReview> {
             st.setTimestamp(8, productReview.getUpdatedAt());
             result = st.executeUpdate();
             st.close();
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -357,7 +359,19 @@ public class ProductReviewDAO extends AbsDAO<ProductReview> {
     private ProductReview mapResultSetToProductReview(ResultSet resultSet) throws SQLException {
         ProductReview review = new ProductReview();
         review.setId(resultSet.getLong("id"));
-        // Map other fields as needed
+        review.setUserId(resultSet.getLong("userId"));
+        review.setProductId(resultSet.getLong("productId"));
+        review.setRatingScore(resultSet.getInt("ratingScore"));
+        review.setContent(resultSet.getString("content"));
+        review.setIsShow(resultSet.getInt("isShow"));
+        review.setCreatedAt(resultSet.getTimestamp("createdAt"));
+        review.setUpdatedAt(resultSet.getTimestamp("updatedAt"));
+        UserDAO userDao = new UserDAO();
+        review.setUser(userDao.selectPrevalue(resultSet.getLong("userId")));
+
+        ProductDAO productDAO = new ProductDAO();
+        review.setProduct( productDAO.selectPrevalue(resultSet.getLong("productId")));
+
         return review;
     }
 }

@@ -339,9 +339,12 @@ public class OrderDAO extends AbsDAO<Order> {
         order.setId(resultSet.getLong("id"));
         order.setUserId(resultSet.getLong("userId"));
         order.setStatus(resultSet.getInt("status"));
+        order.setDeliveryMethod(resultSet.getInt("deliveryMethod"));
+        order.setDeliveryPrice(resultSet.getDouble("deliveryPrice"));
         order.setCreatedAt(resultSet.getTimestamp("createdAt"));
         order.setUpdatedAt(resultSet.getTimestamp("updatedAt"));
-        // Populate other fields as needed
+
+
         return order;
     }
 }

@@ -64,6 +64,7 @@
 //}
 package com.bookshopweb.dao;
 
+import com.bookshopweb.beans.GoogleUser;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.utils.JDBCUtils;
 
@@ -201,6 +202,7 @@ public class UserDAO extends AbsDAO<User> {
                 User user = mapResultSetToUser(resultSet);
                 users.add(user);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
             // Handle exception
@@ -340,17 +342,39 @@ public class UserDAO extends AbsDAO<User> {
         }
         return userOptional;
     }
+    public User getByGoogle(GoogleUser googleUser) {
+        User userOptional = null;
+        String query = "SELECT * FROM user WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setLong(1, googleUser.getId());
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    userOptional = mapResultSetToUser(resultSet);
+                    userOptional.setGoogleUser(true);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Xử lý ngoại lệ
+        }
+        return userOptional;
+    }
 
 
     private User mapResultSetToUser(ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId(resultSet.getLong("id"));
+        user.setUsername(resultSet.getString("username"));
+        user.setPassword(resultSet.getString("password"));
+        user.setFullname(resultSet.getString("fullname"));
+        user.setEmail(resultSet.getString("email"));
+        user.setPhoneNumber(resultSet.getString("phoneNumber"));
+        user.setGender(resultSet.getInt("gender"));
+        user.setAddress(resultSet.getString("address"));
+        user.setRole(resultSet.getString("role"));
+        user.setCreateAt(resultSet.getTimestamp("createAt"));
 
         return user;
     }
-    public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-        User user = new User(10, "hiu", "111", "Quang Hieu", "","123123123", 1,"","",null);
-        System.out.println(dao.update(user, "123123"));
-    }
+
 }

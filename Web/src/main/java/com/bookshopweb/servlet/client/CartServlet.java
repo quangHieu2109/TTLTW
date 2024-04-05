@@ -49,8 +49,12 @@ public class CartServlet extends HttpServlet {
                 Timestamp.from(Instant.now()),
                 null
         );
-        long orderId = Protector.of(() -> orderDAO.insert(order,"")).get(0);
+        orderDAO.insert(order,"");
 
+        List<Order> o  = orderDAO.getOrderedPartByUserId(orderRequest.getUserId(),2,0);
+        long orderId =  o.get(0).getId();
+        System.out.println(o.size());
+        System.out.println("Order ID: " + orderId);
         String successMessage = "Đã đặt hàng và tạo đơn hàng thành công!";
         String errorMessage = "Đã có lỗi truy vấn!";
 
@@ -63,7 +67,8 @@ public class CartServlet extends HttpServlet {
                 new ErrorMessage(404, errorMessage),
                 HttpServletResponse.SC_NOT_FOUND);
 
-        if (orderId > 0L) {
+        if (orderId > 0) {
+
             List<OrderItem> orderItems = orderRequest.getOrderItems().stream().map(orderItemRequest -> new OrderItem(
                     0L,
                     orderId,
@@ -78,6 +83,7 @@ public class CartServlet extends HttpServlet {
             Protector.of(() -> {
                         orderItemDAO.bulkInsert(orderItems);
                         cartDAO.delete(cartDAO.selectPrevalue(orderRequest.getCartId()),"");
+
                     })
                     .done(r -> doneFunction.run())
                     .fail(e -> failFunction.run());
