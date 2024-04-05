@@ -9,12 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="fix dao">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/OrderItemDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/OrderItemDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartItemServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartItemServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartServlet.java" afterDir="false" />
-    </list>
+    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="google user" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,28 +57,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 9.0.48.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20240326_0002&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Hung&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 9.0.48.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "com.google.cloudcode.ide_session_index": "20240326_0002",
+    "git-widget-placeholder": "Hung",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Program/JavaWeb/TTLTW/Web",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "File.Encoding",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Program\JavaWeb\TTLTW\Web" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\.EclipseWeb\TTLTW\Web\src\main\java\com\bookshopweb\beans" />
       <recent name="C:\.EclipseWeb\TTLTW\Web\src\main\webapp\img" />
@@ -102,7 +101,7 @@
       <deployment>
         <artifact name="BookShopWeb:war">
           <settings>
-            <option name="CONTEXT_PATH" value="/BookShopWeb_war" />
+            <option name="CONTEXT_PATH" value="" />
           </settings>
         </artifact>
       </deployment>
@@ -189,8 +188,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -223,8 +221,9 @@
       <workItem from="1711968994718" duration="7960000" />
       <workItem from="1711977065059" duration="18000" />
       <workItem from="1712227582090" duration="1569000" />
-      <workItem from="1712287004829" duration="15105000" />
-      <workItem from="1712302970298" duration="9203000" />
+      <workItem from="1712287004829" duration="4023000" />
+      <workItem from="1712291887963" duration="5183000" />
+      <workItem from="1712304628978" duration="10213000" />
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />
@@ -234,39 +233,31 @@
       <option name="project" value="LOCAL" />
       <updated>1711976734387</updated>
     </task>
-    <task id="LOCAL-00003" summary="fix dao servlet">
+    <task id="LOCAL-00003" summary="google user">
       <option name="closed" value="true" />
-      <created>1712291253249</created>
+      <created>1712314462743</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1712291253249</updated>
+      <updated>1712314462743</updated>
     </task>
-    <task id="LOCAL-00004" summary="fix dao servlet">
+    <task id="LOCAL-00004" summary="google user">
       <option name="closed" value="true" />
-      <created>1712295251078</created>
+      <created>1712314658844</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1712295251078</updated>
+      <updated>1712314658844</updated>
     </task>
-    <task id="LOCAL-00005" summary="fix produtreviewdao">
+    <task id="LOCAL-00005" summary="google user">
       <option name="closed" value="true" />
-      <created>1712295773296</created>
+      <created>1712314709394</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1712295773296</updated>
+      <updated>1712314709394</updated>
     </task>
-    <task id="LOCAL-00006" summary="fix dao">
-      <option name="closed" value="true" />
-      <created>1712303372923</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1712303372923</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,10 +289,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="idea" />
     <MESSAGE value="update DAO Servlet" />
-    <MESSAGE value="fix dao servlet" />
-    <MESSAGE value="fix produtreviewdao" />
-    <MESSAGE value="fix dao" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix dao" />
+    <MESSAGE value="google user" />
+    <option name="LAST_COMMIT_MESSAGE" value="google user" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

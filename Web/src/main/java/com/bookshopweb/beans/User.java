@@ -1,7 +1,6 @@
 package com.bookshopweb.beans;
 
 import java.sql.Timestamp;
-import java.util.StringJoiner;
 
 public class User extends AbsModel<User> {
     private long id;
@@ -14,6 +13,7 @@ public class User extends AbsModel<User> {
     private String address;
     private String role;
     private Timestamp createAt;
+    private boolean googleUser = false;
 
     public User() {
     }
@@ -134,4 +134,11 @@ public class User extends AbsModel<User> {
         return createAt;
     }
 
+    public boolean isGoogleUser() {
+        return googleUser;
+    }
+
+    public void setGoogleUser(boolean googleUser) {
+        this.googleUser = googleUser;
+    }
 }
