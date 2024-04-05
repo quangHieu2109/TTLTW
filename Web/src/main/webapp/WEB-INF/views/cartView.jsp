@@ -60,15 +60,6 @@
               <label for="selectProvince">Địa chỉ nhận hàng</label>
               <select class="form-control " onscroll="4" id="selectProvince">
                 <option value="">Chọn Địa chỉ</option>
-
-                <option value="add">Thêm địa chỉ mới</option>
-                <option value="add">Thêm địa chỉ mới</option>
-                <option value="add">Thêm địa chỉ mới</option>
-                <option value="add">Thêm địa chỉ mới</option>
-                <option value="add">Thêm địa chỉ mới</option>
-                <option value="add">Thêm địa chỉ mới</option>
-                <option value="add">Thêm địa chỉ mới</option>
-                <option value="add">Thêm địa chỉ mới</option>
                 <option value="add">Thêm địa chỉ mới</option>
               </select>
             </div>

@@ -19,21 +19,6 @@
 CREATE DATABASE IF NOT EXISTS `bookshopdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `bookshopdb`;
 
--- Dumping structure for table bookshopdb.address
-CREATE TABLE IF NOT EXISTS `address` (
-  `id` bigint(20) NOT NULL,
-  `userId` bigint(20) DEFAULT NULL,
-  `houseNumber` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `userId` (`userId`),
-  CONSTRAINT `address_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Dumping data for table bookshopdb.address: ~2 rows (approximately)
-INSERT INTO `address` (`id`, `userId`, `houseNumber`) VALUES
-	(1, 1, '43'),
-	(2, 1, '45');
-
 -- Dumping structure for table bookshopdb.cart
 CREATE TABLE IF NOT EXISTS `cart` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -70,9 +55,9 @@ CREATE TABLE IF NOT EXISTS `cart_item` (
   KEY `idx_cart_item_product` (`productId`),
   CONSTRAINT `fk_cart_item_cart` FOREIGN KEY (`cartId`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_cart_item_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.cart_item: ~14 rows (approximately)
+-- Dumping data for table bookshopdb.cart_item: ~9 rows (approximately)
 INSERT INTO `cart_item` (`id`, `cartId`, `productId`, `quantity`, `createdAt`, `updatedAt`) VALUES
 	(1, 2, 55, 3, '2021-07-13 03:21:51', NULL),
 	(2, 2, 36, 2, '2021-07-05 00:21:45', NULL),
@@ -87,8 +72,7 @@ INSERT INTO `cart_item` (`id`, `cartId`, `productId`, `quantity`, `createdAt`, `
 	(16, 1, 99, 1, '2024-04-05 09:41:52', NULL),
 	(17, 9, 78, 1, '2024-04-05 09:42:01', NULL),
 	(18, 9, 41, 1, '2024-04-05 09:42:09', NULL),
-	(19, 9, 36, 1, '2024-04-05 09:42:14', NULL),
-	(20, 5, 99, 1, '2024-04-05 15:02:10', NULL);
+	(19, 9, 36, 1, '2024-04-05 09:42:14', NULL);
 
 -- Dumping structure for table bookshopdb.category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -117,22 +101,6 @@ INSERT INTO `category` (`id`, `name`, `description`, `imageName`) VALUES
 	(14, 'Sách thiếu nhi', 'Ex eu ad adipisicing magna tempor occaecat id cupidatat dolor dolor aliquip dolore.', 'sach-thieu-nhi.png'),
 	(15, 'Sách kỹ năng sống', 'Ad exercitation anim in magna qui ipsum ipsum proident magna.', 'sach-ky-nang-song.png');
 
--- Dumping structure for table bookshopdb.district
-CREATE TABLE IF NOT EXISTS `district` (
-  `id` bigint(20) NOT NULL,
-  `addressId` bigint(20) NOT NULL,
-  `districtName` varchar(255) DEFAULT NULL,
-  `districtCode` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`,`addressId`),
-  KEY `addressId` (`addressId`),
-  CONSTRAINT `district_ibfk_1` FOREIGN KEY (`addressId`) REFERENCES `address` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Dumping data for table bookshopdb.district: ~2 rows (approximately)
-INSERT INTO `district` (`id`, `addressId`, `districtName`, `districtCode`) VALUES
-	(1, 1, 'Thu Duc', 'TD'),
-	(2, 2, 'HN', 'HN');
-
 -- Dumping structure for table bookshopdb.google_user
 CREATE TABLE IF NOT EXISTS `google_user` (
   `email` varchar(255) NOT NULL,
@@ -142,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `google_user` (
   CONSTRAINT `google_user_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.google_user: ~2 rows (approximately)
+-- Dumping data for table bookshopdb.google_user: ~0 rows (approximately)
 INSERT INTO `google_user` (`email`, `userId`) VALUES
 	('timkodctk3@gmail.com', 1712310114373),
 	('kotimdctk@gmail.com', 1712310499043);
@@ -160,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.log: ~27 rows (approximately)
+-- Dumping data for table bookshopdb.log: ~22 rows (approximately)
 INSERT INTO `log` (`id`, `ip`, `levelLog`, `res`, `preValue`, `curValue`, `createAt`, `updateAt`) VALUES
 	(1711553190592, '123123', 3, 'Update on table User', '{"id":10,"username":"hiu","password":"111","fullname":"Quang Hieu","email":"","phoneNumber":"123123123","gender":1,"address":"","role":"","createAt":"Mar 27, 2024, 10:25:59 PM"}', '{"id":10,"username":"hiu","password":"111","fullname":"Quang Hieu","email":"","phoneNumber":"123123123","gender":1,"address":"","role":""}', '2024-03-27 15:25:59', '2024-03-27 15:25:59'),
 	(1712239775554, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":1,"productId":19,"quantity":1,"createdAt":"Apr 4, 2024, 9:08:47 PM"}', '2024-04-04 14:08:47', '2024-04-04 14:08:47'),
@@ -191,8 +159,7 @@ INSERT INTO `log` (`id`, `ip`, `levelLog`, `res`, `preValue`, `curValue`, `creat
 	(1712310180436, '', 2, 'Insert on table Cart', 'null', '{"id":0,"userId":1712310114373,"createdAt":"Apr 5, 2024, 4:41:52 PM","listCartItem":[]}', '2024-04-05 09:41:52', '2024-04-05 09:41:52'),
 	(1712310193062, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":9,"productId":41,"quantity":1,"createdAt":"Apr 5, 2024, 4:42:09 PM"}', '2024-04-05 09:42:09', '2024-04-05 09:42:09'),
 	(1712310199695, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":9,"productId":36,"quantity":1,"createdAt":"Apr 5, 2024, 4:42:14 PM"}', '2024-04-05 09:42:14', '2024-04-05 09:42:14'),
-	(1712310496064, '', 2, 'Insert on table User', 'null', '{"id":1712310499043,"fullname":"Thư Lê","email":"kotimdctk@gmail.com","gender":0,"role":"CUSTOMER"}', '2024-04-05 09:48:09', '2024-04-05 09:48:09'),
-	(1712329381599, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":5,"productId":99,"quantity":1,"createdAt":"Apr 5, 2024, 10:02:10 PM"}', '2024-04-05 15:02:10', '2024-04-05 15:02:10');
+	(1712310496064, '', 2, 'Insert on table User', 'null', '{"id":1712310499043,"fullname":"Thư Lê","email":"kotimdctk@gmail.com","gender":0,"role":"CUSTOMER"}', '2024-04-05 09:48:09', '2024-04-05 09:48:09');
 
 -- Dumping structure for table bookshopdb.orders
 CREATE TABLE IF NOT EXISTS `orders` (
@@ -751,22 +718,6 @@ INSERT INTO `product_review` (`id`, `userId`, `productId`, `ratingScore`, `conte
 	(151, 1, 22, 3, '11111111111111111111111111', b'1', '2024-04-05 05:29:18', NULL),
 	(152, 1, 93, 4, 'sddddddddddddddđ', b'1', '2024-04-05 05:46:37', NULL);
 
--- Dumping structure for table bookshopdb.province
-CREATE TABLE IF NOT EXISTS `province` (
-  `id` bigint(20) NOT NULL,
-  `addressId` bigint(20) NOT NULL,
-  `provinceName` varchar(255) DEFAULT NULL,
-  `provinceCode` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`,`addressId`),
-  KEY `addressId` (`addressId`),
-  CONSTRAINT `province_ibfk_1` FOREIGN KEY (`addressId`) REFERENCES `address` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Dumping data for table bookshopdb.province: ~2 rows (approximately)
-INSERT INTO `province` (`id`, `addressId`, `provinceName`, `provinceCode`) VALUES
-	(1, 1, 'Tp.HCM', 'HCM'),
-	(2, 2, 'Hn', 'HN');
-
 -- Dumping structure for table bookshopdb.user
 CREATE TABLE IF NOT EXISTS `user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -797,22 +748,6 @@ INSERT INTO `user` (`id`, `username`, `password`, `fullname`, `email`, `phoneNum
 	(1712310114373, NULL, NULL, 'Hiếu Ngô Quang', 'timkodctk3@gmail.com', NULL, b'0', NULL, 'CUSTOMER', '2024-04-05 09:41:34'),
 	(1712310499043, NULL, NULL, 'Thư Lê', 'kotimdctk@gmail.com', NULL, b'0', NULL, 'CUSTOMER', '2024-04-05 09:48:09');
 
--- Dumping structure for table bookshopdb.ward
-CREATE TABLE IF NOT EXISTS `ward` (
-  `id` bigint(20) NOT NULL,
-  `addressId` bigint(20) NOT NULL,
-  `wardName` varchar(255) DEFAULT NULL,
-  `wardCode` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`,`addressId`),
-  KEY `addressId` (`addressId`),
-  CONSTRAINT `ward_ibfk_1` FOREIGN KEY (`addressId`) REFERENCES `address` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Dumping data for table bookshopdb.ward: ~2 rows (approximately)
-INSERT INTO `ward` (`id`, `addressId`, `wardName`, `wardCode`) VALUES
-	(1, 1, 'Linh Trung', 'LT'),
-	(2, 2, 'HN', 'HN');
-
 -- Dumping structure for table bookshopdb.wishlist_item
 CREATE TABLE IF NOT EXISTS `wishlist_item` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -827,7 +762,7 @@ CREATE TABLE IF NOT EXISTS `wishlist_item` (
   CONSTRAINT `fk_wishlist_item_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.wishlist_item: ~34 rows (approximately)
+-- Dumping data for table bookshopdb.wishlist_item: ~33 rows (approximately)
 INSERT INTO `wishlist_item` (`id`, `userId`, `productId`, `createdAt`) VALUES
 	(1, 4, 1, '2021-07-20 19:09:42'),
 	(2, 4, 2, '2021-04-11 10:08:10'),

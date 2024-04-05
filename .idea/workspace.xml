@@ -9,19 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="google user">
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/AbsAddress.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Address.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/District.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Province.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Ward.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AddressDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/UserAddressServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" afterDir="false" />
+    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="address">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/general/AddressServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/general/AddressServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/settingView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/settingView.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +232,7 @@
       <workItem from="1712291887963" duration="5183000" />
       <workItem from="1712304628978" duration="10213000" />
       <workItem from="1712315523807" duration="487000" />
-      <workItem from="1712324128403" duration="14111000" />
+      <workItem from="1712324128403" duration="14555000" />
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />
@@ -276,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712314709394</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="address">
+      <option name="closed" value="true" />
+      <created>1712339603559</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712339603560</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +307,8 @@
     <MESSAGE value="idea" />
     <MESSAGE value="update DAO Servlet" />
     <MESSAGE value="google user" />
-    <option name="LAST_COMMIT_MESSAGE" value="google user" />
+    <MESSAGE value="address" />
+    <option name="LAST_COMMIT_MESSAGE" value="address" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
