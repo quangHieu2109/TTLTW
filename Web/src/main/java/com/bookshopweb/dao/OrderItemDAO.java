@@ -285,6 +285,7 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             for (OrderItem orderItem : orderItems) {
+                System.out.println(orderItem);
                 statement.setLong(1, orderItem.getOrderId());
                 statement.setLong(2, orderItem.getProductId());
                 statement.setDouble(3, orderItem.getPrice());
