@@ -316,6 +316,7 @@ public class CartItemDAO extends AbsDAO<CartItem> {
             CartItem cartItem = new CartItem();
             cartItem.setId(resultSet.getLong("id"));
             cartItem.setCartId(resultSet.getLong("cartId"));
+            cartItem.setProduct(new ProductDAO().getById(resultSet.getLong("productId")).get());
             cartItem.setProductId(resultSet.getLong("productId"));
             cartItem.setQuantity(resultSet.getInt("quantity"));
             cartItem.setCreatedAt(resultSet.getTimestamp("createdAt"));

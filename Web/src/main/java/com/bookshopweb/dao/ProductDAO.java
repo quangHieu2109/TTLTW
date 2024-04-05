@@ -155,9 +155,10 @@ public class ProductDAO extends AbsDAO<Product>{
 
                 result = new Product(id, name, price, discount, quantity, totalBuy, author, pages, publisher,
                         yearPublishing, description, imageName, shop, createdAt, updatedAt, startsAt, endsAt);
-                rs.close();
-                st.close();
+
             }
+            rs.close();
+            st.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

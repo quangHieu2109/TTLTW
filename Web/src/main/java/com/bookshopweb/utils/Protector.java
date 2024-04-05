@@ -15,7 +15,7 @@ public class Protector<R> {
         try {
             p.returnObject = f.get();
         } catch (Exception e) {
-            System.err.println(e.toString());
+           e.printStackTrace();
             p.exceptionObject = e;
         }
         return p;
@@ -28,7 +28,7 @@ public class Protector<R> {
             f.run();
             p.returnObject = false;
         } catch (Exception e) {
-            System.err.println(e.toString());
+            e.printStackTrace();
             p.exceptionObject = e;
         }
         return p;

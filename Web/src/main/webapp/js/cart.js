@@ -287,6 +287,7 @@ const state = {
 
 // RENDER
 function render() {
+  console.log(currentUserIdMetaTag)
   // Render cartTableRootElement
   const cartItemRowComponentsFragment = state.cart.cartItems.map(cartItemRowComponent).join("");
   cartTableRootElement.innerHTML = cartTableComponent(cartItemRowComponentsFragment);
@@ -335,3 +336,4 @@ if (currentUserIdMetaTag) {
   cartTableRootElement.innerHTML = loadingComponent();
   void state.initState();
 }
+

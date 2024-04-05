@@ -64,6 +64,7 @@
 //}
 package com.bookshopweb.dao;
 
+import com.bookshopweb.beans.GoogleUser;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.utils.JDBCUtils;
 
@@ -340,6 +341,23 @@ public class UserDAO extends AbsDAO<User> {
         }
         return userOptional;
     }
+    public User getByGoogle(GoogleUser googleUser) {
+        User userOptional = null;
+        String query = "SELECT * FROM user WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setLong(1, googleUser.getId());
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    userOptional = mapResultSetToUser(resultSet);
+                    userOptional.setGoogleUser(true);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Xử lý ngoại lệ
+        }
+        return userOptional;
+    }
 
 
     private User mapResultSetToUser(ResultSet resultSet) throws SQLException {
@@ -353,7 +371,7 @@ public class UserDAO extends AbsDAO<User> {
         user.setGender(resultSet.getInt("gender"));
         user.setAddress(resultSet.getString("address"));
         user.setRole(resultSet.getString("role"));
-        user.setCreateAt(resultSet.getTimestamp("create_at"));
+        user.setCreateAt(resultSet.getTimestamp("createAt"));
 
         return user;
     }

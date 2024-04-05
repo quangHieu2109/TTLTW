@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
 <fmt:setLocale value="vi_VN"/>
 <!DOCTYPE html>
 <html lang="vi">
@@ -23,7 +24,9 @@
     <h2 class="title-page"><fmt:message key="thiet_dat"/></h2>
   </div> <!-- container.// -->
 </section> <!-- section-pagetop.// -->
-
+<%--  <c:set var="disable" value=""/>--%>
+  <c:if test="${sessionScope.currentUser.googleUser}">
+      <s:set var="disable" value="disabled"/>  </c:if>
 <section class="section-content padding-y">
   <div class="container">
     <div class="row">
@@ -55,7 +58,8 @@
                              class="form-control"
                              id="inputUsername"
                              name="username"
-                             value="${requestScope.user.username}">
+                             value="${requestScope.user.username}"
+                              disabled>
                     </div>
                     <div class="mb-3">
                       <label for="inputFullname" class="form-label"><fmt:message key="ho_va_ten"/></label>
@@ -71,7 +75,8 @@
                              class="form-control"
                              id="inputEmail"
                              name="email"
-                             value="${requestScope.user.email}">
+                             value="${requestScope.user.email}"
+                              ${disable}>
                     </div>
                     <div class="mb-3">
                       <label for="inputPhoneNumber" class="form-label"><fmt:message key="so_dien_thoai"/></label>

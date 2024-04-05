@@ -48,6 +48,9 @@
                 <a href="${pageContext.request.contextPath}/cart" class="nav-link text-body position-relative">
                   <span id="total-cart-items-quantity" class="position-absolute top-0 end-0 mt-2 badge rounded-pill bg-primary">
                     ...
+
+
+
                   </span>
                   <i class="bi bi-cart d-block text-center fs-3 position-relative"></i>
                   <fmt:message key="gio_hang"/>

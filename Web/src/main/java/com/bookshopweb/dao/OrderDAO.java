@@ -343,7 +343,7 @@ public class OrderDAO extends AbsDAO<Order> {
         order.setDeliveryPrice(resultSet.getDouble("deliveryPrice"));
         order.setCreatedAt(resultSet.getTimestamp("createdAt"));
         order.setUpdatedAt(resultSet.getTimestamp("updatedAt"));
-        order.setTotalPrice(resultSet.getDouble("totalPrice"));
+
 
         return order;
     }
