@@ -114,7 +114,8 @@
           <dt class="col-xl-4 col-sm-5 col-6"><fmt:message key="so_luong"/></dt>
           <dd class="col-xl-8 col-sm-7 col-6">
             <input type="number" id="cart-item-quantity" class="form-control w-50" value="1" min="1"
-                   max="${requestScope.product.quantity}" step="1"/>
+                   max="${requestScope.product.quantity}" step="1"
+            />
           </dd>
         </dl>
 
@@ -165,10 +166,11 @@
                   <div class="ratting-author float-start">
                     <h5 class="float-start me-3">${productReview.user.fullname}</h5>
                     <span>
-                      <fmt:parseDate value="${productReview.createdAt}"
-                                     pattern="yyyy-MM-dd'T'HH:mm" var="parsedCreatedAt"
-                                     type="both"/>
-                      <fmt:formatDate pattern="HH:mm dd/MM/yyyy " value="${parsedCreatedAt}"/>
+                      ${productReview.createdAt}
+<%--                      <fmt:parseDate value="${productReview.createdAt}"--%>
+<%--                                     pattern="yyyy-MM-dd'T'HH:mm" var="parsedCreatedAt"--%>
+<%--                                     type="both"/>--%>
+<%--                      <fmt:formatDate pattern="HH:mm dd/MM/yyyy " value="${parsedCreatedAt}"/>--%>
                     </span>
                   </div>
                   <div class="ratting-star float-end">

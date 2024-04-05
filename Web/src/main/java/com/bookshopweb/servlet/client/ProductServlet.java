@@ -94,7 +94,7 @@ public class ProductServlet extends HttpServlet {
             request.setAttribute("category", category);
             request.setAttribute("product", product);
             request.setAttribute("totalProductReviews", totalProductReviews);
-//            request.setAttribute("productReviews", productReviews); dòng này khi comment thì không hiện looix
+            request.setAttribute("productReviews", productReviews);
             request.setAttribute("totalPagesOfProductReviews", totalPagesOfProductReviews);
             request.setAttribute("pageReview", pageReview);
             request.setAttribute("averageRatingScore", averageRatingScore);
