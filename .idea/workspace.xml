@@ -9,7 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="google user" />
+    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="address">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +21,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
         <option value="Class" />
       </list>
     </option>
@@ -75,7 +79,7 @@
     "project.structure.last.edited": "Problems",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "File.Encoding",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -86,6 +90,9 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\.EclipseWeb\TTLTW\Web\src\main\java\com\bookshopweb\beans" />
       <recent name="C:\.EclipseWeb\TTLTW\Web\src\main\webapp\img" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.bookshopweb.servlet.client" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -224,6 +231,8 @@
       <workItem from="1712287004829" duration="4023000" />
       <workItem from="1712291887963" duration="5183000" />
       <workItem from="1712304628978" duration="10213000" />
+      <workItem from="1712315523807" duration="487000" />
+      <workItem from="1712324128403" duration="14555000" />
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />
@@ -257,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712314709394</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="address">
+      <option name="closed" value="true" />
+      <created>1712339603559</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712339603560</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,7 +307,8 @@
     <MESSAGE value="idea" />
     <MESSAGE value="update DAO Servlet" />
     <MESSAGE value="google user" />
-    <option name="LAST_COMMIT_MESSAGE" value="google user" />
+    <MESSAGE value="address" />
+    <option name="LAST_COMMIT_MESSAGE" value="address" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
