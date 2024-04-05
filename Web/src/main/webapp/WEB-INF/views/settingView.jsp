@@ -14,6 +14,7 @@
   <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
   <title><fmt:message key="thiet_dat" /></title>
+
 </head>
 
 <body>
@@ -114,6 +115,7 @@
                              name="address"
                              value="${requestScope.user.address}">
                     </div>
+
                     <button type="submit" class="btn btn-primary w-100"><fmt:message key="cap_nhat_thong_tin_moi"/></button>
                   </form>
                 </div>

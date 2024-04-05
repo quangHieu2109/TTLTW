@@ -18,6 +18,8 @@
   <!-- Custom Scripts -->
   <script src="${pageContext.request.contextPath}/js/toast.js" type="module"></script>
   <script src="${pageContext.request.contextPath}/js/cart.js" type="module"></script>
+  <script src="${pageContext.request.contextPath}/js/address.js" type="text/javascript"></script>
+
 </head>
 
 <body>
@@ -54,7 +56,22 @@
           </main> <!-- col.// -->
 
           <aside class="col-lg-3">
+            <div class="form-group">
+              <label for="selectProvince">Địa chỉ nhận hàng</label>
+              <select class="form-control " onscroll="4" id="selectProvince">
+                <option value="">Chọn Địa chỉ</option>
 
+                <option value="add">Thêm địa chỉ mới</option>
+                <option value="add">Thêm địa chỉ mới</option>
+                <option value="add">Thêm địa chỉ mới</option>
+                <option value="add">Thêm địa chỉ mới</option>
+                <option value="add">Thêm địa chỉ mới</option>
+                <option value="add">Thêm địa chỉ mới</option>
+                <option value="add">Thêm địa chỉ mới</option>
+                <option value="add">Thêm địa chỉ mới</option>
+                <option value="add">Thêm địa chỉ mới</option>
+              </select>
+            </div>
             <div class="card mb-3">
               <div class="card-body">
                 <p class="card-title"><fmt:message key="hinh_thuc_giao_hang"/></p>
