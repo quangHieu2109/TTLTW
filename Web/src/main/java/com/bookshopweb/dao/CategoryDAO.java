@@ -130,8 +130,7 @@ public class CategoryDAO extends AbsDAO<Category>{
 
         int result = 0;
         try{
-            String sql = "insert into category (id, name, description, imageName)\" +\n" +
-                    "\" values(?,?,?,?)";
+            String sql = "insert into category (id, name, description, imageName) values(?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setLong(1,category.getId());
             ps.setString(2, category.getName());

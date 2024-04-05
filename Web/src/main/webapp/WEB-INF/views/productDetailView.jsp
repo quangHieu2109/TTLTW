@@ -108,16 +108,15 @@
           <dd class="col-md-9">${requestScope.product.shop == 0 ? '<fmt:message key="khong"/>' : '<fmt:message key="co"/>'}</dd>
 
           <dt class="col-md-3"><fmt:message key="ngay_tao"/></dt>
-          <dd class="col-md-9">${requestScope.product.createdAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</dd>
+          <dd class="col-md-9">${requestScope.product.createdAt.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy")) }</dd>
 
           <dt class="col-md-3"><fmt:message key="ngay_cap_nhat"/></dt>
-          <dd class="col-md-9">${requestScope.product.updatedAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</dd>
-
+          <dd class="col-md-9">${requestScope.product.updatedAt.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy")) }</dd>
           <dt class="col-md-3"><fmt:message key="ngay_bat_dau_khuyen_mai"/></dt>
-          <dd class="col-md-9">${requestScope.product.startsAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</dd>
-
+          <dd class="col-md-9">${requestScope.product.startsAt.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy")) }</dd>
           <dt class="col-md-3"><fmt:message key="ngay_ket_thuc_khuyen_mai"/></dt>
-          <dd class="col-md-9">${requestScope.product.endsAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</dd>
+          <dd class="col-md-9">${requestScope.product.endsAt.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy")) }</dd>
+          Trong đoạn mã trên:
         </dl>
       </div>
     </div> <!-- card.// -->

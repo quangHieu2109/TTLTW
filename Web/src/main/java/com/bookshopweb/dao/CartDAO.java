@@ -92,8 +92,7 @@ public class CartDAO extends AbsDAO<Cart> {
                 result.addCartItem(dao.selectByCart(result));
 
             }
-            rs.close();
-            st.close();
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -116,8 +115,7 @@ public class CartDAO extends AbsDAO<Cart> {
                 result.addCartItem(dao.selectByCart(result));
 
             }
-            rs.close();
-            st.close();
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -174,6 +172,7 @@ public class CartDAO extends AbsDAO<Cart> {
         try {
             String sql = "delete from cart where id=?";
             PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, cart.getId());
             result = st.executeUpdate();
             st.close();
         } catch (Exception e) {

@@ -63,8 +63,9 @@
               </a>
               (${productReview.user.fullname})
             </td>
-            <td>${productReview.createdAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</td>
-            <td>${productReview.updatedAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</td>
+            <td>${productReview.createdAt.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</td>
+            <td>${productReview.updatedAt.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</td>
+
             <td>
               <div class="ratting-star">
                 <span class="rating-stars">

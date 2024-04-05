@@ -73,9 +73,13 @@ public class UpdateProductServlet extends HttpServlet {
         product.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 
 // Chuyển đổi startsAt thành Timestamp (nếu startsAt không rỗng)
+        // Chuyển đổi startsAt thành Timestamp (nếu không rỗng)
         if (!request.getParameter("startsAt").trim().isEmpty()) {
             try {
-                Timestamp startsAt = Timestamp.valueOf(request.getParameter("startsAt"));
+                String startsAtString = request.getParameter("startsAt");
+                // Định dạng lại chuỗi ngày giờ từ "yyyy-MM-ddTHH:mm" thành "yyyy-MM-dd HH:mm:ss"
+                startsAtString = startsAtString.replace("T", " ").replace("Z"," ") + ":00"; // Thêm giây (00) vào cuối chuỗi
+                Timestamp startsAt = Timestamp.valueOf(startsAtString);
                 product.setStartsAt(startsAt);
             } catch (IllegalArgumentException e) {
                 // Xử lý ngoại lệ nếu định dạng không hợp lệ
@@ -86,10 +90,19 @@ public class UpdateProductServlet extends HttpServlet {
             product.setStartsAt(null);
         }
 
+// Tương tự cho endsAt
+
+
+// Tương tự cho endsAt
+
+
 // Chuyển đổi endsAt thành Timestamp (nếu endsAt không rỗng)
         if (!request.getParameter("endsAt").trim().isEmpty()) {
             try {
-                Timestamp endsAt = Timestamp.valueOf(request.getParameter("endsAt"));
+                String endsAtString = request.getParameter("startsAt");
+                // Định dạng lại chuỗi ngày giờ thành "yyyy-MM-dd HH:mm:ss"
+                endsAtString = endsAtString.replace("T", " ").replace("Z", " ") +":00";
+                Timestamp endsAt = Timestamp.valueOf(endsAtString);
                 product.setEndsAt(endsAt);
             } catch (IllegalArgumentException e) {
                 // Xử lý ngoại lệ nếu định dạng không hợp lệ

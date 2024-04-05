@@ -85,8 +85,7 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
                 Timestamp updatedAt = rs.getTimestamp("updatedAt");
                 result=(new OrderItem(id, orderId, productId, price, discount, quantity, createdAt, updatedAt));
             }
-            rs.close();
-            st.close();
+
 
 
         } catch (Exception e) {
@@ -112,8 +111,7 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
                 Timestamp updatedAt = rs.getTimestamp("updatedAt");
                 result.add(new OrderItem(id, orderId, productId, price, discount, quantity, createdAt, updatedAt));
             }
-            rs.close();
-            st.close();
+
 
 
         } catch (Exception e) {
