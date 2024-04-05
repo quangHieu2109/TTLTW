@@ -201,6 +201,7 @@ public class UserDAO extends AbsDAO<User> {
                 User user = mapResultSetToUser(resultSet);
                 users.add(user);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
             // Handle exception

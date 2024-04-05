@@ -99,9 +99,9 @@ public class ProductReviewDAO extends AbsDAO<ProductReview> {
                 Timestamp createdAt = rs.getTimestamp("createdAt");
                 Timestamp updatedAt = rs.getTimestamp("updatedAt");
                 result = new ProductReview(id, userId, productId, ratingScore, content, isShow, createdAt, updatedAt);
-                rs.close();
-                st.close();
+
             }
+            rs.close();
             st.close();
 
         } catch (Exception e) {
