@@ -353,7 +353,7 @@ public class UserDAO extends AbsDAO<User> {
         user.setGender(resultSet.getInt("gender"));
         user.setAddress(resultSet.getString("address"));
         user.setRole(resultSet.getString("role"));
-        user.setCreateAt(resultSet.getTimestamp("create_at"));
+        user.setCreateAt(resultSet.getTimestamp("createAt"));
 
         return user;
     }

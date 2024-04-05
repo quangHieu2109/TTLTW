@@ -61,7 +61,7 @@ public class ProductServlet extends HttpServlet {
             if (pageReview < 1 || pageReview > totalPagesOfProductReviews) {
                 pageReview = 1;
             }
-
+//
             // Tính mốc truy vấn (offset)
             int offset = (pageReview - 1) * PRODUCT_REVIEWS_PER_PAGE;
 
@@ -83,7 +83,7 @@ public class ProductServlet extends HttpServlet {
             List<Product> relatedProducts = Protector.of(() -> productDAO.getRandomPartByCategoryId(
                     4, 0, category.getId()
             )).get(ArrayList::new);
-
+//
             // Kiểm tra có phải là sản phẩm yêu thích
             int isWishlistItem = Optional.ofNullable((User) request.getSession().getAttribute("currentUser"))
                     .map(User::getId)
@@ -94,7 +94,7 @@ public class ProductServlet extends HttpServlet {
             request.setAttribute("category", category);
             request.setAttribute("product", product);
             request.setAttribute("totalProductReviews", totalProductReviews);
-            request.setAttribute("productReviews", productReviews);
+//            request.setAttribute("productReviews", productReviews); dòng này khi comment thì không hiện looix
             request.setAttribute("totalPagesOfProductReviews", totalPagesOfProductReviews);
             request.setAttribute("pageReview", pageReview);
             request.setAttribute("averageRatingScore", averageRatingScore);

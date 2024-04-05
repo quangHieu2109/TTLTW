@@ -141,19 +141,16 @@ public class ProductReviewDAO extends AbsDAO<ProductReview> {
 
         int result = 0;
         try {
-            String sql = "insert into wishlist_item (id, userId, productId, ratingScore, content, isShow, createdAt, updatedAt)" +
-                    " values(?,?,?,?,?,?,?,?)";
+            String sql = "insert into wishlist_item (id, userId, productId, createdAt)" +
+                    " values(?,?,?,?)";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setLong(1,productReview.getId());
             st.setLong(2, productReview.getUserId());
             st.setLong(3, productReview.getProductId());
-            st.setInt(4, productReview.getRatingScore());
-            st.setString(5, productReview.getContent());
-            st.setInt(6, productReview.getIsShow());
-            st.setTimestamp(7, productReview.getCreatedAt());
-            st.setTimestamp(8, productReview.getUpdatedAt());
+            st.setTimestamp(4, productReview.getCreatedAt());
             result = st.executeUpdate();
             st.close();
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);
