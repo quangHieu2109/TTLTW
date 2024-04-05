@@ -20,7 +20,7 @@
 
 <c:if test="${sessionScope.currentUser.googleUser}">
 
-    <s:set var="disable" value="disabled"/> </c:if>
+    <c:set var="disable" value="disabled"/> </c:if>
 
 <section class="section-pagetop bg-light">
     <div class="container">

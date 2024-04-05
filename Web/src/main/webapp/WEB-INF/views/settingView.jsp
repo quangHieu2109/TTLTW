@@ -26,7 +26,7 @@
 </section> <!-- section-pagetop.// -->
 <%--  <c:set var="disable" value=""/>--%>
   <c:if test="${sessionScope.currentUser.googleUser}">
-      <s:set var="disable" value="disabled"/>  </c:if>
+      <c:set var="disable" value="disabled"/>  </c:if>
 <section class="section-content padding-y">
   <div class="container">
     <div class="row">
