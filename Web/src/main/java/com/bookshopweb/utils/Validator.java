@@ -34,6 +34,13 @@ public class Validator<T> {
         violation.ifPresent(violations::add);
         return this;
     }
+    public Validator<T> isNotConttain(String other) {
+        Optional<String> violation = Optional.ofNullable(o)
+                .filter(obj -> String.valueOf(obj).contains(other))
+                .map(obj -> "Vui lòng chọn giá trị phù hợp");
+        violation.ifPresent(violations::add);
+        return this;
+    }
 
     public Validator<T> isNotEmpty() {
         Optional<String> violation = Optional.ofNullable(o)

@@ -64,6 +64,7 @@
 //}
 package com.bookshopweb.dao;
 
+import com.bookshopweb.beans.Address;
 import com.bookshopweb.beans.GoogleUser;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.utils.JDBCUtils;
@@ -89,9 +90,11 @@ public class UserDAO extends AbsDAO<User> {
                 String email = rs.getString("email");
                 String phoneNumber = rs.getString("phoneNumber");
                 int gender = rs.getInt("gender");
-                String address = rs.getString("address");
                 String role = rs.getString("role");
                 Timestamp createAt = rs.getTimestamp("createAt");
+                List<Address> addresses= new AddressDAO().selectByUser(id);
+                Address address = addresses.size() > 0 ? addresses.get(0) : null;
+
                 result = new User(id, username, password, fullname, email, phoneNumber, gender, address, role, createAt);
             }
         } catch (Exception e) {
@@ -116,7 +119,8 @@ public class UserDAO extends AbsDAO<User> {
                 String address = rs.getString("address");
                 String role = rs.getString("role");
                 Timestamp createAt = rs.getTimestamp("createAt");
-                result = new User(id, userName, password, fullname, email, phoneNumber, gender, address, role, createAt);
+
+                result = new User(id, userName, password, fullname, email, phoneNumber, gender, new AddressDAO().selectByUser(id).get(0), role, createAt);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -145,7 +149,7 @@ public class UserDAO extends AbsDAO<User> {
         int result  = 0;
         try {
             String sql = "update user " +
-                    "set password=?, fullname=?, email=?, phoneNumber=?,gender=?, address=?, role=?" +
+                    "set password=?, fullname=?, email=?, phoneNumber=?,gender=?, role=?" +
                     "where id=?";
 
             PreparedStatement st = conn.prepareStatement(sql);
@@ -154,11 +158,11 @@ public class UserDAO extends AbsDAO<User> {
             st.setString(3, user.getEmail());
             st.setString(4, user.getPhoneNumber());
             st.setInt(5, user.getGender());
-            st.setString(6, user.getAddress());
-            st.setString(7, user.getRole());
-            st.setLong(8, user.getId());
+            st.setString(6, user.getRole());
+            st.setLong(7, user.getId());
             result = st.executeUpdate();
             st.close();
+           new AddressDAO().updateAddress(user.getAddress());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -171,8 +175,8 @@ public class UserDAO extends AbsDAO<User> {
 
         int result = 0;
         try {
-            String sql = "insert into user(id, username, password, fullname, email, phoneNumber, gender, address, role ) " +
-                    "values(?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into user(id, username, password, fullname, email, phoneNumber, gender, role ) " +
+                    "values(?,?,?,?,?,?,?,?)";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setLong(1, user.getId());
             st.setString(2, user.getUsername());
@@ -181,11 +185,15 @@ public class UserDAO extends AbsDAO<User> {
             st.setString(5, user.getEmail());
             st.setString(6, user.getPhoneNumber());
             st.setInt(7, user.getGender());
-            st.setString(8, user.getAddress());
-            st.setString(9, user.getRole());
+            st.setString(8, user.getRole());
             result = st.executeUpdate();
             st.close();
-
+            UserDAO userDAO = new UserDAO();
+            userDAO.getByUsername(user.getUsername()).ifPresent(u -> {
+                user.setId(u.getId());
+            });
+            user.getAddress().setUserId(user.getId());
+            new AddressDAO().insertAddress(user.getAddress());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -256,6 +264,7 @@ public class UserDAO extends AbsDAO<User> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     user = Optional.of(mapResultSetToUser(resultSet));
+
                 }
             }
         } catch (SQLException e) {
@@ -370,9 +379,11 @@ public class UserDAO extends AbsDAO<User> {
         user.setEmail(resultSet.getString("email"));
         user.setPhoneNumber(resultSet.getString("phoneNumber"));
         user.setGender(resultSet.getInt("gender"));
-        user.setAddress(resultSet.getString("address"));
         user.setRole(resultSet.getString("role"));
         user.setCreateAt(resultSet.getTimestamp("createAt"));
+        List<Address> addresses= new AddressDAO().selectByUser(user.getId());
+        user.setAddress(addresses.size() > 0 ? addresses.get(0) : null);
+
 
         return user;
     }

@@ -3,13 +3,13 @@ package com.bookshopweb.beans;
 public class Address {
     private long id;
     private long userId;
-    private Province province;
-    private District district;
-    private Ward ward;
+    private String province;
+    private String district;
+    private String ward;
 
     private String houseNumber;
 
-    public Address(long id, long userId, Province province, District district, Ward ward, String houseNumber) {
+    public Address(long id, long userId, String province, String district, String ward, String houseNumber) {
         this.id = id;
         this.userId = userId;
         this.province = province;
@@ -44,27 +44,27 @@ public class Address {
         this.userId = userId;
     }
 
-    public Province getProvince() {
+    public String getProvince() {
         return province;
     }
 
-    public void setProvince(Province province) {
+    public void setProvince(String province) {
         this.province = province;
     }
 
-    public District getDistrict() {
+    public String getDistrict() {
         return district;
     }
 
-    public void setDistrict(District district) {
+    public void setDistrict(String district) {
         this.district = district;
     }
 
-    public Ward getWard() {
+    public String getWard() {
         return ward;
     }
 
-    public void setWard(Ward ward) {
+    public void setWard(String ward) {
         this.ward = ward;
     }
 
@@ -74,5 +74,17 @@ public class Address {
 
     public void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", province='" + province + '\'' +
+                ", district='" + district + '\'' +
+                ", ward='" + ward + '\'' +
+                ", houseNumber='" + houseNumber + '\'' +
+                '}';
     }
 }

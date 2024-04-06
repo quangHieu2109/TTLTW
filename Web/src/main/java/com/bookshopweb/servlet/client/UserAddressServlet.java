@@ -45,22 +45,12 @@ public class UserAddressServlet extends HttpServlet {
         User user = (User) session.getAttribute("currentUser");
         long id = new Random().nextInt(9)*10000+ Calendar.getInstance().getTimeInMillis();
         String houseNumber = request.getParameter("houseNumber");
-        Address address = new Address(id, user.getId(), houseNumber);
-        long provinceId = Long.parseLong(request.getParameter("provinceId"));
-        long districtId = Long.parseLong(request.getParameter("districtId"));
-        long wardId = Long.parseLong(request.getParameter("wardId"));
-
         String provinceName = request.getParameter("provinceName");
         String districtName = request.getParameter("districtName");
         String wardName = request.getParameter("wardName");
 
-        String provinceCode = request.getParameter("provinceCode");
-        String districtCode = request.getParameter("districtCode");
-        String wardCode = request.getParameter("wardCode");
+        Address address = new Address(id, user.getId(), provinceName, districtName, wardName, houseNumber);
 
-        address.setProvince(new Province(provinceId, id, provinceName, provinceCode));
-        address.setDistrict(new District(districtId, id, districtName, districtCode));
-        address.setWard(new Ward(wardId, id, wardName, wardCode));
 
         int status = new AddressDAO().insertAddress(address);
         response.setStatus(200);
