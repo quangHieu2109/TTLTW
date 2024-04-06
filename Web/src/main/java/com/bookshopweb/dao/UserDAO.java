@@ -189,9 +189,13 @@ public class UserDAO extends AbsDAO<User> {
             result = st.executeUpdate();
             st.close();
             UserDAO userDAO = new UserDAO();
-            userDAO.getByUsername(user.getUsername()).ifPresent(u -> {
-                user.setId(u.getId());
-            });
+            if (user.getId() == 0L) {
+                userDAO.getByUsername(user.getUsername()).ifPresent(u -> {
+                    user.setId(u.getId());
+                });
+            }
+
+
             user.getAddress().setUserId(user.getId());
             new AddressDAO().insertAddress(user.getAddress());
 

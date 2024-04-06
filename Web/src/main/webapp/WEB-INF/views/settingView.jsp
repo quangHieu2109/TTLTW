@@ -123,11 +123,12 @@
                                             <div id="collapsePassword" class="collapse">
                                                 <div class="card-body">
                                                     <div class="mb-3">
-                                                        <label for="houseNumber" class="form-label">So nha</label>
-                                                        <select id="houseNumber">
-                                                            <option selected>${requestScope.user.address.houseNumber}</option>
-
-                                                        </select>
+                                                        <label for="houseNumber" class="form-label">Số nhà</label>
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               id="houseNumber"
+                                                               name="houseNumber"
+                                                               value="${requestScope.user.address.houseNumber}">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="selectProvince" class="form-label">Tiình
