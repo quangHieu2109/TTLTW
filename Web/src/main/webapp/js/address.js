@@ -1,3 +1,4 @@
+
 const contextPathMetaTag = document.querySelector("meta[name='contextPath']");
 const currentUserIdMetaTag = document.querySelector("meta[name='currentUserId']");
 var province;

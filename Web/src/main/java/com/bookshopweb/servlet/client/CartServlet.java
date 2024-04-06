@@ -2,6 +2,7 @@ package com.bookshopweb.servlet.client;
 
 import com.bookshopweb.beans.Order;
 import com.bookshopweb.beans.OrderItem;
+import com.bookshopweb.beans.User;
 import com.bookshopweb.dto.ErrorMessage;
 import com.bookshopweb.dto.OrderRequest;
 import com.bookshopweb.dto.SuccessMessage;
@@ -31,6 +32,10 @@ public class CartServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("currentUser");
+        request.setAttribute("province",user.getAddress().getProvince());
+        request.setAttribute("district",user.getAddress().getDistrict());
+        request.setAttribute("ward",user.getAddress().getWard());
         request.getRequestDispatcher("/WEB-INF/views/cartView.jsp").forward(request, response);
     }
 
@@ -53,8 +58,8 @@ public class CartServlet extends HttpServlet {
 
         List<Order> o  = orderDAO.getOrderedPartByUserId(orderRequest.getUserId(),2,0);
         long orderId =  o.get(0).getId();
-        System.out.println(o.size());
-        System.out.println("Order ID: " + orderId);
+//        System.out.println(o.size());
+//        System.out.println("Order ID: " + orderId);
         String successMessage = "Đã đặt hàng và tạo đơn hàng thành công!";
         String errorMessage = "Đã có lỗi truy vấn!";
 

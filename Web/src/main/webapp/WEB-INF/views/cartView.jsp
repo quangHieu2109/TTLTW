@@ -19,6 +19,7 @@
   <script src="${pageContext.request.contextPath}/js/toast.js" type="module"></script>
   <script src="${pageContext.request.contextPath}/js/cart.js" type="module"></script>
   <script src="${pageContext.request.contextPath}/js/address.js" type="text/javascript"></script>
+  <script src="${pageContext.request.contextPath}/js/feeship.js" type="text/javascript"></script>
 
 </head>
 
@@ -57,27 +58,45 @@
 
           <aside class="col-lg-3">
             <div class="form-group">
-              <label for="selectProvince">Địa chỉ nhận hàng</label>
+              <label >Địa chỉ nhận hàng</label>
               <select class="form-control " onscroll="4" id="selectProvince">
-                <option value="">Chọn Địa chỉ</option>
-                <option value="add">Thêm địa chỉ mới</option>
+                <option selected value="${requestScope.province}">${requestScope.province}</option>
+
+              </select>
+              <select class="form-control " onscroll="4" id="selectDistrict">
+                <option selected value="${requestScope.district}">${requestScope.district}</option>
+
+              </select>
+              <select class="form-control " onscroll="4" id="selectWard">
+                <option selected value="${requestScope.ward}">${requestScope.ward}</option>
+
               </select>
             </div>
             <div class="card mb-3">
               <div class="card-body">
-                <p class="card-title"><fmt:message key="hinh_thuc_giao_hang"/></p>
+                <p class="card-title"><fmt:message key="don_vi_van_chuyen"/></p>
+                <select class="form-select" id="unit-ship">
+                  <option value="none" selected>---</option>
+                  <option value="ViettelPost">ViettelPost</option>
+                  <option value="GHN">GHN</option>
+                </select>
                 <form>
-                  <div class="form-check mb-2">
-                    <input class="form-check-input" type="radio" name="delivery-method"
-                           id="delivery-method-1" value="1" disabled>
-                    <label class="form-check-label" for="delivery-method-1"><fmt:message key="giao_tieu_chuan"/></label>
-                  </div>
-                  <div class="form-check mb-2">
-                    <input class="form-check-input" type="radio" name="delivery-method"
-                           id="delivery-method-2" value="2" disabled>
-                    <label class="form-check-label" for="delivery-method-2"><fmt:message key="giao_nhanh"/></label>
+                  <div class="form-check mb-2 disabled" id="infoShip">
                   </div>
                 </form>
+
+<%--                <form>--%>
+<%--                  <div class="form-check mb-2">--%>
+<%--                    <input class="form-check-input" type="radio" name="delivery-method"--%>
+<%--                           id="delivery-method-1" value="1" disabled>--%>
+<%--                    <label class="form-check-label" for="delivery-method-1"><fmt:message key="giao_tieu_chuan"/></label>--%>
+<%--                  </div>--%>
+<%--                  <div class="form-check mb-2">--%>
+<%--                    <input class="form-check-input" type="radio" name="delivery-method"--%>
+<%--                           id="delivery-method-2" value="2" disabled>--%>
+<%--                    <label class="form-check-label" for="delivery-method-2"><fmt:message key="giao_nhanh"/></label>--%>
+<%--                  </div>--%>
+<%--                </form>--%>
               </div> <!-- card-body.// -->
             </div> <!-- card.// -->
 
