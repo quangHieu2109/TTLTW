@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               10.4.28-MariaDB - mariadb.org binary distribution
+-- Host:                         localhost
+-- Server version:               10.4.32-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win64
--- HeidiSQL Version:             12.4.0.6659
+-- HeidiSQL Version:             12.6.0.6765
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -19,6 +19,28 @@
 CREATE DATABASE IF NOT EXISTS `bookshopdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `bookshopdb`;
 
+-- Dumping structure for table bookshopdb.address
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `userId` bigint(20) DEFAULT NULL,
+  `houseNumber` varchar(255) DEFAULT NULL,
+  `province` varchar(100) DEFAULT NULL,
+  `district` varchar(100) DEFAULT NULL,
+  `ward` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `address_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table bookshopdb.address: ~6 rows (approximately)
+INSERT IGNORE INTO `address` (`id`, `userId`, `houseNumber`, `province`, `district`, `ward`) VALUES
+	(1, 1, NULL, 'Hậu Giang', 'THÀNH PHỐ VỊ THANH', 'XÃ TÂN TIẾN'),
+	(2, 2, NULL, NULL, NULL, NULL),
+	(3, 3, NULL, NULL, NULL, NULL),
+	(4, 4, NULL, NULL, NULL, NULL),
+	(5, 5, NULL, NULL, NULL, NULL),
+	(6, 10, NULL, NULL, NULL, NULL);
+
 -- Dumping structure for table bookshopdb.cart
 CREATE TABLE IF NOT EXISTS `cart` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -28,18 +50,15 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`id`),
   KEY `idx_cart_user` (`userId`),
   CONSTRAINT `fk_cart_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.cart: ~7 rows (approximately)
-INSERT INTO `cart` (`id`, `userId`, `createdAt`, `updatedAt`) VALUES
+-- Dumping data for table bookshopdb.cart: ~5 rows (approximately)
+INSERT IGNORE INTO `cart` (`id`, `userId`, `createdAt`, `updatedAt`) VALUES
 	(1, 4, '2021-12-30 08:39:19', NULL),
 	(2, 5, '2021-12-18 13:35:59', NULL),
 	(4, 6, '2024-03-24 12:04:34', NULL),
-	(5, 1, '2024-04-04 14:08:47', NULL),
-	(6, 1, '2024-04-04 14:11:38', NULL),
 	(7, 1, '2024-04-04 14:25:35', NULL),
-	(8, 1, '2024-04-04 15:40:17', NULL),
-	(9, 1712310114373, '2024-04-05 09:41:52', NULL);
+	(8, 1, '2024-04-04 15:40:17', NULL);
 
 -- Dumping structure for table bookshopdb.cart_item
 CREATE TABLE IF NOT EXISTS `cart_item` (
@@ -55,24 +74,17 @@ CREATE TABLE IF NOT EXISTS `cart_item` (
   KEY `idx_cart_item_product` (`productId`),
   CONSTRAINT `fk_cart_item_cart` FOREIGN KEY (`cartId`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_cart_item_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.cart_item: ~9 rows (approximately)
-INSERT INTO `cart_item` (`id`, `cartId`, `productId`, `quantity`, `createdAt`, `updatedAt`) VALUES
+-- Dumping data for table bookshopdb.cart_item: ~7 rows (approximately)
+INSERT IGNORE INTO `cart_item` (`id`, `cartId`, `productId`, `quantity`, `createdAt`, `updatedAt`) VALUES
 	(1, 2, 55, 3, '2021-07-13 03:21:51', NULL),
 	(2, 2, 36, 2, '2021-07-05 00:21:45', NULL),
-	(3, 6, 7, 3, '2024-04-04 15:22:54', NULL),
-	(4, 6, 70, 2, '2024-04-04 15:22:53', NULL),
-	(6, 6, 27, 4, '2024-04-04 15:22:36', NULL),
 	(7, 1, 19, 1, '2024-04-04 15:22:28', NULL),
 	(12, 1, 36, 1, '2024-04-04 14:11:38', NULL),
 	(13, 1, 57, 1, '2024-04-04 14:25:35', NULL),
 	(14, 1, 73, 1, '2024-04-04 15:40:17', NULL),
-	(15, 5, 22, 2, '2024-04-05 05:02:01', '2024-04-05 05:02:01'),
-	(16, 1, 99, 1, '2024-04-05 09:41:52', NULL),
-	(17, 9, 78, 1, '2024-04-05 09:42:01', NULL),
-	(18, 9, 41, 1, '2024-04-05 09:42:09', NULL),
-	(19, 9, 36, 1, '2024-04-05 09:42:14', NULL);
+	(16, 1, 99, 1, '2024-04-05 09:41:52', NULL);
 
 -- Dumping structure for table bookshopdb.category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -84,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table bookshopdb.category: ~15 rows (approximately)
-INSERT INTO `category` (`id`, `name`, `description`, `imageName`) VALUES
+INSERT IGNORE INTO `category` (`id`, `name`, `description`, `imageName`) VALUES
 	(1, 'Sách giáo khoa', 'Cillum nulla non Lorem ut irure fugiat veniam deserunt do.', 'sach-giao-khoa.jpg'),
 	(2, 'Sách khoa học', 'Aliqua exercitation ea sint do.', 'sach-khoa-hoc.png'),
 	(3, 'Truyện tranh', 'Cillum laboris et nulla nostrud duis consectetur labore cupidatat minim proident.', 'truyen-tranh.png'),
@@ -110,8 +122,8 @@ CREATE TABLE IF NOT EXISTS `google_user` (
   CONSTRAINT `google_user_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.google_user: ~0 rows (approximately)
-INSERT INTO `google_user` (`email`, `userId`) VALUES
+-- Dumping data for table bookshopdb.google_user: ~2 rows (approximately)
+INSERT IGNORE INTO `google_user` (`email`, `userId`) VALUES
 	('timkodctk3@gmail.com', 1712310114373),
 	('kotimdctk@gmail.com', 1712310499043);
 
@@ -128,8 +140,8 @@ CREATE TABLE IF NOT EXISTS `log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.log: ~22 rows (approximately)
-INSERT INTO `log` (`id`, `ip`, `levelLog`, `res`, `preValue`, `curValue`, `createAt`, `updateAt`) VALUES
+-- Dumping data for table bookshopdb.log: ~47 rows (approximately)
+INSERT IGNORE INTO `log` (`id`, `ip`, `levelLog`, `res`, `preValue`, `curValue`, `createAt`, `updateAt`) VALUES
 	(1711553190592, '123123', 3, 'Update on table User', '{"id":10,"username":"hiu","password":"111","fullname":"Quang Hieu","email":"","phoneNumber":"123123123","gender":1,"address":"","role":"","createAt":"Mar 27, 2024, 10:25:59 PM"}', '{"id":10,"username":"hiu","password":"111","fullname":"Quang Hieu","email":"","phoneNumber":"123123123","gender":1,"address":"","role":""}', '2024-03-27 15:25:59', '2024-03-27 15:25:59'),
 	(1712239775554, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":1,"productId":19,"quantity":1,"createdAt":"Apr 4, 2024, 9:08:47 PM"}', '2024-04-04 14:08:47', '2024-04-04 14:08:47'),
 	(1712239818538, '', 2, 'Insert on table Cart', 'null', '{"id":0,"userId":1,"createdAt":"Apr 4, 2024, 9:08:47 PM","listCartItem":[]}', '2024-04-04 14:08:47', '2024-04-04 14:08:47'),
@@ -159,7 +171,24 @@ INSERT INTO `log` (`id`, `ip`, `levelLog`, `res`, `preValue`, `curValue`, `creat
 	(1712310180436, '', 2, 'Insert on table Cart', 'null', '{"id":0,"userId":1712310114373,"createdAt":"Apr 5, 2024, 4:41:52 PM","listCartItem":[]}', '2024-04-05 09:41:52', '2024-04-05 09:41:52'),
 	(1712310193062, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":9,"productId":41,"quantity":1,"createdAt":"Apr 5, 2024, 4:42:09 PM"}', '2024-04-05 09:42:09', '2024-04-05 09:42:09'),
 	(1712310199695, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":9,"productId":36,"quantity":1,"createdAt":"Apr 5, 2024, 4:42:14 PM"}', '2024-04-05 09:42:14', '2024-04-05 09:42:14'),
-	(1712310496064, '', 2, 'Insert on table User', 'null', '{"id":1712310499043,"fullname":"Thư Lê","email":"kotimdctk@gmail.com","gender":0,"role":"CUSTOMER"}', '2024-04-05 09:48:09', '2024-04-05 09:48:09');
+	(1712310496064, '', 2, 'Insert on table User', 'null', '{"id":1712310499043,"fullname":"Thư Lê","email":"kotimdctk@gmail.com","gender":0,"role":"CUSTOMER"}', '2024-04-05 09:48:09', '2024-04-05 09:48:09'),
+	(1712329381599, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":5,"productId":99,"quantity":1,"createdAt":"Apr 5, 2024, 10:02:10 PM"}', '2024-04-05 15:02:10', '2024-04-05 15:02:10'),
+	(1712352244608, '', 3, 'Update on table User', '{"id":1,"username":"user1","password":"202CB962AC59075B964B07152D234B70","fullname":"Dunn Mcpherson","email":"dunnmcpherson@recrisys.com","phoneNumber":"0989894900","gender":0,"address":"8 Virginia Place, Troy, Norway","role":"ADMIN","createAt":"Mar 27, 2024, 9:08:39 PM","googleUser":false}', '{"id":1,"password":"202CB962AC59075B964B07152D234B70","fullname":"Dunn Mcpherson","email":"dunnmcpherson@recrisys.com","phoneNumber":"0989894900","gender":0,"role":"CUSTOMER","createAt":"Apr 6, 2024, 4:23:05 AM","googleUser":false}', '2024-04-05 21:23:05', '2024-04-05 21:23:05'),
+	(1712355030707, '', 3, 'Update on table CartItem', '{"id":20,"cartId":5,"productId":99,"quantity":1,"createdAt":"Apr 5, 2024, 10:02:10 PM"}', '{"id":20,"cartId":5,"productId":99,"quantity":2,"createdAt":"Apr 5, 2024, 10:02:10 PM","updatedAt":"Apr 6, 2024, 5:09:59 AM","product":{"id":99,"name":"Sách Ontagene","price":199763.0,"discount":20.0,"quantity":51,"totalBuy":86,"author":"Weeks Charles","pages":71,"publisher":"NXB Đại học Huế","yearPublishing":2009,"description":"Do in sunt sunt in tempor tempor proident dolor officia irure consequat cupidatat incididunt nulla. Id tempor duis dolore aute Lorem dolor ipsum aliqua fugiat ea. Lorem ullamco non reprehenderit cupidatat qui. Commodo pariatur qui labore anim aute anim tempor eiusmod eiusmod nulla dolor culpa. Voluptate commodo eiusmod tempor ipsum ut culpa sunt minim id laboris commodo ad ullamco in.\\r\\nEa ad aliquip aliquip tempor. Dolore reprehenderit duis aliquip minim sit duis exercitation labore nisi ad. Deserunt quis nostrud exercitation sunt consectetur aliquip in pariatur.\\r\\n","imageName":"temp-8476700387786158058.jpg","shop":1,"createdAt":"Jan 22, 2022, 3:29:03 PM"}}', '2024-04-05 15:02:10', '2024-04-05 22:09:59'),
+	(1712355050957, '', 3, 'Update on table CartItem', '{"id":20,"cartId":5,"productId":99,"quantity":2,"createdAt":"Apr 6, 2024, 5:09:59 AM","updatedAt":"Apr 6, 2024, 5:09:59 AM"}', '{"id":20,"cartId":5,"productId":99,"quantity":3,"createdAt":"Apr 6, 2024, 5:09:59 AM","updatedAt":"Apr 6, 2024, 5:10:03 AM","product":{"id":99,"name":"Sách Ontagene","price":199763.0,"discount":20.0,"quantity":51,"totalBuy":86,"author":"Weeks Charles","pages":71,"publisher":"NXB Đại học Huế","yearPublishing":2009,"description":"Do in sunt sunt in tempor tempor proident dolor officia irure consequat cupidatat incididunt nulla. Id tempor duis dolore aute Lorem dolor ipsum aliqua fugiat ea. Lorem ullamco non reprehenderit cupidatat qui. Commodo pariatur qui labore anim aute anim tempor eiusmod eiusmod nulla dolor culpa. Voluptate commodo eiusmod tempor ipsum ut culpa sunt minim id laboris commodo ad ullamco in.\\r\\nEa ad aliquip aliquip tempor. Dolore reprehenderit duis aliquip minim sit duis exercitation labore nisi ad. Deserunt quis nostrud exercitation sunt consectetur aliquip in pariatur.\\r\\n","imageName":"temp-8476700387786158058.jpg","shop":1,"createdAt":"Jan 22, 2022, 3:29:03 PM"}}', '2024-04-05 22:09:59', '2024-04-05 22:10:03'),
+	(1712355052513, '', 2, 'Insert on table Order', 'null', '{"id":0,"userId":1,"status":1,"deliveryMethod":1,"deliveryPrice":15000.0,"createdAt":"Apr 6, 2024, 5:10:06 AM","totalPrice":0.0}', '2024-04-05 22:10:06', '2024-04-05 22:10:06'),
+	(1712355101525, '', 4, 'Delete on table Cart', '{"id":5,"userId":1,"createdAt":"Apr 4, 2024, 9:08:47 PM","listCartItem":[{"id":15,"cartId":5,"productId":22,"quantity":2,"createdAt":"Apr 5, 2024, 12:02:01 PM","updatedAt":"Apr 5, 2024, 12:02:01 PM"},{"id":20,"cartId":5,"productId":99,"quantity":3,"createdAt":"Apr 6, 2024, 5:10:03 AM","updatedAt":"Apr 6, 2024, 5:10:03 AM"}]}', 'null', '2024-04-04 14:08:47', '2024-04-05 22:10:06'),
+	(1712355230471, '', 4, 'Delete on table Cart', '{"id":6,"userId":1,"createdAt":"Apr 4, 2024, 9:11:38 PM","listCartItem":[{"id":3,"cartId":6,"productId":7,"quantity":3,"createdAt":"Apr 4, 2024, 10:22:54 PM"},{"id":6,"cartId":6,"productId":27,"quantity":4,"createdAt":"Apr 4, 2024, 10:22:36 PM"},{"id":4,"cartId":6,"productId":70,"quantity":2,"createdAt":"Apr 4, 2024, 10:22:53 PM"}]}', 'null', '2024-04-04 14:11:38', '2024-04-05 22:13:04'),
+	(1712355234455, '', 2, 'Insert on table Order', 'null', '{"id":0,"userId":1,"status":1,"deliveryMethod":1,"deliveryPrice":15000.0,"createdAt":"Apr 6, 2024, 5:13:04 AM","totalPrice":0.0}', '2024-04-05 22:13:04', '2024-04-05 22:13:04'),
+	(1712364895236, '', 3, 'Update on table User', '{"id":1,"username":"user1","password":"202CB962AC59075B964B07152D234B70","fullname":"Dunn Mcpherson","email":"dunnmcpherson@recrisys.com","phoneNumber":"0989894900","gender":0,"role":"CUSTOMER","createAt":"Apr 6, 2024, 4:23:05 AM","googleUser":false}', '{"id":1,"password":"202CB962AC59075B964B07152D234B70","fullname":"Dunn Mcpherson","email":"dunnmcpherson@recrisys.com","phoneNumber":"0989894900","gender":0,"address":{"id":1,"userId":1},"role":"CUSTOMER","createAt":"Apr 6, 2024, 7:53:48 AM","googleUser":false}', '2024-04-06 00:53:48', '2024-04-06 00:53:48'),
+	(1712365235997, '', 3, 'Update on table User', '{"id":1,"username":"user1","password":"202CB962AC59075B964B07152D234B70","fullname":"Dunn Mcpherson","email":"dunnmcpherson@recrisys.com","phoneNumber":"0989894900","gender":0,"role":"CUSTOMER","createAt":"Apr 6, 2024, 4:23:05 AM","googleUser":false}', '{"id":1,"password":"202CB962AC59075B964B07152D234B70","fullname":"Dunn Mcpherson","email":"dunnmcpherson@recrisys.com","phoneNumber":"0989894900","gender":0,"address":{"id":1,"userId":1,"province":"Hồ Chí Minh","district":"QUẬN 5","ward":"PHƯỜNG 4"},"role":"CUSTOMER","createAt":"Apr 6, 2024, 8:00:27 AM","googleUser":false}', '2024-04-06 01:00:27', '2024-04-06 01:00:27'),
+	(1712365368488, '', 3, 'Update on table User', '{"id":1,"username":"user1","password":"202CB962AC59075B964B07152D234B70","fullname":"Dunn Mcpherson","email":"dunnmcpherson@recrisys.com","phoneNumber":"0989894900","gender":0,"address":{"id":1,"userId":1},"role":"CUSTOMER","createAt":"Apr 6, 2024, 4:23:05 AM","googleUser":false}', '{"id":1,"password":"202CB962AC59075B964B07152D234B70","fullname":"Dunn Mcpherson","email":"dunnmcpherson@recrisys.com","phoneNumber":"0989894900","gender":0,"address":{"id":1,"userId":1,"province":"Cần Thơ","district":"HUYỆN VĨNH THẠNH","ward":"XÃ VĨNH THỊNH"},"role":"CUSTOMER","createAt":"Apr 6, 2024, 8:01:56 AM","googleUser":false}', '2024-04-06 01:01:56', '2024-04-06 01:01:56'),
+	(1712367396556, '', 3, 'Update on table User', '{"id":1,"username":"user1","password":"202CB962AC59075B964B07152D234B70","fullname":"Dunn Mcpherson","email":"dunnmcpherson@recrisys.com","phoneNumber":"0989894900","gender":0,"address":{"id":1,"userId":1,"province":"Cần Thơ","district":"HUYỆN VĨNH THẠNH","ward":"XÃ VĨNH THỊNH"},"role":"CUSTOMER","createAt":"Apr 6, 2024, 4:23:05 AM","googleUser":false}', '{"id":1,"password":"202CB962AC59075B964B07152D234B70","fullname":"Dunn Mcpherson","email":"dunnmcpherson@recrisys.com","phoneNumber":"0989894900","gender":0,"address":{"id":1,"userId":1,"province":"Hậu Giang","district":"THÀNH PHỐ VỊ THANH","ward":"XÃ TÂN TIẾN"},"role":"CUSTOMER","createAt":"Apr 6, 2024, 8:36:26 AM","googleUser":false}', '2024-04-06 01:36:26', '2024-04-06 01:36:26'),
+	(1712370905894, '', 2, 'Insert on table User', 'null', '{"id":0,"username":"haha","password":"4E4D6C332B6FE62A63AFE56171FD3725","fullname":"haha","email":"nguyenhai0932169055@gmail.com","phoneNumber":"0936398444","gender":0,"address":{"id":0,"userId":0,"province":"Hà Nội","district":"QUẬN HAI BÀ TRƯNG","ward":"PHƯỜNG THANH NHÀN"},"role":"CUSTOMER","createAt":"Apr 6, 2024, 9:34:32 AM","googleUser":false}', '2024-04-06 02:34:32', '2024-04-06 02:34:32'),
+	(1712371226671, '', 2, 'Insert on table User', 'null', '{"id":1712310499045,"username":"qq","password":"4E4D6C332B6FE62A63AFE56171FD3725","fullname":"haha","email":"21130343@st.hcmuaf.edu.vn","phoneNumber":"0936398444","gender":0,"address":{"id":0,"userId":1712310499045,"province":"Hải Dương","district":"THÀNH PHỐ CHÍ LINH","ward":"PHƯỜNG THÁI HỌC"},"role":"CUSTOMER","createAt":"Apr 6, 2024, 9:39:51 AM","googleUser":false}', '2024-04-06 02:39:51', '2024-04-06 02:39:51'),
+	(1712371313179, '', 2, 'Insert on table Cart', 'null', '{"id":0,"userId":1712310499045,"createdAt":"Apr 6, 2024, 9:40:39 AM","listCartItem":[]}', '2024-04-06 02:40:39', '2024-04-06 02:40:39'),
+	(1712372215323, '', 2, 'Insert on table User', 'null', '{"id":1712310499047,"username":"lavekax254@gearstag.com","password":"202CB962AC59075B964B07152D234B70","fullname":"123","email":"sdad@gmail.com","phoneNumber":"0936398441","gender":1,"address":{"id":0,"userId":1712310499047,"province":"Đà Nẵng","district":"QUẬN NGŨ HÀNH SƠN","ward":"PHƯỜNG HÒA QUÝ"},"role":"CUSTOMER","createAt":"Apr 6, 2024, 9:55:59 AM","googleUser":false}', '2024-04-06 02:55:59', '2024-04-06 02:55:59'),
+	(1712372379729, '', 2, 'Insert on table User', 'null', '{"id":1712310499050,"username":"hello world","password":"202CB962AC59075B964B07152D234B70","fullname":"123","email":"2110343@st.hcmuaf.edu.vn","phoneNumber":"0936398440","gender":1,"address":{"id":0,"userId":1712310499050,"province":"Hải Phòng","district":"HUYỆN ĐẢO CÁT HẢI","ward":"XÃ HIỀN HÀO","houseNumber":"10"},"role":"CUSTOMER","createAt":"Apr 6, 2024, 9:58:02 AM","googleUser":false}', '2024-04-06 02:58:02', '2024-04-06 02:58:02');
 
 -- Dumping structure for table bookshopdb.orders
 CREATE TABLE IF NOT EXISTS `orders` (
@@ -173,10 +202,10 @@ CREATE TABLE IF NOT EXISTS `orders` (
   PRIMARY KEY (`id`),
   KEY `idx_orders_user` (`userId`),
   CONSTRAINT `fk_orders_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.orders: ~26 rows (approximately)
-INSERT INTO `orders` (`id`, `userId`, `status`, `deliveryMethod`, `deliveryPrice`, `createdAt`, `updatedAt`) VALUES
+-- Dumping data for table bookshopdb.orders: ~28 rows (approximately)
+INSERT IGNORE INTO `orders` (`id`, `userId`, `status`, `deliveryMethod`, `deliveryPrice`, `createdAt`, `updatedAt`) VALUES
 	(1, 4, 3, 1, 10000, '2021-12-01 01:34:38', NULL),
 	(2, 5, 2, 2, 50000, '2021-07-05 03:52:51', NULL),
 	(3, 4, 1, 1, 10000, '2021-10-11 02:15:13', NULL),
@@ -202,7 +231,9 @@ INSERT INTO `orders` (`id`, `userId`, `status`, `deliveryMethod`, `deliveryPrice
 	(23, 4, 1, 1, 10000, '2021-04-14 02:36:21', NULL),
 	(24, 5, 1, 2, 50000, '2021-04-05 12:56:13', NULL),
 	(25, 4, 2, 1, 10000, '2021-12-08 10:07:23', NULL),
-	(26, 6, 1, 1, 15000, '2024-03-24 09:55:53', NULL);
+	(26, 6, 1, 1, 15000, '2024-03-24 09:55:53', NULL),
+	(27, 1, 1, 1, 15000, '2024-04-05 22:10:06', NULL),
+	(28, 1, 1, 1, 15000, '2024-04-05 22:13:04', NULL);
 
 -- Dumping structure for table bookshopdb.order_item
 CREATE TABLE IF NOT EXISTS `order_item` (
@@ -219,10 +250,10 @@ CREATE TABLE IF NOT EXISTS `order_item` (
   KEY `idx_order_item_product` (`productId`),
   CONSTRAINT `fk_order_item_orders` FOREIGN KEY (`orderId`) REFERENCES `orders` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_item_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.order_item: ~61 rows (approximately)
-INSERT INTO `order_item` (`id`, `orderId`, `productId`, `price`, `discount`, `quantity`, `createdAt`, `updatedAt`) VALUES
+-- Dumping data for table bookshopdb.order_item: ~66 rows (approximately)
+INSERT IGNORE INTO `order_item` (`id`, `orderId`, `productId`, `price`, `discount`, `quantity`, `createdAt`, `updatedAt`) VALUES
 	(1, 1, 78, 286587, 0, 4, '2021-06-26 20:11:05', NULL),
 	(2, 2, 21, 29619, 0, 2, '2021-03-26 03:39:47', NULL),
 	(3, 3, 69, 299814, 0, 4, '2021-07-31 05:54:03', NULL),
@@ -283,7 +314,12 @@ INSERT INTO `order_item` (`id`, `orderId`, `productId`, `price`, `discount`, `qu
 	(58, 8, 96, 342387, 0, 1, '2021-08-19 03:15:44', NULL),
 	(59, 9, 52, 38093, 0, 1, '2021-03-07 01:17:41', NULL),
 	(60, 10, 8, 230558, 0, 3, '2021-04-25 23:53:11', NULL),
-	(61, 26, 93, 215800, 20, 1, '2024-03-24 09:55:53', NULL);
+	(61, 26, 93, 215800, 20, 1, '2024-03-24 09:55:53', NULL),
+	(62, 27, 99, 199763, 20, 3, '2024-04-05 22:10:06', NULL),
+	(63, 27, 22, 116529, 0, 2, '2024-04-05 22:10:06', NULL),
+	(64, 28, 7, 488021, 0, 3, '2024-04-05 22:13:04', NULL),
+	(65, 28, 70, 444695, 20, 2, '2024-04-05 22:13:04', NULL),
+	(66, 28, 27, 45254, 0, 4, '2024-04-05 22:13:04', NULL);
 
 -- Dumping structure for table bookshopdb.product
 CREATE TABLE IF NOT EXISTS `product` (
@@ -308,7 +344,7 @@ CREATE TABLE IF NOT EXISTS `product` (
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table bookshopdb.product: ~100 rows (approximately)
-INSERT INTO `product` (`id`, `name`, `price`, `discount`, `quantity`, `totalBuy`, `author`, `pages`, `publisher`, `yearPublishing`, `description`, `imageName`, `shop`, `createdAt`, `updatedAt`, `startsAt`, `endsAt`) VALUES
+INSERT IGNORE INTO `product` (`id`, `name`, `price`, `discount`, `quantity`, `totalBuy`, `author`, `pages`, `publisher`, `yearPublishing`, `description`, `imageName`, `shop`, `createdAt`, `updatedAt`, `startsAt`, `endsAt`) VALUES
 	(1, 'Sách Toyletry', 466183, 0, 86, 86, 'Stafford Hayden', 250, 'NXB Giáo dục', '2013', 'Consequat cupidatat magna nostrud ullamco non commodo esse. Veniam anim ipsum duis cillum cillum exercitation deserunt irure sint eiusmod. Duis consectetur adipisicing aliquip magna eiusmod ullamco ut ad ipsum nostrud dolore id. Ex ullamco nulla Lorem consequat sunt exercitation cillum adipisicing.\r\nProident labore ut qui esse cupidatat deserunt occaecat dolor in. Ad nulla reprehenderit pariatur esse enim ullamco do incididunt anim do excepteur est dolore excepteur. Laboris voluptate cupidatat anim dolore eiusmod in id fugiat est cupidatat pariatur mollit. Mollit irure proident enim consequat irure ipsum proident amet aliqua. Irure ad dolore laboris elit reprehenderit officia ex.\r\n', 'temp-10075522682831764585.jpg', b'0', '2021-03-23 01:22:50', NULL, NULL, NULL),
 	(2, 'Sách Sultrax', 26228, 0, 23, 60, 'Diane Nguyen', 305, 'NXB Đại học Sư phạm TP.HCM', '2011', 'Ipsum consequat reprehenderit amet ullamco dolore consectetur non eiusmod dolor irure sit. Lorem nulla officia dolore officia laboris. Excepteur anim consectetur reprehenderit duis duis ea nostrud. Reprehenderit consequat cupidatat enim ea eiusmod nisi. Mollit veniam quis est ex elit proident tempor pariatur sit aute. Eu Lorem irure sunt sit aute nostrud culpa. Voluptate enim sit dolor laborum est nulla eiusmod eu laborum Lorem laborum.\r\nPariatur id proident laborum consectetur pariatur deserunt quis tempor excepteur non tempor. Sit tempor irure id fugiat occaecat. Ex ut veniam nostrud sunt dolore. Veniam cillum incididunt enim tempor ut amet do est pariatur aliqua labore.\r\n', 'temp-17624438115898823949.jpg', b'1', '2021-12-19 08:03:05', NULL, NULL, NULL),
 	(3, 'Sách Medcom', 294114, 20, 68, 116, 'Byrd Collier', 457, 'NXB Đại học Sư phạm TP.HCM', '2003', 'Cupidatat ipsum ea laborum nisi veniam nulla dolor labore excepteur ad eu. Commodo Lorem esse veniam sunt in. Voluptate amet commodo est commodo ipsum excepteur aliqua voluptate amet. Sunt elit ut esse proident irure tempor velit quis eu cupidatat pariatur duis ea.\r\nEnim magna esse dolor amet ex nostrud quis consectetur velit. Sunt minim consectetur anim veniam elit proident exercitation sunt commodo veniam magna ad. Sint eu mollit veniam cupidatat occaecat fugiat reprehenderit nisi fugiat cillum. Amet exercitation aute qui eu ullamco non do officia non amet commodo. Minim excepteur nisi mollit reprehenderit ad. Sit consectetur sit sit laboris ipsum dolore ut sit ex aliquip cillum. Aliquip ut ea adipisicing ullamco Lorem nostrud magna qui amet cillum.\r\n', 'temp-6352099207348952932.jpg', b'1', '2021-07-31 03:44:48', NULL, NULL, NULL),
@@ -422,7 +458,7 @@ CREATE TABLE IF NOT EXISTS `product_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table bookshopdb.product_category: ~100 rows (approximately)
-INSERT INTO `product_category` (`productId`, `categoryId`) VALUES
+INSERT IGNORE INTO `product_category` (`productId`, `categoryId`) VALUES
 	(1, 2),
 	(2, 14),
 	(3, 5),
@@ -539,7 +575,7 @@ CREATE TABLE IF NOT EXISTS `product_import` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table bookshopdb.product_import: ~5 rows (approximately)
-INSERT INTO `product_import` (`id`, `productId`, `userId`, `importAt`, `quanlity`) VALUES
+INSERT IGNORE INTO `product_import` (`id`, `productId`, `userId`, `importAt`, `quanlity`) VALUES
 	(1, 84, 6, '2024-04-02 03:20:14', 1000),
 	(2, 36, 1, '2024-04-02 03:36:04', 2000),
 	(3, 70, 1, '2024-04-02 03:41:47', 1111),
@@ -563,8 +599,8 @@ CREATE TABLE IF NOT EXISTS `product_review` (
   CONSTRAINT `fk_product_review_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.product_review: ~150 rows (approximately)
-INSERT INTO `product_review` (`id`, `userId`, `productId`, `ratingScore`, `content`, `isShow`, `createdAt`, `updatedAt`) VALUES
+-- Dumping data for table bookshopdb.product_review: ~152 rows (approximately)
+INSERT IGNORE INTO `product_review` (`id`, `userId`, `productId`, `ratingScore`, `content`, `isShow`, `createdAt`, `updatedAt`) VALUES
 	(1, 4, 23, 4, 'Deserunt enim ullamco occaecat pariatur magna fugiat. Dolore nostrud cupidatat quis culpa sint fugiat. Anim ipsum id enim quis esse.', b'1', '2021-06-21 01:29:23', NULL),
 	(2, 1, 89, 2, 'Nostrud aliquip culpa commodo esse. Veniam aute quis fugiat anim veniam non esse reprehenderit reprehenderit do Lorem. Voluptate cupidatat nostrud laborum proident esse sunt consequat consectetur excepteur ipsum deserunt pariatur fugiat.', b'1', '2021-03-05 21:03:45', NULL),
 	(3, 4, 48, 5, 'In duis fugiat labore cillum labore ad pariatur adipisicing ipsum culpa duis sunt nostrud adipisicing. Dolor commodo culpa non dolor. Quis ea quis irure ut eu excepteur velit qui magna laborum ad.', b'1', '2021-02-21 19:36:33', NULL),
@@ -727,26 +763,25 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(50) DEFAULT NULL,
   `phoneNumber` varchar(11) DEFAULT NULL,
   `gender` bit(1) DEFAULT NULL,
-  `address` varchar(200) DEFAULT NULL,
   `role` varchar(10) DEFAULT NULL,
   `createAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_username` (`username`),
   UNIQUE KEY `uq_email` (`email`),
   UNIQUE KEY `uq_phoneNumber` (`phoneNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=1712310499044 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1712310499051 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.user: ~9 rows (approximately)
-INSERT INTO `user` (`id`, `username`, `password`, `fullname`, `email`, `phoneNumber`, `gender`, `address`, `role`, `createAt`) VALUES
-	(1, 'user1', '202CB962AC59075B964B07152D234B70', 'Dunn Mcpherson', 'dunnmcpherson@recrisys.com', '0989894900', b'0', '8 Virginia Place, Troy, Norway', 'ADMIN', '2024-03-27 14:08:39'),
-	(2, 'user2', '202CB962AC59075B964B07152D234B70', 'Foreman Carter', 'foremancarter@recrisys.com', '0993194154', b'0', '28 Richardson Street, Layhill, Netherlands', 'EMPLOYEE', '2024-03-27 14:08:39'),
-	(3, 'user3', '202CB962AC59075B964B07152D234B70', 'Felecia Cabrera', 'feleciacabrera@recrisys.com', '0930174351', b'1', '41 Linden Street, Slovan, S. Georgia and S. Sandwich Isls.', 'EMPLOYEE', '2024-03-27 14:08:39'),
-	(4, 'user4', '202CB962AC59075B964B07152D234B70', 'Juliette Mcdowell', 'juliettemcdowell@recrisys.com', '0911925643', b'1', '5 Schenck Court, Dana, Cyprus', 'CUSTOMER', '2024-03-27 14:08:39'),
-	(5, 'user5', '202CB962AC59075B964B07152D234B70', 'Vilma Spencer', 'vilmaspencer@recrisys.com', '0987509391', b'1', '5 Pooles Lane, Allentown, Zambia', 'CUSTOMER', '2024-03-27 14:08:39'),
-	(6, 'hao', '32791E666FEF96B588DB16200D5FDA94', 'Quang Hiu', 'abc@gmail.com', '0123123123', b'0', '12', 'CUSTOMER', '2024-03-27 14:08:39'),
-	(10, 'hiu', '111', 'Quang Hieu', '', '123123123', b'1', '', '', '2024-03-27 15:25:59'),
-	(1712310114373, NULL, NULL, 'Hiếu Ngô Quang', 'timkodctk3@gmail.com', NULL, b'0', NULL, 'CUSTOMER', '2024-04-05 09:41:34'),
-	(1712310499043, NULL, NULL, 'Thư Lê', 'kotimdctk@gmail.com', NULL, b'0', NULL, 'CUSTOMER', '2024-04-05 09:48:09');
+-- Dumping data for table bookshopdb.user: ~10 rows (approximately)
+INSERT IGNORE INTO `user` (`id`, `username`, `password`, `fullname`, `email`, `phoneNumber`, `gender`, `role`, `createAt`) VALUES
+	(1, 'user1', '202CB962AC59075B964B07152D234B70', 'Dunn Mcpherson', 'dunnmcpherson@recrisys.com', '0989894900', b'0', 'CUSTOMER', '2024-04-05 21:23:05'),
+	(2, 'user2', '202CB962AC59075B964B07152D234B70', 'Foreman Carter', 'foremancarter@recrisys.com', '0993194154', b'0', 'EMPLOYEE', '2024-03-27 14:08:39'),
+	(3, 'user3', '202CB962AC59075B964B07152D234B70', 'Felecia Cabrera', 'feleciacabrera@recrisys.com', '0930174351', b'1', 'EMPLOYEE', '2024-03-27 14:08:39'),
+	(4, 'user4', '202CB962AC59075B964B07152D234B70', 'Juliette Mcdowell', 'juliettemcdowell@recrisys.com', '0911925643', b'1', 'CUSTOMER', '2024-03-27 14:08:39'),
+	(5, 'user5', '202CB962AC59075B964B07152D234B70', 'Vilma Spencer', 'vilmaspencer@recrisys.com', '0987509391', b'1', 'CUSTOMER', '2024-03-27 14:08:39'),
+	(6, 'hao', '32791E666FEF96B588DB16200D5FDA94', 'Quang Hiu', 'abc@gmail.com', '0123123123', b'0', 'CUSTOMER', '2024-03-27 14:08:39'),
+	(10, 'hiu', '111', 'Quang Hieu', '', '123123123', b'1', '', '2024-03-27 15:25:59'),
+	(1712310114373, NULL, NULL, 'Hiếu Ngô Quang', 'timkodctk3@gmail.com', NULL, b'0', 'CUSTOMER', '2024-04-05 09:41:34'),
+	(1712310499043, NULL, NULL, 'Thư Lê', 'kotimdctk@gmail.com', NULL, b'0', 'CUSTOMER', '2024-04-05 09:48:09');
 
 -- Dumping structure for table bookshopdb.wishlist_item
 CREATE TABLE IF NOT EXISTS `wishlist_item` (
@@ -762,8 +797,8 @@ CREATE TABLE IF NOT EXISTS `wishlist_item` (
   CONSTRAINT `fk_wishlist_item_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.wishlist_item: ~33 rows (approximately)
-INSERT INTO `wishlist_item` (`id`, `userId`, `productId`, `createdAt`) VALUES
+-- Dumping data for table bookshopdb.wishlist_item: ~34 rows (approximately)
+INSERT IGNORE INTO `wishlist_item` (`id`, `userId`, `productId`, `createdAt`) VALUES
 	(1, 4, 1, '2021-07-20 19:09:42'),
 	(2, 4, 2, '2021-04-11 10:08:10'),
 	(3, 4, 3, '2021-08-24 14:06:10'),

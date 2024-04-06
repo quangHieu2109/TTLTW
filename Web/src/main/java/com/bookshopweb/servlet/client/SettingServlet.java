@@ -1,5 +1,6 @@
 package com.bookshopweb.servlet.client;
 
+import com.bookshopweb.beans.Address;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.UserDAO;
 
@@ -24,6 +25,7 @@ public class SettingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("currentUser");
+        System.out.println(user.getAddress());
         request.setAttribute("user", user);
         request.getRequestDispatcher("WEB-INF/views/settingView.jsp").forward(request, response);
     }
@@ -39,7 +41,10 @@ public class SettingServlet extends HttpServlet {
         values.put("email", request.getParameter("email"));
         values.put("phoneNumber", request.getParameter("phoneNumber"));
         values.put("gender", request.getParameter("gender"));
-        values.put("address", request.getParameter("address"));
+        values.put("province", request.getParameter("province"));
+        values.put("district", request.getParameter("district"));
+        values.put("ward", request.getParameter("ward"));
+        values.put("housenumber", request.getParameter("housenumber"));
 
         User newUser = new User(
                 user.getId(),
@@ -49,7 +54,11 @@ public class SettingServlet extends HttpServlet {
                 values.get("email"),
                 values.get("phoneNumber"),
                 Integer.parseInt(values.get("gender")),
-                values.get("address"),
+                new Address(1, user.getId(),
+                        values.get("province"),
+                        values.get("district"),
+                        values.get("ward"),
+                        values.get("housenumber")),
                 "CUSTOMER",
                 Timestamp.from(Instant.now())
         );
