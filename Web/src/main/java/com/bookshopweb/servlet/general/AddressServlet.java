@@ -1,7 +1,6 @@
 package com.bookshopweb.servlet.general;
 
 import com.bookshopweb.api.ViettelPostApi;
-import com.bookshopweb.utils.JsonUtils;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -30,10 +29,23 @@ public class AddressServlet extends HttpServlet {
         String provinceID = req.getParameter("provinceID");
         String districtID = req.getParameter("districtID");
         String wardID = req.getParameter("wardID");
+        String provinceName = req.getParameter("provinceName");
+        String districtName = req.getParameter("districtName");
+        String wardName = req.getParameter("wardName");
+
         List<ViettelPostApi.Province> provincesName = new ArrayList<>();
         List<ViettelPostApi.District> districtsName = new ArrayList<>();
        List<ViettelPostApi.Ward> wardsName = new ArrayList<>();
-        if(provinceID!=null) {
+        if(provinceID!=null||provinceName!=null) {
+            if(provinceName!=null) {
+
+                for (ViettelPostApi.Province province : provinces) {
+                    if (province.getPROVINCE_NAME().contains(provinceName)) {
+                        provinceID = province.getPROVINCE_ID();
+                        break;
+                    }
+                }
+            }
             for (ViettelPostApi.District district : districts) {
                 if (district.getPROVINCE_ID().equals(provinceID)) {
                     districtsName.add(district);
@@ -41,7 +53,15 @@ public class AddressServlet extends HttpServlet {
             }
 
         }
-       else if(districtID!=null) {
+       else if(districtID!=null||districtName!=null) {
+           if (districtName != null) {
+               for (ViettelPostApi.District district : districts) {
+                   if (district.getDISTRICT_NAME().contains(districtName)) {
+                       districtID = district.getDISTRICT_ID();
+                       break;
+                   }
+               }
+           }
             for (ViettelPostApi.Ward ward : wards) {
                 if (ward.getDISTRICT_ID().equals(districtID)) {
                     wardsName.add(ward);
@@ -61,7 +81,7 @@ public class AddressServlet extends HttpServlet {
         String jsonWards = gson.toJson(wardsName);
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
-        resp.getWriter().write("{\"provinces\":"+jsonProvinces+",\"districts\":"+jsonDistricts+",\"wards\":"+jsonWards+"}");
+        resp.getWriter().print("{\"provinces\":"+jsonProvinces+",\"districts\":"+jsonDistricts+",\"wards\":"+jsonWards+"}");
         resp.getWriter().flush();
         resp.getWriter().close();
         resp.setStatus(200);

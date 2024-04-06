@@ -35,6 +35,7 @@ public class OrderServlet extends HttpServlet {
         if (user != null) {
             int totalOrders = orderDAO.countByUserId(user.getId());
 
+
             // Tính tổng số trang (= tổng số order / số sản phẩm trên mỗi trang)
             int totalPages = totalOrders / ORDERS_PER_PAGE;
             if (totalOrders % ORDERS_PER_PAGE != 0) {
@@ -47,17 +48,17 @@ public class OrderServlet extends HttpServlet {
             if (page < 1 || page > totalPages) {
                 page = 1;
             }
-
-            // Tính mốc truy vấn (offset)
+//
+//            // Tính mốc truy vấn (offset)
             int offset = (page - 1) * ORDERS_PER_PAGE;
 
             // Lấy danh sách order, lấy với số lượng là ORDERS_PER_PAGE và tính từ mốc offset
             List<Order> orders = Protector.of(() -> orderDAO.getOrderedPartByUserId(
                     user.getId(), ORDERS_PER_PAGE, offset
             )).get(ArrayList::new);
-
+//
             List<OrderResponse> orderResponses = new ArrayList<>();
-
+//
             for (Order order : orders) {
                 List<OrderItem> orderItems = Protector.of(() -> orderItemDAO.getByOrderId(order.getId())).get(ArrayList::new);
 
@@ -73,6 +74,7 @@ public class OrderServlet extends HttpServlet {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 String formattedDateTime = sdf.format(order.getCreatedAt());
 
+//
                 OrderResponse orderResponse = new OrderResponse(
                         order.getId(),
                         formattedDateTime,

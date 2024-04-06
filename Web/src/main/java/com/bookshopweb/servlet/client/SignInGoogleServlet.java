@@ -1,5 +1,6 @@
 package com.bookshopweb.servlet.client;
 
+import com.bookshopweb.beans.Address;
 import com.bookshopweb.beans.Constants;
 import com.bookshopweb.beans.GoogleUser;
 import com.bookshopweb.beans.User;
@@ -46,6 +47,7 @@ public class SignInGoogleServlet extends HttpServlet {
             user.setFullname(userGoogleDTO.getName());
             user.setEmail(userGoogleDTO.getEmail());
             user.setRole("CUSTOMER");
+            user.setAddress(new Address(1, id, null, null, null, null));
 
             userDAO.insert(user,"");
             googleUserDAO.insert(googleUser);

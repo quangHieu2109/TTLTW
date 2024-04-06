@@ -2,6 +2,7 @@ package com.bookshopweb.servlet.client;
 
 import com.bookshopweb.beans.Order;
 import com.bookshopweb.beans.OrderItem;
+import com.bookshopweb.beans.User;
 import com.bookshopweb.dto.ErrorMessage;
 import com.bookshopweb.dto.OrderRequest;
 import com.bookshopweb.dto.SuccessMessage;
@@ -31,6 +32,10 @@ public class CartServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("currentUser");
+        request.setAttribute("province",user.getAddress().getProvince());
+        request.setAttribute("district",user.getAddress().getDistrict());
+        request.setAttribute("ward",user.getAddress().getWard());
         request.getRequestDispatcher("/WEB-INF/views/cartView.jsp").forward(request, response);
     }
 
@@ -49,8 +54,12 @@ public class CartServlet extends HttpServlet {
                 Timestamp.from(Instant.now()),
                 null
         );
-        long orderId = Protector.of(() -> orderDAO.insert(order,"")).get(0);
+        orderDAO.insert(order,"");
 
+        List<Order> o  = orderDAO.getOrderedPartByUserId(orderRequest.getUserId(),2,0);
+        long orderId =  o.get(0).getId();
+//        System.out.println(o.size());
+//        System.out.println("Order ID: " + orderId);
         String successMessage = "Đã đặt hàng và tạo đơn hàng thành công!";
         String errorMessage = "Đã có lỗi truy vấn!";
 
@@ -63,7 +72,8 @@ public class CartServlet extends HttpServlet {
                 new ErrorMessage(404, errorMessage),
                 HttpServletResponse.SC_NOT_FOUND);
 
-        if (orderId > 0L) {
+        if (orderId > 0) {
+
             List<OrderItem> orderItems = orderRequest.getOrderItems().stream().map(orderItemRequest -> new OrderItem(
                     0L,
                     orderId,
@@ -78,6 +88,7 @@ public class CartServlet extends HttpServlet {
             Protector.of(() -> {
                         orderItemDAO.bulkInsert(orderItems);
                         cartDAO.delete(cartDAO.selectPrevalue(orderRequest.getCartId()),"");
+
                     })
                     .done(r -> doneFunction.run())
                     .fail(e -> failFunction.run());
