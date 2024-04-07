@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 data = data.infoShips;
                 let s='';
                 data.forEach(function (dt) {
-                    s+='<div class="form-label"> <input type="radio" name="infoship" class="m-2">'+dt.TEN_DICHVU+' Gia: '+dt.GIA_CUOC+'</div>';
+                    s+='<div class="form-label"> <input type="radio" name="infoship" class="m-2">'+dt.TEN_DICHVU+' Giá: '+dt.GIA_CUOC+' '+dt.THOI_GIAN+'</div>';
                 });
 
                 document.getElementById("infoShip").innerHTML = s;
