@@ -9,13 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="fix sigin google">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" afterDir="false" />
+    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="format price">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/cart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" afterDir="false" />
     </list>
@@ -239,7 +236,7 @@
       <workItem from="1712393349316" duration="5390000" />
       <workItem from="1712409763717" duration="6348000" />
       <workItem from="1712417124510" duration="3200000" />
-      <workItem from="1712458045737" duration="3507000" />
+      <workItem from="1712458045737" duration="7103000" />
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />
@@ -297,7 +294,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712381789368</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="format price">
+      <option name="closed" value="true" />
+      <created>1712461816039</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712461816040</updated>
+    </task>
+    <task id="LOCAL-00010" summary="format price">
+      <option name="closed" value="true" />
+      <created>1712461858719</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1712461858719</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,7 +346,8 @@
     <MESSAGE value="update select address to calculate ship" />
     <MESSAGE value="update sql" />
     <MESSAGE value="fix sigin google" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix sigin google" />
+    <MESSAGE value="format price" />
+    <option name="LAST_COMMIT_MESSAGE" value="format price" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

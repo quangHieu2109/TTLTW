@@ -109,7 +109,7 @@
                   <dt class="col-xxl-6 col-lg-12 col-6"><fmt:message key="tam_tinh" />:</dt>
                   <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="temp-price">0</span>₫</dd>
                   <dt class="col-xxl-6 col-lg-12 col-6"><fmt:message key="phi_van_chuyen"/>:</dt>
-                  <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="delivery-price">---</span></dd>
+                  <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="delivery-price" data-value="0">---</span>₫</dd>
                   <dt class="col-xxl-6 col-lg-12 col-6"><fmt:message key="tong_cong"/>:</dt>
                   <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><strong><span id="total-price">0</span>₫</strong></dd>
                 </dl>

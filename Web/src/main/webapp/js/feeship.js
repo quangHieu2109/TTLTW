@@ -1,4 +1,4 @@
-
+import {_formatPrice, render} from "./cart.js";
 async function _getFeeship(provinceID, districtID, wardID,quantity,weight,length,width,height,unitship) {
     let url = "province="+provinceID+"&district="+districtID+"&ward="+wardID+"&quantity="+quantity+"&weight="+weight+"&length="+length+"&width="+width+"&height="+height+"&unitShip="+unitship;
     const response = await fetch(contextPathMetaTag.content + "/feeship?"+url, {
@@ -41,6 +41,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         let length = 10;
         let width =20;
         let height = 2;
+        const tempPriceRootElement = document.querySelector("#temp-price");
+        const deliveryPriceRootElement = document.querySelector("#delivery-price");
+        const totalPriceRootElement = document.querySelector("#total-price");
         let delivery = document.getElementById('delivery-price')
         if(province=="none"||district=="none"||ward=="none"){
             document.getElementById("infoShip").innerHTML = "Vui lòng chọn địa chỉ giao hàng";
@@ -64,7 +67,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const selectedValue = parseFloat(event.target.value);
                 // Thực hiện hành động bạn muốn dựa trên radio được chọn
                 const formattedValue = selectedValue.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-                delivery.innerHTML = formattedValue;
+                delivery.setAttribute('data-value', selectedValue);
+                delivery.innerHTML = _formatPrice(selectedValue);
+                render();
             }
 
             let radios = document.getElementsByName('infoship');
