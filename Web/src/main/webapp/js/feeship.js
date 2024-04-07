@@ -1,4 +1,4 @@
-
+import {_formatPrice, render} from "./cart.js";
 async function _getFeeship(provinceID, districtID, wardID,quantity,weight,length,width,height,unitship) {
     let url = "province="+provinceID+"&district="+districtID+"&ward="+wardID+"&quantity="+quantity+"&weight="+weight+"&length="+length+"&width="+width+"&height="+height+"&unitShip="+unitship;
     const response = await fetch(contextPathMetaTag.content + "/feeship?"+url, {
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     unitshipVal= document.getElementById("unit-ship").value;
     unit_ship= document.getElementById("unit-ship");
     unit_ship.addEventListener("change", async function () {
-            let delivery = document.getElementById('delivery-price')
+
             let province = document.getElementById("selectProvince").value;
             let district = document.getElementById("selectDistrict").value;
             let ward = document.getElementById("selectWard").value;
@@ -27,9 +27,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 unitshipVal=1;
             }else if(unitshipVal == "GHN"){
                 unitshipVal=0;
-            }else{
-                document.getElementById("infoShip").innerHTML = "Vui lòng chọn đơn vị vận chuyển";
-                delivery.innerHTML = "0 đ";
             }
 
             // let quantity = document.getElementById("quantity").value;
@@ -44,17 +41,18 @@ document.addEventListener('DOMContentLoaded', async function () {
         let length = 10;
         let width =20;
         let height = 2;
-
-
+        const tempPriceRootElement = document.querySelector("#temp-price");
+        const deliveryPriceRootElement = document.querySelector("#delivery-price");
+        const totalPriceRootElement = document.querySelector("#total-price");
+        let delivery = document.getElementById('delivery-price')
         if(province=="none"||district=="none"||ward=="none"){
-            delivery.innerHTML = "0 đ";
             document.getElementById("infoShip").innerHTML = "Vui lòng chọn địa chỉ giao hàng";
         }
         else {
             let [status, data] = await _getFeeship(province, district, ward, quantity, weight, length, width, height, unitshipVal);
             if (status === 200) {
                 data = data.infoShips;
-                let s='';
+                let s = '';
                 data.forEach(function (dt) {
                     let currency = parseFloat(dt.GIA_CUOC); // Chuyển đổi giá trị tiền tệ sang số
                     currency = currency.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}); // Định dạng giá trị tiền tệ
@@ -69,7 +67,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const selectedValue = parseFloat(event.target.value);
                 // Thực hiện hành động bạn muốn dựa trên radio được chọn
                 const formattedValue = selectedValue.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-                delivery.innerHTML = formattedValue;
+                delivery.setAttribute('data-value', selectedValue);
+                delivery.innerHTML = _formatPrice(selectedValue);
+                render();
             }
 
             let radios = document.getElementsByName('infoship');
