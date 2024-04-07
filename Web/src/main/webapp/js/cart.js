@@ -1,6 +1,6 @@
 import createToast, {toastComponent} from "./toast.js";
 import {setTotalCartItemsQuantity} from "./header.js";
-import _getFeeship from "./feeship";
+import _getFeeship from "./feeship.js";
 // STATIC DATA
 const contextPathMetaTag = document.querySelector("meta[name='contextPath']");
 const currentUserIdMetaTag = document.querySelector("meta[name='currentUserId']");

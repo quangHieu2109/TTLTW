@@ -57,31 +57,34 @@
           </main> <!-- col.// -->
 
           <aside class="col-lg-3">
-            <div class="form-group">
-              <label >Địa chỉ nhận hàng</label>
-              <select class="form-control " onscroll="4" id="selectProvince">
-                <option selected value="${requestScope.province}">${requestScope.province}</option>
+            <div class="card mb-3">
+              <div class="card-body">
+                <b class="card-title">Địa chỉ nhận hàng</b>
+                <select class="form-select " onscroll="4" id="selectProvince">
+                  <option selected value="${requestScope.province}">${requestScope.province}</option>
 
-              </select>
-              <select class="form-control " onscroll="4" id="selectDistrict">
-                <option selected value="${requestScope.district}">${requestScope.district}</option>
+                </select>
+                <select class="form-select mt-2 mb-2" onscroll="4" id="selectDistrict">
+                  <option selected value="${requestScope.district}">${requestScope.district}</option>
 
-              </select>
-              <select class="form-control " onscroll="4" id="selectWard">
-                <option selected value="${requestScope.ward}">${requestScope.ward}</option>
+                </select>
+                <select class="form-select " onscroll="4" id="selectWard">
+                  <option selected value="${requestScope.ward}">${requestScope.ward}</option>
 
-              </select>
+                </select>
+              </div>
+
             </div>
             <div class="card mb-3">
               <div class="card-body">
-                <p class="card-title"><fmt:message key="don_vi_van_chuyen"/></p>
+                <b class="card-title"><fmt:message key="don_vi_van_chuyen"/></b>
                 <select class="form-select" id="unit-ship">
                   <option value="none" selected>---</option>
                   <option value="ViettelPost">ViettelPost</option>
                   <option value="GHN">GHN</option>
                 </select>
                 <form>
-                  <div class="form-check mb-2 disabled" id="infoShip">
+                  <div class="form-check mb-2 disabled p-0 mt-3" id="infoShip">
                   </div>
                 </form>
 

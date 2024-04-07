@@ -10,16 +10,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="fix sigin google">
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/PaymentReturnServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/PaymentServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/paymentResult.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/data2.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Web/data2.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Address.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AddressDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AddressDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CartDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CartDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CategoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/OrderItemDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/OrderItemDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ProductReviewDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ProductReviewDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/user/CreateUserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/user/CreateUserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/user/UpdateUserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/user/UpdateUserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartItemServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartItemServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/OrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/OrderServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SettingServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SettingServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignInGoogleServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignInGoogleServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignupServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignupServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/UserAddressServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/UserAddressServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/general/AddressServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/general/AddressServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/utils/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/utils/Validator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_en_US.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_en_US.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_vi_VN.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_vi_VN.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/settingView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/settingView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/signupView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/signupView.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/cart.js" afterDir="false" />
     </list>
@@ -203,8 +220,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -244,6 +260,7 @@
       <workItem from="1712380872268" duration="1419000" />
       <workItem from="1712393349316" duration="5390000" />
       <workItem from="1712409763717" duration="6348000" />
+      <workItem from="1712417124510" duration="3200000" />
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />

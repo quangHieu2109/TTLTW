@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 data = data.infoShips;
                 let s='';
                 data.forEach(function (dt) {
-                    s+='<input type="radio" name="infoship">'+'<div class="form-label">'+dt.TEN_DICHVU+' Gia: '+dt.GIA_CUOC+'</div>';
+                    s+='<div class="form-label"> <input type="radio" name="infoship" class="m-2">'+dt.TEN_DICHVU+' Gia: '+dt.GIA_CUOC+'</div>';
                 });
 
                 document.getElementById("infoShip").innerHTML = s;
@@ -57,3 +57,4 @@ document.addEventListener('DOMContentLoaded', async function () {
     );
 
 });
+export default _getFeeship;
