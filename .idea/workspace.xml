@@ -10,8 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="add time ccaclculate for ship">
+    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="fix sigin google">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/cart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +114,7 @@
       <deployment>
         <artifact name="BookShopWeb:war">
           <settings>
-            <option name="CONTEXT_PATH" value="/BookShopWeb_war" />
+            <option name="CONTEXT_PATH" value="" />
           </settings>
         </artifact>
       </deployment>
@@ -185,6 +192,7 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
+          <artifact name="Web:war exploded" />
           <artifact name="BookShopWeb:war" />
         </option>
       </method>
@@ -291,15 +299,7 @@
       <option name="project" value="LOCAL" />
       <updated>1712381789368</updated>
     </task>
-    <task id="LOCAL-00009" summary="add time ccaclculate for ship">
-      <option name="closed" value="true" />
-      <created>1712455225834</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1712455225834</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,6 +337,7 @@
     <MESSAGE value="fix sigin google" />
     <MESSAGE value="add time ccaclculate for ship" />
     <option name="LAST_COMMIT_MESSAGE" value="add time ccaclculate for ship" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix sigin google" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

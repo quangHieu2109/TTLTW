@@ -41,6 +41,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         let length = 10;
         let width =20;
         let height = 2;
+
+        let delivery = document.getElementById('delivery-price')
         if(province=="none"||district=="none"||ward=="none"){
             document.getElementById("infoShip").innerHTML = "Vui lòng chọn địa chỉ giao hàng";
         }
@@ -50,12 +52,26 @@ document.addEventListener('DOMContentLoaded', async function () {
                 data = data.infoShips;
                 let s='';
                 data.forEach(function (dt) {
-                    s+='<div class="form-label"> <input type="radio" name="infoship" class="m-2">'+dt.TEN_DICHVU+' Giá: '+dt.GIA_CUOC+' '+dt.THOI_GIAN+'</div>';
+                    let currency = parseFloat(dt.GIA_CUOC); // Chuyển đổi giá trị tiền tệ sang số
+                    currency = currency.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}); // Định dạng giá trị tiền tệ
+
+                    s += '<div class="form-label"><input type="radio" name="infoship" class="m-2" value="' + dt.GIA_CUOC + '" >' + dt.TEN_DICHVU + '- Giá: ' + currency + ' - Thời gian giao: ' + dt.THOI_GIAN + '</div>';
                 });
-
                 document.getElementById("infoShip").innerHTML = s;
-
             }
+
+
+            function handleRadioChange(event) {
+                const selectedValue = parseFloat(event.target.value);
+                // Thực hiện hành động bạn muốn dựa trên radio được chọn
+                const formattedValue = selectedValue.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                delivery.innerHTML = formattedValue;
+            }
+
+            let radios = document.getElementsByName('infoship');
+            radios.forEach(function(radio) {
+                radio.addEventListener('change', handleRadioChange);
+            });
         }
         }
     );
