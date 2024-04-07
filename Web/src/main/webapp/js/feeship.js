@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     unitshipVal= document.getElementById("unit-ship").value;
     unit_ship= document.getElementById("unit-ship");
     unit_ship.addEventListener("change", async function () {
-
+            let delivery = document.getElementById('delivery-price')
             let province = document.getElementById("selectProvince").value;
             let district = document.getElementById("selectDistrict").value;
             let ward = document.getElementById("selectWard").value;
@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                 unitshipVal=1;
             }else if(unitshipVal == "GHN"){
                 unitshipVal=0;
+            }else{
+                document.getElementById("infoShip").innerHTML = "Vui lòng chọn đơn vị vận chuyển";
+                delivery.innerHTML = "0 đ";
             }
 
             // let quantity = document.getElementById("quantity").value;
@@ -42,8 +45,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         let width =20;
         let height = 2;
 
-        let delivery = document.getElementById('delivery-price')
+
         if(province=="none"||district=="none"||ward=="none"){
+            delivery.innerHTML = "0 đ";
             document.getElementById("infoShip").innerHTML = "Vui lòng chọn địa chỉ giao hàng";
         }
         else {
