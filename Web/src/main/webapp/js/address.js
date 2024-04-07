@@ -50,8 +50,10 @@ async function _getUserAddress() {
     return [response.status, await response];
 }
 
-document.addEventListener('DOMContentLoaded', async function () {
+let unit_ship;
 
+document.addEventListener('DOMContentLoaded', async function () {
+    unit_ship = document.getElementById("unit-ship");
     // var selectProvince = document.getElementById('selectProvince');
     // async function getAddressData() {
     //     try {
@@ -83,18 +85,33 @@ document.addEventListener('DOMContentLoaded', async function () {
         // Lấy giá trị của option được chọn
         let selectedValue = selectedOption.value;
         // In giá trị ra console hoặc thực hiện các thao tác khác
+        unitshipVal = "none";
         await selectDistrict();
         selectWard()
+        if(unit_ship!=null) {
+            var event = new Event('change');
+            unit_ship.dispatchEvent(event);
+        }
     });
-    district.addEventListener("change", function () {
+    district.addEventListener("change", async function () {
 
         // Lấy phần tử option được chọn
         let selectedOption = district.options[district.selectedIndex];
         // Lấy giá trị của option được chọn
         let selectedValue = selectedOption.value;
         // In giá trị ra console hoặc thực hiện các thao tác khác
-        selectWard();
+        await selectWard();
+        if(unit_ship!=null) {
+            var event = new Event('change');
+            unit_ship.dispatchEvent(event);
+        }
     });
+    ward.addEventListener("change", async function () {
+        if(unit_ship!=null) {
+            var event = new Event('change');
+            unit_ship.dispatchEvent(event);
+        }
+    }   );
     // getAddressData();
     await selectProvince();
     await selectDistrict();
@@ -102,6 +119,11 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 async function selectDistrict() {
+
+
+// Gọi sự kiện change trên phần tử select
+
+
     await _getDistrictByProvince(document.getElementById('selectProvince').value).then(([status, data]) => {
             if (status === 200) {
 
@@ -123,9 +145,14 @@ async function selectDistrict() {
             }
         }
     )
+    // if(unit_ship!=null) {
+    //     var event = new Event('change');
+    //     unit_ship.dispatchEvent(event);
+    // }
 }
 
 async function selectProvince() {
+
     await _getProvice().then(([status, data]) => {
             if (status === 200) {
 
@@ -150,9 +177,14 @@ async function selectProvince() {
             }
         }
     )
+    // if(unit_ship!=null) {
+    //     var event = new Event('change');
+    //     unit_ship.dispatchEvent(event);
+    // }
 }
 
 async function selectWard() {
+
     await _getWardByDistrict(document.getElementById("selectDistrict").value).then(([status, data]) => {
             if (status === 200) {
 
@@ -173,4 +205,5 @@ async function selectWard() {
             }
         }
     )
+
 }

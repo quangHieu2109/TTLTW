@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', async function () {
             let unitshipVal = document.getElementById("unit-ship").value;
             if (unitshipVal == "ViettelPost") {
                 unitshipVal=1;
-            }else {
+            }else if(unitshipVal == "GHN"){
                 unitshipVal=0;
             }
+
             // let quantity = document.getElementById("quantity").value;
             // let weight = document.getElementById("weight").value;
             // let length = document.getElementById("length").value;
@@ -40,7 +41,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         let length = 10;
         let width =20;
         let height = 2;
-
+        if(province=="none"||district=="none"||ward=="none"){
+            document.getElementById("infoShip").innerHTML = "Vui lòng chọn địa chỉ giao hàng";
+        }
+        else {
             let [status, data] = await _getFeeship(province, district, ward, quantity, weight, length, width, height, unitshipVal);
             if (status === 200) {
                 data = data.infoShips;
@@ -52,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 document.getElementById("infoShip").innerHTML = s;
 
             }
-
+        }
         }
     );
 
