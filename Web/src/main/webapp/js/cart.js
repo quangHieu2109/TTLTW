@@ -294,7 +294,7 @@ function render() {
 
     // Render tempPriceRootElement, deliveryPriceRootElement, totalPriceRootElement
     tempPriceRootElement.innerHTML = _formatPrice(state.getTempPrice());
-    deliveryPriceRootElement.innerHTML = _formatPrice(state.getDeliveryPrice());
+    // deliveryPriceRootElement.innerHTML = _formatPrice(state.getDeliveryPrice());
     totalPriceRootElement.innerHTML = _formatPrice(state.getTotalPrice());
 
     // Render checkoutBtnElement, deliveryMethodRadioElements
