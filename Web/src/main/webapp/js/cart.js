@@ -193,7 +193,7 @@ async function _fetchPostAddOrder() {
     return [response.status, await response.json()];
 }
 
-function _formatPrice(price) {
+export function _formatPrice(price) {
     return new Intl.NumberFormat('vi-VN').format(price.toFixed());
 }
 
@@ -282,11 +282,12 @@ const state = {
             .reduce((partialSum, productTotalPrice) => partialSum + productTotalPrice, 0);
     },
     getDeliveryPrice: () => state.order.deliveryPrice,
-    getTotalPrice: () => state.getTempPrice() + state.getDeliveryPrice(),
+    getTotalPrice: () => state.getTempPrice() + Number(deliveryPriceRootElement.getAttribute('data-value')),
+
 };
 
 // RENDER
-function render() {
+export function render() {
     console.log(currentUserIdMetaTag)
     // Render cartTableRootElement
     const cartItemRowComponentsFragment = state.cart.cartItems.map(cartItemRowComponent).join("");
@@ -294,9 +295,8 @@ function render() {
 
     // Render tempPriceRootElement, deliveryPriceRootElement, totalPriceRootElement
     tempPriceRootElement.innerHTML = _formatPrice(state.getTempPrice());
-    deliveryPriceRootElement.innerHTML = _formatPrice(state.getDeliveryPrice());
+    // deliveryPriceRootElement.innerHTML = _formatPrice(state.getDeliveryPrice());
     totalPriceRootElement.innerHTML = _formatPrice(state.getTotalPrice());
-
     // Render checkoutBtnElement, deliveryMethodRadioElements
     const isCartItemsEmpty = state.cart.cartItems.length === 0;
     checkoutBtnElement.disabled = isCartItemsEmpty;

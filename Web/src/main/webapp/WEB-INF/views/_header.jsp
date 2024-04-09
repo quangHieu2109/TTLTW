@@ -7,6 +7,12 @@
     <fmt:setLocale value="en_US" />
   </c:if>
   <fmt:setBundle basename="lang" />
+  <c:set var="accuracy" value="0"></c:set>
+
+  <c:if test="${sessionScope.currentUser.accuracy}">
+    <c:set var="accuracy" value="1"></c:set>
+  </c:if>
+  <input type="hidden" value="${accuracy}" id="accuracy">
   <section class="header-main border-bottom">
     <div class="container">
       <div class="row align-items-center">
