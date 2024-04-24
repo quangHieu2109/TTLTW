@@ -23,4 +23,4 @@
 <link href="${pageContext.request.contextPath}/css/styles.css" type="text/css" rel="stylesheet">
 
 <!-- Header Script -->
-//<script src="${pageContext.request.contextPath}/js/header.js" type="module"></script>
+<script src="${pageContext.request.contextPath}/js/header.js" type="module"></script>
