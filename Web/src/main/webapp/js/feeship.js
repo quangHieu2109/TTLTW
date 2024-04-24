@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     unitshipVal= document.getElementById("unit-ship").value;
     unit_ship= document.getElementById("unit-ship");
     unit_ship.addEventListener("change", async function () {
-
+        let delivery = document.getElementById('delivery-price')
             let province = document.getElementById("selectProvince").value;
             let district = document.getElementById("selectDistrict").value;
             let ward = document.getElementById("selectWard").value;
@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                 unitshipVal=1;
             }else if(unitshipVal == "GHN"){
                 unitshipVal=0;
+            }else{
+                document.getElementById("infoShip").innerHTML = "Vui lòng chọn đơn vị vận chuyển";
+                delivery.innerHTML = _formatPrice(0);
             }
 
             // let quantity = document.getElementById("quantity").value;
@@ -44,9 +47,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         const tempPriceRootElement = document.querySelector("#temp-price");
         const deliveryPriceRootElement = document.querySelector("#delivery-price");
         const totalPriceRootElement = document.querySelector("#total-price");
-        let delivery = document.getElementById('delivery-price')
+
         if(province=="none"||district=="none"||ward=="none"){
             document.getElementById("infoShip").innerHTML = "Vui lòng chọn địa chỉ giao hàng";
+            delivery.innerHTML = _formatPrice(0);
         }
         else {
             let [status, data] = await _getFeeship(province, district, ward, quantity, weight, length, width, height, unitshipVal);

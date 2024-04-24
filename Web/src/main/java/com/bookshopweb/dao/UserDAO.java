@@ -121,6 +121,7 @@ public class UserDAO extends AbsDAO<User> {
                 Timestamp createAt = rs.getTimestamp("createAt");
 
                 result = new User(id, userName, password, fullname, email, phoneNumber, gender, new AddressDAO().selectByUser(id).get(0), role, createAt);
+                result.setAccuracy(new AccurancyDAO().getByUserName(userName) == null);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -307,6 +308,23 @@ public class UserDAO extends AbsDAO<User> {
         return user;
     }
 
+    public User getUserByEmail(String email) {
+        User user = null;
+        String query = "SELECT * FROM user WHERE email = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, email);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    user = mapResultSetToUser(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exception
+        }
+        return user;
+    }
+
     public Optional<User> getByPhoneNumber(String phoneNumber) {
         Optional<User> user = Optional.empty();
         String query = "SELECT * FROM user WHERE phoneNumber = ?";
@@ -387,6 +405,7 @@ public class UserDAO extends AbsDAO<User> {
         user.setCreateAt(resultSet.getTimestamp("createAt"));
         List<Address> addresses= new AddressDAO().selectByUser(user.getId());
         user.setAddress(addresses.size() > 0 ? addresses.get(0) : null);
+        user.setAccuracy(new AccurancyDAO().getByUserName(resultSet.getString("username"))==null);
 
 
         return user;
