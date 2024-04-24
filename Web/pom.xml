@@ -24,15 +24,7 @@
             <version>1.6.2</version>
         </dependency>
         <dependency>
-<<<<<<< HEAD
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-            <version>3.2.5</version>
-        </dependency>
 
-        <dependency>
-=======
->>>>>>> 434da7c2c2a2d07a69e97966e0b6f3d8f933c26d
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
