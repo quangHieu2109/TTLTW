@@ -36,6 +36,7 @@ public class CartServlet extends HttpServlet {
         request.setAttribute("province",user.getAddress().getProvince());
         request.setAttribute("district",user.getAddress().getDistrict());
         request.setAttribute("ward",user.getAddress().getWard());
+        request.setAttribute("address",user.getAddress());
         request.getRequestDispatcher("/WEB-INF/views/cartView.jsp").forward(request, response);
     }
 

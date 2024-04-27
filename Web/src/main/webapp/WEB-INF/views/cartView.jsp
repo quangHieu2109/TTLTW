@@ -60,18 +60,25 @@
             <div class="card mb-3">
               <div class="card-body">
                 <b class="card-title">Địa chỉ nhận hàng</b>
-                <select class="form-select " onscroll="4" id="selectProvince">
-                  <option selected value="${requestScope.province}">${requestScope.province}</option>
+                <section class="form-select" onscroll="4" id="address">
+                  <option selected value="0">Thêm</option>
+<%--                    <c:forEach var="address" items="${requestScope.address}" varStatus="status">--%>
+<%--                      <option value="${status.index+1}">${address.province},${address.district},${address.ward}</option>--%>
+<%--                    </c:forEach>--%>
+                </section>
 
-                </select>
-                <select class="form-select mt-2 mb-2" onscroll="4" id="selectDistrict">
-                  <option selected value="${requestScope.district}">${requestScope.district}</option>
+<%--                <select class="form-select " onscroll="4" id="selectProvince">--%>
+<%--                  <option selected value="${requestScope.province}">${requestScope.province}</option>--%>
 
-                </select>
-                <select class="form-select " onscroll="4" id="selectWard">
-                  <option selected value="${requestScope.ward}">${requestScope.ward}</option>
+<%--                </select>--%>
+<%--                <select class="form-select mt-2 mb-2" onscroll="4" id="selectDistrict">--%>
+<%--                  <option selected value="${requestScope.district}">${requestScope.district}</option>--%>
 
-                </select>
+<%--                </select>--%>
+<%--                <select class="form-select " onscroll="4" id="selectWard">--%>
+<%--                  <option selected value="${requestScope.ward}">${requestScope.ward}</option>--%>
+
+<%--                </select>--%>
               </div>
 
             </div>
