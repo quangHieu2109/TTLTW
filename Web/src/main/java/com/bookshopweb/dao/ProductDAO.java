@@ -139,7 +139,7 @@ public class ProductDAO extends AbsDAO<Product>{
                 String name = rs.getString("name");
                 double price = rs.getDouble("price");
                 double discount = rs.getDouble("discount");
-                int quantity = rs.getInt("quantity");
+                int quantity = selectQuantity(id);
                 int totalBuy = rs.getInt("totalBuy");
                 String author = rs.getString("author");
                 int pages = rs.getInt("pages");
@@ -164,6 +164,31 @@ public class ProductDAO extends AbsDAO<Product>{
         }
         return result;
     }
+    public int selectQuantity(long id){
+        int ressult =0;
+        try {
+            String sql ="SELECT COALESCE((SELECT SUM(product_import.quanlity)\n" +
+                    "     FROM product_import\n" +
+                    "     WHERE product_import.productId = ?),0)\n" +
+                    "      - \n" +
+                    "    COALESCE((SELECT SUM(order_item.quantity)\n" +
+                    "              FROM order_item \n" +
+                    "              INNER JOIN orders ON order_item.orderId = orders.id\n" +
+                    "              WHERE order_item.productId = ? AND orders.status != 3), 0) AS conLai";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, id);
+            st.setLong(2, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                ressult = rs.getInt("conLai");
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return ressult;
+    }
     public Product selectById(Long id){
         Product result = null;
         try {
@@ -176,7 +201,7 @@ public class ProductDAO extends AbsDAO<Product>{
                 String name = rs.getString("name");
                 double price = rs.getDouble("price");
                 double discount = rs.getDouble("discount");
-                int quantity = rs.getInt("quantity");
+                int quantity = selectQuantity(id);
                 int totalBuy = rs.getInt("totalBuy");
                 String author = rs.getString("author");
                 int pages = rs.getInt("pages");
@@ -591,7 +616,7 @@ public class ProductDAO extends AbsDAO<Product>{
         product.setName(resultSet.getString("name"));
         product.setPrice(resultSet.getDouble("price"));
         product.setDiscount(resultSet.getDouble("discount"));
-        product.setQuantity(resultSet.getInt("quantity"));
+        product.setQuantity(selectQuantity(product.getId()));
         product.setTotalBuy(resultSet.getInt("totalBuy"));
         product.setAuthor(resultSet.getString("author"));
         product.setPages(resultSet.getInt("pages"));
@@ -643,6 +668,10 @@ public class ProductDAO extends AbsDAO<Product>{
 
     public String createFiltersQuery(List<String> filters) {
         return String.join(" AND ", filters);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new ProductDAO().selectQuantity(53));
     }
 }
 

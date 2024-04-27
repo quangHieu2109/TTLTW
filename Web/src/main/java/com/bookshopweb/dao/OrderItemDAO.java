@@ -68,6 +68,23 @@ import java.util.List;
 
 public class OrderItemDAO extends AbsDAO<OrderItem> {
     Connection conn = JDBCUtils.getConnection();
+    public int deleteByOrderId(long orderId) {
+
+        int result = 0;
+        try{
+            String sql = "delete from order_item where orderId=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1,orderId);
+            result = ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     public OrderItem selectPrevalue(Long id){
         OrderItem result = null;
         try {

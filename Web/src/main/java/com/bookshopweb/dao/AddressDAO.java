@@ -11,6 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddressDAO {
+
+    public int deleteByUserId(long userId) {
+
+        int result = 0;
+        try{
+            String sql = "delete from address where userId=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1,userId);
+            result = ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
     private Connection conn = JDBCUtils.getConnection();
     public List<Address> selectByUser(long userId){
         List<Address> result = new ArrayList<>();

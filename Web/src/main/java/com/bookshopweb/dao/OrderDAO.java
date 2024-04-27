@@ -78,6 +78,27 @@ import java.util.Optional;
 
 public class OrderDAO extends AbsDAO<Order> {
     Connection conn = JDBCUtils.getConnection();
+    public int deleteByUserId(long userId) {
+
+        int result = 0;
+        try{
+            if(getOrderByUserId(userId).size() >0) {
+                for (Order order : getOrderByUserId(userId)) {
+                    new OrderItemDAO().deleteByOrderId(order.getId());
+                }
+            }
+            String sql = "delete from orders where userId=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1,userId);
+            result = ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
     @Override
     public Order selectPrevalue(Long id) {
         Order result = null;
@@ -220,7 +241,24 @@ public class OrderDAO extends AbsDAO<Order> {
         }
         return orders;
     }
+    public List<Order> getOrderByUserId(long userId) {
+        List<Order> orders = new ArrayList<>();
+        String query = "SELECT * FROM orders WHERE userId = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setLong(1, userId);
 
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Order order = mapResultSetToOrder(resultSet);
+                    orders.add(order);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exception
+        }
+        return orders;
+    }
     public List<Order> getOrderedPartByUserId(long userId, int limit, int offset) {
         List<Order> orders = new ArrayList<>();
         String query = "SELECT * FROM orders WHERE userId = ? ORDER BY orders.createdAt DESC LIMIT ? OFFSET ?";

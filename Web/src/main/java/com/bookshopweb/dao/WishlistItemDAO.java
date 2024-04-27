@@ -62,6 +62,22 @@ import java.util.Optional;
 
 public class WishlistItemDAO extends AbsDAO<WishlistItem>{
     Connection conn = JDBCUtils.getConnection();
+    public int deleteByUserId(long userId) {
+
+        int result = 0;
+        try{
+            String sql = "delete from wishlist_item where userId=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1,userId);
+            result = ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
     @Override
     public int delete(WishlistItem wishlistItem, String ip) {
 

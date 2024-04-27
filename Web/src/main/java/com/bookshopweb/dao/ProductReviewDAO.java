@@ -83,6 +83,7 @@ import java.util.List;
 
 public class ProductReviewDAO extends AbsDAO<ProductReview> {
     Connection conn = JDBCUtils.getConnection();
+
     public ProductReview selectPrevalue(Long id){
         ProductReview result = null;
         try {
@@ -204,6 +205,22 @@ public class ProductReviewDAO extends AbsDAO<ProductReview> {
             throw new RuntimeException(e);
         }
         super.delete(productReview, ip);
+        return result;
+    }
+    public int deleteByUserId(long userId) {
+
+        int result = 0;
+        try{
+            String sql = "delete from product_review where userId=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1,userId);
+            result = ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return result;
     }
     public List<ProductReview> getAll() {

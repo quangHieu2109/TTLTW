@@ -14,7 +14,7 @@ public class User extends AbsModel<User> {
     private String role;
     private Timestamp createAt;
     private boolean googleUser = false;
-
+    private boolean accuracy = true;
     public User() {
     }
 
@@ -30,6 +30,26 @@ public class User extends AbsModel<User> {
         this.address = address;
         this.role = role;
         this.createAt = createAt;
+    }
+
+    public User(long id, String username, String password, String fullname, String email, String phoneNumber, int gender, String role, Timestamp createAt) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.role = role;
+        this.createAt = createAt;
+    }
+
+    public boolean isAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(boolean accuracy) {
+        this.accuracy = accuracy;
     }
 
     public long getId() {

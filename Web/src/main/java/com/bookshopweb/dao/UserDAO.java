@@ -67,7 +67,9 @@ package com.bookshopweb.dao;
 import com.bookshopweb.beans.Address;
 import com.bookshopweb.beans.GoogleUser;
 import com.bookshopweb.beans.User;
+import com.bookshopweb.beans.WishlistItem;
 import com.bookshopweb.utils.JDBCUtils;
+import com.bookshopweb.utils.JDBIUltis;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -116,11 +118,12 @@ public class UserDAO extends AbsDAO<User> {
                 String email = rs.getString("email");
                 String phoneNumber = rs.getString("phoneNumber");
                 int gender = rs.getInt("gender");
-                String address = rs.getString("address");
+
                 String role = rs.getString("role");
                 Timestamp createAt = rs.getTimestamp("createAt");
 
                 result = new User(id, userName, password, fullname, email, phoneNumber, gender, new AddressDAO().selectByUser(id).get(0), role, createAt);
+                result.setAccuracy(new AccurancyDAO().getByUserName(userName) == null);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -131,6 +134,14 @@ public class UserDAO extends AbsDAO<User> {
     public int delete(User user, String ip) {
         int result =0;
         try {
+            new WishlistItemDAO().deleteByUserId(user.getId());
+            new OrderDAO().deleteByUserId(user.getId());
+            new GoogleUserDAO().deleteByUserId(user.getId());
+            new CartDAO().deleteByUserId(user.getId());
+            new AddressDAO().deleteByUserId(user.getId());
+            new AccurancyDAO().deleteByUserId(user.getId());
+
+
             String sql = "delete from user where id =?";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setLong(1, user.getId());
@@ -188,20 +199,22 @@ public class UserDAO extends AbsDAO<User> {
             st.setString(8, user.getRole());
             result = st.executeUpdate();
             st.close();
-            UserDAO userDAO = new UserDAO();
-            if (user.getId() == 0L) {
-                userDAO.getByUsername(user.getUsername()).ifPresent(u -> {
-                    user.setId(u.getId());
-                });
-            }
-
-
-            user.getAddress().setUserId(user.getId());
-            new AddressDAO().insertAddress(user.getAddress());
+//            UserDAO userDAO = new UserDAO();
+//            if (user.getId() == 0L) {
+//                userDAO.getByUsername(user.getUsername()).ifPresent(u -> {
+//                    user.setId(u.getId());
+//                });
+//            }
+//
+//
+//            user.getAddress().setUserId(user.getId());
+//            new AddressDAO().insertAddress(user.getAddress());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+//        UserJDBI userJDBI = JDBIUltis.getJDBI().onDemand(UserJDBI.class);
+//        userJDBI.addUsser(user);
         super.insert(user, ip);
         return result;
     }
@@ -307,6 +320,23 @@ public class UserDAO extends AbsDAO<User> {
         return user;
     }
 
+    public User getUserByEmail(String email) {
+        User user = null;
+        String query = "SELECT * FROM user WHERE email = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, email);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    user = mapResultSetToUser(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exception
+        }
+        return user;
+    }
+
     public Optional<User> getByPhoneNumber(String phoneNumber) {
         Optional<User> user = Optional.empty();
         String query = "SELECT * FROM user WHERE phoneNumber = ?";
@@ -387,6 +417,7 @@ public class UserDAO extends AbsDAO<User> {
         user.setCreateAt(resultSet.getTimestamp("createAt"));
         List<Address> addresses= new AddressDAO().selectByUser(user.getId());
         user.setAddress(addresses.size() > 0 ? addresses.get(0) : null);
+        user.setAccuracy(new AccurancyDAO().getByUserName(resultSet.getString("username"))==null);
 
 
         return user;

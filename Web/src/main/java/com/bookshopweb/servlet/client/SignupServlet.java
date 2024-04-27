@@ -1,7 +1,9 @@
 package com.bookshopweb.servlet.client;
 
+import com.bookshopweb.beans.AccurancyUser;
 import com.bookshopweb.beans.Address;
 import com.bookshopweb.beans.User;
+import com.bookshopweb.dao.AccurancyDAO;
 import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.HashingUtils;
 import com.bookshopweb.utils.Protector;
@@ -15,10 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @WebServlet(name = "SignupServlet", value = "/signup")
 public class SignupServlet extends HttpServlet {
@@ -102,7 +101,7 @@ public class SignupServlet extends HttpServlet {
 
         // Tính tổng các vi phạm sau kiểm tra (nếu có)
         int sumOfViolations = violations.values().stream().mapToInt(List::size).sum();
-        String successMessage = "Đã đăng ký thành công!";
+        String successMessage = "Đã đăng ký thành công! Vui lòng đăng nhập và xác thực tài khoản!";
         String errorMessage = "Đã có lỗi truy vấn!";
 
         // Khi không có vi phạm trong kiểm tra các parameter
@@ -126,12 +125,17 @@ public class SignupServlet extends HttpServlet {
                         request.setAttribute("values", values);
                         request.setAttribute("errorMessage", errorMessage);
                     });
+            AccurancyUser accurancyUser = new AccurancyUser(user.getUsername());
+            accurancyUser.setEndAt(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+            new AccurancyDAO().insertAccurancy(accurancyUser);
+//            request.getRequestDispatcher("/WEB-INF/views/accuracyView.jsp").forward(request, response);
         } else {
             // Khi có vi phạm
             request.setAttribute("values", values);
             request.setAttribute("violations", violations);
-        }
 
+        }
         request.getRequestDispatcher("/WEB-INF/views/signupView.jsp").forward(request, response);
+
     }
 }

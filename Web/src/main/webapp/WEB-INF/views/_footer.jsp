@@ -37,7 +37,7 @@
             <div class="input-group w-100">
               <input type="text" class="form-control" placeholder="<fmt:message key="email_cua_ban"/> ...">
               <button class="btn btn-primary" type="button">
-                <fmt:message key="dang_ki"/>
+                <a href="#"><fmt:message key="dang_ki"/></a>
               </button>
             </div>
           </form>
