@@ -32,7 +32,6 @@ public class User extends AbsModel<User> {
         this.createAt = createAt;
     }
 
-<<<<<<< HEAD
     public User(long id, String username, String password, String fullname, String email, String phoneNumber, int gender, String role, Timestamp createAt) {
         this.id = id;
         this.username = username;
@@ -45,8 +44,7 @@ public class User extends AbsModel<User> {
         this.createAt = createAt;
     }
 
-=======
->>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
+
     public boolean isAccuracy() {
         return accuracy;
     }
