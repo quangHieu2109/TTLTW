@@ -11,6 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="format price">
       <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/AccurancyUser.java" afterDir="false" />
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/StatisticalProduct.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AccurancyDAO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/Main.java" afterDir="false" />
@@ -26,10 +27,25 @@
       <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userManagerView2.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/accuracy.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/userManager.js" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/StatisticalProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AccurancyDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/StatiscalProductDAO.java" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AccurancyDAO.java" afterDir="false" />
+>>>>>>> 434da7c2c2a2d07a69e97966e0b6f3d8f933c26d
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/filter/AccurancyFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/service/SendMail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/AccuracyServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/accuracyView.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/accuracy.js" afterDir="false" />
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
       <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/User.java" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AddressDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AddressDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CartDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CartDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CartItemDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CartItemDAO.java" afterDir="false" />
@@ -47,6 +63,24 @@
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_footer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ProductDAO.java" afterDir="false" />
+=======
+>>>>>>> 434da7c2c2a2d07a69e97966e0b6f3d8f933c26d
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignInGoogleServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignInGoogleServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignupServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignupServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/utils/JdbiUtils.java" beforeDir="false" />
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_meta.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_meta.jsp" afterDir="false" />
+>>>>>>> 434da7c2c2a2d07a69e97966e0b6f3d8f933c26d
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/header.js" afterDir="false" />
     </list>
@@ -59,6 +93,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
+        <option value="Class" />
         <option value="JavaScript File" />
         <option value="Class" />
       </list>
@@ -99,6 +134,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.AccurancyUser.executor": "Run",
@@ -127,6 +163,38 @@
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "File.Encoding",
     "vue.rearranger.settings.migration": "true"
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AccurancyUser.executor&quot;: &quot;Run&quot;,
+<<<<<<< HEAD
+    &quot;Application.ProductDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SendMail.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StatiscalProductDAO.executor&quot;: &quot;Run&quot;,
+=======
+    &quot;Application.SendMail.executor&quot;: &quot;Run&quot;,
+>>>>>>> 434da7c2c2a2d07a69e97966e0b6f3d8f933c26d
+    &quot;Node.js.header.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 9.0.48.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.accuracyView.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20240326_0002&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Hung&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Program/JavaWeb/TTLTW/Web/src/main/webapp/WEB-INF/views&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
   }
 }]]></component>
   <component name="RecentsManager">
@@ -150,6 +218,7 @@
       </set>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.48">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.Main" />
@@ -157,6 +226,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.bookshopweb.dao.*" />
+=======
+<<<<<<< HEAD
+  <component name="RunManager" selected="Application.StatiscalProductDAO">
+=======
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.48">
+>>>>>>> 434da7c2c2a2d07a69e97966e0b6f3d8f933c26d
+    <configuration name="AccurancyUser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.beans.AccurancyUser" />
+      <module name="BookShopWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bookshopweb.beans.*" />
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -164,6 +246,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
     <configuration name="ProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.ProductDAO" />
       <module name="BookShopWeb" />
@@ -177,6 +263,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 434da7c2c2a2d07a69e97966e0b6f3d8f933c26d
+    <configuration name="SendMail" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.service.SendMail" />
+      <module name="BookShopWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bookshopweb.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+<<<<<<< HEAD
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
     <configuration name="StatiscalProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.StatiscalProductDAO" />
       <module name="BookShopWeb" />
@@ -190,6 +295,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration name="UserManagerSerlet2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bookshopweb.servlet.admin.user.UserManagerSerlet2" />
       <module name="BookShopWeb" />
@@ -203,6 +309,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+=======
+=======
+>>>>>>> 434da7c2c2a2d07a69e97966e0b6f3d8f933c26d
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
     <configuration name="header.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/Web/src/main/webapp/js/header.js" working-dir="$PROJECT_DIR$/Web/src/main/webapp/js">
       <method v="2" />
     </configuration>
@@ -293,6 +403,7 @@
         </option>
       </method>
     </configuration>
+<<<<<<< HEAD
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -300,6 +411,63 @@
         <item itemvalue="Application.StatiscalProductDAO" />
         <item itemvalue="Application.ProductDAO" />
         <item itemvalue="Node.js.header.js" />
+=======
+<<<<<<< HEAD
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.StatiscalProductDAO" />
+        <item itemvalue="Application.ProductDAO" />
+        <item itemvalue="Node.js.header.js" />
+        <item itemvalue="Application.SendMail" />
+        <item itemvalue="Application.AccurancyUser" />
+=======
+    <configuration name="accuracyView.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 9.0.48" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/WEB-INF/views/accuracyView.jsp" />
+      <deployment>
+        <artifact name="BookShopWeb:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/BookShopWeb_war" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="d3b0e068-b0af-45f3-a78d-294fbfc72fa3" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="BookShopWeb:war" />
+        </option>
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.header.js" />
+        <item itemvalue="Application.SendMail" />
+        <item itemvalue="Application.AccurancyUser" />
+        <item itemvalue="Tomcat Server.accuracyView.jsp" />
+>>>>>>> 434da7c2c2a2d07a69e97966e0b6f3d8f933c26d
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
       </list>
     </recent_temporary>
   </component>
@@ -352,16 +520,27 @@
       <workItem from="1712579827527" duration="3814000" />
       <workItem from="1712584171905" duration="8322000" />
       <workItem from="1712592618500" duration="3776000" />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
       <workItem from="1712629934177" duration="7518000" />
       <workItem from="1712645308984" duration="2294000" />
       <workItem from="1712843449266" duration="1536000" />
       <workItem from="1712890727516" duration="3472000" />
       <workItem from="1712928835316" duration="175000" />
       <workItem from="1713943778089" duration="12340000" />
+<<<<<<< HEAD
       <workItem from="1713967713822" duration="2547000" />
       <workItem from="1714102860748" duration="18718000" />
       <workItem from="1714132304970" duration="14078000" />
       <workItem from="1714198020159" duration="16125000" />
+=======
+      <workItem from="1713967713822" duration="1901000" />
+=======
+      <workItem from="1712629934177" duration="6775000" />
+>>>>>>> 434da7c2c2a2d07a69e97966e0b6f3d8f933c26d
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />

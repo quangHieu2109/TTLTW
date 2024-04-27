@@ -1,9 +1,12 @@
 package com.bookshopweb.service;
 
 
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+=======
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -23,9 +26,17 @@ public class SendMail {
     static final String password = "cgkf kchb iaxe egwh";
 //	static final String from = "timkodctk4@gmail.com";
 //	static final String password = "lbsn hmhr eixz rdmi";
+<<<<<<< HEAD
     static Session session;
 private JavaMailSender mailSender;
 
+=======
+
+    static Session session;
+private JavaMailSender mailSender;
+
+
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
     public static boolean sendEmail(String to, String verification, String userName) {
         String title = "Xác nhận tài khoản bookstore";
         String content = "Mã xác nhận của tài khoản " + userName + " là: <strong>" + verification +
@@ -47,10 +58,18 @@ private JavaMailSender mailSender;
         };
 
         // Phiên làm việc
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
         if(session == null){
             session = Session.getInstance(props, auth);
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
         // Tạo một tin nhắn
         MimeMessage msg = new MimeMessage(session);
 
