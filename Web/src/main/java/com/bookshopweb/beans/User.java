@@ -15,6 +15,7 @@ public class User extends AbsModel<User> {
     private Timestamp createAt;
     private boolean googleUser = false;
     private boolean accuracy = true;
+
     public User() {
     }
 
@@ -157,6 +158,10 @@ public class User extends AbsModel<User> {
 
     public boolean isGoogleUser() {
         return googleUser;
+    }
+
+    public boolean isCustomer() {
+        return role.equalsIgnoreCase("CUSTOMER");
     }
 
     public void setGoogleUser(boolean googleUser) {

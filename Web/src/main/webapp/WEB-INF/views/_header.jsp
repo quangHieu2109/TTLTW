@@ -62,6 +62,10 @@
                   <fmt:message key="gio_hang"/>
                 </a>
               </li>
+		<c:if test="${!sessionScope.currentUser.isCustomer()}">
+
+              <li class=" m-auto"><a href="${pageContext.request.contextPath}/admin" class="btn btn-dark">Admin</a></li>
+              </c:if>
             </ul>
           </c:if>
         </div> <!-- col.// -->
