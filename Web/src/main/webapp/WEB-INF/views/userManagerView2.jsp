@@ -12,7 +12,17 @@
 <head>
     <title>Quản lý người dùng</title>
     <link href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
+    <!-- Bootstrap v5.0.1 -->
+    <link href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.js" type="text/javascript"></script>
+
+    <!-- Bootstrap Icons v1.5.0 -->
+    <link href="${pageContext.request.contextPath}/css/bootstrap-icons.css" type="text/css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link href="${pageContext.request.contextPath}/css/styles.css" type="text/css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
@@ -38,7 +48,7 @@
     </style>
 </head>
 <body>
-<%--<jsp:include page="_headerAdmin.jsp"/>--%>
+<jsp:include page="_headerAdmin.jsp"/>
 <div class="container">
     <div class="container add-user__btn"><button class="btn btn-success mr-0" id="addUser">Add user</button></div>
     <div class="container w-50 m-auto add-user__content" id="add-user__content">

@@ -2,12 +2,11 @@ package com.bookshopweb.servlet.admin.user;
 
 import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.UserDAO;
-import com.bookshopweb.dao.UserJDBI;
-import com.bookshopweb.dao.UserMapper;
+import com.bookshopweb.jdbiInterface.UserJDBI;
+import com.bookshopweb.mapper.UserMapper;
 import com.bookshopweb.utils.JDBIUltis;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import org.json.JSONArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,7 +37,7 @@ public class UserManagerSerlet2 extends HttpServlet {
         StringBuilder json = new StringBuilder();
         JsonArray jsonArray = new JsonArray();
 
-//        json.append("{\"data\": [");
+
         for (User u : users) {
             JsonObject jsonObject = new JsonObject();
             String gender = (u.getGender() == 0) ? "Nam" : "Nu";
@@ -56,30 +55,18 @@ public class UserManagerSerlet2 extends HttpServlet {
             jsonObject.addProperty("deleteBtn", deleteBtn);
             jsonArray.add(jsonObject);
 
-//            json.append("{");
-//            json.append("\"id\": \"" + u.getId() + "\",");
-//            json.append("\"username\": \"" + u.getUsername()+"\",");
-//            json.append("\"password\": \""+u.getPassword()+"\",");
-//            json.append("\"fullname\": \""+u.getFullname()+"\",");
-//            json.append("\"email\": \""+u.getEmail()+"\",");
-//            json.append("\"phoneNumber\": \""+u.getPhoneNumber()+"\",");
-//            String gender = (u.getGender() ==0)?"Nam":"Nu";
-//            json.append("\"gender\": \""+gender+"\",");
-//            json.append("\"role\": \""+u.getRole()+"\",");
-//            json.append("\"createAt\": \""+u.getCreateAt()+"\"");
-//            json.append("},");
 
         }
-
-//        json.deleteCharAt(json.length()-1);
-//        json.append("],");
-//        json.append("\"draw\": \""+draw+"\",");
         JsonObject jsonResponse = new JsonObject();
         jsonResponse.add("data", jsonArray);
-        jsonResponse.addProperty("draw", draw);
+
+
+//        jsonResponse.addProperty("draw", draw);
         jsonResponse.addProperty("recordsTotal", users.size());
         resp.setContentType("aplication/json");
         resp.setCharacterEncoding("UTF-8");
+//        System.out.println(jsonResponse.toString());
+
         resp.getWriter().write(jsonResponse.toString());
 
     }
@@ -159,6 +146,7 @@ public class UserManagerSerlet2 extends HttpServlet {
                resp.getWriter().write(jsonObject1.toString());
            }else{
                resp.setStatus(400);
+
            }
         }
 

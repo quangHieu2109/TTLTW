@@ -1,4 +1,4 @@
-package com.bookshopweb.dao;
+package com.bookshopweb.mapper;
 
 import com.bookshopweb.beans.User;
 import org.jdbi.v3.core.mapper.RowMapper;

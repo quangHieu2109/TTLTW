@@ -1,4 +1,4 @@
-package com.bookshopweb.dao;
+package com.bookshopweb.jdbiInterface;
 
 import com.bookshopweb.beans.User;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;

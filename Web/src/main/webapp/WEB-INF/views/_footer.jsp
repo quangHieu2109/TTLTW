@@ -7,6 +7,7 @@
     <fmt:setLocale value="en_US" />
   </c:if>
   <fmt:setBundle basename="lang" />
+
   <section class="footer-top py-5 bg-light">
     <div class="container">
       <div class="row">
