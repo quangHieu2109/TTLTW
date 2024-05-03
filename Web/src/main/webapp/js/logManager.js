@@ -16,7 +16,10 @@ $(document).ready(function() {
             {"data": "curValue"},
             {"data": "createAt"},
             {"data": "updateAt"}
-        ]
+        ],
+        fnCreatedRow: function(row, data, index){
+            row.classList.add("logLV"+data.levelLog)
+        }
     });
 
 });

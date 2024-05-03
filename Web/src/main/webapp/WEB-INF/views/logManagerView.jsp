@@ -53,16 +53,17 @@
             max-width: 100px !important;
         }
         .logLV1{
-            background-color: #666869;
+            background-color: #ffffff !important;
         }
         .logLV2{
-            background-color: #678a56;
+            background-color: rgba(131, 134, 129, 0.44) !important;
         }
         .logLV3{
-            background-color: #b48735;
+            background-color: rgba(250, 166, 23, 0.7) !important;
         }
         .logLV4{
-            background-color: #f31a1a;
+            background-color: rgba(243, 26, 26, 0.45) !important;
+            color: #ffffff !important;
         }
     </style>
 </head>

@@ -141,11 +141,10 @@ function deleteUser(id) {
         success: function (response) {
             alert("Xóa thành công");
 
-            // Xác định chỉ mục của hàng dựa trên giá trị id
-            var rowIndex = $('#my_table').DataTable().column(0).data().indexOf(id);
-
-            // Xóa hàng trong DataTable
-            $('#my_table').DataTable().row(rowIndex).remove().draw();
+            if($.fn.DataTable.isDataTable('#my_table')){
+                $('#my_table').DataTable().destroy()
+            }
+            renderTable()
         },
         error: function (response) {
             alert("Xóa thất bại");

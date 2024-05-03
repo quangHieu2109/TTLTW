@@ -33,7 +33,8 @@ public class UserManagerSerlet2 extends HttpServlet {
         List<User> users = JDBIUltis.getJDBI().withHandle(handle ->
                 handle.createQuery("select * from user limit " + start + ", " + length)
                         .map(new UserMapper()).list());
-
+        int recordsFilterd = JDBIUltis.getJDBI().withHandle(handle ->
+                handle.createQuery("select count(*) from user").mapTo(Integer.class).one());
         StringBuilder json = new StringBuilder();
         JsonArray jsonArray = new JsonArray();
 
@@ -63,6 +64,7 @@ public class UserManagerSerlet2 extends HttpServlet {
 
 //        jsonResponse.addProperty("draw", draw);
         jsonResponse.addProperty("recordsTotal", users.size());
+        jsonResponse.addProperty("recordsFiltered", recordsFilterd);
         resp.setContentType("aplication/json");
         resp.setCharacterEncoding("UTF-8");
 //        System.out.println(jsonResponse.toString());
