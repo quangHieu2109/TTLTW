@@ -84,6 +84,9 @@ public class OrderDAO extends AbsDAO<Order> {
     public List<Order> getByStatus(int status){
         return orderJDBI.getByStatus(status);
     }
+    public int getQuantity(int status){
+        return orderJDBI.getQuantityByStatus(status);
+    }
     public List<Order> getByStatusLimit(int status, int start, int length){
         return orderJDBI.getByStatusLimit(status, start, length);
     }

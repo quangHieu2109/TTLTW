@@ -7,7 +7,7 @@ function loadTable(status) {
     if ($.fn.DataTable.isDataTable('#my_table')) {
         $('#my_table').DataTable().destroy()
     }
-    $('#my_table__content').css('display','block');
+    $('#my_table__content').css('display', 'block');
     $('#detail_table__content').css('display', 'none')
     $('#my_table').DataTable({
 
@@ -70,10 +70,14 @@ function changeStatus(id, value) {
 
 }
 
-function detail(id){
+function detail(id) {
     $('#detail').prop('checked', true);
-    $('#my_table__content').css('display','none');
+    $('#my_table__content').css('display', 'none');
     $('#detail_table__content').css('display', 'block')
+    if ($.fn.DataTable.isDataTable('#detail_table')) {
+        $('#detail_table').DataTable().destroy()
+    }
+
     $('#detail_table').DataTable({
 
         processing: true,
@@ -83,7 +87,7 @@ function detail(id){
             dataSrc: "data",
             type: "get"
         },
-        columns:[
+        columns: [
             {"data": "id"},
             {"data": "image"},
             {"data": "info"},
@@ -92,4 +96,5 @@ function detail(id){
             {"data": "totalPrice"}
         ]
     })
+
 }

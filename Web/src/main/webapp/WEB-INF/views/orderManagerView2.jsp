@@ -47,42 +47,44 @@
     </div>
     <div class="w-auto">
         <input type="radio" name="category" id="detail" hidden>
-        <label  class="btn p-3 pt-1 pb-1 mt-2">Chi tiết đơn hàng</label>
+        <label class="btn p-3 pt-1 pb-1 mt-2">Chi tiết đơn hàng</label>
     </div>
 </div>
 <div class="container">
-   <div id="my_table__content">
-       <table id="my_table" class="table-bordered">
-           <thead>
-           <tr>
-               <th>ID Order</th>
-               <th>ID Customer</th>
-               <th>Delivery method</th>
-               <th>Delivery price</th>
-               <th>Products price</th>
-               <th>Total price</th>
-               <th>Create at</th>
-               <th>Update at</th>
-               <th>Update status</th>
-               <th>Operation</th>
-           </tr>
-
-           </thead>
-           <tbody>
-
-           </tbody>
-
-       </table>
-   </div>
-    <div id="detail_table__content">
-        <table id="detail_table " class="table-bordered">
+    <div id="my_table__content">
+        <table id="my_table" class="table-bordered">
             <thead>
-            <th>ID</th>
-            <th>Image</th>
-            <th>Info</th>
-            <th>Amount</th>
-            <th>Price</th>
-            <th>Total price</th>
+            <tr>
+                <th>ID Order</th>
+                <th>ID Customer</th>
+                <th>Delivery method</th>
+                <th>Delivery price</th>
+                <th>Products price</th>
+                <th>Total price</th>
+                <th>Create at</th>
+                <th>Update at</th>
+                <th>Update status</th>
+                <th>Operation</th>
+            </tr>
+
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+    </div>
+    <div id="detail_table__content">
+        <table id="detail_table" class="table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Info</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Total price</th>
+            </tr>
 
             </thead>
             <tbody>

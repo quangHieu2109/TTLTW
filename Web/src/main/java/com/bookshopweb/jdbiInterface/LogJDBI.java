@@ -15,7 +15,8 @@ public interface LogJDBI {
             "values(:id, :ip, :levelLog, :resource, :preValue, :curValue, :createAt, :updateAt )"
     )
     int insertLog(@BindBean Log log);
-
+    @SqlQuery("select count(*) from log")
+    int getQuantity();
     @SqlUpdate("update log set levelLog=:levelLog where id=:id")
     int updateLog(@BindBean Log log);
     @SqlQuery("select * from log")

@@ -9,4 +9,6 @@ import org.jdbi.v3.sqlobject.statement.SqlQuery;
 public interface OrderItemJDBI {
     @SqlQuery("select sum(price) from order_item where orderId=:orderId")
     int getTotalPriceByOrderId(@Bind("orderId") long orderId);
+    @SqlQuery("select count(*) from order_item where orderId=:orderId")
+    int getQuantityByOrderId(@Bind("orderId") long orderId);
 }

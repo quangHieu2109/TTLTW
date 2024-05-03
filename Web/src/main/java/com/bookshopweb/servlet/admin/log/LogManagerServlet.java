@@ -44,6 +44,8 @@ public class LogManagerServlet extends HttpServlet {
         }
         JsonObject jsonRespone = new JsonObject();
         jsonRespone.add("data", jsonArray);
+        jsonRespone.addProperty("recordsTotal", logs.size());
+        jsonRespone.addProperty("recordsFiltered", JDBIUltis.getJDBI().onDemand(LogJDBI.class).getQuantity());
         resp.setStatus(200);
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");

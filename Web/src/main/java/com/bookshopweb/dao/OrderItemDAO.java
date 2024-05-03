@@ -86,6 +86,9 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
                 .map(new OrderItemMapper())
                 .list());
     }
+    public int getQuantityByOrderId(long orderID){
+        return orderItemJDBI.getQuantityByOrderId(orderID);
+    }
     public int getTotalPriceByOrderId(long orderId){
         return orderItemJDBI.getTotalPriceByOrderId(orderId);
     }
@@ -362,8 +365,6 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
 
     public static void main(String[] args) {
         OrderItemDAO orderItemDAO = new OrderItemDAO();
-        for(OrderItem orderItem: orderItemDAO.getByOrderIdLimit(4, 0, 2)){
-            System.out.println(orderItem);
-        }
+        System.out.println(orderItemDAO.getQuantityByOrderId(3));
     }
 }

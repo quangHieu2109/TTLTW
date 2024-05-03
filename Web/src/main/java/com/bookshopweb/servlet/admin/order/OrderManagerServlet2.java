@@ -22,6 +22,7 @@ public class OrderManagerServlet2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String type=req.getParameter("type");
+        System.out.println("type: "+type);
     if(type.equalsIgnoreCase("order")){
         getOrder(req, resp);
     }else{
@@ -31,7 +32,6 @@ public class OrderManagerServlet2 extends HttpServlet {
 
     }
     protected void getDetail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        System.out.println(1111);
         long orderId = Long.parseLong(req.getParameter("orderId"));
         int start = Integer.parseInt(req.getParameter("start"));
         int length = Integer.parseInt(req.getParameter("length"));
@@ -60,29 +60,30 @@ public class OrderManagerServlet2 extends HttpServlet {
 
         JsonObject jsonResopne = new JsonObject();
         jsonResopne.add("data", jsonArray);
+        jsonResopne.addProperty("recordsTotal", orderItems.size());
+        jsonResopne.addProperty("recordsFiltered", orderItemDAO.getQuantityByOrderId(orderId));
         resp.setStatus(200);
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
-//        System.out.println(jsonResopne.toString());
         resp.getWriter().write(jsonResopne.toString());
 
 
     }
     protected void getOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        System.out.println(1111);
-        int type = Integer.parseInt(req.getParameter("status"));
+        int status = Integer.parseInt(req.getParameter("status"));
         int start = Integer.parseInt(req.getParameter("start"));
         int length = Integer.parseInt(req.getParameter("length"));
         OrderDAO orderDAO = new OrderDAO();
         OrderItemDAO orderItemDAO = new OrderItemDAO();
-        List<Order> orders = orderDAO.getByStatusLimit(type, start, length);
+        List<Order> orders = orderDAO.getByStatusLimit(status, start, length);
         JsonArray jsonArray = new JsonArray();
         for (Order order : orders) {
             JsonObject jsonObject = new JsonObject();
             int totalPrice = orderItemDAO.getTotalPriceByOrderId(order.getId());
             String deliveryMethod = (order.getDeliveryMethod() == 1) ? "Giao hàng nhanh" : "Giao hàng tiết kiệm";
             String updateStatus = "";
-            switch (type) {
+            switch (status) {
                 case 1:
                     updateStatus = "<select class=\"form-select\" onchange=\"changeStatus(" + order.getId() + ", this.value)\" " +
                             "id=\"sl"+order.getId()+"\">" +
@@ -107,8 +108,8 @@ public class OrderManagerServlet2 extends HttpServlet {
                             "</select>";
                     break;
             }
-            String saveBtn = "<button style=\"min-width: 66px\" class=\"btn btn-secondary m-auto\" id=\"p" + order.getId() + "\">Save</button>";
-            String detailBtn="<button class=\"btn btn-primary w-auto m-auto\" onclick=\"detail("+order.getId()+")\">Detail</button>";
+            String saveBtn = "<button style=\"width: 66px\" class=\"btn btn-secondary m-auto\" id=\"p" + order.getId() + "\">Save</button>";
+            String detailBtn="<button style=\"width: 66px\" class=\"btn btn-primary m-auto\" onclick=\"detail("+order.getId()+")\">Detail</button>";
             jsonObject.addProperty("id", order.getId());
             jsonObject.addProperty("idUser", order.getUserId());
             jsonObject.addProperty("deliveryMethod", deliveryMethod);
@@ -124,6 +125,8 @@ public class OrderManagerServlet2 extends HttpServlet {
         }
         JsonObject jsonResopne = new JsonObject();
         jsonResopne.add("data", jsonArray);
+        jsonResopne.addProperty("recordsTotal", orders.size());
+        jsonResopne.addProperty("recordsFiltered", orderDAO.getQuantity(status));
         resp.setStatus(200);
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
