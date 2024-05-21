@@ -10,27 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="update log manager">
-      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/jquery.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AddressDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AddressDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/user/CreateUserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/user/CreateUserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/user/UpdateUserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/user/UpdateUserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SettingServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SettingServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignInGoogleServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignInGoogleServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignupServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignupServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/general/AddressServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/general/AddressServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/general/FeeShipServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/general/FeeShipServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_meta.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_meta.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userManagerView2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userManagerView2.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/orderManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/orderManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/userManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/userManager.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -389,7 +371,7 @@
       <workItem from="1714892376019" duration="127000" />
       <workItem from="1716195020490" duration="9003000" />
       <workItem from="1716212581014" duration="9785000" />
-      <workItem from="1716262389767" duration="18687000" />
+      <workItem from="1716262389767" duration="19919000" />
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />

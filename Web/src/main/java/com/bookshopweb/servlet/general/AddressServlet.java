@@ -114,7 +114,7 @@ public class AddressServlet extends HttpServlet {
 
             JsonObject jsonObject = new JsonObject();
             String radio = "<div class=\"row_address col-12\">"+
-                    "<input type=\"radio\""+checked+" onchange=\"setShipInfo()\" class=\"form-check-input\" name=\"address\" id=\""+address.getId()+"\" value=\""+address.getProvince()+"-"+
+                    "<input type=\"radio\""+checked+" onchange=\"setShipInfo()\" name=\"address\" id=\""+address.getId()+"\" value=\""+address.getProvince()+"-"+
                     address.getDistrict()+"-"+address.getWard()+"\">"+
                     "<label for=\""+address.getId()+"\" class=\"form-label\">"+address.getHouseNumber()+"-"+address.getWard()+"-"+address.getDistrict()+"-"+address.getProvince()+"</label>" +
                     "</div>";

@@ -36,7 +36,10 @@
         margin-left: 0.5rem;
     }
     #address_content{
-        height: 200px;
+        height: 300px;
+    }
+    #infoShip{
+      max-height: 300px;
     }
   </style>
 </head>
@@ -94,7 +97,7 @@
 <%--                    <option selected value="${requestScope.ward}">${requestScope.ward}</option>--%>
 
 <%--                  </select>--%>
-                  <div class="row w-auto justify-content-center border-info m-auto" id="add_address-btn">
+                  <div class="row w-auto justify-content-center border-info m-auto p-3" id="add_address-btn">
                     <i class="bi bi-plus-square w-auto"></i>
                     Thêm địa chỉ
                   </div>
@@ -110,7 +113,7 @@
                     <option value="GHN">GHN</option>
                   </select>
                   <form>
-                    <div class="form-check mb-2 disabled p-0 mt-3" id="infoShip">
+                    <div class="form-check mb-2 disabled p-0 mt-3 overflow-auto" id="infoShip">
                     </div>
                   </form>
 
