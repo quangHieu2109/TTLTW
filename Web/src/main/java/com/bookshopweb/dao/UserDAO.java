@@ -94,10 +94,9 @@ public class UserDAO extends AbsDAO<User> {
                 int gender = rs.getInt("gender");
                 String role = rs.getString("role");
                 Timestamp createAt = rs.getTimestamp("createAt");
-                List<Address> addresses= new AddressDAO().selectByUser(id);
-                Address address = addresses.size() > 0 ? addresses.get(0) : null;
 
-                result = new User(id, username, password, fullname, email, phoneNumber, gender, address, role, createAt);
+
+                result = new User(id, username, password, fullname, email, phoneNumber, gender, role, createAt);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -122,7 +121,7 @@ public class UserDAO extends AbsDAO<User> {
                 String role = rs.getString("role");
                 Timestamp createAt = rs.getTimestamp("createAt");
 
-                result = new User(id, userName, password, fullname, email, phoneNumber, gender, new AddressDAO().selectByUser(id).get(0), role, createAt);
+                result = new User(id, userName, password, fullname, email, phoneNumber, gender, role, createAt);
                 result.setAccuracy(new AccurancyDAO().getByUserName(userName) == null);
             }
         } catch (Exception e) {
@@ -173,7 +172,6 @@ public class UserDAO extends AbsDAO<User> {
             st.setLong(7, user.getId());
             result = st.executeUpdate();
             st.close();
-           new AddressDAO().updateAddress(user.getAddress());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -415,8 +413,6 @@ public class UserDAO extends AbsDAO<User> {
         user.setGender(resultSet.getInt("gender"));
         user.setRole(resultSet.getString("role"));
         user.setCreateAt(resultSet.getTimestamp("createAt"));
-        List<Address> addresses= new AddressDAO().selectByUser(user.getId());
-        user.setAddress(addresses.size() > 0 ? addresses.get(0) : null);
         user.setAccuracy(new AccurancyDAO().getByUserName(resultSet.getString("username"))==null);
 
 

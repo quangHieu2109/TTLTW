@@ -48,7 +48,7 @@ public class SignInGoogleServlet extends HttpServlet {
             user.setFullname(userGoogleDTO.getName());
             user.setEmail(userGoogleDTO.getEmail());
             user.setRole("CUSTOMER");
-            user.setAddress(new Address(1, id, null, null, null, null));
+
 
             userDAO.insert(user,"");
             googleUserDAO.insert(googleUser);

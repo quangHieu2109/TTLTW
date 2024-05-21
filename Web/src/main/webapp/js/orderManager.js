@@ -47,7 +47,8 @@ function updateStatus(id) {
         },
         success: function (response) {
             let status = $('input[name="category"]:checked').val();
-            loadTable(status)
+            // loadTable(status)
+            $('#my_table').DataTable().ajax.reload()
             alert("Cập nhật trạng thái đơn hàng " + id + " thành công")
         },
         error: function (response) {

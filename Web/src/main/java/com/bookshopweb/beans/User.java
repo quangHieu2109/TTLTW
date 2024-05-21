@@ -10,7 +10,7 @@ public class User extends AbsModel<User> {
     private String email;
     private String phoneNumber;
     private int gender;
-    private Address address;
+
     private String role;
     private Timestamp createAt;
     private boolean googleUser = false;
@@ -19,19 +19,7 @@ public class User extends AbsModel<User> {
     public User() {
     }
 
-    public User(long id, String username, String password, String fullname, String email, String phoneNumber, int gender, Address address, String role, Timestamp createAt) {
 
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.fullname = fullname;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.gender = gender;
-        this.address = address;
-        this.role = role;
-        this.createAt = createAt;
-    }
 
     public User(long id, String username, String password, String fullname, String email, String phoneNumber, int gender, String role, Timestamp createAt) {
         this.id = id;
@@ -110,13 +98,6 @@ public class User extends AbsModel<User> {
         this.gender = gender;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
     public String getRole() {
         return role;
@@ -140,7 +121,6 @@ public class User extends AbsModel<User> {
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", gender=" + gender +
-                ", address='" + address + '\'' +
                 ", role='" + role + '\'' +
                 ", createAt=" + createAt +
                 '}';

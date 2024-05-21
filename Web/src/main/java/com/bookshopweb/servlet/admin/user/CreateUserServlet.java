@@ -37,7 +37,6 @@ public class CreateUserServlet extends HttpServlet {
         user.setPhoneNumber(request.getParameter("phoneNumber"));
         user.setGender(Protector.of(() -> Integer.parseInt(request.getParameter("gender"))).get(0));
         //laàm address id randoom
-        user.setAddress(new Address(Long.valueOf(request.getParameter("addressID")), user.getId(),request.getParameter("province"), request.getParameter("district"), request.getParameter("ward"), request.getParameter("houseNumber")));
         user.setRole(request.getParameter("role"));
 
         Map<String, List<String>> violations = new HashMap<>();
@@ -74,10 +73,7 @@ public class CreateUserServlet extends HttpServlet {
         violations.put("genderViolations", Validator.of(user.getGender())
                 .isNotNull()
                 .toList());
-        violations.put("addressViolations", Validator.of(user.getAddress())
-                .isNotNullAndEmpty()
-                .isNotBlankAtBothEnds()
-                .toList());
+
         violations.put("roleViolations", Validator.of(user.getRole())
                 .isNotNull()
                 .toList());

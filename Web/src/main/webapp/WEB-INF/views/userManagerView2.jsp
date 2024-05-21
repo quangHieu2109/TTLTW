@@ -37,13 +37,11 @@
             padding-right: 20px;
         }
         .add-user__content{
-            position: absolute;
-            left: 25%;
-            top:10%;
+
             display: none;
             background-color: #fff;
             border: 1px solid #ddd;
-            z-index: 2;
+
         }
     </style>
 </head>

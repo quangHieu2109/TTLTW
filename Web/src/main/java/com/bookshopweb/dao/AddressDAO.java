@@ -52,7 +52,53 @@ public class AddressDAO {
 
         return result;
     }
+    public Address selectByAllInfo(long userId, String province, String district, String ward, String houseNumber){
+        Address result = null;
+        try {
+            String sql = "select * from address where province=? and district=? and ward=? and houseNumber=? and userId=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, province);
+            st.setString(2, district);
+            st.setString(3, ward);
+            st.setString(4, houseNumber);
+            st.setLong(5, userId);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
 
+                long id = rs.getLong("id");
+                Address ad = new Address(id, userId, province, district, ward, houseNumber);
+
+                result=(ad);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return result;
+    }
+    public Address selectById(long id){
+        Address result = null;
+        try {
+            String sql = "select * from address where id=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, id);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                long userId = rs.getLong("userId");
+                String houseNumber = rs.getString("houseNumber");
+                String province = rs.getString("province");
+                String district = rs.getString("district");
+                String ward = rs.getString("ward");
+                Address ad = new Address(id, userId, province, district, ward, houseNumber);
+
+                result=(ad);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return result;
+    }
     public int insertAddress(Address address){
         int result =0;
         try {

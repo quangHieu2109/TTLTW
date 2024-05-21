@@ -113,7 +113,7 @@ function addUser(username, password, fullname, email, role) {
         },
         success: function (response) {
             console.log(response);
-            $('#my_table').DataTable().rows.add(response).draw(); // Thêm dữ liệu mới vào DataTable
+            $('#my_table').DataTable().ajax.reload();
             $('#username').val("");
             $('#password').val("");
             $('#fullname').val("");
@@ -141,10 +141,7 @@ function deleteUser(id) {
         success: function (response) {
             alert("Xóa thành công");
 
-            if($.fn.DataTable.isDataTable('#my_table')){
-                $('#my_table').DataTable().destroy()
-            }
-            renderTable()
+            $('#my_table').DataTable().ajax.reload()
         },
         error: function (response) {
             alert("Xóa thất bại");
