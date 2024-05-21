@@ -151,69 +151,69 @@
                     </c:if>
                 </div>
 
-                <div class="mb-3">
+<%--                <div class="mb-3">--%>
 
-                    <label class="form-label"><fmt:message key="dia_chi"/></label><br>
-                    <input type="text"  name="numberhouse" class="mb-3 ${not empty requestScope.violations.numberhouseViolations
-                   ? 'is-invalid' : (not empty requestScope.values.numberhouse ? 'is-valid' : '')}" value="${empty requestScope.violations.numberhouseViolations?requestScope.values.numberhouse:''}" placeholder="So nha">
-                    <select class="form-select mb-3 ${not empty requestScope.violations.provinceViolations
-                   ? 'is-invalid' : (not empty requestScope.values.province ? 'is-valid' : '')}"
-                            id="selectProvince"
-                            name="province">
-                        <c:if test="${empty requestScope.violations.provinceViolations}">
-                            <option value="${requestScope.values.province}" selected>${requestScope.values.province}</option>
-                        </c:if>
+<%--                    <label class="form-label"><fmt:message key="dia_chi"/></label><br>--%>
+<%--                    <input type="text"  name="numberhouse" class="mb-3 ${not empty requestScope.violations.numberhouseViolations--%>
+<%--                   ? 'is-invalid' : (not empty requestScope.values.numberhouse ? 'is-valid' : '')}" value="${empty requestScope.violations.numberhouseViolations?requestScope.values.numberhouse:''}" placeholder="So nha">--%>
+<%--                    <select class="form-select mb-3 ${not empty requestScope.violations.provinceViolations--%>
+<%--                   ? 'is-invalid' : (not empty requestScope.values.province ? 'is-valid' : '')}"--%>
+<%--                            id="selectProvince"--%>
+<%--                            name="province">--%>
+<%--                        <c:if test="${empty requestScope.violations.provinceViolations}">--%>
+<%--                            <option value="${requestScope.values.province}" selected>${requestScope.values.province}</option>--%>
+<%--                        </c:if>--%>
 
 
-                    </select>
-                    <c:if test="${not empty requestScope.violations.provinceViolations}">
-                        <div class="invalid-feedback">
-                            <ul class="list-unstyled">
-                                <c:forEach var="violation" items="${requestScope.violations.provinceViolations}">
-                                    <li>${violation}</li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                    </c:if>
-                    <select class="form-select mb-3 ${not empty requestScope.violations.districtViolations
-                   ? 'is-invalid' : (not empty requestScope.values.district ? 'is-valid' : '')}"
-                            id="selectDistrict"
-                            name="district">
-                        <c:if test="${empty requestScope.violations.districtViolations}">
-                            <option value="${requestScope.values.district}" selected>${requestScope.values.district}</option>
-                        </c:if>
+<%--                    </select>--%>
+<%--                    <c:if test="${not empty requestScope.violations.provinceViolations}">--%>
+<%--                        <div class="invalid-feedback">--%>
+<%--                            <ul class="list-unstyled">--%>
+<%--                                <c:forEach var="violation" items="${requestScope.violations.provinceViolations}">--%>
+<%--                                    <li>${violation}</li>--%>
+<%--                                </c:forEach>--%>
+<%--                            </ul>--%>
+<%--                        </div>--%>
+<%--                    </c:if>--%>
+<%--                    <select class="form-select mb-3 ${not empty requestScope.violations.districtViolations--%>
+<%--                   ? 'is-invalid' : (not empty requestScope.values.district ? 'is-valid' : '')}"--%>
+<%--                            id="selectDistrict"--%>
+<%--                            name="district">--%>
+<%--                        <c:if test="${empty requestScope.violations.districtViolations}">--%>
+<%--                            <option value="${requestScope.values.district}" selected>${requestScope.values.district}</option>--%>
+<%--                        </c:if>--%>
 
-                    </select>
-                    <c:if test="${not empty requestScope.violations.districtViolations}">
-                        <div class="invalid-feedback">
-                            <ul class="list-unstyled">
-                                <c:forEach var="violation" items="${requestScope.violations.districtViolations}">
-                                    <li>${violation}</li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                    </c:if>
+<%--                    </select>--%>
+<%--                    <c:if test="${not empty requestScope.violations.districtViolations}">--%>
+<%--                        <div class="invalid-feedback">--%>
+<%--                            <ul class="list-unstyled">--%>
+<%--                                <c:forEach var="violation" items="${requestScope.violations.districtViolations}">--%>
+<%--                                    <li>${violation}</li>--%>
+<%--                                </c:forEach>--%>
+<%--                            </ul>--%>
+<%--                        </div>--%>
+<%--                    </c:if>--%>
 
-                    <select class="form-select mb-3 ${not empty requestScope.violations.wardViolations
-                   ? 'is-invalid' : (not empty requestScope.values.ward ? 'is-valid' : '')}"
-                            id="selectWard"
-                            name="ward">
-                        <c:if test="${empty requestScope.violations.wardViolations}">
-                            <option value="${requestScope.values.ward}" selected>${requestScope.values.ward}</option>
-                        </c:if>
+<%--                    <select class="form-select mb-3 ${not empty requestScope.violations.wardViolations--%>
+<%--                   ? 'is-invalid' : (not empty requestScope.values.ward ? 'is-valid' : '')}"--%>
+<%--                            id="selectWard"--%>
+<%--                            name="ward">--%>
+<%--                        <c:if test="${empty requestScope.violations.wardViolations}">--%>
+<%--                            <option value="${requestScope.values.ward}" selected>${requestScope.values.ward}</option>--%>
+<%--                        </c:if>--%>
 
-                    </select>
-                    <c:if test="${not empty requestScope.violations.wardViolations}">
-                        <div class="invalid-feedback">
-                            <ul class="list-unstyled">
-                                <c:forEach var="violation" items="${requestScope.violations.wardViolations}">
-                                    <li>${violation}</li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                    </c:if>
+<%--                    </select>--%>
+<%--                    <c:if test="${not empty requestScope.violations.wardViolations}">--%>
+<%--                        <div class="invalid-feedback">--%>
+<%--                            <ul class="list-unstyled">--%>
+<%--                                <c:forEach var="violation" items="${requestScope.violations.wardViolations}">--%>
+<%--                                    <li>${violation}</li>--%>
+<%--                                </c:forEach>--%>
+<%--                            </ul>--%>
+<%--                        </div>--%>
+<%--                    </c:if>--%>
 
-                </div>
+<%--                </div>--%>
                 <div class="mb-3 form-check">
                     <input class="form-check-input ${not empty requestScope.violations.policyViolations
                    ? 'is-invalid' : (not empty requestScope.values.policy ? 'is-valid' : '')}"
@@ -244,7 +244,7 @@
 </section> <!-- section-content.// -->
 
 <jsp:include page="_footer.jsp"/>
-<script src="${pageContext.request.contextPath}/js/address.js"></script>
+<%--<script src="${pageContext.request.contextPath}/js/address.js"></script>--%>
 </body>
 
 </html>

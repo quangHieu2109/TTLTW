@@ -73,25 +73,25 @@ public class SignupServlet extends HttpServlet {
         violations.put("genderViolations", Validator.of(values.get("gender"))
                 .isNotNull()
                 .toList());
-        violations.put("numberhouseViolations", Validator.of(values.get("numberhouse"))
-                .isNotNullAndEmpty()
-                .isNotBlankAtBothEnds()
-                .toList());
-        violations.put("provinceViolations", Validator.of(values.get("province"))
-                .isNotNullAndEmpty()
-                .isNotBlankAtBothEnds()
-                .isNotConttain("none")
-                .toList());
-        violations.put("districtViolations", Validator.of(values.get("district"))
-                .isNotNullAndEmpty()
-                .isNotBlankAtBothEnds()
-                .isNotConttain("none")
-                .toList());
-        violations.put("wardViolations", Validator.of(values.get("ward"))
-                .isNotNullAndEmpty()
-                .isNotBlankAtBothEnds()
-                .isNotConttain("none")
-                .toList());
+//        violations.put("numberhouseViolations", Validator.of(values.get("numberhouse"))
+//                .isNotNullAndEmpty()
+//                .isNotBlankAtBothEnds()
+//                .toList());
+//        violations.put("provinceViolations", Validator.of(values.get("province"))
+//                .isNotNullAndEmpty()
+//                .isNotBlankAtBothEnds()
+//                .isNotConttain("none")
+//                .toList());
+//        violations.put("districtViolations", Validator.of(values.get("district"))
+//                .isNotNullAndEmpty()
+//                .isNotBlankAtBothEnds()
+//                .isNotConttain("none")
+//                .toList());
+//        violations.put("wardViolations", Validator.of(values.get("ward"))
+//                .isNotNullAndEmpty()
+//                .isNotBlankAtBothEnds()
+//                .isNotConttain("none")
+//                .toList());
         violations.put("policyViolations", Validator.of(values.get("policy"))
                 .isNotNull()
                 .toList());

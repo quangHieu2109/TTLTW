@@ -11,8 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="update log manager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/general/AddressServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/general/AddressServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignupServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignupServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/signupView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/signupView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/updateUserView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/updateUserView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userDetailView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userDetailView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userView.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -371,7 +374,7 @@
       <workItem from="1714892376019" duration="127000" />
       <workItem from="1716195020490" duration="9003000" />
       <workItem from="1716212581014" duration="9785000" />
-      <workItem from="1716262389767" duration="19919000" />
+      <workItem from="1716262389767" duration="21794000" />
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />
