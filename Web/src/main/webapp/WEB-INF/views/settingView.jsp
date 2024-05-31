@@ -114,47 +114,47 @@
                                                         key="nu"/></label>
                                             </div>
                                         </div>
-                                        <div class="card mb-3">
-                                            <div class="card-header">
-                                                <a href="#collapsePassword" data-bs-toggle="collapse" class="card-link">
-                                                    <fmt:message key="dia_chi"/>
-                                                </a>
-                                            </div>
-                                            <div id="collapsePassword" class="collapse">
-                                                <div class="card-body">
-                                                    <div class="mb-3">
-                                                        <label for="houseNumber" class="form-label">Số nhà</label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               id="houseNumber"
-                                                               name="houseNumber"
-                                                               value="${requestScope.user.address.houseNumber}">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="selectProvince" class="form-label">Tiình
-                                                            thành</label>
-                                                        <select id="selectProvince" name="province">
-                                                            <option selected>${requestScope.user.address.province}</option>
+<%--                                        <div class="card mb-3">--%>
+<%--                                            <div class="card-header">--%>
+<%--                                                <a href="#collapsePassword" data-bs-toggle="collapse" class="card-link">--%>
+<%--                                                    <fmt:message key="dia_chi"/>--%>
+<%--                                                </a>--%>
+<%--                                            </div>--%>
+<%--                                            <div id="collapsePassword" class="collapse">--%>
+<%--                                                <div class="card-body">--%>
+<%--                                                    <div class="mb-3">--%>
+<%--                                                        <label for="houseNumber" class="form-label">Số nhà</label>--%>
+<%--                                                        <input type="text"--%>
+<%--                                                               class="form-control"--%>
+<%--                                                               id="houseNumber"--%>
+<%--                                                               name="houseNumber"--%>
+<%--                                                               value="${requestScope.user.address.houseNumber}">--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="mb-3">--%>
+<%--                                                        <label for="selectProvince" class="form-label">Tiình--%>
+<%--                                                            thành</label>--%>
+<%--                                                        <select id="selectProvince" name="province">--%>
+<%--                                                            <option selected>${requestScope.user.address.province}</option>--%>
 
-                                                        </select>
-                                                    </div>
+<%--                                                        </select>--%>
+<%--                                                    </div>--%>
 
-                                                    <div class="mb-3">
-                                                        <label for="selectDistrict" class="form-label">Quan</label>
-                                                        <select id="selectDistrict" name="district">
-                                                            <option selected>${requestScope.user.address.district}</option>
+<%--                                                    <div class="mb-3">--%>
+<%--                                                        <label for="selectDistrict" class="form-label">Quan</label>--%>
+<%--                                                        <select id="selectDistrict" name="district">--%>
+<%--                                                            <option selected>${requestScope.user.address.district}</option>--%>
 
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="selectWard" class="form-label">Phuường/Xã</label>
-                                                        <select id="selectWard" name="ward">
-                                                            <option selected>${requestScope.user.address.ward}</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+<%--                                                        </select>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="mb-3">--%>
+<%--                                                        <label for="selectWard" class="form-label">Phuường/Xã</label>--%>
+<%--                                                        <select id="selectWard" name="ward">--%>
+<%--                                                            <option selected>${requestScope.user.address.ward}</option>--%>
+<%--                                                        </select>--%>
+<%--                                                    </div>--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
 
                                         <button type="submit" class="btn btn-primary w-100"><fmt:message
                                                 key="cap_nhat_thong_tin_moi"/></button>

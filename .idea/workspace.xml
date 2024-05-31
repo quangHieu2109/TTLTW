@@ -10,12 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="update log manager">
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/CategorysOfVoucher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Voucher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CategorysOfVoucherDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/VoucherDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiInterface/CategorysOfVoucherJDBI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiInterface/VoucherJDBI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/voucher/CreateVoucherServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/voucher/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/createVoucherView.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/voucher.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignupServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignupServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/signupView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/signupView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/updateUserView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/updateUserView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userDetailView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userDetailView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/District.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Province.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/StatisticalProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/StatisticalProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Ward.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/order/OrderManagerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/order/OrderManagerServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/productReviewManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/productReviewManagerView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/settingView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/settingView.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +38,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
-        <option value="JavaScript File" />
         <option value="Interface" />
+        <option value="JavaScript File" />
         <option value="Class" />
       </list>
     </option>
@@ -84,6 +96,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.AccurancyUser.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CreateVoucherServlet.executor&quot;: &quot;Run&quot;,
     &quot;Application.LogDAO.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Application.OrderItemDAO.executor&quot;: &quot;Run&quot;,
@@ -91,6 +104,7 @@
     &quot;Application.SendMail.executor&quot;: &quot;Run&quot;,
     &quot;Application.StatiscalProductDAO.executor&quot;: &quot;Run&quot;,
     &quot;Application.UserManagerSerlet2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.com.bookshopweb.servlet.admin.voucher.Main.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.header.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -101,7 +115,7 @@
     &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20240326_0002&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Hung&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Program/JavaWeb/TTLTW/Web/src/main/webapp/js&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Program/JavaWeb/TTLTW/Web/src/main/webapp/WEB-INF/views&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -115,8 +129,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Program\JavaWeb\TTLTW\Web\src\main\webapp\js" />
       <recent name="D:\Program\JavaWeb\TTLTW\Web\src\main\webapp\WEB-INF\views" />
+      <recent name="D:\Program\JavaWeb\TTLTW\Web\src\main\webapp\js" />
       <recent name="D:\Program\JavaWeb\TTLTW\Web" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -136,12 +150,12 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.48">
-    <configuration name="LogDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.LogDAO" />
+    <configuration name="CreateVoucherServlet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.servlet.admin.voucher.CreateVoucherServlet" />
       <module name="BookShopWeb" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.bookshopweb.mapper.*" />
+          <option name="PATTERN" value="com.bookshopweb.servlet.admin.voucher.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -188,12 +202,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserManagerSerlet2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.servlet.admin.user.UserManagerSerlet2" />
+    <configuration name="com.bookshopweb.servlet.admin.voucher.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.servlet.admin.voucher.Main" />
       <module name="BookShopWeb" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.bookshopweb.servlet.admin.user.*" />
+          <option name="PATTERN" value="com.bookshopweb.servlet.admin.voucher.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -289,20 +303,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.LogDAO" />
+      <item itemvalue="Application.CreateVoucherServlet" />
+      <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.OrderItemDAO" />
       <item itemvalue="Application.ProductDAO" />
-      <item itemvalue="Application.UserManagerSerlet2" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.48" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
+        <item itemvalue="Application.CreateVoucherServlet" />
         <item itemvalue="Application.OrderItemDAO" />
         <item itemvalue="Application.ProductDAO" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.LogDAO" />
-        <item itemvalue="Application.UserManagerSerlet2" />
       </list>
     </recent_temporary>
   </component>
@@ -374,7 +388,16 @@
       <workItem from="1714892376019" duration="127000" />
       <workItem from="1716195020490" duration="9003000" />
       <workItem from="1716212581014" duration="9785000" />
-      <workItem from="1716262389767" duration="21794000" />
+      <workItem from="1716262389767" duration="21968000" />
+      <workItem from="1716302384586" duration="3249000" />
+      <workItem from="1716703573181" duration="6707000" />
+      <workItem from="1716730865269" duration="1026000" />
+      <workItem from="1716823316236" duration="8291000" />
+      <workItem from="1716878074874" duration="9996000" />
+      <workItem from="1716905089997" duration="1841000" />
+      <workItem from="1716911977604" duration="1667000" />
+      <workItem from="1717134060761" duration="13123000" />
+      <workItem from="1717168707776" duration="9741000" />
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />
