@@ -1,7 +1,9 @@
 package com.bookshopweb.dao;
 
 import com.bookshopweb.beans.Log;
+import com.bookshopweb.jdbiIterface.LogJDBI;
 import com.bookshopweb.utils.JDBCUtils;
+import com.bookshopweb.utils.JDBIUltis;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +14,13 @@ import java.util.List;
 
 public class LogDAO {
     Connection conn = JDBCUtils.getConnection();
+    LogJDBI logJDBI = JDBIUltis.getJDBI().onDemand(LogJDBI.class);
+    public int getQuantity(){
+        return logJDBI.getQuantity();
+    }
+    public List<Log> getByLimit(int start, int length){
+        return logJDBI.getByLimit(start, length);
+    }
     public List<Log> selectAll(){
         List<Log> result = new ArrayList<>();
         try {
@@ -94,8 +103,9 @@ public class LogDAO {
     public static void main(String[] args) {
         Log log = new Log(1, "4564256", 11, "rs11", "pre", "cur", null, null);
         LogDAO dao = new LogDAO();
-        for(Log l : dao.selectAll()){
+        for(Log l : dao.getByLimit(0, 99)){
             System.out.println(l);
         }
+//        System.out.println(dao.getQuantity());
     }
 }

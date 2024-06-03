@@ -158,7 +158,9 @@ public class User extends AbsModel<User> {
     public boolean isGoogleUser() {
         return googleUser;
     }
-
+public boolean isCustomer(){
+        return role.equalsIgnoreCase("CUSTOMER");
+    }
     public void setGoogleUser(boolean googleUser) {
         this.googleUser = googleUser;
     }

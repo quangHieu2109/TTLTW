@@ -1,12 +1,7 @@
 package com.bookshopweb.service;
 
 
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-=======
->>>>>>> 6c9eecfa92f41bdea86369628590e16ab565adc5
+
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -29,7 +24,7 @@ public class SendMail {
 
 
     static Session session;
-private JavaMailSender mailSender;
+
 
 
 

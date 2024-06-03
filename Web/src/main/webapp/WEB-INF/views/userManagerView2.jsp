@@ -15,105 +15,88 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+    <link href="${pageContext.request.contextPath}/css/bootstrap-icons.css" type="text/css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
     <style>
-        .add-user__btn{
-            width: max-content;
-            margin-right: 0;
-
-        }
-        .add-user__btn button{
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-        .add-user__content{
-            position: absolute;
-            left: 25%;
-            top:10%;
+        #add_user__container{
             display: none;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            z-index: 2;
+            width: 500px;
+            margin: auto;
+            border-radius: 10px;
+            border: 1px solid #b0b2b2;
+            padding: 20px;
         }
+       .btn_add__container{
+
+       }
     </style>
 </head>
 <body>
-<%--<jsp:include page="_headerAdmin.jsp"/>--%>
+<jsp:include page="_headerAdmin.jsp"/>
+
 <div class="container">
-    <div class="container add-user__btn"><button class="btn btn-success mr-0" id="addUser">Add user</button></div>
-    <div class="container w-50 m-auto add-user__content" id="add-user__content">
-
-            <div class="mb-3">
-                <label for="username" class="form-lable">Tên đăng nhập:</label>
-                <label  class="from-lable text-danger" id="username-error"></label>
-                <input type="text" class="form-control" id="username" required>
-            </div>
-            <div class="mb-3">
-                <label for="username" class="form-lable">Mật khẩu:</label>
-                <label  class="from-lable text-danger" id="password-error"></label>
-                <input type="password" class="form-control" id="password" required>
-            </div>
-            <div class="mb-3">
-                <label for="fullname" class="form-lable">Họ tên:</label>
-                <label  class="from-lable text-danger" id="fullname-error"></label>
-                <input type="text" class="form-control" id="fullname" required>
-            </div>
-            <div class="mb-3">
-                <label for="username" class="form-lable">Email:</label>
-                <label  class="from-lable text-danger" id="email-error"></label>
-                <input type="text" class="form-control" id="email" required>
-            </div>
-            <div class="mb-3">
-                <label for="username" class="form-lable">Phân quyền:</label>
-                <label class="from-lable"></label>
-                <select name="" id="role">
-                    <option value="CUSTOMER" selected>CUSTOMER</option>
-                    <option value="EMPLOYEE">EMPLOYEE</option>
-                    <option value="ADMIN">ADMIN</option>
-                </select>
-            </div>
-            <div class="mb-3 justify-content-between" >
-                <button id="add" class="btn btn-info ">Thêm</button>
-                <button id="cancel" class="btn btn-info">Hủy</button>
-
-            </div>
-
-
+    <div class="btn_add__container d-flex justify-content-end">
+        <button class="btn btn-success" id="add">Thêm người dùng</button>
     </div>
-    <div style="width: 80%; margin: auto" id="table-contaier">
-        <table id="my_table" class="disabled table-bordered table-striped">
+    <div id="my_table__container">
+        <table id="my_table" class="table-bordered">
             <thead>
             <tr>
-                <%--        <th>#</th>--%>
                 <th>ID</th>
-                <th>UserName</th>
-
+                <th>UesrName</th>
                 <th>FullName</th>
                 <th>Email</th>
                 <th>PhoneNumber</th>
                 <th>Gender</th>
                 <th>Role</th>
                 <th>Operation</th>
-
-
             </tr>
-
             </thead>
             <tbody>
 
             </tbody>
-
         </table>
-
     </div>
+    <div id="add_user__container">
+        <div class="mb-3">
+            <lable class="form-label">Tên đăng nhập</lable>
+            <label class="form-label text-danger" id="username-error"></label>
+            <input type="text" class="form-control" id="username">
+        </div>
+        <div class="mb-3">
+            <lable class="form-label">Mật khẩu</lable>
+            <label class="form-label text-danger" id="password-error"></label>
+            <input type="password" class="form-control" id="password">
+        </div>
+        <div class="mb-3">
+            <lable class="form-label">Họ và tên</lable>
+            <label class="form-label text-danger" id="fullname-error"></label>
+            <input type="text" class="form-control" id="fullname">
+        </div>
+        <div class="mb-3">
+            <lable class="form-label">Email</lable>
+            <label class="form-label text-danger" id="email-error"></label>
+            <input type="email" class="form-control" id="email">
+        </div>
+        <div class="mb-3">
+            <lable class="form-label">Role</lable>
 
+            <select name="" id="role" class="form-select">
+                <option value="CUSTOMER">CUSTOMER</option>
+                <option value="EMPLOYEE">EMPLOYEE</option>
+                <option value="ADMIN">ADMIN</option>
+            </select>
+        </div>
+        <div class="mb-3 d-flex justify-content-around">
+            <button class="btn btn-secondary" id="cancel">Hủy</button>
+            <button class="btn btn-primary" id="submit">Thêm</button>
 
-
+        </div>
+    </div>
 </div>
-<jsp:include page="_footerAdmin.jsp"/>
 
-
-<script src="${pageContext.request.contextPath}/js/userManager.js" type="text/javascript" ></script>
+<script src="${pageContext.request.contextPath}/js/userManager.js" type="text/javascript"></script>
 
 </body>
 </html>

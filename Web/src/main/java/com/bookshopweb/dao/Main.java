@@ -1,8 +1,12 @@
 package com.bookshopweb.dao;
 
+import com.bookshopweb.beans.Log;
 import com.bookshopweb.beans.User;
+import com.bookshopweb.jdbiIterface.LogJDBI;
 import com.bookshopweb.utils.JDBIUltis;
 import org.jdbi.v3.core.Handle;
+import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -10,7 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+//    public static void main(String[] args) throws SQLException {
 //        UserJDBI userJDBI = JDBIUltis.getJDBI().onDemand(UserJDBI.class);
 //        List<User> users = userJDBI.selectAll(); // lấy dữ liệu thông qua map constructor
 //        List<User> users = JDBIUltis.getJDBI().withHandle( handle ->
@@ -32,8 +36,21 @@ public class Main {
 //            Pattern pattern = Pattern.compile(regex);
 //            Matcher matcher =  pattern.matcher("12aAcxN");
 //            System.out.println(matcher.matches());
-UserDAO userDAO = new UserDAO();
-        System.out.println(userDAO.selectByUserName("user1"));
+//        String emailRegex = "^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$";
+//        String passwordRegex ="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$";
+//        Pattern pattern = Pattern.compile(emailRegex);
+//        System.out.println(pattern.matcher("1111@gm.com").matches());
+//        pattern = Pattern.compile(passwordRegex);
+//        System.out.println(pattern.matcher("a12A").matches());
 
-    }
+//    }
+public static void main(String[] args) {
+    String emailRegex = "^[a-zA-z0-9.]+@[a-zA-Z0-9].[.a-zA-Z0-9]*[a-zA-Z0-9]+$";
+    String passwordRegex ="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$";
+    Pattern emailPattern = Pattern.compile(emailRegex);
+    Pattern passPattern = Pattern.compile(passwordRegex);
+//    System.out.println(emailPattern.matcher("1231.@12.ax.fv").matches());
+    System.out.println(passPattern.matcher("12312aa").matches());
 }
+}
+
