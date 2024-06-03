@@ -17,7 +17,7 @@
 
   <!-- Custom Scripts -->
   <script src="${pageContext.request.contextPath}/js/toast.js" type="module"></script>
-  <script src="${pageContext.request.contextPath}/js/cart.js" type="module"></script>
+  <script src="${pageContext.request.contextPath}/js/cart2.js" type="module"></script>
   <script src="${pageContext.request.contextPath}/js/address.js" type="text/javascript"></script>
   <script src="${pageContext.request.contextPath}/js/feeship.js" type="module"></script>
   <style>
@@ -67,7 +67,20 @@
           <c:otherwise>
             <main class="col-lg-9 mb-lg-0 mb-3">
               <div class="card">
-
+                <div class="table-responsive-xl">
+                  <table class="cart-table table table-borderless">
+                    <thead class="text-muted">
+                    <tr class="small text-uppercase">
+                      <th scope="col" style="min-width: 100px;">Mua</th>
+                      <th scope="col" style="min-width: 250px;">Sản phẩm</th>
+                      <th scope="col" style="min-width: 160px;">Giá</th>
+                      <th scope="col" style="min-width: 150px;">Số lượng</th>
+                      <th scope="col" style="min-width: 100px;"></th>
+                    </tr>
+                    </thead>
+                    <tbody id="cart_body"></tbody>
+                  </table>
+                </div> <!-- table.responsive-md.// -->
                 <div id="cart-table"></div>
 
                 <div class="card-body border-top">

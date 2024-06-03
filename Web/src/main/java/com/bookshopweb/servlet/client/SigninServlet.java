@@ -3,6 +3,7 @@ package com.bookshopweb.servlet.client;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.HashingUtils;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +29,10 @@ public class SigninServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+
+        System.out.println(IPUtils.getIPInfo(request));
         Map<String, String> values = new HashMap<>();
         values.put("username", request.getParameter("username"));
         values.put("password", request.getParameter("password"));

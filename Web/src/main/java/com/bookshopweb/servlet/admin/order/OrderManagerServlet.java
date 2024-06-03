@@ -28,32 +28,32 @@ public class OrderManagerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int totalOrders = Protector.of(orderDAO::count).get(0);
-//        int totalPages = totalOrders / ORDERS_PER_PAGE + (totalOrders % ORDERS_PER_PAGE != 0 ? 1 : 0);
-//
-//        String pageParam = Optional.ofNullable(request.getParameter("page")).orElse("1");
-//        int page = Protector.of(() -> Integer.parseInt(pageParam)).get(1);
-//        if (page < 1 || page > totalPages) {
-//            page = 1;
-//        }
-//
-//        int offset = (page - 1) * ORDERS_PER_PAGE;
-//
-//        List<Order> orders = Protector.of(() -> orderDAO.getOrderedPart(
-//                ORDERS_PER_PAGE, offset, "id", "DESC"
-//        )).get(ArrayList::new);
-//
-//        for (Order order : orders) {
-//            Protector.of(() -> userDAO.selectPrevalue(order.getUserId())).get().ifPresent(order::setUser);
-//            List<OrderItem> orderItems = Protector.of(() -> orderItemDAO.getByOrderId(order.getId())).get(ArrayList::new);
-//            order.setOrderItems(orderItems);
-//            order.setTotalPrice(calculateTotalPrice(orderItems, order.getDeliveryPrice()));
-//        }
-//
-//        request.setAttribute("totalPages", totalPages);
-//        request.setAttribute("page", page);
-//        request.setAttribute("orders", orders);
-        request.getRequestDispatcher("/WEB-INF/views/orderManagerView2.jsp").forward(request, response);
+        int totalOrders = Protector.of(orderDAO::count).get(0);
+        int totalPages = totalOrders / ORDERS_PER_PAGE + (totalOrders % ORDERS_PER_PAGE != 0 ? 1 : 0);
+
+        String pageParam = Optional.ofNullable(request.getParameter("page")).orElse("1");
+        int page = Protector.of(() -> Integer.parseInt(pageParam)).get(1);
+        if (page < 1 || page > totalPages) {
+            page = 1;
+        }
+
+        int offset = (page - 1) * ORDERS_PER_PAGE;
+
+        List<Order> orders = Protector.of(() -> orderDAO.getOrderedPart(
+                ORDERS_PER_PAGE, offset, "id", "DESC"
+        )).get(ArrayList::new);
+
+        for (Order order : orders) {
+            Protector.of(() -> userDAO.selectPrevalue(order.getUserId())).get().ifPresent(order::setUser);
+            List<OrderItem> orderItems = Protector.of(() -> orderItemDAO.getByOrderId(order.getId())).get(ArrayList::new);
+            order.setOrderItems(orderItems);
+            order.setTotalPrice(calculateTotalPrice(orderItems, order.getDeliveryPrice()));
+        }
+
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("page", page);
+        request.setAttribute("orders", orders);
+        request.getRequestDispatcher("/WEB-INF/views/orderManagerView.jsp").forward(request, response);
     }
 
     @Override

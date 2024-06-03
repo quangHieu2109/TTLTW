@@ -1,11 +1,5 @@
 package com.bookshopweb.service;
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Calendar;

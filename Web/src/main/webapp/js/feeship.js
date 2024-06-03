@@ -1,4 +1,4 @@
-import {_formatPrice, render} from "./cart.js";
+import {_formatPrice} from "./cart2.js";
 async function _getFeeship(provinceID, districtID, wardID,quantity,weight,length,width,height,unitship) {
     let url = "province="+provinceID+"&district="+districtID+"&ward="+wardID+"&quantity="+quantity+"&weight="+weight+"&length="+length+"&width="+width+"&height="+height+"&unitShip="+unitship;
     const response = await fetch(contextPathMetaTag.content + "/feeship?"+url, {
@@ -61,7 +61,7 @@ async function updateDeliveryMethod() {
             const formattedValue = selectedValue.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
             delivery.setAttribute('data-value', selectedValue);
             delivery.innerHTML = _formatPrice(selectedValue);
-            render();
+            // render();
         }
 
         let radios = document.getElementsByName('infoship');

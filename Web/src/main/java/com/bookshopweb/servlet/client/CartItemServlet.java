@@ -13,8 +13,10 @@ import com.bookshopweb.dao.CartDAO;
 import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.JsonUtils;
 import com.bookshopweb.utils.Protector;
+import com.google.gson.JsonObject;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +32,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @WebServlet(name = "CartItemServlet", value = "/cartItem")
+@MultipartConfig
 public class CartItemServlet extends HttpServlet {
     private final CartDAO cartDAO = new CartDAO();
     private final CartItemDAO cartItemDAO = new CartItemDAO();
@@ -37,8 +40,11 @@ public class CartItemServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("currentUser");
+        String type = request.getParameter("type");
+        if(type == null){
         // Lấy userId và đối tượng user từ database theo userId này
-        long userId = Protector.of(() -> Long.parseLong(request.getParameter("userId"))).get(0L);
+        long userId = user.getId();
         Optional<User> userFromServer = Protector.of(() -> userDAO.selectPrevalue(userId)).get();
 
 
@@ -76,6 +82,14 @@ public class CartItemServlet extends HttpServlet {
         } else {
             String errorMessage = "Đã có lỗi truy vấn!";
             JsonUtils.out(response, new ErrorMessage(404, errorMessage), HttpServletResponse.SC_NOT_FOUND);
+        }
+        }else{
+            int totalQuantity = cartItemDAO.sumQuantityByUserId(user.getId());
+            JsonObject jsonResponse = new JsonObject();
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            jsonResponse.addProperty("totalQuantity", totalQuantity);
+            response.getWriter().write(jsonResponse.toString());
         }
     }
 
@@ -145,33 +159,31 @@ public class CartItemServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CartItemRequest cartItemRequest = JsonUtils.get(request, CartItemRequest.class);
 
-        long cartItemId = Protector.of(() -> Long.parseLong(request.getParameter("cartItemId"))).get(0L);
-        Optional<CartItem> cartItemFromServer = Protector.of(() -> cartItemDAO.getById(cartItemId)).get(Optional::empty);
+
+        long cartItemId = Long.parseLong(request.getParameter("cartItemId"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        System.out.println(quantity);
 
         String successMessage = "Đã cập nhật số lượng của sản phẩm thành công!";
         String errorMessage = "Đã có lỗi truy vấn!";
 
-        Runnable doneFunction = () -> JsonUtils.out(
-                response,
-                new SuccessMessage(200, successMessage),
-                HttpServletResponse.SC_OK);
-        Runnable failFunction = () -> JsonUtils.out(
-                response,
-                new ErrorMessage(404, errorMessage),
-                HttpServletResponse.SC_NOT_FOUND);
-
-        if (cartItemId > 0L && cartItemFromServer.isPresent()) {
-            CartItem cartItem = cartItemFromServer.get();
-            cartItem.setQuantity(cartItemRequest.getQuantity());
-            cartItem.setUpdatedAt(Timestamp.from(Instant.now()));
-            Protector.of(() -> cartItemDAO.update(cartItem,""))
-                    .done(r -> doneFunction.run())
-                    .fail(e -> failFunction.run());
-        } else {
-            failFunction.run();
+        CartItem cartItem = cartItemDAO.selectPrevalue(cartItemId);
+        cartItem.setQuantity(quantity);
+        System.out.println(cartItem);
+        int rs = cartItemDAO.update(cartItem, "");
+        JsonObject jsonResponse = new JsonObject();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        if(rs>0){
+            response.setStatus(200);
+            jsonResponse.addProperty("msg", successMessage);
+        }else{
+            response.setStatus(400);
+            jsonResponse.addProperty("msg", errorMessage);
         }
+        response.getWriter().write(jsonResponse.toString());
+
     }
 
     @Override

@@ -1,11 +1,7 @@
 package com.bookshopweb.dao;
 
 import com.bookshopweb.beans.Log;
-<<<<<<< HEAD
-import com.bookshopweb.jdbiIterface.LogJDBI;
-=======
 import com.bookshopweb.jdbiInterface.LogJDBI;
->>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
 import com.bookshopweb.utils.JDBCUtils;
 import com.bookshopweb.utils.JDBIUltis;
 
@@ -18,17 +14,7 @@ import java.util.List;
 
 public class LogDAO {
     Connection conn = JDBCUtils.getConnection();
-<<<<<<< HEAD
-    LogJDBI logJDBI = JDBIUltis.getJDBI().onDemand(LogJDBI.class);
-    public int getQuantity(){
-        return logJDBI.getQuantity();
-    }
-    public List<Log> getByLimit(int start, int length){
-        return logJDBI.getByLimit(start, length);
-    }
-=======
     private static LogJDBI logJDBI= JDBIUltis.getJDBI().onDemand(LogJDBI.class);
->>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
     public List<Log> selectAll(){
         List<Log> result = logJDBI.selectAll();
 //        try {
@@ -109,14 +95,6 @@ public class LogDAO {
     }
 
     public static void main(String[] args) {
-<<<<<<< HEAD
-        Log log = new Log(1, "4564256", 11, "rs11", "pre", "cur", null, null);
-        LogDAO dao = new LogDAO();
-        for(Log l : dao.getByLimit(0, 99)){
-            System.out.println(l);
-        }
-//        System.out.println(dao.getQuantity());
-=======
 //        Log log = new Log(1, "4564256", 11, "rs11", "pre", "cur", null, null);
 //        LogDAO dao = new LogDAO();
         for(Log l : logJDBI.selectAll()){
@@ -128,6 +106,5 @@ public class LogDAO {
 //        log.setResource("Hiu");
 //        log.setCreateAt(new Timestamp(123212312));
 //        System.out.println(logJDBI.insertLog(log));
->>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
     }
 }

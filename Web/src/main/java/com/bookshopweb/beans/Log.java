@@ -15,31 +15,6 @@ public class Log {
     private Timestamp updateAt;
 
     public Log() {
-<<<<<<< HEAD
-    }
-    public Log(long id, String ip, int levelLog, String resource, String preValue, String curValue, Timestamp createAt, Timestamp updateAt) {
-        this.id = id;
-        this.ip = ip;
-        this.levelLog = levelLog;
-        this.resource = resource;
-        this.preValue = preValue;
-        this.curValue = curValue;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
-    }
-    public Log(String ip, int levelLog, String resource, String preValue, String curValue, Timestamp createAt) {
-        long id = Calendar.getInstance().getTimeInMillis() + new Random().nextInt(100)*1000;
-        this.id = id;
-        this.ip = ip;
-        this.levelLog = levelLog;
-        this.resource = resource;
-        this.preValue = preValue;
-        this.curValue = curValue;
-        this.createAt = createAt;
-        this.updateAt = new Timestamp(Calendar.getInstance().getTimeInMillis());
-    }
-
-=======
     }
 
     public Log(long id, String ip, int levelLog, String resource, String preValue, String curValue, Timestamp createAt, Timestamp updateAt) {
@@ -64,7 +39,6 @@ public class Log {
         this.updateAt = new Timestamp(Calendar.getInstance().getTimeInMillis());
     }
 
->>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
 
 
     public void setId(long id) {

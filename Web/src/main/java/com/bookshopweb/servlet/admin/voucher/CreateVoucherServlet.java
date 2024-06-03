@@ -17,7 +17,9 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 @WebServlet("/createVoucherSevlet")
@@ -39,20 +41,12 @@ public class CreateVoucherServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("voucherName"+" "+req.getParameter("voucherName"));
-        System.out.println("voucherCode"+" "+req.getParameter("voucherCode"));
-        System.out.println("typeVoucher"+" "+req.getParameter("typeVoucher"));
-        System.out.println("description"+" "+req.getParameter("description"));
-        System.out.println("percentDecrease"+" "+req.getParameter("percentDecrease"));
-        System.out.println("maxDecrease"+" "+req.getParameter("maxDecrease"));
-        System.out.println("minPrice"+" "+req.getParameter("minPrice"));
-        System.out.println("voucherStartsAt"+" "+req.getParameter("voucherStartsAt"));
-        System.out.println("voucherEndAt"+" "+req.getParameter("voucherEndAt"));
         String voucherName = req.getParameter("voucherName");
         String voucherCode = req.getParameter("voucherCode");
         int type = Integer.parseInt(req.getParameter("typeVoucher"));
         String description = req.getParameter("description");
         int percentDecrease = Integer.parseInt(req.getParameter("percentDecrease"));
+        int quantity = Integer.parseInt(req.getParameter("quantity"));
         double maxDecrease = Double.parseDouble(req.getParameter("maxDecrease"));
         double minPrice = Double.parseDouble(req.getParameter("minPrice"));
         Timestamp voucherStartsAt = Timestamp.from(LocalDateTime.parse(req.getParameter("voucherStartsAt"))
@@ -61,47 +55,55 @@ public class CreateVoucherServlet extends HttpServlet {
         Timestamp voucherEndAt = Timestamp.from(LocalDateTime.parse(req.getParameter("voucherEndAt"))
                 .atZone(ZoneId.systemDefault()).toInstant());
         String[] categorysString = req.getParameterValues("categorys");
-        System.out.println("categorys"+" "+ Arrays.toString(categorysString));
-
+        System.out.println(categorysString);
         Voucher voucher = voucherDAO.getByVoucherCode(voucherCode);
         JsonObject jsonResponse = new JsonObject();
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
-        for (String category : categorysString) {
-            System.out.println(category);
-        }
+
         if (voucher != null) {
             resp.setStatus(400);
             jsonResponse.addProperty("msg", "Mã voucher đã tồn tại, vui lòng chọn mã khác!");
-            resp.getWriter().write(jsonResponse.toString());
         } else {
-            voucher = new Voucher(0L, voucherCode, voucherName, description, percentDecrease, maxDecrease, minPrice, type, voucherStartsAt, voucherEndAt, "");
-            ImageUtils.setServletContext(getServletContext());
-            ImageUtils.upload(req).ifPresent(voucher::setImage);
+            voucher = new Voucher(0L, voucherCode, voucherName, description, quantity, percentDecrease, maxDecrease, minPrice, type, voucherStartsAt, voucherEndAt, "");
+            voucher.setVoucherImage(ImageUtils.uploadImage(req));
             int rs = voucherDAO.insert(voucher, "");
             if(rs>0){
                 voucher = voucherDAO.getByVoucherCode(voucherCode);
-                String category = Arrays.toString(categorysString);
-                String categoryNew="";
-                for(int i=1; i<category.length()-1; i++){
-                    categoryNew+= category.charAt(i);
+                if(categorysString != null){
+                    List<Long> categoryIds = new ArrayList<>();
+                    try {
+                        for(String s : categorysString){
+                            categoryIds.add(Long.parseLong(s));
+                        }
+
+                    } catch (Exception e) {
+                        categoryIds = new ArrayList<>();
+                        String category = Arrays.toString(categorysString);
+                        String categoryNew="";
+                        for(int i=1; i<category.length()-1; i++){
+                            categoryNew+= category.charAt(i);
+                        }
+                        for (String s : categoryNew.split(",")) {
+                            categoryIds.add(Long.parseLong(s));
+
+                        }
+                    }
+                    for (long id : categoryIds) {
+                        CategorysOfVoucher categorysOfVoucher = new CategorysOfVoucher(0L, voucher.getId(), id);
+                        categorysOfVoucherDAO.addCategoryOfVoucher(categorysOfVoucher);
+                    }
+
                 }
-                System.out.println(Arrays.toString(categoryNew.split(",")));
-                for (String c : categoryNew.split(",")) {
-                    CategorysOfVoucher categorysOfVoucher = new CategorysOfVoucher(0L, voucher.getId(), Long.parseLong(c));
-                    categorysOfVoucherDAO.addCategoryOfVoucher(categorysOfVoucher);
-                }
+
                 resp.setStatus(200);
                 jsonResponse.addProperty("msg", "Thêm voucher thành công!");
-                resp.getWriter().write(jsonResponse.toString());
 
             }else{
                 resp.setStatus(500);
                 jsonResponse.addProperty("msg", "Thêm voucher thất bại, vui lòng thử lại sau!");
-                resp.getWriter().write(jsonResponse.toString());
             }
-        }
-
+        } resp.getWriter().write(jsonResponse.toString());
 
 
     }

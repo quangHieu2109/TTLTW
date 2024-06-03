@@ -2,35 +2,44 @@ package com.bookshopweb.beans;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.List;
 
 public class Voucher extends AbsModel<Voucher> {
     private long id;
     private String voucherCode;
     private String voucherName;
     private String description;
+    private int quantity;
     private double percentDecrease;
-    private double maxRecrease;
+    private double maxDecrease;
     private double minPrice;
     private int type;
     private Timestamp startAt;
     private Timestamp endAt;
     private Timestamp createAt;
-    private String image;
+    private String voucherImage;
 
-    public Voucher(long id, String voucherCode, String voucherName, String description, double percentDecrease, double maxRecrease, double minPrice, int type, Timestamp startAt, Timestamp endAt, String image) {
+    public Voucher(long id, String voucherCode, String voucherName, String description, int quantity, double percentDecrease, double maxDecrease, double minPrice, int type, Timestamp startAt, Timestamp endAt, String voucherImage) {
         this.id = id;
         this.voucherCode = voucherCode;
         this.voucherName = voucherName;
         this.description = description;
+        this.quantity = quantity;
         this.percentDecrease = percentDecrease;
-        this.maxRecrease = maxRecrease;
+        this.maxDecrease = maxDecrease;
         this.minPrice = minPrice;
         this.type = type;
         this.startAt = startAt;
         this.endAt = endAt;
-        this.image = image;
+        this.voucherImage = voucherImage;
         this.createAt = new Timestamp(Calendar.getInstance().getTimeInMillis());
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void setCreateAt(Timestamp createAt) {
@@ -98,12 +107,12 @@ public class Voucher extends AbsModel<Voucher> {
         this.percentDecrease = percentDecrease;
     }
 
-    public double getMaxRecrease() {
-        return maxRecrease;
+    public double getMaxDecrease() {
+        return maxDecrease;
     }
 
-    public void setMaxRecrease(double maxRecrease) {
-        this.maxRecrease = maxRecrease;
+    public void setMaxDecrease(double maxDecrease) {
+        this.maxDecrease = maxDecrease;
     }
 
     public int getType() {
@@ -130,12 +139,12 @@ public class Voucher extends AbsModel<Voucher> {
         this.endAt = endAt;
     }
 
-    public String getImage() {
-        return image;
+    public String getVoucherImage() {
+        return voucherImage;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setVoucherImage(String voucherImage) {
+        this.voucherImage = voucherImage;
     }
 
     @Override
@@ -146,11 +155,11 @@ public class Voucher extends AbsModel<Voucher> {
                 ", voucherName='" + voucherName + '\'' +
                 ", description='" + description + '\'' +
                 ", percentDecrease=" + percentDecrease +
-                ", maxRecrease=" + maxRecrease +
+                ", maxRecrease=" + maxDecrease +
                 ", type=" + type +
                 ", startAt=" + startAt +
                 ", endAt=" + endAt +
-                ", image='" + image + '\'' +
+                ", image='" + voucherImage + '\'' +
                 '}';
     }
 }

@@ -172,6 +172,20 @@
                     name="description"></textarea>
         </div>
         <div class="mb-3">
+          <label class="form-label text-danger" id="quantity_erro"></label>
+          <label for="quantity" class="form-label">Số lượng<span class="text-danger">*</span></label>
+
+            <input type="number"
+                   class="form-control "
+                   id="quantity"
+                   name="quantity"
+                   value=""
+                   min="0"
+                   step="1"
+                   required>
+
+        </div>
+        <div class="mb-3">
           <label class="form-label text-danger" id="percent-decrease_erro"></label>
           <label for="percent-decrease" class="form-label">Phần trăm giảm <span class="text-danger">*</span></label>
           <div class="input-group ">

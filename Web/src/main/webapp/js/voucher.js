@@ -41,7 +41,10 @@ function submitForm(event){
     formData.append('minPrice', $('#min-price').val());
     formData.append('voucherStartsAt', $('#voucher-startsAt').val());
     formData.append('voucherEndAt', $('#voucher-endAt').val());
-    formData.append('categorys', categorys.join(','));
+    formData.append('quantity', $('#quantity').val());
+    if(categorys.length >0){
+        formData.append('categorys', categorys);
+    }
 
     $.ajax({
         url: "/createVoucherSevlet",

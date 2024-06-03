@@ -20,8 +20,8 @@ public interface VoucherJDBI {
     @SqlQuery("select * from voucher where voucher_code=:voucherCode")
     Voucher getByVoucherCode(@Bind("voucherCode") String voucherCode);
 
-    @SqlUpdate("insert into voucher(id, voucher_code, voucher_name, description, percent_decrease, max_decrease, min_price, type, createAt, startAt, endAt, voucher_image) " +
-            "values(:id, :voucherCode, :voucherName, :description, :percentDecrease, :maxRecrease, :minPrice, :type, :createAt, :startAt, :endAt, :image )")
+    @SqlUpdate("insert into voucher(id, voucher_code, voucher_name, description, quantity, percent_decrease, max_decrease, min_price, type, createAt, startAt, endAt, voucher_image) " +
+            "values(:id, :voucherCode, :voucherName, :description, :quantity, :percentDecrease, :maxDecrease, :minPrice, :type, :createAt, :startAt, :endAt, :voucherImage )")
     int addVoucher(@BindBean Voucher voucher);
 
     @SqlUpdate("delete from voucher where id=:id")

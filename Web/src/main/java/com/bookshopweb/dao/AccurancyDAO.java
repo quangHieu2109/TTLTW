@@ -3,11 +3,7 @@ package com.bookshopweb.dao;
 import com.bookshopweb.beans.AccurancyUser;
 
 import com.bookshopweb.beans.User;
-<<<<<<< HEAD
-import com.bookshopweb.jdbiIterface.UserJDBI;
-=======
 import com.bookshopweb.jdbiInterface.UserJDBI;
->>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
 import com.bookshopweb.utils.JDBCUtils;
 import com.bookshopweb.utils.JDBIUltis;
 
