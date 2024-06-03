@@ -24,3 +24,4 @@
 
 <!-- Header Script -->
 <script src="${pageContext.request.contextPath}/js/header.js" type="module"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.js" ></script>

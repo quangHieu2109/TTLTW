@@ -48,6 +48,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link ${fn:startsWith(servletPath, '/logManager') ? 'active' : ''}"
+             href="${pageContext.request.contextPath}/logManagerServlet">
+            <i class="bi bi-people"></i> Quản lý log
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link ${fn:startsWith(servletPath, '/admin/categoryManager') ? 'active' : ''}"
              href="${pageContext.request.contextPath}/admin/categoryManager">
             <i class="bi bi-tags"></i> <fmt:message key="quan_ly_the_loai"/>

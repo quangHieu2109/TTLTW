@@ -10,7 +10,22 @@ import java.sql.SQLException;
 
 public class GoogleUserDAO {
     private Connection conn = JDBCUtils.getConnection();
+    public int deleteByUserId(long userId) {
 
+        int result = 0;
+        try{
+            String sql = "delete from google_user where userId=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1,userId);
+            result = ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
     public GoogleUser selectByEmail(String email) {
         GoogleUser result = null;
         try {
