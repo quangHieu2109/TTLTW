@@ -1,6 +1,7 @@
 import createToast, {toastComponent} from "./toast.js";
 import {setTotalCartItemsQuantity} from "./header.js";
 import _getFeeship from "./feeship.js";
+
 // STATIC DATA
 const contextPathMetaTag = document.querySelector("meta[name='contextPath']");
 const currentUserIdMetaTag = document.querySelector("meta[name='currentUserId']");
@@ -288,7 +289,7 @@ const state = {
 
 // RENDER
 export function render() {
-    console.log(currentUserIdMetaTag)
+    // console.log(currentUserIdMetaTag)
     // Render cartTableRootElement
     const cartItemRowComponentsFragment = state.cart.cartItems.map(cartItemRowComponent).join("");
     cartTableRootElement.innerHTML = cartTableComponent(cartItemRowComponentsFragment);
@@ -319,8 +320,32 @@ export function render() {
             void state.updateCartItem(cartItem, Number(quantityCartItemInputElement.value));
         });
     });
-}
 
+}
+export function loadAddress(){
+
+    $.ajax({
+            url:'/address',
+            type: 'post',
+            data:{
+                'type':'get'
+            },
+            success: function (response) {
+                $('#address_content').empty()
+                var data = response.data
+                var addresses="";
+                for(let address in data){
+                    addresses += data[address].address
+                }
+                $('#address_content').append(addresses)
+            },
+            error: function (response) {
+                alert(response.responseJSON.error)
+
+            }
+        }
+    )
+}
 function attachEventHandlersForNoneRerenderElements() {
     // Attach event handlers for delivery method radios
     deliveryMethodRadioElements.forEach((radio) => {
@@ -336,6 +361,15 @@ if (currentUserIdMetaTag) {
     cartTableRootElement.innerHTML = loadingComponent();
     void state.initState();
 }
+$('#add_address-btn').on('click', function(){
+    $('#add_address_content').css('display', 'block');
+    $('#main_content').css('display', 'none');
 
+})
+$('#back').on('click', function(){
+    $('#add_address_content').css('display', "none");
+    $('#main_content').css('display', 'block');
+
+})
 
 

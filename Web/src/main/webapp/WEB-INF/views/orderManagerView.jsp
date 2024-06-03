@@ -64,8 +64,8 @@
               </a>
               (${order.user.fullname})
             </td>
-            <td>${order.createdAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</td>
-            <td>${order.updatedAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</td>
+            <td>${order.createdAt}</td>
+            <td>${order.updatedAt}</td>
             <td>${order.orderItems.size()}</td>
             <td class="text-end">
               <c:choose>

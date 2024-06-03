@@ -9,6 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="log manager + order manager">
       <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiIterface/LogJDBI.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiIterface/OrderItemJDBI.java" afterDir="false" />
@@ -37,6 +38,27 @@
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_headerAdmin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_headerAdmin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userManagerView2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/userManagerView2.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/userManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/userManager.js" afterDir="false" />
+=======
+    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="update log manager">
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/CategorysOfVoucher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Voucher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CategorysOfVoucherDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/VoucherDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiInterface/CategorysOfVoucherJDBI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiInterface/VoucherJDBI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/voucher/CreateVoucherServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/voucher/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/createVoucherView.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/voucher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/District.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Province.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/StatisticalProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/StatisticalProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Ward.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/order/OrderManagerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/order/OrderManagerServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/productReviewManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/productReviewManagerView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/settingView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/settingView.jsp" afterDir="false" />
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +71,10 @@
         <option value="Class" />
         <option value="Interface" />
         <option value="Jsp File" />
+<<<<<<< HEAD
+=======
+        <option value="Interface" />
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
         <option value="JavaScript File" />
       </list>
     </option>
@@ -105,15 +131,26 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.AccurancyUser.executor&quot;: &quot;Run&quot;,
+<<<<<<< HEAD
     &quot;Application.JdbiUtils.executor&quot;: &quot;Run&quot;,
     &quot;Application.LogDAO.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Application.OrderItemDAO.executor&quot;: &quot;Run&quot;,
     &quot;Application.OrderMapper.executor&quot;: &quot;Run&quot;,
+=======
+    &quot;Application.CreateVoucherServlet.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LogDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrderItemDAO.executor&quot;: &quot;Run&quot;,
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
     &quot;Application.ProductDAO.executor&quot;: &quot;Run&quot;,
     &quot;Application.SendMail.executor&quot;: &quot;Run&quot;,
     &quot;Application.StatiscalProductDAO.executor&quot;: &quot;Run&quot;,
     &quot;Application.UserManagerSerlet2.executor&quot;: &quot;Run&quot;,
+<<<<<<< HEAD
+=======
+    &quot;Application.com.bookshopweb.servlet.admin.voucher.Main.executor&quot;: &quot;Run&quot;,
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
     &quot;Node.js.header.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -141,6 +178,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Program\JavaWeb\TTLTW\Web\src\main\webapp\WEB-INF\views" />
+      <recent name="D:\Program\JavaWeb\TTLTW\Web\src\main\webapp\js" />
       <recent name="D:\Program\JavaWeb\TTLTW\Web" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -159,6 +197,7 @@
       </set>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.83">
     <configuration name="JdbiUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bookshopweb.utils.JdbiUtils" />
@@ -191,6 +230,27 @@
       <module name="BookShopWeb" />
       <extension name="coverage">
         <pattern>
+=======
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.48">
+    <configuration name="CreateVoucherServlet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.servlet.admin.voucher.CreateVoucherServlet" />
+      <module name="BookShopWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bookshopweb.servlet.admin.voucher.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.Main" />
+      <module name="BookShopWeb" />
+      <extension name="coverage">
+        <pattern>
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
           <option name="PATTERN" value="com.bookshopweb.jdbiInterface.*" />
           <option name="ENABLED" value="true" />
         </pattern>
@@ -199,8 +259,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration name="OrderMapper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bookshopweb.mapper.OrderMapper" />
+=======
+    <configuration name="OrderItemDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.OrderItemDAO" />
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
       <module name="BookShopWeb" />
       <extension name="coverage">
         <pattern>
@@ -225,7 +290,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration name="Tomcat 9.0.83" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.83" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+=======
+    <configuration name="com.bookshopweb.servlet.admin.voucher.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.servlet.admin.voucher.Main" />
+      <module name="BookShopWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bookshopweb.servlet.admin.voucher.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 9.0.48" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.83" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="BookShopWeb:war">
@@ -313,20 +395,36 @@
       </method>
     </configuration>
     <list>
+<<<<<<< HEAD
       <item itemvalue="Application.LogDAO" />
       <item itemvalue="Application.JdbiUtils" />
       <item itemvalue="Application.OrderMapper" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.ProductDAO" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.83" />
+=======
+      <item itemvalue="Application.CreateVoucherServlet" />
+      <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.OrderItemDAO" />
+      <item itemvalue="Application.ProductDAO" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.48" />
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
+        <item itemvalue="Application.CreateVoucherServlet" />
+        <item itemvalue="Application.OrderItemDAO" />
+        <item itemvalue="Application.ProductDAO" />
         <item itemvalue="Application.Main" />
+<<<<<<< HEAD
         <item itemvalue="Application.LogDAO" />
         <item itemvalue="Application.OrderMapper" />
         <item itemvalue="Application.JdbiUtils" />
         <item itemvalue="Application.ProductDAO" />
+=======
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
       </list>
     </recent_temporary>
   </component>
@@ -392,6 +490,7 @@
       <workItem from="1714288965773" duration="17547000" />
       <workItem from="1714373350291" duration="32051000" />
       <workItem from="1714458829876" duration="7595000" />
+<<<<<<< HEAD
       <workItem from="1714544752814" duration="17057000" />
       <workItem from="1714574052105" duration="1707000" />
       <workItem from="1714661370767" duration="812000" />
@@ -399,6 +498,24 @@
       <workItem from="1714823521318" duration="610000" />
       <workItem from="1714893203107" duration="15205000" />
       <workItem from="1714918692880" duration="789000" />
+=======
+      <workItem from="1714665161225" duration="781000" />
+      <workItem from="1714708418562" duration="8324000" />
+      <workItem from="1714824138135" duration="2381000" />
+      <workItem from="1714892376019" duration="127000" />
+      <workItem from="1716195020490" duration="9003000" />
+      <workItem from="1716212581014" duration="9785000" />
+      <workItem from="1716262389767" duration="21968000" />
+      <workItem from="1716302384586" duration="3249000" />
+      <workItem from="1716703573181" duration="6707000" />
+      <workItem from="1716730865269" duration="1026000" />
+      <workItem from="1716823316236" duration="8291000" />
+      <workItem from="1716878074874" duration="9996000" />
+      <workItem from="1716905089997" duration="1841000" />
+      <workItem from="1716911977604" duration="1667000" />
+      <workItem from="1717134060761" duration="13123000" />
+      <workItem from="1717168707776" duration="9741000" />
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />
@@ -496,7 +613,27 @@
       <option name="project" value="LOCAL" />
       <updated>1714465929576</updated>
     </task>
+<<<<<<< HEAD
     <option name="localTasksCounter" value="14" />
+=======
+    <task id="LOCAL-00014" summary="update log manager">
+      <option name="closed" value="true" />
+      <created>1714710748489</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1714710748489</updated>
+    </task>
+    <task id="LOCAL-00015" summary="update log manager">
+      <option name="closed" value="true" />
+      <created>1714716727505</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1714716727505</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,7 +672,12 @@
     <MESSAGE value="format price" />
     <MESSAGE value="user manager" />
     <MESSAGE value="log manager + order manager" />
+<<<<<<< HEAD
     <option name="LAST_COMMIT_MESSAGE" value="log manager + order manager" />
+=======
+    <MESSAGE value="update log manager" />
+    <option name="LAST_COMMIT_MESSAGE" value="update log manager" />
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

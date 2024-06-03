@@ -38,10 +38,7 @@ public class SignupServlet extends HttpServlet {
         values.put("email", request.getParameter("email"));
         values.put("phoneNumber", request.getParameter("phoneNumber"));
         values.put("gender", request.getParameter("gender"));
-        values.put("numberhouse", request.getParameter("numberhouse"));
-        values.put("province", request.getParameter("province"));
-        values.put("district", request.getParameter("district"));
-        values.put("ward", request.getParameter("ward"));
+
         values.put("policy", request.getParameter("policy"));
 
         // Kiểm tra các parameter, lưu các vi phạm (nếu có) vào map violations
@@ -76,25 +73,25 @@ public class SignupServlet extends HttpServlet {
         violations.put("genderViolations", Validator.of(values.get("gender"))
                 .isNotNull()
                 .toList());
-        violations.put("numberhouseViolations", Validator.of(values.get("numberhouse"))
-                .isNotNullAndEmpty()
-                .isNotBlankAtBothEnds()
-                .toList());
-        violations.put("provinceViolations", Validator.of(values.get("province"))
-                .isNotNullAndEmpty()
-                .isNotBlankAtBothEnds()
-                .isNotConttain("none")
-                .toList());
-        violations.put("districtViolations", Validator.of(values.get("district"))
-                .isNotNullAndEmpty()
-                .isNotBlankAtBothEnds()
-                .isNotConttain("none")
-                .toList());
-        violations.put("wardViolations", Validator.of(values.get("ward"))
-                .isNotNullAndEmpty()
-                .isNotBlankAtBothEnds()
-                .isNotConttain("none")
-                .toList());
+//        violations.put("numberhouseViolations", Validator.of(values.get("numberhouse"))
+//                .isNotNullAndEmpty()
+//                .isNotBlankAtBothEnds()
+//                .toList());
+//        violations.put("provinceViolations", Validator.of(values.get("province"))
+//                .isNotNullAndEmpty()
+//                .isNotBlankAtBothEnds()
+//                .isNotConttain("none")
+//                .toList());
+//        violations.put("districtViolations", Validator.of(values.get("district"))
+//                .isNotNullAndEmpty()
+//                .isNotBlankAtBothEnds()
+//                .isNotConttain("none")
+//                .toList());
+//        violations.put("wardViolations", Validator.of(values.get("ward"))
+//                .isNotNullAndEmpty()
+//                .isNotBlankAtBothEnds()
+//                .isNotConttain("none")
+//                .toList());
         violations.put("policyViolations", Validator.of(values.get("policy"))
                 .isNotNull()
                 .toList());
@@ -114,7 +111,6 @@ public class SignupServlet extends HttpServlet {
                     values.get("email"),
                     values.get("phoneNumber"),
                     Protector.of(() -> Integer.parseInt(values.get("gender"))).get(0),
-                    new Address(0L, 0L, values.get("province"), values.get("district"), values.get("ward"), values.get("numberhouse")),
                     "CUSTOMER",
                     Timestamp.from(Instant.now())
             );

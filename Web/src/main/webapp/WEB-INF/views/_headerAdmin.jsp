@@ -48,7 +48,11 @@
           </a>
         </li>
         <li class="nav-item">
+<<<<<<< HEAD
           <a class="nav-link ${fn:startsWith(servletPath, '/admin/userManager') ? 'active' : ''}"
+=======
+          <a class="nav-link ${fn:startsWith(servletPath, '/logManager') ? 'active' : ''}"
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
              href="${pageContext.request.contextPath}/logManagerServlet">
             <i class="bi bi-people"></i> Quản lý log
           </a>

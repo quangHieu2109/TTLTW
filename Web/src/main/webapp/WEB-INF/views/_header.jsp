@@ -64,7 +64,11 @@
               </li>
 		<c:if test="${!sessionScope.currentUser.isCustomer()}">
 
+<<<<<<< HEAD
               <li class=" m-auto"><a href="${pageContext.request.contextPath}/admin" class="btn btn-dark">Admin</a></li>
+=======
+              <li class=" m-auto"><a href="${pageContext.request.contextPath}/admin" class="btn btn-secondary">Admin</a></li>
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
               </c:if>
             </ul>
           </c:if>

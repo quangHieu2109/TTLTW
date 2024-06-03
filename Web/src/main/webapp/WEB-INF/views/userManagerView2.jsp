@@ -12,13 +12,24 @@
 <head>
     <title>Quản lý người dùng</title>
     <link href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
+    <!-- Bootstrap v5.0.1 -->
+    <link href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.js" type="text/javascript"></script>
+
+    <!-- Bootstrap Icons v1.5.0 -->
+    <link href="${pageContext.request.contextPath}/css/bootstrap-icons.css" type="text/css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link href="${pageContext.request.contextPath}/css/styles.css" type="text/css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
     <link href="${pageContext.request.contextPath}/css/bootstrap-icons.css" type="text/css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
     <style>
+<<<<<<< HEAD
         #add_user__container{
             display: none;
             width: 500px;
@@ -26,6 +37,23 @@
             border-radius: 10px;
             border: 1px solid #b0b2b2;
             padding: 20px;
+=======
+        .add-user__btn{
+            width: max-content;
+            margin-right: 0;
+
+        }
+        .add-user__btn button{
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .add-user__content{
+
+            display: none;
+            background-color: #fff;
+            border: 1px solid #ddd;
+
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
         }
        .btn_add__container{
 
@@ -34,7 +62,10 @@
 </head>
 <body>
 <jsp:include page="_headerAdmin.jsp"/>
+<<<<<<< HEAD
 
+=======
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
 <div class="container">
     <div class="btn_add__container d-flex justify-content-end">
         <button class="btn btn-success" id="add">Thêm người dùng</button>

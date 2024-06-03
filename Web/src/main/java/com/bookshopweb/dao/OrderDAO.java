@@ -69,7 +69,9 @@
 package com.bookshopweb.dao;
 
 import com.bookshopweb.beans.Order;
+import com.bookshopweb.jdbiInterface.OrderJDBI;
 import com.bookshopweb.utils.JDBCUtils;
+import com.bookshopweb.utils.JDBIUltis;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -78,6 +80,19 @@ import java.util.Optional;
 
 public class OrderDAO extends AbsDAO<Order> {
     Connection conn = JDBCUtils.getConnection();
+    static OrderJDBI orderJDBI = JDBIUltis.getJDBI().onDemand(OrderJDBI.class);
+    public List<Order> getByStatus(int status){
+        return orderJDBI.getByStatus(status);
+    }
+    public int getQuantity(int status){
+        return orderJDBI.getQuantityByStatus(status);
+    }
+    public List<Order> getByStatusLimit(int status, int start, int length){
+        return orderJDBI.getByStatusLimit(status, start, length);
+    }
+    public int updateStatus(int status, long id){
+        return orderJDBI.updateStatus(status, id);
+    }
     public int deleteByUserId(long userId) {
 
         int result = 0;

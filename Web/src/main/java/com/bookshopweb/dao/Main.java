@@ -4,6 +4,8 @@ import com.bookshopweb.beans.Log;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.jdbiIterface.LogJDBI;
 import com.bookshopweb.utils.JDBIUltis;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
@@ -20,18 +22,9 @@ public class Main {
 //        List<User> users = JDBIUltis.getJDBI().withHandle( handle ->
 //                handle.createQuery("select * from user").map(new UserMapper())
 //                        .list()); // lấy dữ liệu thông qua mapper object
-//        for(User u : users){
-//            System.out.println(u);
-//        }
-//Handle handle = JDBIUltis.getJDBI().open();
-//        User user =
-//                handle.createQuery("select * from user where username='hiune12'")
-//                        .map(new UserMapper())
-//                        .one();
-//        System.out.println(userJDBI.getById(1));
-//        User user = new User(1221, "hiune12", "123321", "Quang Hiu", "hiu@12.21", "13321231", 1, "ấda", null);
-//        userJDBI.addUsser(user);
+        System.out.println(new OrderItemDAO().getTotalPriceByOrderId(1));
 
+<<<<<<< HEAD
 //        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$";
 //            Pattern pattern = Pattern.compile(regex);
 //            Matcher matcher =  pattern.matcher("12aAcxN");
@@ -42,6 +35,8 @@ public class Main {
 //        System.out.println(pattern.matcher("1111@gm.com").matches());
 //        pattern = Pattern.compile(passwordRegex);
 //        System.out.println(pattern.matcher("a12A").matches());
+=======
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
 
 //    }
 public static void main(String[] args) {

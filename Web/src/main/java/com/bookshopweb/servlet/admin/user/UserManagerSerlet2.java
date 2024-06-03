@@ -2,10 +2,18 @@ package com.bookshopweb.servlet.admin.user;
 
 import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.UserDAO;
+<<<<<<< HEAD
 import com.bookshopweb.jdbiIterface.UserJDBI;
 import com.bookshopweb.utils.JDBIUltis;
 import org.json.JSONArray;
 import org.json.JSONObject;
+=======
+import com.bookshopweb.jdbiInterface.UserJDBI;
+import com.bookshopweb.mapper.UserMapper;
+import com.bookshopweb.utils.JDBIUltis;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +26,66 @@ import java.util.regex.Pattern;
 
 @WebServlet(value = "/userManagerServlet2")
 public class UserManagerSerlet2 extends HttpServlet {
+<<<<<<< HEAD
+=======
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        int draw = Integer.parseInt(req.getParameter("draw"));
+        int start = Integer.parseInt(req.getParameter("start"));
+        int length = Integer.parseInt(req.getParameter("length"));
+        String searchValue = req.getParameter("search[value]");
+        String orderColumn = req.getParameter("order[0][column]");
+        String orderDir = req.getParameter("order[0][dir]");
+        List<User> users = JDBIUltis.getJDBI().withHandle(handle ->
+                handle.createQuery("select * from user limit " + start + ", " + length)
+                        .map(new UserMapper()).list());
+        int recordsFilterd = JDBIUltis.getJDBI().withHandle(handle ->
+                handle.createQuery("select count(*) from user").mapTo(Integer.class).one());
+        StringBuilder json = new StringBuilder();
+        JsonArray jsonArray = new JsonArray();
+
+
+        for (User u : users) {
+            JsonObject jsonObject = new JsonObject();
+            String gender = (u.getGender() == 0) ? "Nam" : "Nu";
+            String deleteBtn = "<button class=\"btn btn-danger\" onclick=\"deleteUser(" + u.getId() + ")\">Delete</button>";
+            jsonObject.addProperty("id", u.getId());
+            jsonObject.addProperty("username", u.getUsername());
+            jsonObject.addProperty("password", u.getPassword());
+            jsonObject.addProperty("fullname", u.getFullname());
+            jsonObject.addProperty("email", u.getEmail());
+
+            jsonObject.addProperty("phoneNumber", u.getPhoneNumber());
+            jsonObject.addProperty("gender", gender);
+            jsonObject.addProperty("role", u.getRole());
+
+            jsonObject.addProperty("deleteBtn", deleteBtn);
+            jsonArray.add(jsonObject);
+
+
+        }
+        JsonObject jsonResponse = new JsonObject();
+        jsonResponse.add("data", jsonArray);
+
+
+//        jsonResponse.addProperty("draw", draw);
+        jsonResponse.addProperty("recordsTotal", users.size());
+        jsonResponse.addProperty("recordsFiltered", recordsFilterd);
+        resp.setContentType("aplication/json");
+        resp.setCharacterEncoding("UTF-8");
+//        System.out.println(jsonResponse.toString());
+
+        resp.getWriter().write(jsonResponse.toString());
+
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        long id = Long.parseLong(req.getParameter("id"));
+        new UserDAO().delete(JDBIUltis.getJDBI().onDemand(UserJDBI.class).getById(id), "");
+    }
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -87,8 +155,22 @@ public class UserManagerSerlet2 extends HttpServlet {
             }
         }else{
 
+<<<<<<< HEAD
             resp.setStatus(400);
             resp.getWriter().write(jsonResponse.toString());
+=======
+               jsonObject1.addProperty("phoneNumber", user.getPhoneNumber());
+               jsonObject1.addProperty("gender", gender);
+               jsonObject1.addProperty("role", user.getRole());
+
+               jsonObject1.addProperty("deleteBtn", deleteBtn);
+               resp.setStatus(200);
+               resp.getWriter().write(jsonObject1.toString());
+           }else{
+               resp.setStatus(400);
+
+           }
+>>>>>>> aa358538bf6737833eed795ea55bd298af8b8987
         }
 
     }

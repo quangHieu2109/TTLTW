@@ -1,8 +1,8 @@
 package com.bookshopweb.beans;
 
 public class StatisticalProduct {
-    private long idProduct;
-    private String nameProduct;
+    private long productId;
+    private String productName;
 //    private Timestamp begin;
 //    private Timestamp end;
     private int importQuatity;
@@ -13,9 +13,9 @@ public class StatisticalProduct {
     private double saleRate;
     private int quantityRefund;
 
-    public StatisticalProduct(long idProduct, String nameProduct, int importQuatity, int sellQuantity, double totalImportPrice, double totalSellPrice) {
-        this.idProduct = idProduct;
-        this.nameProduct = nameProduct;
+    public StatisticalProduct(long productId, String productName, int importQuatity, int sellQuantity, double totalImportPrice, double totalSellPrice) {
+        this.productId = productId;
+        this.productName = productName;
         this.importQuatity = importQuatity;
         this.sellQuantity = sellQuantity;
         this.totalImportPrice = totalImportPrice;
@@ -23,43 +23,43 @@ public class StatisticalProduct {
 
     }
 
-    public StatisticalProduct(long idProduct, String nameProduct, int sellQuantity, double totalSellPrice) {
-        this.idProduct = idProduct;
-        this.nameProduct = nameProduct;
+    public StatisticalProduct(long productId, String productName, int sellQuantity, double totalSellPrice) {
+        this.productId = productId;
+        this.productName = productName;
         this.sellQuantity = sellQuantity;
         this.totalSellPrice = totalSellPrice;
     }
 
-    public StatisticalProduct(long idProduct, String nameProduct, int quantityRemaining, int sellQuantity) {
-        this.idProduct = idProduct;
-        this.nameProduct = nameProduct;
+    public StatisticalProduct(long productId, String productName, int quantityRemaining, int sellQuantity) {
+        this.productId = productId;
+        this.productName = productName;
         this.quantityRemaining = quantityRemaining;
         this.sellQuantity = sellQuantity;
     }
 
-    public StatisticalProduct(long idProduct, String nameProduct, int importQuatity, int sellQuantity, int quantityRemaining, double saleRate) {
-        this.idProduct = idProduct;
-        this.nameProduct = nameProduct;
+    public StatisticalProduct(long productId, String productName, int importQuatity, int sellQuantity, int quantityRemaining, double saleRate) {
+        this.productId = productId;
+        this.productName = productName;
         this.importQuatity = importQuatity;
         this.sellQuantity = sellQuantity;
         this.quantityRemaining = quantityRemaining;
         this.saleRate = saleRate;
     }
 
-    public long getIdProduct() {
-        return idProduct;
+    public long getProductId() {
+        return productId;
     }
 
-    public void setIdProduct(long idProduct) {
-        this.idProduct = idProduct;
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 
-    public String getNameProduct() {
-        return nameProduct;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setNameProduct(String nameProduct) {
-        this.nameProduct = nameProduct;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public int getImportQuatity() {
@@ -121,8 +121,8 @@ public class StatisticalProduct {
     @Override
     public String toString() {
         return "StatisticalProduct{" +
-                "idProduct=" + idProduct +
-                ", nameProduct='" + nameProduct + '\'' +
+                "idProduct=" + productId +
+                ", nameProduct='" + productName + '\'' +
                 ", importQuatity=" + importQuatity +
                 ", sellQuantity=" + sellQuantity +
                 ", totalImportPrice=" + totalImportPrice +
