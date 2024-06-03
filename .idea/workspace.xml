@@ -10,24 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="update log manager">
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/CategorysOfVoucher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Voucher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CategorysOfVoucherDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/VoucherDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiInterface/CategorysOfVoucherJDBI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiInterface/VoucherJDBI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/voucher/CreateVoucherServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/voucher/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/createVoucherView.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/voucher.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/utils/IPUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/District.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Province.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/StatisticalProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/StatisticalProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Ward.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/order/OrderManagerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/order/OrderManagerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/productReviewManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/productReviewManagerView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/settingView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/settingView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CartDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CartDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/product/DeleteProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/product/DeleteProductServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SigninServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SigninServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,40 +83,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AccurancyUser.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CreateVoucherServlet.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LogDAO.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.OrderItemDAO.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ProductDAO.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SendMail.executor&quot;: &quot;Run&quot;,
-    &quot;Application.StatiscalProductDAO.executor&quot;: &quot;Run&quot;,
-    &quot;Application.UserManagerSerlet2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.com.bookshopweb.servlet.admin.voucher.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.header.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 9.0.48.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.accuracyView.jsp.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20240326_0002&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Hung&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Program/JavaWeb/TTLTW/Web/src/main/webapp/WEB-INF/views&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AccurancyUser.executor": "Run",
+    "Application.CreateVoucherServlet.executor": "Run",
+    "Application.LogDAO.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.OrderItemDAO.executor": "Run",
+    "Application.ProductDAO.executor": "Run",
+    "Application.SendMail.executor": "Run",
+    "Application.StatiscalProductDAO.executor": "Run",
+    "Application.UserManagerSerlet2.executor": "Run",
+    "Application.com.bookshopweb.servlet.admin.voucher.Main.executor": "Run",
+    "Node.js.header.js.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 10.1.20.executor": "Run",
+    "Tomcat Server.Tomcat 9.0.48.executor": "Run",
+    "Tomcat Server.accuracyView.jsp.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "com.google.cloudcode.ide_session_index": "20240326_0002",
+    "git-widget-placeholder": "Hung",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Program/JavaWeb/TTLTW/Web/src/main/webapp/WEB-INF/views",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "File.Encoding",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Program\JavaWeb\TTLTW\Web\src\main\webapp\WEB-INF\views" />
@@ -149,7 +140,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.48">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.20">
     <configuration name="CreateVoucherServlet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bookshopweb.servlet.admin.voucher.CreateVoucherServlet" />
       <module name="BookShopWeb" />
@@ -215,7 +206,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.48" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.83" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 10.1.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="BookShopWeb:war">
@@ -308,7 +299,7 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.OrderItemDAO" />
       <item itemvalue="Application.ProductDAO" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.48" />
+      <item itemvalue="Tomcat Server.Tomcat 10.1.20" />
     </list>
     <recent_temporary>
       <list>
@@ -559,7 +550,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/StatiscalProductDAO.java</url>
           <line>198</line>
-          <properties class="com.bookshopweb.dao.StatiscalProductDAO" method="main">
+          <properties class="com.bookshopweb.dao.StatiscalProductDAO">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

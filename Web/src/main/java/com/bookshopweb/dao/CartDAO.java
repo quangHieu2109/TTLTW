@@ -168,7 +168,6 @@ public class CartDAO extends AbsDAO<Cart> {
         return result;
     }
     @Override
-
     public int insert(Cart cart, String ip) {
 
         int result = 0;
