@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `accuracyuser` (
   CONSTRAINT `accuracyuser_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.accuracyuser: ~0 rows (approximately)
+-- Dumping data for table bookshopdb.accuracyuser: ~1 rows (approximately)
 INSERT INTO `accuracyuser` (`id`, `username`, `accuracyCode`, `endAt`) VALUES
 	(8, 'user11', '660833', '2024-05-31 06:40:04');
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   CONSTRAINT `address_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.address: ~5 rows (approximately)
+-- Dumping data for table bookshopdb.address: ~6 rows (approximately)
 INSERT INTO `address` (`id`, `userId`, `houseNumber`, `province`, `district`, `ward`) VALUES
 	(33, 1, '123', 'Hà Giang', 'HUYỆN ĐỒNG VĂN', 'XÃ TẢ LỦNG'),
 	(34, 1, '123', 'Nam Ðịnh', 'HUYỆN NAM TRỰC', 'XÃ NAM THẮNG'),
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   CONSTRAINT `fk_cart_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.cart: ~6 rows (approximately)
+-- Dumping data for table bookshopdb.cart: ~5 rows (approximately)
 INSERT INTO `cart` (`id`, `userId`, `createdAt`, `updatedAt`) VALUES
 	(1, 4, '2021-12-30 08:39:19', NULL),
 	(2, 5, '2021-12-18 13:35:59', NULL),
@@ -89,9 +89,9 @@ CREATE TABLE IF NOT EXISTS `cart_item` (
   KEY `idx_cart_item_product` (`productId`),
   CONSTRAINT `fk_cart_item_cart` FOREIGN KEY (`cartId`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_cart_item_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.cart_item: ~8 rows (approximately)
+-- Dumping data for table bookshopdb.cart_item: ~10 rows (approximately)
 INSERT INTO `cart_item` (`id`, `cartId`, `productId`, `quantity`, `createdAt`, `updatedAt`) VALUES
 	(1, 2, 55, 3, '2021-07-13 03:21:51', NULL),
 	(2, 2, 36, 2, '2021-07-05 00:21:45', NULL),
@@ -101,9 +101,8 @@ INSERT INTO `cart_item` (`id`, `cartId`, `productId`, `quantity`, `createdAt`, `
 	(14, 1, 73, 1, '2024-04-04 15:40:17', NULL),
 	(16, 1, 99, 1, '2024-04-05 09:41:52', NULL),
 	(27, 14, 99, 1, '2024-05-21 04:32:43', NULL),
-	(28, 8, 22, 1, '2024-05-21 09:31:30', NULL),
-	(29, 8, 41, 1, '2024-05-21 09:31:34', NULL),
-	(30, 8, 93, 1, '2024-05-28 16:36:35', NULL);
+	(31, 8, 37, 5, '2024-06-04 08:20:24', NULL),
+	(35, 8, 22, 3, '2024-06-04 18:34:31', NULL);
 
 -- Dumping structure for table bookshopdb.category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -142,24 +141,17 @@ CREATE TABLE IF NOT EXISTS `categorys_of_voucher` (
   KEY `FK__category` (`categoryId`),
   CONSTRAINT `FK__category` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK__voucher` FOREIGN KEY (`voucherId`) REFERENCES `voucher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.categorys_of_voucher: ~3 rows (approximately)
+-- Dumping data for table bookshopdb.categorys_of_voucher: ~7 rows (approximately)
 INSERT INTO `categorys_of_voucher` (`id`, `voucherId`, `categoryId`) VALUES
-	(1, 2, 1),
-	(2, 2, 6),
-	(3, 2, 7),
-	(4, 4, 2),
-	(5, 4, 6),
-	(6, 4, 7),
-	(7, 6, 1),
-	(8, 6, 6),
-	(9, 7, 3),
-	(10, 7, 7),
-	(11, 7, 8),
-	(12, 8, 3),
-	(13, 8, 7),
-	(14, 8, 12);
+	(15, 10, 2),
+	(16, 10, 3),
+	(17, 10, 7),
+	(18, 11, 2),
+	(19, 11, 3),
+	(20, 11, 6),
+	(21, 11, 7);
 
 -- Dumping structure for table bookshopdb.google_user
 CREATE TABLE IF NOT EXISTS `google_user` (
@@ -185,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.log: ~90 rows (approximately)
+-- Dumping data for table bookshopdb.log: ~375 rows (approximately)
 INSERT INTO `log` (`id`, `ip`, `levelLog`, `res`, `preValue`, `curValue`, `createAt`, `updateAt`) VALUES
 	(171155319043, '', 1, 'Hiu', '', '', '2024-04-28 10:28:08', '2024-04-09 10:28:06'),
 	(1711553190592, '123123', 1, 'Update on table User', '{"id":10,"username":"hiu","password":"111","fullname":"Quang Hieu","email":"","phoneNumber":"123123123","gender":1,"address":"","role":"","createAt":"Mar 27, 2024, 10:25:59 PM"}', '{"id":10,"username":"hiu","password":"111","fullname":"Quang Hieu","email":"","phoneNumber":"123123123","gender":1,"address":"","role":""}', '2024-04-28 08:33:18', '2024-03-27 15:25:59'),
@@ -304,7 +296,264 @@ INSERT INTO `log` (`id`, `ip`, `levelLog`, `res`, `preValue`, `curValue`, `creat
 	(1717178361308, '', 2, 'Insert on table Voucher', 'null', '{"id":0,"voucherCode":"M3A18G","voucherName":"Freeship","description":"test","percentDecrease":22.0,"maxRecrease":13123.0,"minPrice":123123.0,"type":0,"startAt":"Jun 1, 2024, 12:58:00 AM","endAt":"Jun 2, 2024, 12:58:00 AM","createAt":"Jun 1, 2024, 12:58:35 AM","image":"img-12611731948470873038.jpg"}', '2024-05-31 17:58:35', '2024-05-31 17:58:35'),
 	(1717179030290, '', 2, 'Insert on table Voucher', 'null', '{"id":0,"voucherCode":"GKS72n","voucherName":"Freeship","description":"test2","percentDecrease":33.0,"maxRecrease":3333.0,"minPrice":3333.0,"type":0,"startAt":"Jun 1, 2024, 12:54:00 AM","endAt":"Jun 2, 2024, 12:54:00 AM","createAt":"Jun 1, 2024, 1:09:07 AM","image":"img-8410785560739632647.jpg"}', '2024-05-31 18:09:07', '2024-05-31 18:09:07'),
 	(1717179233831, '', 2, 'Insert on table Voucher', 'null', '{"id":0,"voucherCode":"Hh44n3","voucherName":"Freeship","description":"Mã giảm phí ship","percentDecrease":55.0,"maxRecrease":55000.0,"minPrice":55000.0,"type":0,"startAt":"Jun 1, 2024, 1:12:00 AM","endAt":"Jun 16, 2024, 1:12:00 AM","createAt":"Jun 1, 2024, 1:12:38 AM","image":"img-5911640883980739828.jpg"}', '2024-05-31 18:12:38', '2024-05-31 18:12:38'),
-	(1717179445863, '', 2, 'Insert on table Voucher', 'null', '{"id":0,"voucherCode":"0yUhxt","voucherName":"Freeship","description":"Mã free ship","percentDecrease":22.0,"maxRecrease":121212.0,"minPrice":121212.0,"type":0,"startAt":"Jun 14, 2024, 1:16:00 AM","endAt":"Jun 15, 2024, 1:16:00 AM","createAt":"Jun 1, 2024, 1:16:29 AM","image":"img-10735801395296346768.jpg"}', '2024-05-31 18:16:29', '2024-05-31 18:16:29');
+	(1717179445863, '', 2, 'Insert on table Voucher', 'null', '{"id":0,"voucherCode":"0yUhxt","voucherName":"Freeship","description":"Mã free ship","percentDecrease":22.0,"maxRecrease":121212.0,"minPrice":121212.0,"type":0,"startAt":"Jun 14, 2024, 1:16:00 AM","endAt":"Jun 15, 2024, 1:16:00 AM","createAt":"Jun 1, 2024, 1:16:29 AM","image":"img-10735801395296346768.jpg"}', '2024-05-31 18:16:29', '2024-05-31 18:16:29'),
+	(1717486118572, '', 2, 'Insert on table product_import', 'null', '{"id":0,"productId":1,"userId":1,"importAt":"Mar 23, 2021, 8:22:50 AM","quantity":0,"price":372946.4,"createAt":"Jun 4, 2024, 2:27:45 PM"}', '2024-06-04 07:27:45', '2024-06-04 07:27:45'),
+	(1717486140764, '', 2, 'Insert on table product_import', 'null', '{"id":0,"productId":2,"userId":1,"importAt":"Dec 19, 2021, 3:03:05 PM","quantity":-5,"price":20982.4,"createAt":"Jun 4, 2024, 2:27:45 PM"}', '2024-06-04 07:27:45', '2024-06-04 07:27:45'),
+	(1717486172571, '', 2, 'Insert on table product_import', 'null', '{"id":0,"productId":1,"userId":1,"importAt":"Mar 23, 2021, 8:22:50 AM","quantity":0,"price":372946.4,"createAt":"Jun 4, 2024, 2:28:43 PM"}', '2024-06-04 07:28:43', '2024-06-04 07:28:43'),
+	(1717486173089, '', 2, 'Insert on table product_import', 'null', '{"id":0,"productId":2,"userId":1,"importAt":"Dec 19, 2021, 3:03:05 PM","quantity":-5,"price":20982.4,"createAt":"Jun 4, 2024, 2:28:34 PM"}', '2024-06-04 07:28:34', '2024-06-04 07:28:34'),
+	(1717486194950, '', 2, 'Insert on table product_import', 'null', '{"id":0,"productId":1,"userId":1,"importAt":"Mar 23, 2021, 8:22:50 AM","quantity":0,"price":372946.4,"createAt":"Jun 4, 2024, 2:28:33 PM"}', '2024-06-04 07:28:33', '2024-06-04 07:28:33'),
+	(1717486214899, '', 2, 'Insert on table product_import', 'null', '{"id":57,"productId":57,"userId":1,"importAt":"Dec 28, 2021, 5:25:08 AM","quantity":0,"price":122741.6,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486215014, '', 2, 'Insert on table product_import', 'null', '{"id":72,"productId":72,"userId":1,"importAt":"Jun 25, 2021, 4:03:26 AM","quantity":0,"price":136112.0,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486217168, '', 2, 'Insert on table product_import', 'null', '{"id":93,"productId":93,"userId":1,"importAt":"Jan 27, 2022, 9:49:53 PM","quantity":0,"price":172640.0,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486219842, '', 2, 'Insert on table product_import', 'null', '{"id":49,"productId":49,"userId":1,"importAt":"Jul 30, 2021, 9:38:48 AM","quantity":0,"price":318357.60000000003,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486221223, '', 2, 'Insert on table product_import', 'null', '{"id":1,"productId":1,"userId":1,"importAt":"Mar 23, 2021, 8:22:50 AM","quantity":0,"price":372946.4,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486221401, '', 2, 'Insert on table product_import', 'null', '{"id":7,"productId":7,"userId":1,"importAt":"Nov 1, 2021, 8:47:34 PM","quantity":-3,"price":390416.80000000005,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486222871, '', 2, 'Insert on table product_import', 'null', '{"id":53,"productId":53,"userId":1,"importAt":"Dec 14, 2021, 3:59:32 AM","quantity":0,"price":310597.60000000003,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486225528, '', 2, 'Insert on table product_import', 'null', '{"id":17,"productId":17,"userId":1,"importAt":"Jan 2, 2022, 11:13:27 PM","quantity":-4,"price":72035.2,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486226353, '', 2, 'Insert on table product_import', 'null', '{"id":3,"productId":3,"userId":1,"importAt":"Jul 31, 2021, 10:44:48 AM","quantity":-2,"price":235291.2,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486228878, '', 2, 'Insert on table product_import', 'null', '{"id":54,"productId":54,"userId":1,"importAt":"Aug 14, 2021, 3:42:55 PM","quantity":0,"price":115628.8,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486229150, '', 2, 'Insert on table product_import', 'null', '{"id":90,"productId":90,"userId":1,"importAt":"Sep 2, 2021, 3:01:38 AM","quantity":-3,"price":164353.6,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486229819, '', 2, 'Insert on table product_import', 'null', '{"id":46,"productId":46,"userId":1,"importAt":"Jan 13, 2022, 8:55:09 PM","quantity":-3,"price":307803.2,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486230175, '', 2, 'Insert on table product_import', 'null', '{"id":94,"productId":94,"userId":1,"importAt":"Apr 28, 2021, 6:56:06 AM","quantity":-1,"price":265657.60000000003,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486231042, '', 2, 'Insert on table product_import', 'null', '{"id":76,"productId":76,"userId":1,"importAt":"Feb 13, 2021, 12:56:55 AM","quantity":0,"price":22364.800000000003,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486231367, '', 2, 'Insert on table product_import', 'null', '{"id":4,"productId":4,"userId":1,"importAt":"Jul 26, 2021, 5:44:04 PM","quantity":-2,"price":49510.4,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486232156, '', 2, 'Insert on table product_import', 'null', '{"id":91,"productId":91,"userId":1,"importAt":"Mar 25, 2021, 11:05:04 AM","quantity":-3,"price":103755.20000000001,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486232639, '', 2, 'Insert on table product_import', 'null', '{"id":26,"productId":26,"userId":1,"importAt":"Feb 2, 2021, 12:42:02 AM","quantity":0,"price":105017.6,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486233500, '', 2, 'Insert on table product_import', 'null', '{"id":15,"productId":15,"userId":1,"importAt":"Apr 19, 2021, 2:39:51 PM","quantity":0,"price":164240.0,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486233567, '', 2, 'Insert on table product_import', 'null', '{"id":20,"productId":20,"userId":1,"importAt":"Nov 12, 2021, 12:28:22 AM","quantity":-4,"price":149864.80000000002,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486233928, '', 2, 'Insert on table product_import', 'null', '{"id":61,"productId":61,"userId":1,"importAt":"Sep 16, 2021, 6:34:31 AM","quantity":0,"price":337994.4,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486235619, '', 2, 'Insert on table product_import', 'null', '{"id":24,"productId":24,"userId":1,"importAt":"Sep 9, 2021, 5:29:49 AM","quantity":0,"price":234964.0,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486236439, '', 2, 'Insert on table product_import', 'null', '{"id":10,"productId":10,"userId":1,"importAt":"Jun 7, 2021, 11:23:46 PM","quantity":0,"price":318214.4,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486237755, '', 2, 'Insert on table product_import', 'null', '{"id":38,"productId":38,"userId":1,"importAt":"Nov 5, 2021, 8:54:31 PM","quantity":-4,"price":146706.4,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486238966, '', 2, 'Insert on table product_import', 'null', '{"id":66,"productId":66,"userId":1,"importAt":"Dec 13, 2021, 11:25:39 AM","quantity":0,"price":6484.8,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486240078, '', 2, 'Insert on table product_import', 'null', '{"id":81,"productId":81,"userId":1,"importAt":"Nov 28, 2021, 4:51:08 PM","quantity":0,"price":214730.40000000002,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486240093, '', 2, 'Insert on table product_import', 'null', '{"id":83,"productId":83,"userId":1,"importAt":"Oct 29, 2021, 3:47:05 PM","quantity":0,"price":82503.20000000001,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486240552, '', 2, 'Insert on table product_import', 'null', '{"id":19,"productId":19,"userId":1,"importAt":"Oct 25, 2021, 9:48:48 AM","quantity":0,"price":360687.2,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486241516, '', 2, 'Insert on table product_import', 'null', '{"id":16,"productId":16,"userId":1,"importAt":"Dec 17, 2021, 9:38:24 AM","quantity":0,"price":224180.0,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486241579, '', 2, 'Insert on table product_import', 'null', '{"id":21,"productId":21,"userId":1,"importAt":"Mar 26, 2021, 10:11:02 PM","quantity":-2,"price":317338.4,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486245035, '', 2, 'Insert on table product_import', 'null', '{"id":75,"productId":75,"userId":1,"importAt":"Feb 10, 2021, 1:36:37 PM","quantity":0,"price":94835.20000000001,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486245049, '', 2, 'Insert on table product_import', 'null', '{"id":77,"productId":77,"userId":1,"importAt":"Jan 4, 2022, 7:49:25 PM","quantity":0,"price":291726.4,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486245746, '', 2, 'Insert on table product_import', 'null', '{"id":37,"productId":37,"userId":1,"importAt":"May 11, 2021, 1:50:10 AM","quantity":0,"price":230655.2,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486246021, '', 2, 'Insert on table product_import', 'null', '{"id":73,"productId":73,"userId":1,"importAt":"Dec 13, 2021, 12:50:17 AM","quantity":-4,"price":354946.4,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486248427, '', 2, 'Insert on table product_import', 'null', '{"id":9,"productId":9,"userId":1,"importAt":"Aug 7, 2021, 9:11:03 PM","quantity":0,"price":77039.2,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486249682, '', 2, 'Insert on table product_import', 'null', '{"id":30,"productId":30,"userId":1,"importAt":"Dec 19, 2021, 2:05:00 AM","quantity":0,"price":254722.40000000002,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486250478, '', 2, 'Insert on table product_import', 'null', '{"id":13,"productId":13,"userId":1,"importAt":"Jun 16, 2021, 8:20:52 AM","quantity":0,"price":97711.20000000001,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486252208, '', 2, 'Insert on table product_import', 'null', '{"id":98,"productId":98,"userId":1,"importAt":"Jul 9, 2021, 7:58:01 PM","quantity":0,"price":381981.60000000003,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486252794, '', 2, 'Insert on table product_import', 'null', '{"id":43,"productId":43,"userId":1,"importAt":"Jun 9, 2021, 9:58:26 PM","quantity":0,"price":55105.600000000006,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486253770, '', 2, 'Insert on table product_import', 'null', '{"id":40,"productId":40,"userId":1,"importAt":"Jun 13, 2021, 2:22:51 PM","quantity":0,"price":182505.6,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486256114, '', 2, 'Insert on table product_import', 'null', '{"id":85,"productId":85,"userId":1,"importAt":"Oct 24, 2021, 9:47:35 AM","quantity":0,"price":294337.60000000003,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486256702, '', 2, 'Insert on table product_import', 'null', '{"id":32,"productId":32,"userId":1,"importAt":"Dec 8, 2021, 2:56:41 AM","quantity":0,"price":250794.40000000002,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486257812, '', 2, 'Insert on table product_import', 'null', '{"id":45,"productId":45,"userId":1,"importAt":"Jun 7, 2021, 7:01:21 AM","quantity":0,"price":202248.0,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486260728, '', 2, 'Insert on table product_import', 'null', '{"id":35,"productId":35,"userId":1,"importAt":"Oct 5, 2021, 8:08:19 AM","quantity":0,"price":368988.80000000005,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486262711, '', 2, 'Insert on table product_import', 'null', '{"id":33,"productId":33,"userId":1,"importAt":"Nov 6, 2021, 2:48:40 AM","quantity":-5,"price":124479.20000000001,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486263489, '', 2, 'Insert on table product_import', 'null', '{"id":14,"productId":14,"userId":1,"importAt":"Jul 31, 2021, 3:57:52 PM","quantity":-3,"price":197692.0,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486264608, '', 2, 'Insert on table product_import', 'null', '{"id":23,"productId":23,"userId":1,"importAt":"Jul 15, 2021, 8:01:58 PM","quantity":-3,"price":297887.2,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486265008, '', 2, 'Insert on table product_import', 'null', '{"id":71,"productId":71,"userId":1,"importAt":"Dec 22, 2021, 12:50:21 PM","quantity":0,"price":300049.60000000003,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486265182, '', 2, 'Insert on table product_import', 'null', '{"id":95,"productId":95,"userId":1,"importAt":"Oct 25, 2021, 5:55:27 AM","quantity":0,"price":215064.80000000002,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486265389, '', 2, 'Insert on table product_import', 'null', '{"id":6,"productId":6,"userId":1,"importAt":"Jun 18, 2021, 5:55:06 AM","quantity":-1,"price":370170.4,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486266594, '', 2, 'Insert on table product_import', 'null', '{"id":22,"productId":22,"userId":1,"importAt":"Jan 24, 2022, 8:00:39 AM","quantity":-15,"price":93223.20000000001,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486267218, '', 2, 'Insert on table product_import', 'null', '{"id":99,"productId":99,"userId":1,"importAt":"Jan 22, 2022, 3:29:03 PM","quantity":-7,"price":159810.40000000002,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486267414, '', 2, 'Insert on table product_import', 'null', '{"id":8,"productId":8,"userId":1,"importAt":"Aug 27, 2021, 2:56:32 AM","quantity":-8,"price":382635.2,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486267786, '', 2, 'Insert on table product_import', 'null', '{"id":42,"productId":42,"userId":1,"importAt":"Jul 21, 2021, 1:40:24 AM","quantity":-5,"price":219304.80000000002,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486268189, '', 2, 'Insert on table product_import', 'null', '{"id":96,"productId":96,"userId":1,"importAt":"Apr 17, 2021, 6:11:57 AM","quantity":0,"price":245688.80000000002,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486270465, '', 2, 'Insert on table product_import', 'null', '{"id":12,"productId":12,"userId":1,"importAt":"Dec 14, 2021, 7:28:20 PM","quantity":-5,"price":41360.0,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486270958, '', 2, 'Insert on table product_import', 'null', '{"id":65,"productId":65,"userId":1,"importAt":"Dec 8, 2021, 11:10:27 PM","quantity":-3,"price":372814.4,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486272629, '', 2, 'Insert on table product_import', 'null', '{"id":25,"productId":25,"userId":1,"importAt":"Dec 11, 2021, 2:13:04 AM","quantity":0,"price":97604.8,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486272850, '', 2, 'Insert on table product_import', 'null', '{"id":50,"productId":50,"userId":1,"importAt":"May 15, 2021, 4:03:30 AM","quantity":0,"price":94431.20000000001,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486273763, '', 2, 'Insert on table product_import', 'null', '{"id":39,"productId":39,"userId":1,"importAt":"Dec 27, 2021, 3:36:00 PM","quantity":0,"price":141278.4,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486276892, '', 2, 'Insert on table product_import', 'null', '{"id":56,"productId":56,"userId":1,"importAt":"May 12, 2021, 1:14:00 PM","quantity":0,"price":99611.20000000001,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486278054, '', 2, 'Insert on table product_import', 'null', '{"id":78,"productId":78,"userId":1,"importAt":"Jan 4, 2022, 10:35:13 AM","quantity":-8,"price":83524.0,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486278129, '', 2, 'Insert on table product_import', 'null', '{"id":87,"productId":87,"userId":1,"importAt":"Mar 31, 2021, 7:39:02 AM","quantity":0,"price":72843.2,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486280028, '', 2, 'Insert on table product_import', 'null', '{"id":74,"productId":74,"userId":1,"importAt":"May 22, 2021, 5:34:50 AM","quantity":-1,"price":87247.20000000001,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486281650, '', 2, 'Insert on table product_import', 'null', '{"id":27,"productId":27,"userId":1,"importAt":"Apr 26, 2021, 11:20:50 AM","quantity":-4,"price":36203.200000000004,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486281907, '', 2, 'Insert on table product_import', 'null', '{"id":58,"productId":58,"userId":1,"importAt":"Jun 24, 2021, 7:23:29 AM","quantity":0,"price":81093.6,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486282121, '', 2, 'Insert on table product_import', 'null', '{"id":86,"productId":86,"userId":1,"importAt":"Apr 21, 2021, 9:30:10 AM","quantity":-1,"price":172591.2,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486283803, '', 2, 'Insert on table product_import', 'null', '{"id":44,"productId":44,"userId":1,"importAt":"Mar 30, 2021, 1:29:57 AM","quantity":0,"price":57597.600000000006,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486284914, '', 2, 'Insert on table product_import', 'null', '{"id":59,"productId":59,"userId":1,"importAt":"Sep 21, 2021, 11:22:31 AM","quantity":-6,"price":194584.80000000002,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486286143, '', 2, 'Insert on table product_import', 'null', '{"id":89,"productId":89,"userId":1,"importAt":"Dec 21, 2021, 11:16:02 AM","quantity":0,"price":23993.600000000002,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486287137, '', 2, 'Insert on table product_import', 'null', '{"id":88,"productId":88,"userId":1,"importAt":"Jun 15, 2021, 2:51:43 PM","quantity":-1,"price":216434.40000000002,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486288228, '', 2, 'Insert on table product_import', 'null', '{"id":100,"productId":100,"userId":1,"importAt":"Aug 14, 2021, 7:14:31 PM","quantity":-1,"price":137122.4,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486288720, '', 2, 'Insert on table product_import', 'null', '{"id":34,"productId":34,"userId":1,"importAt":"Mar 24, 2021, 11:12:25 PM","quantity":0,"price":238838.40000000002,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486288779, '', 2, 'Insert on table product_import', 'null', '{"id":41,"productId":41,"userId":1,"importAt":"Jan 3, 2022, 3:33:27 PM","quantity":-1,"price":309838.4,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486288885, '', 2, 'Insert on table product_import', 'null', '{"id":55,"productId":55,"userId":1,"importAt":"Jun 9, 2021, 2:42:51 AM","quantity":0,"price":161516.0,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486289001, '', 2, 'Insert on table product_import', 'null', '{"id":70,"productId":70,"userId":1,"importAt":"Nov 16, 2021, 10:29:49 PM","quantity":-2,"price":355756.0,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486290661, '', 2, 'Insert on table product_import', 'null', '{"id":28,"productId":28,"userId":1,"importAt":"Mar 8, 2021, 7:28:18 AM","quantity":0,"price":29373.600000000002,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486290693, '', 2, 'Insert on table product_import', 'null', '{"id":31,"productId":31,"userId":1,"importAt":"Jan 1, 2022, 11:10:09 PM","quantity":-2,"price":185064.80000000002,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486290941, '', 2, 'Insert on table product_import', 'null', '{"id":63,"productId":63,"userId":1,"importAt":"Sep 2, 2021, 7:50:35 AM","quantity":0,"price":130272.8,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486292162, '', 2, 'Insert on table product_import', 'null', '{"id":92,"productId":92,"userId":1,"importAt":"May 17, 2021, 1:49:26 PM","quantity":0,"price":173468.0,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486292339, '', 2, 'Insert on table product_import', 'null', '{"id":2,"productId":2,"userId":1,"importAt":"Dec 19, 2021, 3:03:05 PM","quantity":-5,"price":20982.4,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486293541, '', 2, 'Insert on table product_import', 'null', '{"id":18,"productId":18,"userId":1,"importAt":"Jul 4, 2021, 12:11:08 PM","quantity":0,"price":225290.40000000002,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486293827, '', 2, 'Insert on table product_import', 'null', '{"id":47,"productId":47,"userId":1,"importAt":"Sep 1, 2021, 8:00:43 PM","quantity":0,"price":50287.200000000004,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486294379, '', 2, 'Insert on table product_import', 'null', '{"id":5,"productId":5,"userId":1,"importAt":"Mar 4, 2021, 1:10:28 AM","quantity":-2,"price":156353.6,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486295198, '', 2, 'Insert on table product_import', 'null', '{"id":97,"productId":97,"userId":1,"importAt":"Jul 3, 2021, 5:51:31 AM","quantity":0,"price":86683.20000000001,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486297086, '', 2, 'Insert on table product_import', 'null', '{"id":82,"productId":82,"userId":1,"importAt":"Nov 14, 2021, 2:53:14 AM","quantity":-5,"price":149712.0,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486298935, '', 2, 'Insert on table product_import', 'null', '{"id":62,"productId":62,"userId":1,"importAt":"Feb 20, 2021, 5:53:34 AM","quantity":0,"price":317136.80000000005,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486299864, '', 2, 'Insert on table product_import', 'null', '{"id":52,"productId":52,"userId":1,"importAt":"Jul 8, 2021, 12:49:12 PM","quantity":-1,"price":279468.0,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486300067, '', 2, 'Insert on table product_import', 'null', '{"id":80,"productId":80,"userId":1,"importAt":"Aug 1, 2021, 7:32:05 PM","quantity":0,"price":304432.0,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486300921, '', 2, 'Insert on table product_import', 'null', '{"id":60,"productId":60,"userId":1,"importAt":"Nov 22, 2021, 4:02:54 PM","quantity":-4,"price":209733.6,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486301102, '', 2, 'Insert on table product_import', 'null', '{"id":84,"productId":84,"userId":1,"importAt":"Feb 7, 2021, 2:11:02 AM","quantity":-2,"price":35353.6,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486301949, '', 2, 'Insert on table product_import', 'null', '{"id":64,"productId":64,"userId":1,"importAt":"Jul 18, 2021, 3:36:32 AM","quantity":-9,"price":379052.0,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486304452, '', 2, 'Insert on table product_import', 'null', '{"id":11,"productId":11,"userId":1,"importAt":"Dec 10, 2021, 1:59:07 PM","quantity":-5,"price":293372.8,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486304995, '', 2, 'Insert on table product_import', 'null', '{"id":69,"productId":69,"userId":1,"importAt":"Feb 12, 2021, 3:13:38 PM","quantity":-4,"price":305694.4,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486305673, '', 2, 'Insert on table product_import', 'null', '{"id":29,"productId":29,"userId":1,"importAt":"Oct 14, 2021, 10:48:40 PM","quantity":0,"price":208412.80000000002,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486306834, '', 2, 'Insert on table product_import', 'null', '{"id":48,"productId":48,"userId":1,"importAt":"Feb 18, 2021, 2:21:04 AM","quantity":0,"price":256636.80000000002,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486307972, '', 2, 'Insert on table product_import', 'null', '{"id":67,"productId":67,"userId":1,"importAt":"Sep 11, 2021, 1:01:32 AM","quantity":0,"price":93778.40000000001,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486308857, '', 2, 'Insert on table product_import', 'null', '{"id":51,"productId":51,"userId":1,"importAt":"Sep 13, 2021, 7:22:19 PM","quantity":0,"price":107532.0,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486309979, '', 2, 'Insert on table product_import', 'null', '{"id":68,"productId":68,"userId":1,"importAt":"Jun 18, 2021, 5:25:37 PM","quantity":0,"price":239324.80000000002,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486310061, '', 2, 'Insert on table product_import', 'null', '{"id":79,"productId":79,"userId":1,"importAt":"Oct 25, 2021, 3:41:19 PM","quantity":-8,"price":234656.80000000002,"createAt":"Jun 4, 2024, 2:30:15 PM"}', '2024-06-04 07:30:15', '2024-06-04 07:30:15'),
+	(1717486312736, '', 2, 'Insert on table product_import', 'null', '{"id":36,"productId":36,"userId":1,"importAt":"Jan 8, 2022, 2:42:25 AM","quantity":0,"price":396437.60000000003,"createAt":"Jun 4, 2024, 2:30:14 PM"}', '2024-06-04 07:30:14', '2024-06-04 07:30:14'),
+	(1717486515645, '', 2, 'Insert on table product_import', 'null', '{"id":51,"productId":51,"userId":1,"importAt":"Sep 13, 2021, 7:22:19 PM","quantity":200,"price":107532.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486516027, '', 2, 'Insert on table product_import', 'null', '{"id":3,"productId":3,"userId":1,"importAt":"Jul 31, 2021, 10:44:48 AM","quantity":200,"price":235291.2,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486516867, '', 2, 'Insert on table product_import', 'null', '{"id":82,"productId":82,"userId":1,"importAt":"Nov 14, 2021, 2:53:14 AM","quantity":300,"price":149712.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486516932, '', 2, 'Insert on table product_import', 'null', '{"id":91,"productId":91,"userId":1,"importAt":"Mar 25, 2021, 11:05:04 AM","quantity":250,"price":103755.20000000001,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486517749, '', 2, 'Insert on table product_import', 'null', '{"id":65,"productId":65,"userId":1,"importAt":"Dec 8, 2021, 11:10:27 PM","quantity":300,"price":372814.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486518531, '', 2, 'Insert on table product_import', 'null', '{"id":41,"productId":41,"userId":1,"importAt":"Jan 3, 2022, 3:33:27 PM","quantity":100,"price":309838.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486519181, '', 2, 'Insert on table product_import', 'null', '{"id":14,"productId":14,"userId":1,"importAt":"Jul 31, 2021, 3:57:52 PM","quantity":200,"price":197692.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486519219, '', 2, 'Insert on table product_import', 'null', '{"id":17,"productId":17,"userId":1,"importAt":"Jan 2, 2022, 11:13:27 PM","quantity":300,"price":72035.2,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486520720, '', 2, 'Insert on table product_import', 'null', '{"id":62,"productId":62,"userId":1,"importAt":"Feb 20, 2021, 5:53:34 AM","quantity":150,"price":317136.80000000005,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486521207, '', 2, 'Insert on table product_import', 'null', '{"id":16,"productId":16,"userId":1,"importAt":"Dec 17, 2021, 9:38:24 AM","quantity":250,"price":224180.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486522925, '', 2, 'Insert on table product_import', 'null', '{"id":90,"productId":90,"userId":1,"importAt":"Sep 2, 2021, 3:01:38 AM","quantity":300,"price":164353.6,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486524132, '', 2, 'Insert on table product_import', 'null', '{"id":10,"productId":10,"userId":1,"importAt":"Jun 7, 2021, 11:23:46 PM","quantity":100,"price":318214.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486524940, '', 2, 'Insert on table product_import', 'null', '{"id":92,"productId":92,"userId":1,"importAt":"May 17, 2021, 1:49:26 PM","quantity":350,"price":173468.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486526438, '', 2, 'Insert on table product_import', 'null', '{"id":34,"productId":34,"userId":1,"importAt":"Mar 24, 2021, 11:12:25 PM","quantity":450,"price":238838.40000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486528668, '', 2, 'Insert on table product_import', 'null', '{"id":54,"productId":54,"userId":1,"importAt":"Aug 14, 2021, 3:42:55 PM","quantity":250,"price":115628.8,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486529277, '', 2, 'Insert on table product_import', 'null', '{"id":21,"productId":21,"userId":1,"importAt":"Mar 26, 2021, 10:11:02 PM","quantity":50,"price":317338.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486530560, '', 2, 'Insert on table product_import', 'null', '{"id":44,"productId":44,"userId":1,"importAt":"Mar 30, 2021, 1:29:57 AM","quantity":450,"price":57597.600000000006,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486532770, '', 2, 'Insert on table product_import', 'null', '{"id":68,"productId":68,"userId":1,"importAt":"Jun 18, 2021, 5:25:37 PM","quantity":150,"price":239324.80000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486534701, '', 2, 'Insert on table product_import', 'null', '{"id":59,"productId":59,"userId":1,"importAt":"Sep 21, 2021, 11:22:31 AM","quantity":100,"price":194584.80000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486535091, '', 2, 'Insert on table product_import', 'null', '{"id":7,"productId":7,"userId":1,"importAt":"Nov 1, 2021, 8:47:34 PM","quantity":200,"price":390416.80000000005,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486537193, '', 2, 'Insert on table product_import', 'null', '{"id":15,"productId":15,"userId":1,"importAt":"Apr 19, 2021, 2:39:51 PM","quantity":100,"price":164240.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486537947, '', 2, 'Insert on table product_import', 'null', '{"id":93,"productId":93,"userId":1,"importAt":"Jan 27, 2022, 9:49:53 PM","quantity":50,"price":172640.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486538837, '', 2, 'Insert on table product_import', 'null', '{"id":78,"productId":78,"userId":1,"importAt":"Jan 4, 2022, 10:35:13 AM","quantity":400,"price":83524.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486539637, '', 2, 'Insert on table product_import', 'null', '{"id":50,"productId":50,"userId":1,"importAt":"May 15, 2021, 4:03:30 AM","quantity":350,"price":94431.20000000001,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486540302, '', 2, 'Insert on table product_import', 'null', '{"id":23,"productId":23,"userId":1,"importAt":"Jul 15, 2021, 8:01:58 PM","quantity":250,"price":297887.2,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486541888, '', 2, 'Insert on table product_import', 'null', '{"id":85,"productId":85,"userId":1,"importAt":"Oct 24, 2021, 9:47:35 AM","quantity":350,"price":294337.60000000003,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486542120, '', 2, 'Insert on table product_import', 'null', '{"id":9,"productId":9,"userId":1,"importAt":"Aug 7, 2021, 9:11:03 PM","quantity":200,"price":77039.2,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486542777, '', 2, 'Insert on table product_import', 'null', '{"id":69,"productId":69,"userId":1,"importAt":"Feb 12, 2021, 3:13:38 PM","quantity":150,"price":305694.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486543882, '', 2, 'Insert on table product_import', 'null', '{"id":84,"productId":84,"userId":1,"importAt":"Feb 7, 2021, 2:11:02 AM","quantity":400,"price":35353.6,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486545251, '', 2, 'Insert on table product_import', 'null', '{"id":19,"productId":19,"userId":1,"importAt":"Oct 25, 2021, 9:48:48 AM","quantity":250,"price":360687.2,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486545384, '', 2, 'Insert on table product_import', 'null', '{"id":30,"productId":30,"userId":1,"importAt":"Dec 19, 2021, 2:05:00 AM","quantity":400,"price":254722.40000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486545492, '', 2, 'Insert on table product_import', 'null', '{"id":38,"productId":38,"userId":1,"importAt":"Nov 5, 2021, 8:54:31 PM","quantity":150,"price":146706.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486545688, '', 2, 'Insert on table product_import', 'null', '{"id":57,"productId":57,"userId":1,"importAt":"Dec 28, 2021, 5:25:08 AM","quantity":300,"price":122741.6,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486546783, '', 2, 'Insert on table product_import', 'null', '{"id":70,"productId":70,"userId":1,"importAt":"Nov 16, 2021, 10:29:49 PM","quantity":350,"price":355756.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486548426, '', 2, 'Insert on table product_import', 'null', '{"id":33,"productId":33,"userId":1,"importAt":"Nov 6, 2021, 2:48:40 AM","quantity":100,"price":124479.20000000001,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486550336, '', 2, 'Insert on table product_import', 'null', '{"id":26,"productId":26,"userId":1,"importAt":"Feb 2, 2021, 12:42:02 AM","quantity":450,"price":105017.6,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486550852, '', 2, 'Insert on table product_import', 'null', '{"id":80,"productId":80,"userId":1,"importAt":"Aug 1, 2021, 7:32:05 PM","quantity":0,"price":304432.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486551290, '', 2, 'Insert on table product_import', 'null', '{"id":22,"productId":22,"userId":1,"importAt":"Jan 24, 2022, 8:00:39 AM","quantity":450,"price":93223.20000000001,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486551726, '', 2, 'Insert on table product_import', 'null', '{"id":63,"productId":63,"userId":1,"importAt":"Sep 2, 2021, 7:50:35 AM","quantity":200,"price":130272.8,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486552653, '', 2, 'Insert on table product_import', 'null', '{"id":52,"productId":52,"userId":1,"importAt":"Jul 8, 2021, 12:49:12 PM","quantity":400,"price":279468.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486553910, '', 2, 'Insert on table product_import', 'null', '{"id":88,"productId":88,"userId":1,"importAt":"Jun 15, 2021, 2:51:43 PM","quantity":150,"price":216434.40000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486555964, '', 2, 'Insert on table product_import', 'null', '{"id":95,"productId":95,"userId":1,"importAt":"Oct 25, 2021, 5:55:27 AM","quantity":350,"price":215064.80000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486556012, '', 2, 'Insert on table product_import', 'null', '{"id":2,"productId":2,"userId":1,"importAt":"Dec 19, 2021, 3:03:05 PM","quantity":150,"price":20982.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486556627, '', 2, 'Insert on table product_import', 'null', '{"id":49,"productId":49,"userId":1,"importAt":"Jul 30, 2021, 9:38:48 AM","quantity":100,"price":318357.60000000003,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486561325, '', 2, 'Insert on table product_import', 'null', '{"id":25,"productId":25,"userId":1,"importAt":"Dec 11, 2021, 2:13:04 AM","quantity":400,"price":97604.8,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486561903, '', 2, 'Insert on table product_import', 'null', '{"id":87,"productId":87,"userId":1,"importAt":"Mar 31, 2021, 7:39:02 AM","quantity":450,"price":72843.2,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486562042, '', 2, 'Insert on table product_import', 'null', '{"id":4,"productId":4,"userId":1,"importAt":"Jul 26, 2021, 5:44:04 PM","quantity":250,"price":49510.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486563875, '', 2, 'Insert on table product_import', 'null', '{"id":83,"productId":83,"userId":1,"importAt":"Oct 29, 2021, 3:47:05 PM","quantity":50,"price":82503.20000000001,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486565370, '', 2, 'Insert on table product_import', 'null', '{"id":29,"productId":29,"userId":1,"importAt":"Oct 14, 2021, 10:48:40 PM","quantity":100,"price":208412.80000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486565895, '', 2, 'Insert on table product_import', 'null', '{"id":86,"productId":86,"userId":1,"importAt":"Apr 21, 2021, 9:30:10 AM","quantity":300,"price":172591.2,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486566505, '', 2, 'Insert on table product_import', 'null', '{"id":39,"productId":39,"userId":1,"importAt":"Dec 27, 2021, 3:36:00 PM","quantity":250,"price":141278.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486566763, '', 2, 'Insert on table product_import', 'null', '{"id":67,"productId":67,"userId":1,"importAt":"Sep 11, 2021, 1:01:32 AM","quantity":200,"price":93778.40000000001,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486568830, '', 2, 'Insert on table product_import', 'null', '{"id":77,"productId":77,"userId":1,"importAt":"Jan 4, 2022, 7:49:25 PM","quantity":400,"price":291726.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486570549, '', 2, 'Insert on table product_import', 'null', '{"id":43,"productId":43,"userId":1,"importAt":"Jun 9, 2021, 9:58:26 PM","quantity":450,"price":55105.600000000006,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486570615, '', 2, 'Insert on table product_import', 'null', '{"id":48,"productId":48,"userId":1,"importAt":"Feb 18, 2021, 2:21:04 AM","quantity":450,"price":256636.80000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486572156, '', 2, 'Insert on table product_import', 'null', '{"id":12,"productId":12,"userId":1,"importAt":"Dec 14, 2021, 7:28:20 PM","quantity":250,"price":41360.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486572168, '', 2, 'Insert on table product_import', 'null', '{"id":13,"productId":13,"userId":1,"importAt":"Jun 16, 2021, 8:20:52 AM","quantity":100,"price":97711.20000000001,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486575741, '', 2, 'Insert on table product_import', 'null', '{"id":64,"productId":64,"userId":1,"importAt":"Jul 18, 2021, 3:36:32 AM","quantity":150,"price":379052.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486577464, '', 2, 'Insert on table product_import', 'null', '{"id":36,"productId":36,"userId":1,"importAt":"Jan 8, 2022, 2:42:25 AM","quantity":400,"price":396437.60000000003,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486578398, '', 2, 'Insert on table product_import', 'null', '{"id":31,"productId":31,"userId":1,"importAt":"Jan 1, 2022, 11:10:09 PM","quantity":300,"price":185064.80000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486578694, '', 2, 'Insert on table product_import', 'null', '{"id":58,"productId":58,"userId":1,"importAt":"Jun 24, 2021, 7:23:29 AM","quantity":100,"price":81093.6,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486580347, '', 2, 'Insert on table product_import', 'null', '{"id":27,"productId":27,"userId":1,"importAt":"Apr 26, 2021, 11:20:50 AM","quantity":300,"price":36203.200000000004,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486580917, '', 2, 'Insert on table product_import', 'null', '{"id":89,"productId":89,"userId":1,"importAt":"Dec 21, 2021, 11:16:02 AM","quantity":250,"price":23993.600000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486582796, '', 2, 'Insert on table product_import', 'null', '{"id":72,"productId":72,"userId":1,"importAt":"Jun 25, 2021, 4:03:26 AM","quantity":400,"price":136112.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486584075, '', 2, 'Insert on table product_import', 'null', '{"id":6,"productId":6,"userId":1,"importAt":"Jun 18, 2021, 5:55:06 AM","quantity":350,"price":370170.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486584264, '', 2, 'Insert on table product_import', 'null', '{"id":20,"productId":20,"userId":1,"importAt":"Nov 12, 2021, 12:28:22 AM","quantity":50,"price":149864.80000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486587452, '', 2, 'Insert on table product_import', 'null', '{"id":35,"productId":35,"userId":1,"importAt":"Oct 5, 2021, 8:08:19 AM","quantity":350,"price":368988.80000000005,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486587756, '', 2, 'Insert on table product_import', 'null', '{"id":66,"productId":66,"userId":1,"importAt":"Dec 13, 2021, 11:25:39 AM","quantity":0,"price":6484.8,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486589057, '', 2, 'Insert on table product_import', 'null', '{"id":5,"productId":5,"userId":1,"importAt":"Mar 4, 2021, 1:10:28 AM","quantity":200,"price":156353.6,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486589824, '', 2, 'Insert on table product_import', 'null', '{"id":76,"productId":76,"userId":1,"importAt":"Feb 13, 2021, 12:56:55 AM","quantity":250,"price":22364.800000000003,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486593003, '', 2, 'Insert on table product_import', 'null', '{"id":99,"productId":99,"userId":1,"importAt":"Jan 22, 2022, 3:29:03 PM","quantity":400,"price":159810.40000000002,"createAt":"Jun 4, 2024, 2:35:16 PM"}', '2024-06-04 07:35:16', '2024-06-04 07:35:16'),
+	(1717486593145, '', 2, 'Insert on table product_import', 'null', '{"id":11,"productId":11,"userId":1,"importAt":"Dec 10, 2021, 1:59:07 PM","quantity":400,"price":293372.8,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486593311, '', 2, 'Insert on table product_import', 'null', '{"id":24,"productId":24,"userId":1,"importAt":"Sep 9, 2021, 5:29:49 AM","quantity":350,"price":234964.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486593570, '', 2, 'Insert on table product_import', 'null', '{"id":45,"productId":45,"userId":1,"importAt":"Jun 7, 2021, 7:01:21 AM","quantity":250,"price":202248.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486593681, '', 2, 'Insert on table product_import', 'null', '{"id":56,"productId":56,"userId":1,"importAt":"May 12, 2021, 1:14:00 PM","quantity":400,"price":99611.20000000001,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486594714, '', 2, 'Insert on table product_import', 'null', '{"id":61,"productId":61,"userId":1,"importAt":"Sep 16, 2021, 6:34:31 AM","quantity":400,"price":337994.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486594994, '', 2, 'Insert on table product_import', 'null', '{"id":98,"productId":98,"userId":1,"importAt":"Jul 9, 2021, 7:58:01 PM","quantity":200,"price":381981.60000000003,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486595585, '', 2, 'Insert on table product_import', 'null', '{"id":46,"productId":46,"userId":1,"importAt":"Jan 13, 2022, 8:55:09 PM","quantity":350,"price":307803.2,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486597106, '', 2, 'Insert on table product_import', 'null', '{"id":8,"productId":8,"userId":1,"importAt":"Aug 27, 2021, 2:56:32 AM","quantity":250,"price":382635.2,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486597661, '', 2, 'Insert on table product_import', 'null', '{"id":53,"productId":53,"userId":1,"importAt":"Dec 14, 2021, 3:59:32 AM","quantity":200,"price":310597.60000000003,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486597955, '', 2, 'Insert on table product_import', 'null', '{"id":94,"productId":94,"userId":1,"importAt":"Apr 28, 2021, 6:56:06 AM","quantity":300,"price":265657.60000000003,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486598521, '', 2, 'Insert on table product_import', 'null', '{"id":40,"productId":40,"userId":1,"importAt":"Jun 13, 2021, 2:22:51 PM","quantity":150,"price":182505.6,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486600883, '', 2, 'Insert on table product_import', 'null', '{"id":1,"productId":1,"userId":1,"importAt":"Mar 23, 2021, 8:22:50 AM","quantity":250,"price":372946.4,"createAt":"Jun 4, 2024, 2:35:14 PM"}', '2024-06-04 07:35:14', '2024-06-04 07:35:14'),
+	(1717486601984, '', 2, 'Insert on table product_import', 'null', '{"id":97,"productId":97,"userId":1,"importAt":"Jul 3, 2021, 5:51:31 AM","quantity":450,"price":86683.20000000001,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486603236, '', 2, 'Insert on table product_import', 'null', '{"id":18,"productId":18,"userId":1,"importAt":"Jul 4, 2021, 12:11:08 PM","quantity":450,"price":225290.40000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486603802, '', 2, 'Insert on table product_import', 'null', '{"id":73,"productId":73,"userId":1,"importAt":"Dec 13, 2021, 12:50:17 AM","quantity":0,"price":354946.4,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486604675, '', 2, 'Insert on table product_import', 'null', '{"id":55,"productId":55,"userId":1,"importAt":"Jun 9, 2021, 2:42:51 AM","quantity":50,"price":161516.0,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486605817, '', 2, 'Insert on table product_import', 'null', '{"id":75,"productId":75,"userId":1,"importAt":"Feb 10, 2021, 1:36:37 PM","quantity":350,"price":94835.20000000001,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486605845, '', 2, 'Insert on table product_import', 'null', '{"id":79,"productId":79,"userId":1,"importAt":"Oct 25, 2021, 3:41:19 PM","quantity":200,"price":234656.80000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486605974, '', 2, 'Insert on table product_import', 'null', '{"id":96,"productId":96,"userId":1,"importAt":"Apr 17, 2021, 6:11:57 AM","quantity":250,"price":245688.80000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486606411, '', 2, 'Insert on table product_import', 'null', '{"id":32,"productId":32,"userId":1,"importAt":"Dec 8, 2021, 2:56:41 AM","quantity":450,"price":250794.40000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486606600, '', 2, 'Insert on table product_import', 'null', '{"id":47,"productId":47,"userId":1,"importAt":"Sep 1, 2021, 8:00:43 PM","quantity":400,"price":50287.200000000004,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486607707, '', 2, 'Insert on table product_import', 'null', '{"id":60,"productId":60,"userId":1,"importAt":"Nov 22, 2021, 4:02:54 PM","quantity":0,"price":209733.6,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486608011, '', 2, 'Insert on table product_import', 'null', '{"id":100,"productId":100,"userId":1,"importAt":"Aug 14, 2021, 7:14:31 PM","quantity":300,"price":137122.4,"createAt":"Jun 4, 2024, 2:35:16 PM"}', '2024-06-04 07:35:16', '2024-06-04 07:35:16'),
+	(1717486609477, '', 2, 'Insert on table product_import', 'null', '{"id":37,"productId":37,"userId":1,"importAt":"May 11, 2021, 1:50:10 AM","quantity":0,"price":230655.2,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486611809, '', 2, 'Insert on table product_import', 'null', '{"id":74,"productId":74,"userId":1,"importAt":"May 22, 2021, 5:34:50 AM","quantity":50,"price":87247.20000000001,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486612789, '', 2, 'Insert on table product_import', 'null', '{"id":71,"productId":71,"userId":1,"importAt":"Dec 22, 2021, 12:50:21 PM","quantity":150,"price":300049.60000000003,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486612859, '', 2, 'Insert on table product_import', 'null', '{"id":81,"productId":81,"userId":1,"importAt":"Nov 28, 2021, 4:51:08 PM","quantity":400,"price":214730.40000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486613356, '', 2, 'Insert on table product_import', 'null', '{"id":28,"productId":28,"userId":1,"importAt":"Mar 8, 2021, 7:28:18 AM","quantity":400,"price":29373.600000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717486614540, '', 2, 'Insert on table product_import', 'null', '{"id":42,"productId":42,"userId":1,"importAt":"Jul 21, 2021, 1:40:24 AM","quantity":350,"price":219304.80000000002,"createAt":"Jun 4, 2024, 2:35:15 PM"}', '2024-06-04 07:35:15', '2024-06-04 07:35:15'),
+	(1717490396115, '', 3, 'Update on table CartItem', '{"id":30,"cartId":8,"productId":93,"quantity":1,"createdAt":"May 28, 2024, 11:36:35 PM"}', '{"id":30,"cartId":8,"productId":93,"quantity":1000,"createdAt":"May 28, 2024, 11:36:35 PM"}', '2024-05-28 16:36:35', '2024-06-04 08:38:54'),
+	(1717490590789, '', 3, 'Update on table CartItem', '{"id":30,"cartId":8,"productId":93,"quantity":20,"createdAt":"Jun 4, 2024, 3:42:14 PM"}', '{"id":30,"cartId":8,"productId":93,"quantity":1,"createdAt":"Jun 4, 2024, 3:42:14 PM"}', '2024-06-04 08:42:14', '2024-06-04 08:42:25'),
+	(1717490598031, '', 3, 'Update on table CartItem', '{"id":30,"cartId":8,"productId":93,"quantity":1000,"createdAt":"Jun 4, 2024, 3:38:54 PM"}', '{"id":30,"cartId":8,"productId":93,"quantity":20,"createdAt":"Jun 4, 2024, 3:38:54 PM"}', '2024-06-04 08:38:54', '2024-06-04 08:42:14'),
+	(1717490703319, '', 3, 'Update on table CartItem', '{"id":30,"cartId":8,"productId":93,"quantity":1,"createdAt":"Jun 4, 2024, 3:42:25 PM"}', '{"id":30,"cartId":8,"productId":93,"quantity":1000,"createdAt":"Jun 4, 2024, 3:42:25 PM"}', '2024-06-04 08:42:25', '2024-06-04 08:43:35'),
+	(1717491197331, '', 3, 'Update on table CartItem', '{"id":30,"cartId":8,"productId":93,"quantity":1000,"createdAt":"Jun 4, 2024, 3:43:35 PM"}', '{"id":30,"cartId":8,"productId":93,"quantity":1,"createdAt":"Jun 4, 2024, 3:43:35 PM"}', '2024-06-04 08:43:35', '2024-06-04 08:52:23'),
+	(1717491208155, '', 3, 'Update on table CartItem', '{"id":30,"cartId":8,"productId":93,"quantity":1,"createdAt":"Jun 4, 2024, 3:52:23 PM"}', '{"id":30,"cartId":8,"productId":93,"quantity":1000,"createdAt":"Jun 4, 2024, 3:52:23 PM"}', '2024-06-04 08:52:23', '2024-06-04 08:52:31'),
+	(1717491242283, '', 3, 'Update on table CartItem', '{"id":30,"cartId":8,"productId":93,"quantity":1000,"createdAt":"Jun 4, 2024, 3:52:31 PM"}', '{"id":30,"cartId":8,"productId":93,"quantity":1,"createdAt":"Jun 4, 2024, 3:52:31 PM"}', '2024-06-04 08:52:31', '2024-06-04 08:53:18'),
+	(1717491244579, '', 3, 'Update on table CartItem', '{"id":30,"cartId":8,"productId":93,"quantity":1000,"createdAt":"Jun 4, 2024, 3:53:24 PM"}', '{"id":30,"cartId":8,"productId":93,"quantity":10,"createdAt":"Jun 4, 2024, 3:53:24 PM"}', '2024-06-04 08:53:24', '2024-06-04 08:53:53'),
+	(1717491270481, '', 3, 'Update on table CartItem', '{"id":30,"cartId":8,"productId":93,"quantity":1,"createdAt":"Jun 4, 2024, 3:53:18 PM"}', '{"id":30,"cartId":8,"productId":93,"quantity":1000,"createdAt":"Jun 4, 2024, 3:53:18 PM"}', '2024-06-04 08:53:18', '2024-06-04 08:53:24'),
+	(1717520260458, '', 2, 'Insert on table Voucher', 'null', '{"id":0,"voucherCode":"EQ7k0H","voucherName":"Freeship","description":"","quantity":100,"percentDecrease":50.0,"maxDecrease":50000.0,"minPrice":100000.0,"type":0,"startAt":"Jun 4, 2024, 11:56:00 PM","endAt":"Jun 5, 2024, 11:56:00 PM","createAt":"Jun 4, 2024, 11:56:16 PM","voucherImage":"https://i.imgur.com/1EnZMSm.png"}', '2024-06-04 16:56:16', '2024-06-04 16:56:19'),
+	(1717520277876, '', 2, 'Insert on table Voucher', 'null', '{"id":0,"voucherCode":"EQ7k0H","voucherName":"Freeship","description":"","quantity":100,"percentDecrease":50.0,"maxDecrease":50000.0,"minPrice":100000.0,"type":0,"startAt":"Jun 4, 2024, 11:56:00 PM","endAt":"Jun 5, 2024, 11:56:00 PM","createAt":"Jun 4, 2024, 11:56:53 PM","voucherImage":"https://i.imgur.com/8KHc8yd.png"}', '2024-06-04 16:56:53', '2024-06-04 16:56:54'),
+	(1717520481244, '', 2, 'Insert on table Voucher', 'null', '{"id":0,"voucherCode":"5YfYL7","voucherName":"Freeship","description":"","quantity":50,"percentDecrease":50.0,"maxDecrease":50000.0,"minPrice":100000.0,"type":0,"startAt":"Jun 5, 2024, 12:00:00 AM","endAt":"Jun 6, 2024, 12:00:00 AM","createAt":"Jun 5, 2024, 12:00:15 AM","voucherImage":"https://i.imgur.com/udTccI3.png"}', '2024-06-04 17:00:15', '2024-06-04 17:00:18'),
+	(1717520529327, '', 2, 'Insert on table Voucher', 'null', '{"id":0,"voucherCode":"5YfYL7","voucherName":"Freeship","description":"","quantity":50,"percentDecrease":50.0,"maxDecrease":50000.0,"minPrice":100000.0,"type":0,"startAt":"Jun 5, 2024, 12:00:00 AM","endAt":"Jun 6, 2024, 12:00:00 AM","createAt":"Jun 5, 2024, 12:01:54 AM","voucherImage":"https://i.imgur.com/hDFplsi.png"}', '2024-06-04 17:01:54', '2024-06-04 17:01:56'),
+	(1717520546310, '', 2, 'Insert on table Voucher', 'null', '{"id":0,"voucherCode":"OWHhiU","voucherName":"Freeship","description":"","quantity":50,"percentDecrease":50.0,"maxDecrease":100000.0,"minPrice":100000.0,"type":0,"startAt":"Jun 5, 2024, 12:00:00 AM","endAt":"Jun 6, 2024, 12:00:00 AM","createAt":"Jun 5, 2024, 12:02:11 AM","voucherImage":"https://i.imgur.com/fLcIV7T.png"}', '2024-06-04 17:02:11', '2024-06-04 17:02:13'),
+	(1717520568529, '', 2, 'Insert on table Voucher', 'null', '{"id":0,"voucherCode":"i3s8u2","voucherName":"Mã giảm giá sản phẩm","description":"","quantity":100,"percentDecrease":50.0,"maxDecrease":150000.0,"minPrice":100000.0,"type":1,"startAt":"Jun 5, 2024, 12:00:00 AM","endAt":"Jun 6, 2024, 12:00:00 AM","createAt":"Jun 5, 2024, 12:02:36 AM","voucherImage":"https://i.imgur.com/zseqFPm.png"}', '2024-06-04 17:02:36', '2024-06-04 17:02:37'),
+	(1717520669716, '', 2, 'Insert on table Voucher', 'null', '{"id":0,"voucherCode":"yQn8YR","voucherName":"Mã giảm giá sản phẩm","description":"","quantity":100,"percentDecrease":50.0,"maxDecrease":100000.0,"minPrice":100000.0,"type":1,"startAt":"Jun 5, 2024, 12:00:00 AM","endAt":"Jun 6, 2024, 12:00:00 AM","createAt":"Jun 5, 2024, 12:02:55 AM","voucherImage":"https://i.imgur.com/iwQ4otE.png"}', '2024-06-04 17:02:55', '2024-06-04 17:02:56'),
+	(1717524665185, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717524638969,"productId":22,"price":116529.0,"discount":0.0,"quantity":1,"createdAt":"Jun 5, 2024, 1:10:38 AM"}', '2024-06-04 18:10:38', '2024-06-04 18:10:39'),
+	(1717524705168, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717524638969,"productId":41,"price":387298.0,"discount":20.0,"quantity":1,"createdAt":"Jun 5, 2024, 1:10:38 AM"}', '2024-06-04 18:10:38', '2024-06-04 18:10:39'),
+	(1717524712151, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717524638969,"productId":93,"price":215800.0,"discount":20.0,"quantity":10,"createdAt":"Jun 5, 2024, 1:10:38 AM"}', '2024-06-04 18:10:38', '2024-06-04 18:10:39'),
+	(1717524735029, '', 2, 'Insert on table Order', 'null', '{"id":1717524638969,"userId":1,"status":0,"deliveryMethod":1,"deliveryPrice":38001.0,"createdAt":"Jun 5, 2024, 1:10:38 AM","totalPrice":0.0}', '2024-06-04 18:10:38', '2024-06-04 18:10:39'),
+	(1717525222811, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717525212665,"productId":93,"price":215800.0,"discount":20.0,"quantity":10,"createdAt":"Jun 5, 2024, 1:20:12 AM"}', '2024-06-04 18:20:12', '2024-06-04 18:20:12'),
+	(1717525280822, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717525212665,"productId":41,"price":387298.0,"discount":20.0,"quantity":1,"createdAt":"Jun 5, 2024, 1:20:12 AM"}', '2024-06-04 18:20:12', '2024-06-04 18:20:12'),
+	(1717525308682, '', 2, 'Insert on table Order', 'null', '{"id":1717525212665,"userId":1,"status":0,"deliveryMethod":1,"deliveryPrice":45500.0,"createdAt":"Jun 5, 2024, 1:20:12 AM","totalPrice":0.0}', '2024-06-04 18:20:12', '2024-06-04 18:20:12'),
+	(1717525743878, '', 2, 'Insert on table Order', 'null', '{"id":1717525702854,"userId":1,"status":0,"deliveryMethod":1,"deliveryPrice":45500.0,"createdAt":"Jun 5, 2024, 1:28:22 AM","totalPrice":0.0}', '2024-06-04 18:28:22', '2024-06-04 18:28:22'),
+	(1717525770029, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717525702854,"productId":22,"price":116529.0,"discount":0.0,"quantity":1,"createdAt":"Jun 5, 2024, 1:28:22 AM"}', '2024-06-04 18:28:22', '2024-06-04 18:28:23'),
+	(1717525788016, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717525702854,"productId":41,"price":387298.0,"discount":20.0,"quantity":1,"createdAt":"Jun 5, 2024, 1:28:22 AM"}', '2024-06-04 18:28:22', '2024-06-04 18:28:23'),
+	(1717525800003, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717525702854,"productId":93,"price":215800.0,"discount":20.0,"quantity":10,"createdAt":"Jun 5, 2024, 1:28:22 AM"}', '2024-06-04 18:28:22', '2024-06-04 18:28:23'),
+	(1717525931009, '', 4, 'Delete on table CartItem', '{"id":30,"cartId":8,"productId":93,"quantity":10,"createdAt":"Jun 4, 2024, 3:53:53 PM"}', 'null', '2024-06-04 08:53:53', '2024-06-04 18:32:10'),
+	(1717525940958, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717525929835,"productId":93,"price":215800.0,"discount":20.0,"quantity":10,"createdAt":"Jun 5, 2024, 1:32:09 AM"}', '2024-06-04 18:32:09', '2024-06-04 18:32:09'),
+	(1717525953979, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717525929835,"productId":22,"price":116529.0,"discount":0.0,"quantity":1,"createdAt":"Jun 5, 2024, 1:32:09 AM"}', '2024-06-04 18:32:09', '2024-06-04 18:32:09'),
+	(1717525959854, '', 2, 'Insert on table Order', 'null', '{"id":1717525929835,"userId":1,"status":0,"deliveryMethod":1,"deliveryPrice":216000.0,"createdAt":"Jun 5, 2024, 1:32:09 AM","totalPrice":0.0}', '2024-06-04 18:32:09', '2024-06-04 18:32:09'),
+	(1717525969751, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":8,"productId":31,"quantity":3,"createdAt":"Jun 5, 2024, 1:32:24 AM"}', '2024-06-04 18:32:24', '2024-06-04 18:32:24'),
+	(1717525990695, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":8,"productId":22,"quantity":1,"createdAt":"Jun 5, 2024, 1:32:18 AM"}', '2024-06-04 18:32:18', '2024-06-04 18:32:18'),
+	(1717526005020, '', 4, 'Delete on table CartItem', '{"id":29,"cartId":8,"productId":41,"quantity":1,"createdAt":"May 21, 2024, 4:31:34 PM"}', 'null', '2024-05-21 09:31:34', '2024-06-04 18:32:10'),
+	(1717526006034, '', 4, 'Delete on table CartItem', '{"id":28,"cartId":8,"productId":22,"quantity":1,"createdAt":"May 21, 2024, 4:31:30 PM"}', 'null', '2024-05-21 09:31:30', '2024-06-04 18:32:10'),
+	(1717526023970, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717525929835,"productId":41,"price":387298.0,"discount":20.0,"quantity":1,"createdAt":"Jun 5, 2024, 1:32:09 AM"}', '2024-06-04 18:32:09', '2024-06-04 18:32:09'),
+	(1717526035864, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":8,"productId":17,"quantity":3,"createdAt":"Jun 5, 2024, 1:32:30 AM"}', '2024-06-04 18:32:30', '2024-06-04 18:32:30'),
+	(1717526044943, '', 4, 'Delete on table CartItem', '{"id":33,"cartId":8,"productId":31,"quantity":3,"createdAt":"Jun 5, 2024, 1:32:24 AM"}', 'null', '2024-06-04 18:32:24', '2024-06-04 18:33:56'),
+	(1717526047858, '', 2, 'Insert on table Order', 'null', '{"id":1717526036853,"userId":1,"status":0,"deliveryMethod":1,"deliveryPrice":38001.0,"createdAt":"Jun 5, 2024, 1:33:56 AM","totalPrice":0.0}', '2024-06-04 18:33:56', '2024-06-04 18:33:56'),
+	(1717526081874, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717526036853,"productId":17,"price":90044.0,"discount":20.0,"quantity":3,"createdAt":"Jun 5, 2024, 1:33:56 AM"}', '2024-06-04 18:33:56', '2024-06-04 18:33:56'),
+	(1717526081935, '', 4, 'Delete on table CartItem', '{"id":34,"cartId":8,"productId":17,"quantity":3,"createdAt":"Jun 5, 2024, 1:32:30 AM"}', 'null', '2024-06-04 18:32:30', '2024-06-04 18:33:56'),
+	(1717526084953, '', 4, 'Delete on table CartItem', '{"id":32,"cartId":8,"productId":22,"quantity":1,"createdAt":"Jun 5, 2024, 1:32:18 AM"}', 'null', '2024-06-04 18:32:18', '2024-06-04 18:33:56'),
+	(1717526105886, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717526036853,"productId":31,"price":231331.0,"discount":20.0,"quantity":3,"createdAt":"Jun 5, 2024, 1:33:56 AM"}', '2024-06-04 18:33:56', '2024-06-04 18:33:56'),
+	(1717526109188, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":8,"productId":22,"quantity":3,"createdAt":"Jun 5, 2024, 1:34:31 AM"}', '2024-06-04 18:34:31', '2024-06-04 18:34:31'),
+	(1717526115898, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717526036853,"productId":22,"price":116529.0,"discount":0.0,"quantity":1,"createdAt":"Jun 5, 2024, 1:33:56 AM"}', '2024-06-04 18:33:56', '2024-06-04 18:33:56'),
+	(1717526563409, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":8,"productId":17,"quantity":1,"createdAt":"Jun 5, 2024, 1:42:14 AM"}', '2024-06-04 18:42:14', '2024-06-04 18:42:14'),
+	(1717526598584, '', 3, 'Update on table CartItem', '{"id":36,"cartId":8,"productId":17,"quantity":1,"createdAt":"Jun 5, 2024, 1:42:14 AM"}', '{"id":36,"cartId":8,"productId":17,"quantity":2,"createdAt":"Jun 5, 2024, 1:42:14 AM"}', '2024-06-04 18:42:14', '2024-06-04 18:42:35'),
+	(1717526971263, '', 2, 'Insert on table Order', 'null', '{"id":1717526953253,"userId":1,"status":0,"deliveryMethod":1,"deliveryPrice":38001.0,"createdAt":"Jun 5, 2024, 1:49:13 AM","totalPrice":0.0}', '2024-06-04 18:49:13', '2024-06-04 18:49:13'),
+	(1717526987977, '', 3, 'Update on table CartItem', '{"id":36,"cartId":8,"productId":17,"quantity":2,"createdAt":"Jun 5, 2024, 1:42:35 AM"}', '{"id":36,"cartId":8,"productId":17,"quantity":1,"createdAt":"Jun 5, 2024, 1:42:35 AM"}', '2024-06-04 18:42:35', '2024-06-04 18:48:45'),
+	(1717527003877, '', 3, 'Update on table CartItem', '{"id":36,"cartId":8,"productId":17,"quantity":1,"createdAt":"Jun 5, 2024, 1:48:46 AM"}', '{"id":36,"cartId":8,"productId":17,"quantity":2,"createdAt":"Jun 5, 2024, 1:48:46 AM"}', '2024-06-04 18:48:46', '2024-06-04 18:48:58'),
+	(1717527022328, '', 4, 'Delete on table CartItem', '{"id":36,"cartId":8,"productId":17,"quantity":2,"createdAt":"Jun 5, 2024, 1:48:58 AM"}', 'null', '2024-06-04 18:48:58', '2024-06-04 18:49:13'),
+	(1717527037280, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717526953253,"productId":17,"price":90044.0,"discount":20.0,"quantity":2,"createdAt":"Jun 5, 2024, 1:49:13 AM"}', '2024-06-04 18:49:13', '2024-06-04 18:49:13');
 
 -- Dumping structure for table bookshopdb.orders
 CREATE TABLE IF NOT EXISTS `orders` (
@@ -318,9 +567,9 @@ CREATE TABLE IF NOT EXISTS `orders` (
   PRIMARY KEY (`id`),
   KEY `idx_orders_user` (`userId`),
   CONSTRAINT `fk_orders_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1717526953254 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.orders: ~28 rows (approximately)
+-- Dumping data for table bookshopdb.orders: ~31 rows (approximately)
 INSERT INTO `orders` (`id`, `userId`, `status`, `deliveryMethod`, `deliveryPrice`, `createdAt`, `updatedAt`) VALUES
 	(1, 4, 1, 1, 10000, '2024-05-05 10:26:45', '2024-04-29 08:18:08'),
 	(2, 5, 4, 2, 50000, '2024-05-05 10:34:37', NULL),
@@ -349,7 +598,35 @@ INSERT INTO `orders` (`id`, `userId`, `status`, `deliveryMethod`, `deliveryPrice
 	(25, 4, 1, 1, 10000, '2024-05-05 08:25:06', '2024-04-28 14:51:23'),
 	(27, 1, 4, 1, 15000, '2024-05-05 08:24:50', NULL),
 	(28, 1, 2, 1, 15000, '2024-05-04 14:26:07', NULL),
-	(30, 1, 1, 1, 15000, '2024-05-21 09:30:14', NULL);
+	(30, 1, 1, 1, 15000, '2024-05-21 09:30:14', NULL),
+	(1717525929835, 1, 0, 1, 216000, '2024-06-04 18:32:09', NULL),
+	(1717526036853, 1, 0, 1, 38001, '2024-06-04 18:33:56', NULL),
+	(1717526953253, 1, 0, 1, 38001, '2024-06-04 18:49:13', NULL);
+
+-- Dumping structure for table bookshopdb.order_detail
+CREATE TABLE IF NOT EXISTS `order_detail` (
+  `orderId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `addressId` bigint(20) NOT NULL DEFAULT 0,
+  `shipVoucherId` bigint(20) DEFAULT NULL,
+  `shipVoucherDecrease` double NOT NULL DEFAULT 0,
+  `productVoucherId` bigint(20) DEFAULT NULL,
+  `productVoucherDecrease` double NOT NULL DEFAULT 0,
+  `totalPrice` double NOT NULL DEFAULT 0,
+  PRIMARY KEY (`orderId`),
+  KEY `FK__address` (`addressId`),
+  KEY `FK_order_detail_voucher` (`shipVoucherId`),
+  KEY `FK_order_detail_voucher_2` (`productVoucherId`),
+  CONSTRAINT `FK__address` FOREIGN KEY (`addressId`) REFERENCES `address` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__orders` FOREIGN KEY (`orderId`) REFERENCES `orders` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_order_detail_voucher` FOREIGN KEY (`shipVoucherId`) REFERENCES `voucher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_order_detail_voucher_2` FOREIGN KEY (`productVoucherId`) REFERENCES `voucher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1717526953254 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table bookshopdb.order_detail: ~3 rows (approximately)
+INSERT INTO `order_detail` (`orderId`, `addressId`, `shipVoucherId`, `shipVoucherDecrease`, `productVoucherId`, `productVoucherDecrease`, `totalPrice`) VALUES
+	(1717525929835, 33, NULL, 0, NULL, 0, 2152767.4),
+	(1717526036853, 33, 9, -19000.5, 11, 0, 868828.5000000002),
+	(1717526953253, 33, NULL, 0, 11, 0, 144070.4);
 
 -- Dumping structure for table bookshopdb.order_item
 CREATE TABLE IF NOT EXISTS `order_item` (
@@ -366,9 +643,9 @@ CREATE TABLE IF NOT EXISTS `order_item` (
   KEY `idx_order_item_product` (`productId`),
   CONSTRAINT `fk_order_item_orders` FOREIGN KEY (`orderId`) REFERENCES `orders` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_item_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.order_item: ~66 rows (approximately)
+-- Dumping data for table bookshopdb.order_item: ~76 rows (approximately)
 INSERT INTO `order_item` (`id`, `orderId`, `productId`, `price`, `discount`, `quantity`, `createdAt`, `updatedAt`) VALUES
 	(1, 1, 78, 286587, 0, 4, '2021-06-26 20:11:05', NULL),
 	(2, 2, 21, 29619, 0, 2, '2021-03-26 03:39:47', NULL),
@@ -438,7 +715,14 @@ INSERT INTO `order_item` (`id`, `orderId`, `productId`, `price`, `discount`, `qu
 	(69, 30, 22, 116529, 0, 8, '2024-05-21 09:30:15', NULL),
 	(70, 30, 46, 384754, 20, 1, '2024-05-21 09:30:15', NULL),
 	(71, 30, 94, 332072, 20, 1, '2024-05-21 09:30:15', NULL),
-	(72, 30, 14, 247115, 20, 1, '2024-05-21 09:30:15', NULL);
+	(72, 30, 14, 247115, 20, 1, '2024-05-21 09:30:15', NULL),
+	(81, 1717525929835, 93, 215800, 20, 10, '2024-06-04 18:32:09', NULL),
+	(82, 1717525929835, 41, 387298, 20, 1, '2024-06-04 18:32:09', NULL),
+	(83, 1717525929835, 22, 116529, 0, 1, '2024-06-04 18:32:09', NULL),
+	(84, 1717526036853, 17, 90044, 20, 3, '2024-06-04 18:33:56', NULL),
+	(85, 1717526036853, 31, 231331, 20, 3, '2024-06-04 18:33:56', NULL),
+	(86, 1717526036853, 22, 116529, 0, 1, '2024-06-04 18:33:56', NULL),
+	(87, 1717526953253, 17, 90044, 20, 2, '2024-06-04 18:49:13', NULL);
 
 -- Dumping structure for table bookshopdb.product
 CREATE TABLE IF NOT EXISTS `product` (
@@ -687,6 +971,7 @@ CREATE TABLE IF NOT EXISTS `product_import` (
   `importAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `quanlity` int(11) DEFAULT NULL,
   `price` float NOT NULL DEFAULT 0,
+  `createAt` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `productId` (`productId`),
   KEY `userId` (`userId`),
@@ -694,13 +979,108 @@ CREATE TABLE IF NOT EXISTS `product_import` (
   CONSTRAINT `product_import_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.product_import: ~5 rows (approximately)
-INSERT INTO `product_import` (`id`, `productId`, `userId`, `importAt`, `quanlity`, `price`) VALUES
-	(1, 84, 6, '2024-04-12 03:17:25', 1000, 20000),
-	(2, 36, 1, '2024-04-12 03:17:31', 2000, 14200),
-	(3, 70, 1, '2024-04-12 03:17:35', 1111, 58212),
-	(4, 55, 1, '2024-04-26 15:50:17', 3333, 33032),
-	(5, 55, 6, '2024-04-12 03:17:53', 123, 50000);
+-- Dumping data for table bookshopdb.product_import: ~100 rows (approximately)
+INSERT INTO `product_import` (`id`, `productId`, `userId`, `importAt`, `quanlity`, `price`, `createAt`) VALUES
+	(1, 1, 1, '2021-03-23 01:22:50', 250, 372946, '2024-06-04 07:35:14'),
+	(2, 2, 1, '2021-12-19 08:03:05', 150, 20982.4, '2024-06-04 07:35:15'),
+	(3, 3, 1, '2021-07-31 03:44:48', 200, 235291, '2024-06-04 07:35:15'),
+	(4, 4, 1, '2021-07-26 10:44:04', 250, 49510.4, '2024-06-04 07:35:15'),
+	(5, 5, 1, '2021-03-03 18:10:28', 200, 156354, '2024-06-04 07:35:15'),
+	(6, 6, 1, '2021-06-17 22:55:06', 350, 370170, '2024-06-04 07:35:15'),
+	(7, 7, 1, '2021-11-01 13:47:34', 200, 390417, '2024-06-04 07:35:15'),
+	(8, 8, 1, '2021-08-26 19:56:32', 250, 382635, '2024-06-04 07:35:15'),
+	(9, 9, 1, '2021-08-07 14:11:03', 200, 77039.2, '2024-06-04 07:35:15'),
+	(10, 10, 1, '2021-06-07 16:23:46', 100, 318214, '2024-06-04 07:35:15'),
+	(11, 11, 1, '2021-12-10 06:59:07', 400, 293373, '2024-06-04 07:35:15'),
+	(12, 12, 1, '2021-12-14 12:28:20', 250, 41360, '2024-06-04 07:35:15'),
+	(13, 13, 1, '2021-06-16 01:20:52', 100, 97711.2, '2024-06-04 07:35:15'),
+	(14, 14, 1, '2021-07-31 08:57:52', 200, 197692, '2024-06-04 07:35:15'),
+	(15, 15, 1, '2021-04-19 07:39:51', 100, 164240, '2024-06-04 07:35:15'),
+	(16, 16, 1, '2021-12-17 02:38:24', 250, 224180, '2024-06-04 07:35:15'),
+	(17, 17, 1, '2022-01-02 16:13:27', 300, 72035.2, '2024-06-04 07:35:15'),
+	(18, 18, 1, '2021-07-04 05:11:08', 450, 225290, '2024-06-04 07:35:15'),
+	(19, 19, 1, '2021-10-25 02:48:48', 250, 360687, '2024-06-04 07:35:15'),
+	(20, 20, 1, '2021-11-11 17:28:22', 50, 149865, '2024-06-04 07:35:15'),
+	(21, 21, 1, '2021-03-26 15:11:02', 50, 317338, '2024-06-04 07:35:15'),
+	(22, 22, 1, '2022-01-24 01:00:39', 450, 93223.2, '2024-06-04 07:35:15'),
+	(23, 23, 1, '2021-07-15 13:01:58', 250, 297887, '2024-06-04 07:35:15'),
+	(24, 24, 1, '2021-09-08 22:29:49', 350, 234964, '2024-06-04 07:35:15'),
+	(25, 25, 1, '2021-12-10 19:13:04', 400, 97604.8, '2024-06-04 07:35:15'),
+	(26, 26, 1, '2021-02-01 17:42:02', 450, 105018, '2024-06-04 07:35:15'),
+	(27, 27, 1, '2021-04-26 04:20:50', 300, 36203.2, '2024-06-04 07:35:15'),
+	(28, 28, 1, '2021-03-08 00:28:18', 400, 29373.6, '2024-06-04 07:35:15'),
+	(29, 29, 1, '2021-10-14 15:48:40', 100, 208413, '2024-06-04 07:35:15'),
+	(30, 30, 1, '2021-12-18 19:05:00', 400, 254722, '2024-06-04 07:35:15'),
+	(31, 31, 1, '2022-01-01 16:10:09', 300, 185065, '2024-06-04 07:35:15'),
+	(32, 32, 1, '2021-12-07 19:56:41', 450, 250794, '2024-06-04 07:35:15'),
+	(33, 33, 1, '2021-11-05 19:48:40', 100, 124479, '2024-06-04 07:35:15'),
+	(34, 34, 1, '2021-03-24 16:12:25', 450, 238838, '2024-06-04 07:35:15'),
+	(35, 35, 1, '2021-10-05 01:08:19', 350, 368989, '2024-06-04 07:35:15'),
+	(36, 36, 1, '2022-01-07 19:42:25', 400, 396438, '2024-06-04 07:35:15'),
+	(37, 37, 1, '2021-05-10 18:50:10', 0, 230655, '2024-06-04 07:35:15'),
+	(38, 38, 1, '2021-11-05 13:54:31', 150, 146706, '2024-06-04 07:35:15'),
+	(39, 39, 1, '2021-12-27 08:36:00', 250, 141278, '2024-06-04 07:35:15'),
+	(40, 40, 1, '2021-06-13 07:22:51', 150, 182506, '2024-06-04 07:35:15'),
+	(41, 41, 1, '2022-01-03 08:33:27', 100, 309838, '2024-06-04 07:35:15'),
+	(42, 42, 1, '2021-07-20 18:40:24', 350, 219305, '2024-06-04 07:35:15'),
+	(43, 43, 1, '2021-06-09 14:58:26', 450, 55105.6, '2024-06-04 07:35:15'),
+	(44, 44, 1, '2021-03-29 18:29:57', 450, 57597.6, '2024-06-04 07:35:15'),
+	(45, 45, 1, '2021-06-07 00:01:21', 250, 202248, '2024-06-04 07:35:15'),
+	(46, 46, 1, '2022-01-13 13:55:09', 350, 307803, '2024-06-04 07:35:15'),
+	(47, 47, 1, '2021-09-01 13:00:43', 400, 50287.2, '2024-06-04 07:35:15'),
+	(48, 48, 1, '2021-02-17 19:21:04', 450, 256637, '2024-06-04 07:35:15'),
+	(49, 49, 1, '2021-07-30 02:38:48', 100, 318358, '2024-06-04 07:35:15'),
+	(50, 50, 1, '2021-05-14 21:03:30', 350, 94431.2, '2024-06-04 07:35:15'),
+	(51, 51, 1, '2021-09-13 12:22:19', 200, 107532, '2024-06-04 07:35:15'),
+	(52, 52, 1, '2021-07-08 05:49:12', 400, 279468, '2024-06-04 07:35:15'),
+	(53, 53, 1, '2021-12-13 20:59:32', 200, 310598, '2024-06-04 07:35:15'),
+	(54, 54, 1, '2021-08-14 08:42:55', 250, 115629, '2024-06-04 07:35:15'),
+	(55, 55, 1, '2021-06-08 19:42:51', 50, 161516, '2024-06-04 07:35:15'),
+	(56, 56, 1, '2021-05-12 06:14:00', 400, 99611.2, '2024-06-04 07:35:15'),
+	(57, 57, 1, '2021-12-27 22:25:08', 300, 122742, '2024-06-04 07:35:15'),
+	(58, 58, 1, '2021-06-24 00:23:29', 100, 81093.6, '2024-06-04 07:35:15'),
+	(59, 59, 1, '2021-09-21 04:22:31', 100, 194585, '2024-06-04 07:35:15'),
+	(60, 60, 1, '2024-06-04 07:35:37', 300, 209734, '2024-06-04 07:35:15'),
+	(61, 61, 1, '2021-09-15 23:34:31', 400, 337994, '2024-06-04 07:35:15'),
+	(62, 62, 1, '2021-02-19 22:53:34', 150, 317137, '2024-06-04 07:35:15'),
+	(63, 63, 1, '2021-09-02 00:50:35', 200, 130273, '2024-06-04 07:35:15'),
+	(64, 64, 1, '2021-07-17 20:36:32', 150, 379052, '2024-06-04 07:35:15'),
+	(65, 65, 1, '2021-12-08 16:10:27', 300, 372814, '2024-06-04 07:35:15'),
+	(66, 66, 1, '2024-06-04 07:35:31', 111, 6484.8, '2024-06-04 07:35:15'),
+	(67, 67, 1, '2024-06-04 07:35:57', 5, 93778.4, '2024-06-04 07:35:15'),
+	(68, 68, 1, '2021-06-18 10:25:37', 150, 239325, '2024-06-04 07:35:15'),
+	(69, 69, 1, '2021-02-12 08:13:38', 150, 305694, '2024-06-04 07:35:15'),
+	(70, 70, 1, '2021-11-16 15:29:49', 350, 355756, '2024-06-04 07:35:15'),
+	(71, 71, 1, '2024-06-04 07:35:54', 10, 300050, '2024-06-04 07:35:15'),
+	(72, 72, 1, '2021-06-24 21:03:26', 400, 136112, '2024-06-04 07:35:15'),
+	(73, 73, 1, '2024-06-04 07:35:28', 46, 354946, '2024-06-04 07:35:15'),
+	(74, 74, 1, '2021-05-21 22:34:50', 50, 87247.2, '2024-06-04 07:35:15'),
+	(75, 75, 1, '2021-02-10 06:36:37', 350, 94835.2, '2024-06-04 07:35:15'),
+	(76, 76, 1, '2021-02-12 17:56:55', 250, 22364.8, '2024-06-04 07:35:15'),
+	(77, 77, 1, '2022-01-04 12:49:25', 400, 291726, '2024-06-04 07:35:15'),
+	(78, 78, 1, '2022-01-04 03:35:13', 400, 83524, '2024-06-04 07:35:15'),
+	(79, 79, 1, '2021-10-25 08:41:19', 200, 234657, '2024-06-04 07:35:15'),
+	(80, 80, 1, '2024-06-04 07:35:41', 30, 304432, '2024-06-04 07:35:15'),
+	(81, 81, 1, '2021-11-28 09:51:08', 400, 214730, '2024-06-04 07:35:15'),
+	(82, 82, 1, '2021-11-13 19:53:14', 300, 149712, '2024-06-04 07:35:15'),
+	(83, 83, 1, '2021-10-29 08:47:05', 50, 82503.2, '2024-06-04 07:35:15'),
+	(84, 84, 1, '2021-02-06 19:11:02', 400, 35353.6, '2024-06-04 07:35:15'),
+	(85, 85, 1, '2021-10-24 02:47:35', 350, 294338, '2024-06-04 07:35:15'),
+	(86, 86, 1, '2021-04-21 02:30:10', 300, 172591, '2024-06-04 07:35:15'),
+	(87, 87, 1, '2021-03-31 00:39:02', 450, 72843.2, '2024-06-04 07:35:15'),
+	(88, 88, 1, '2021-06-15 07:51:43', 150, 216434, '2024-06-04 07:35:15'),
+	(89, 89, 1, '2021-12-21 04:16:02', 250, 23993.6, '2024-06-04 07:35:15'),
+	(90, 90, 1, '2021-09-01 20:01:38', 300, 164354, '2024-06-04 07:35:15'),
+	(91, 91, 1, '2021-03-25 04:05:04', 250, 103755, '2024-06-04 07:35:15'),
+	(92, 92, 1, '2021-05-17 06:49:26', 350, 173468, '2024-06-04 07:35:15'),
+	(93, 93, 1, '2022-01-27 14:49:53', 50, 172640, '2024-06-04 07:35:15'),
+	(94, 94, 1, '2021-04-27 23:56:06', 300, 265658, '2024-06-04 07:35:15'),
+	(95, 95, 1, '2021-10-24 22:55:27', 350, 215065, '2024-06-04 07:35:15'),
+	(96, 96, 1, '2021-04-16 23:11:57', 250, 245689, '2024-06-04 07:35:15'),
+	(97, 97, 1, '2021-07-02 22:51:31', 450, 86683.2, '2024-06-04 07:35:15'),
+	(98, 98, 1, '2021-07-09 12:58:01', 200, 381982, '2024-06-04 07:35:15'),
+	(99, 99, 1, '2022-01-22 08:29:03', 400, 159810, '2024-06-04 07:35:16'),
+	(100, 100, 1, '2021-08-14 12:14:31', 300, 137122, '2024-06-04 07:35:16');
 
 -- Dumping structure for table bookshopdb.product_review
 CREATE TABLE IF NOT EXISTS `product_review` (
@@ -891,7 +1271,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `uq_phoneNumber` (`phoneNumber`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1714833219717 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.user: ~6 rows (approximately)
+-- Dumping data for table bookshopdb.user: ~7 rows (approximately)
 INSERT INTO `user` (`id`, `username`, `password`, `fullname`, `email`, `phoneNumber`, `gender`, `role`, `createAt`) VALUES
 	(1, 'user1', '202CB962AC59075B964B07152D234B70', 'Dunn Mcpherson', 'dunnmcpherson@recrisys.com', '0989894900', b'0', 'ADMIN', '2024-04-26 07:43:42'),
 	(2, 'user2', '202CB962AC59075B964B07152D234B70', 'Foreman Carter', 'foremancarter@recrisys.com', '0993194154', b'0', 'EMPLOYEE', '2024-03-27 14:08:39'),
@@ -907,6 +1287,7 @@ CREATE TABLE IF NOT EXISTS `voucher` (
   `voucher_code` varchar(50) NOT NULL,
   `voucher_name` varchar(255) NOT NULL,
   `description` varchar(500) DEFAULT NULL,
+  `quantity` int(11) DEFAULT 0,
   `percent_decrease` double NOT NULL,
   `max_decrease` double NOT NULL,
   `min_price` double NOT NULL,
@@ -916,17 +1297,14 @@ CREATE TABLE IF NOT EXISTS `voucher` (
   `endAt` timestamp NULL DEFAULT NULL,
   `voucher_image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.voucher: ~2 rows (approximately)
-INSERT INTO `voucher` (`id`, `voucher_code`, `voucher_name`, `description`, `percent_decrease`, `max_decrease`, `min_price`, `type`, `createAt`, `startAt`, `endAt`, `voucher_image`) VALUES
-	(2, '103euG', 'Freeship', 'test', 22, 22222, 22222, 0, '2024-05-31 17:46:23', '2024-05-31 17:46:00', '2024-06-01 17:46:00', 'img-7125073451237029408.jpg'),
-	(3, 'Tf2jw0', 'Freeship', 'test2', 33, 3333, 3333, 0, '2024-05-31 17:55:39', '2024-05-31 17:54:00', '2024-06-01 17:54:00', 'img-1434472103007185325.jpg'),
-	(4, 'MsHv76', 'Freeship', 'test', 22, 13123, 123123, 0, '2024-05-31 17:58:15', '2024-05-31 17:58:00', '2024-06-01 17:58:00', 'img-7589109238178792417.jpg'),
-	(5, 'M3A18G', 'Freeship', 'test', 22, 13123, 123123, 0, '2024-05-31 17:58:35', '2024-05-31 17:58:00', '2024-06-01 17:58:00', 'img-12611731948470873038.jpg'),
-	(6, 'GKS72n', 'Freeship', 'test2', 33, 3333, 3333, 0, '2024-05-31 18:09:07', '2024-05-31 17:54:00', '2024-06-01 17:54:00', 'img-8410785560739632647.jpg'),
-	(7, 'Hh44n3', 'Freeship', 'Mã giảm phí ship', 55, 55000, 55000, 0, '2024-05-31 18:12:38', '2024-05-31 18:12:00', '2024-06-15 18:12:00', 'img-5911640883980739828.jpg'),
-	(8, '0yUhxt', 'Freeship', 'Mã free ship', 22, 121212, 121212, 0, '2024-05-31 18:16:29', '2024-06-13 18:16:00', '2024-06-14 18:16:00', 'img-10735801395296346768.jpg');
+-- Dumping data for table bookshopdb.voucher: ~4 rows (approximately)
+INSERT INTO `voucher` (`id`, `voucher_code`, `voucher_name`, `description`, `quantity`, `percent_decrease`, `max_decrease`, `min_price`, `type`, `createAt`, `startAt`, `endAt`, `voucher_image`) VALUES
+	(9, '5YfYL7', 'Freeship', '', 50, 50, 50000, 100000, 0, '2024-06-04 17:01:54', '2024-06-04 17:00:00', '2024-06-05 17:00:00', 'https://i.imgur.com/hDFplsi.png'),
+	(10, 'OWHhiU', 'Freeship', '', 50, 50, 100000, 100000, 0, '2024-06-04 17:02:11', '2024-06-04 17:00:00', '2024-06-05 17:00:00', 'https://i.imgur.com/fLcIV7T.png'),
+	(11, 'i3s8u2', 'Mã giảm giá sản phẩm', '', 100, 50, 150000, 100000, 1, '2024-06-04 17:02:36', '2024-06-04 17:00:00', '2024-06-05 17:00:00', 'https://i.imgur.com/zseqFPm.png'),
+	(12, 'yQn8YR', 'Mã giảm giá sản phẩm', '', 100, 50, 100000, 100000, 1, '2024-06-04 17:02:55', '2024-06-04 17:00:00', '2024-06-05 17:00:00', 'https://i.imgur.com/iwQ4otE.png');
 
 -- Dumping structure for table bookshopdb.wishlist_item
 CREATE TABLE IF NOT EXISTS `wishlist_item` (
