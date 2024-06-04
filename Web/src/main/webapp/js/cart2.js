@@ -29,7 +29,7 @@ function loadCartItem() {
             }
         },
         error: function (response) {
-
+            console.log(response)
 
         }
     })
@@ -63,6 +63,8 @@ function deleteCartItem(id, productName) {
                     createToast(toastComponent(SUCCESS_DELETE_CART_ITEM_MESSAGE(productName), "success"));
                     updateTotalQuantity()
                     getTotalProductPrice()
+                    getDecrease(0)
+                    getDecrease(1)
                     $('#tr' + id).remove()
                 },
                 error: function (response) {
@@ -99,6 +101,8 @@ function updateCartItem(id, productName) {
                 }
                 updateTotalQuantity()
                 getTotalProductPrice()
+                getDecrease(0)
+                getDecrease(1)
             },
             error: function (response) {
                 console.log(response)
@@ -129,19 +133,28 @@ function getTotalProductPrice() {
             processData: false,
             contentType: false,
             success: function (repsonse) {
+
+                $('#temp-price').attr('data-value', repsonse.totalPrice)
                 $('#temp-price').text(_formatPrice(repsonse.totalPrice))
             },
             error: function (response) {
-
+                console.log(response)
             }
         })
     }
 }
 
+$('#checkoutBtn').on('click', function () {
+    if (!$(this).prop('disabled')) {
+        createOrder();
+    }
+})
+
 function createOrder() {
 
     let ship = $('#delivery-price').attr('data-value');
-    if (ship > 0) {
+    let addressId = $('input[name="address"]:checked').attr('id');
+    if (ship > 0 && addressId > 0) {
         let unitshipVal = $("#unit-ship").val();
 
         if (unitshipVal != 'none') {
@@ -158,14 +171,15 @@ function createOrder() {
 
         let formData = new FormData()
         formData.append('cartItemIds', cartItemIds)
-        if ($("input[name='0']").val() > 0) {
-            formData.append('shipVoucherId', $("input[name='0']").val())
-        }
-        if ($("input[name='1']").val() > 0) {
-            formData.append('productVoucherId', $("input[name='1']").val())
-        }
+        let shipVoucherId = $("input[name='0']").val()
+        shipVoucherId = shipVoucherId > 0 ? shipVoucherId : 0
+        let productVoucherId = $("input[name='1']").val()
+        productVoucherId = productVoucherId > 0 ? productVoucherId : 0
+        formData.append('shipVoucherId', shipVoucherId)
+        formData.append('productVoucherId', productVoucherId)
         formData.append('ship', ship)
         formData.append('unitshipVal', unitshipVal)
+        formData.append('addressId', addressId)
         $.ajax({
             url: '/order',
             type: 'Post',
@@ -179,9 +193,11 @@ function createOrder() {
                     $('#tr' + value).remove()
                 })
                 getTotalProductPrice()
-
+                getDecrease(0)
+                getDecrease(1)
             },
             error: function (response) {
+                console.log(response)
                 createToast(toastComponent(ERROR_ADD_ORDER_MESSAGE, "danger"));
             }
         })
@@ -287,15 +303,56 @@ $(document).ready(function () {
 })
 
 function updateToTalPrice() {
-    // let totalPrice = _reFormatPrice($('#temp-price').text());
-    // console.log("temp-price ",$('#temp-price').text())
-    // console.log("voucher-product ",$('#voucher-product').text())
-    // console.log("delivery-price ",$('#delivery-price').text())
-    // console.log("voucher-ship ",$('#voucher-ship').text())
-    //
-    // totalPrice -= _reFormatPrice($('#voucher-product').text());
-    // totalPrice -= _reFormatPrice($('#voucher-ship').text());
-    // totalPrice += _reFormatPrice($('#delivery-price').attr('data-value'));
-    // console.log(totalPrice)
+    let totalPrice = parseFloat($('#temp-price').attr('data-value'));
+    totalPrice -= parseFloat($('#voucher-product').attr('data-value'));
+    totalPrice -= parseFloat($('#voucher-ship').attr('data-value'));
+    totalPrice += parseFloat($('#delivery-price').attr('data-value'));
+    $('#total-price').attr('data-value', totalPrice)
+    $('#total-price').text(_formatPrice(totalPrice))
 
+}
+function getDecrease(type) {
+    console.log("type", type)
+    let selectedVoucher = $(`input[name='${type}']:checked`);
+    let cartItemIds = []
+    $("input[name='cartItem']:checked").each(function () {
+        cartItemIds.push($(this).val())
+    })
+    if (cartItemIds.length == 0) {
+        $('#voucher-ship').text(0)
+        $('#voucher-product').text(0)
+    } else if(selectedVoucher.val()>=0){
+        if ((type == 0 && $("input[name='infoship']:checked").val() > 0) || type ==1) {
+            let formData = new FormData();
+            let ship = (type == 1) ? 0 : $("input[name='infoship']:checked").val()
+            formData.append('voucherId', selectedVoucher.val());
+            formData.append('cartItemIds', cartItemIds);
+            formData.append('ship', ship);
+            console.log('voucherId', selectedVoucher.val())
+            $.ajax({
+                url: "/voucherServlet",
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log(response)
+                    if (type == 0) {
+                        $('#voucher-ship').attr('data-value' ,(response.decrease))
+                        $('#voucher-ship').text(_formatPrice(response.decrease))
+                    } else {
+                        $('#voucher-product').attr('data-value' ,(response.decrease))
+                        $('#voucher-product').text(_formatPrice(response.decrease))
+                    }
+                    setTimeout(function() {
+                        updateToTalPrice()
+                    }, 500);
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            })
+
+        }
+    }
 }

@@ -215,21 +215,21 @@
                 <div class="card-body">
                   <dl class="row mb-0">
                     <dt class="col-xxl-6 col-lg-12 col-6"><fmt:message key="tam_tinh" />:</dt>
-                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="temp-price" onchange="updateAplyVoucher()">0</span>₫</dd>
+                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="temp-price" data-value="0">0</span>₫</dd>
                     <dt class="col-xxl-6 col-lg-12 col-6">Voucher:</dt>
-                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3">-<span id="voucher-product" onchange="updateAplyVoucher()">0</span>₫</dd>
+                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3">-<span id="voucher-product" data-value="0">0</span>₫</dd>
                     <div id="add_voucher_product" onclick="getVoucher(1)">
                       <i class="bi bi-plus-square m-2"></i> Thêm voucher giảm giá
                     </div>
                     <dt class="col-xxl-6 col-lg-12 col-6"><fmt:message key="phi_van_chuyen"/>:</dt>
-                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="delivery-price" data-value="0"  onchange="updateAplyVoucher()">---</span>₫</dd>
+                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="delivery-price" data-value="0">---</span>₫</dd>
                     <dt class="col-xxl-6 col-lg-12 col-6">Voucher:</dt>
-                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3">-<span id="voucher-ship">0</span>₫</dd>
+                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3">-<span id="voucher-ship" data-value="0">0</span>₫</dd>
                     <div id="add_voucher_ship" onclick="getVoucher(0)">
                       <i class="bi bi-plus-square m-2"></i> Thêm voucher freeship
                     </div>
                     <dt class="col-xxl-6 col-lg-12 col-6"><fmt:message key="tong_cong"/>:</dt>
-                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><strong><span id="total-price">0</span>₫</strong></dd>
+                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><strong><span id="total-price" data-value="0">0</span>₫</strong></dd>
                   </dl>
                 </div> <!-- card-body.// -->
               </div> <!-- card.// -->

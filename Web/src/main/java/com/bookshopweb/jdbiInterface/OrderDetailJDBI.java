@@ -20,4 +20,13 @@ public interface OrderDetailJDBI {
             "values(:orderId, :addressId, :shipVoucherId, :shipVoucherDecrease, :productVoucherId, :productVoucherDecrease, :totalPrice)")
     int addVoucherDetail(@BindBean OrderDetail orderDetail);
 
+    @SqlUpdate("insert into order_detail(orderId, addressId, shipVoucherDecrease, productVoucherDecrease, totalPrice) " +
+            "values(:orderId, :addressId, :shipVoucherDecrease, :productVoucherDecrease, :totalPrice)")
+    int addVoucherDetailNoVoucher(@BindBean OrderDetail orderDetail);
+
+    @SqlUpdate("update order_detail set shipVoucherId=:shipVoucherId where orderId=:orderId")
+    int updateShipVoucherId(@Bind("shipVoucherId") long shipVoucherId, @Bind("orderId") long orderId);
+    @SqlUpdate("update order_detail set productVoucherId=:productVoucherId where orderId=:orderId")
+    int updateProductVoucherId(@Bind("productVoucherId") long productVoucherId, @Bind("orderId") long orderId);
+
 }

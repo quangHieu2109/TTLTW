@@ -60,6 +60,7 @@ function submitForm(event) {
             alert(response.msg);
         },
         error: function (response) {
+            console.log(response)
             if (response.status == 400) {
                 $('#voucher-code_error').text(response.responseJSON.msg)
             }
@@ -70,51 +71,61 @@ function submitForm(event) {
 }
 
 function getVoucher(type) {
+
     $('#voucher_container').css('display', 'block')
+    let get = false;
+    if(type == 0){
+        $('#voucher_body_ship').css('display', 'block');
+        $('#voucher_body_product').css('display', 'none');
+       get = ($('#voucher_body_ship').children().length <=0)
+    }else{
+        $('#voucher_body_product').css('display', 'block');
+        $('#voucher_body_ship').css('display', 'none');
+        get = ($('#voucher_body_product').children().length <=0)
+    }
 
-    voucherType = type
+    if(get){
+        console.log('getvoucher ',type)
+        $.ajax({
+            url: "/voucherServlet?type=getVouchers&voucherType=" + type,
+            type: 'GET',
+            success: function (repsonse) {
+                let vouchers = repsonse.vouchers;
+                if (type == 1) {
+                    $('#voucher_body_product').empty();
 
-    $.ajax({
-        url: "/voucherServlet?type=getVouchers&voucherType=" + type,
-        type: 'GET',
-        success: function (repsonse) {
-            let vouchers = repsonse.vouchers;
-            if (type == 1) {
-                $('#voucher_body_product').empty();
-                $('#voucher_body_product').css('display', 'block');
-                $('#voucher_body_ship').css('display', 'none');
-                if (vouchers.length == 0) {
-                    $('#voucher_body_product').append(`<div class="w-100 h-100 d-flex justify-content-center align-content-center">Hiện không có voucher nào khả dụng</div>`)
+                    if (vouchers.length == 0) {
+                        $('#voucher_body_product').append(`<div class="w-100 h-100 d-flex justify-content-center align-content-center">Hiện không có voucher nào khả dụng</div>`)
 
-                } else {
-                    for (let i = 0; i < vouchers.length; i++) {
-                        $('#voucher_body_product').append(convertVoucherToHTML(vouchers[i], type))
+                    } else {
+                        for (let i = 0; i < vouchers.length; i++) {
+                            $('#voucher_body_product').append(convertVoucherToHTML(vouchers[i], type))
+                        }
+                        applyVoucher(type)
+
                     }
-                    applyVoucher(type)
-
-                }
-            } else {
-                $('#voucher_body_ship').empty();
-                $('#voucher_body_ship').css('display', 'block');
-                $('#voucher_body_product').css('display', 'none');
-                if (vouchers.length == 0) {
-                    $('#voucher_body_ship').append(`<div class="w-100 h-100 d-flex justify-content-center align-content-center">Hiện không có voucher nào khả dụng</div>`)
-
                 } else {
-                    for (let i = 0; i < vouchers.length; i++) {
-                        $('#voucher_body_ship').append(convertVoucherToHTML(vouchers[i], type))
-                    }
-                    applyVoucher(type)
+                    $('#voucher_body_ship').empty();
 
+                    if (vouchers.length == 0) {
+                        $('#voucher_body_ship').append(`<div class="w-100 h-100 d-flex justify-content-center align-content-center">Hiện không có voucher nào khả dụng</div>`)
+
+                    } else {
+                        for (let i = 0; i < vouchers.length; i++) {
+                            $('#voucher_body_ship').append(convertVoucherToHTML(vouchers[i], type))
+                        }
+                        applyVoucher(type)
+
+                    }
                 }
+
+            },
+            error: function (response) {
+                console.log(response)
+
             }
-
-        },
-        error: function (response) {
-            console.log(response)
-
-        }
-    })
+        })
+    }
 
 }
 
@@ -164,10 +175,15 @@ function getDecrease(type) {
                 success: function (response) {
                     console.log(response)
                     if (type == 0) {
+                        $('#voucher-ship').attr('data-value' ,(response.decrease))
                         $('#voucher-ship').text(_formatPrice(response.decrease))
                     } else {
-                        $('#voucher-product').text(response.decrease)
+                        $('#voucher-product').attr('data-value' ,(response.decrease))
+                        $('#voucher-product').text(_formatPrice(response.decrease))
                     }
+                    setTimeout(function() {
+                        updateToTalPrice()
+                    }, 500);
                 },
                 error: function (response) {
                     console.log(response)
@@ -204,10 +220,11 @@ function convertVoucherToHTML(voucher, type) {
 
 function updateToTalPrice() {
 
-    let totalPrice = _reFormatPrice($('#temp-price').text());
-    totalPrice -= _reFormatPrice($('#voucher-product').text());
-    totalPrice -= _reFormatPrice($('#voucher-ship').text());
-    totalPrice += _reFormatPrice($('#delivery-price').attr('data-value'));
+    let totalPrice = parseFloat($('#temp-price').attr('data-value'));
+    totalPrice -= parseFloat($('#voucher-product').attr('data-value'));
+    totalPrice -= parseFloat($('#voucher-ship').attr('data-value'));
+    totalPrice += parseFloat($('#delivery-price').attr('data-value'));
+    $('#total-price').attr('data-value', totalPrice)
     $('#total-price').text(_formatPrice(totalPrice))
 
 }
