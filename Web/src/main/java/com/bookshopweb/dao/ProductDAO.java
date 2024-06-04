@@ -21,6 +21,15 @@ public class ProductDAO extends AbsDAO<Product>{
                handel.createQuery("select * from product where id="+id)
                        .map(new ProductMapper()).one());
     }
+    public long getCategpryId(long productId){
+
+        return JDBIUltis.getJDBI().withHandle(handle ->
+                handle.createQuery("SELECT categoryId FROM product_category WHERE productId = :productId")
+                        .bind("productId", productId)
+                        .mapTo(Long.class)
+                        .one());
+    }
+
     public Product selectPrevalue(Long id){
         Product result = null;
         try {
@@ -565,7 +574,7 @@ public class ProductDAO extends AbsDAO<Product>{
     }
 
     public static void main(String[] args) {
-        System.out.println(new ProductDAO().getByIdProduct(1));
+        System.out.println(new ProductDAO().getCategpryId(1));
     }
 }
 

@@ -321,13 +321,14 @@ function setShipInfo() {
             url: '/feeship?' + url,
             type: 'GET',
             success: function (response) {
+                console.log(response.infoShips)
                 let data = response.infoShips;
                 let s = '';
                 data.forEach(function (dt) {
                     let currency = parseFloat(dt.GIA_CUOC); // Chuyển đổi giá trị tiền tệ sang số
                     currency = currency.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}); // Định dạng giá trị tiền tệ
 
-                    s += '<div class="form-label"><input type="radio" name="infoship" class="m-2" value="' + dt.GIA_CUOC + '" >' + dt.TEN_DICHVU + '- Giá: ' + currency + ' - Thời gian giao: ' + dt.THOI_GIAN + '</div>';
+                    s += '<div class="form-label"><input onchange="updateAplyVoucher()" type="radio" name="infoship" class="m-2" value="' + dt.GIA_CUOC + '" >' + dt.TEN_DICHVU + '- Giá: ' + currency + ' - Thời gian giao: ' + dt.THOI_GIAN + '</div>';
                     $('#infoShip').empty()
                     $('#infoShip').append(s)
 

@@ -1,4 +1,6 @@
-function randomVoucherCode(){
+var voucherType = 22;
+
+function randomVoucherCode() {
     $.ajax({
         url: "/createVoucherSevlet?type=randomVoucherCode",
         type: "GET",
@@ -8,25 +10,27 @@ function randomVoucherCode(){
         }
     })
 }
+
 $('#my_form').on('submit', submitForm)
-function submitForm(event){
+
+function submitForm(event) {
     event.preventDefault()
     $('#voucher-imageName_error').text("")
-    if($('#voucher-imageName').val() == ""){
+    if ($('#voucher-imageName').val() == "") {
         $('#voucher-imageName_error').text("Vui lòng chọn ảnh voucher")
 
     }
     $('#voucher-startsAt_error').text("")
-    if($('#voucher-startsAt').val()==""){
+    if ($('#voucher-startsAt').val() == "") {
         $('#voucher-startsAt_error').text("Vui lòng chọn ngày bắt đầu")
     }
     $('#voucher-endAt_error').text("")
-    if($('#voucher-endAt').val()==""){
+    if ($('#voucher-endAt').val() == "") {
         $('#voucher-endAt_error').text("Vui lòng chọn ngày kết thúc")
     }
 
     var categorys = [];
-    $('input[name="categorys"]:checked').each(function() {
+    $('input[name="categorys"]:checked').each(function () {
         categorys.push($(this).val());
     });
 
@@ -42,7 +46,7 @@ function submitForm(event){
     formData.append('voucherStartsAt', $('#voucher-startsAt').val());
     formData.append('voucherEndAt', $('#voucher-endAt').val());
     formData.append('quantity', $('#quantity').val());
-    if(categorys.length >0){
+    if (categorys.length > 0) {
         formData.append('categorys', categorys);
     }
 
@@ -56,11 +60,162 @@ function submitForm(event){
             alert(response.msg);
         },
         error: function (response) {
-            if(response.status == 400){
+            if (response.status == 400) {
                 $('#voucher-code_error').text(response.responseJSON.msg)
             }
             alert(response.responseJSON.msg)
         }
     });
 
+}
+
+function getVoucher(type) {
+    $('#voucher_container').css('display', 'block')
+
+    voucherType = type
+
+    $.ajax({
+        url: "/voucherServlet?type=getVouchers&voucherType=" + type,
+        type: 'GET',
+        success: function (repsonse) {
+            let vouchers = repsonse.vouchers;
+            if (type == 1) {
+                $('#voucher_body_product').empty();
+                $('#voucher_body_product').css('display', 'block');
+                $('#voucher_body_ship').css('display', 'none');
+                if (vouchers.length == 0) {
+                    $('#voucher_body_product').append(`<div class="w-100 h-100 d-flex justify-content-center align-content-center">Hiện không có voucher nào khả dụng</div>`)
+
+                } else {
+                    for (let i = 0; i < vouchers.length; i++) {
+                        $('#voucher_body_product').append(convertVoucherToHTML(vouchers[i], type))
+                    }
+                    applyVoucher(type)
+
+                }
+            } else {
+                $('#voucher_body_ship').empty();
+                $('#voucher_body_ship').css('display', 'block');
+                $('#voucher_body_product').css('display', 'none');
+                if (vouchers.length == 0) {
+                    $('#voucher_body_ship').append(`<div class="w-100 h-100 d-flex justify-content-center align-content-center">Hiện không có voucher nào khả dụng</div>`)
+
+                } else {
+                    for (let i = 0; i < vouchers.length; i++) {
+                        $('#voucher_body_ship').append(convertVoucherToHTML(vouchers[i], type))
+                    }
+                    applyVoucher(type)
+
+                }
+            }
+
+        },
+        error: function (response) {
+            console.log(response)
+
+        }
+    })
+
+}
+
+function applyVoucher(type) {
+    const vouchers = $(`input[name='${type}']`);
+
+    vouchers.each(function () {
+        $(this).on('change', function () {
+            getDecrease(type)
+        });
+    });
+}
+
+function updateAplyVoucher() {
+    getDecrease(0);
+    getDecrease(1);
+    setTimeout(function() {
+        updateToTalPrice()
+    }, 500);
+
+}
+
+function getDecrease(type) {
+    console.log("type", type)
+    let selectedVoucher = $(`input[name='${type}']:checked`);
+    let cartItemIds = []
+    $("input[name='cartItem']:checked").each(function () {
+        cartItemIds.push($(this).val())
+    })
+    if (cartItemIds.length == 0) {
+        $('#voucher-ship').text(0)
+        $('#voucher-product').text(0)
+    } else if(selectedVoucher.val()>=0){
+        if ((type == 0 && $("input[name='infoship']:checked").val() > 0) || type ==1) {
+            formData = new FormData();
+            let ship = (type == 1) ? 0 : $("input[name='infoship']:checked").val()
+            formData.append('voucherId', selectedVoucher.val());
+            formData.append('cartItemIds', cartItemIds);
+            formData.append('ship', ship);
+            console.log('voucherId', selectedVoucher.val())
+            $.ajax({
+                url: "/voucherServlet",
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log(response)
+                    if (type == 0) {
+                        $('#voucher-ship').text(_formatPrice(response.decrease))
+                    } else {
+                        $('#voucher-product').text(response.decrease)
+                    }
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            })
+
+        }
+    }
+}
+
+function convertVoucherToHTML(voucher, type) {
+    return `
+        <input type="radio" value="${voucher.id}" name="${type}" id="voucher${voucher.id}" hidden>
+    <div class="row voucher_item">
+        <div class="col-lg-3 d-flex justify-content-center">
+            <img src="${voucher.voucherImage}" alt="${voucher.voucherName}">
+        </div>
+        <div class="col-lg-7 row">
+            <span class="title">${voucher.voucherName}</span>
+            <span class="title">Giảm: ${voucher.percentDecrease}% Tối đa: ${_formatPrice(voucher.maxDecrease)}đ</span>
+            <span class="title">Cho đơn hàng từ: ${_formatPrice(voucher.minPrice)}đ</span>
+            <span class="title">Từ ngày ${voucher.startAt} đến hết ${voucher.endAt}</span>
+            <span class="title">Áp dụng cho: ${voucher.categories}</span>
+            
+        </div>
+        <div class="col-lg-2">
+             <label for="voucher${voucher.id}" class="btn btn-primary align-content-center w-100 h-100">Chọn</label>
+        </div>
+    
+    
+    </div>
+    `;
+}
+
+function updateToTalPrice() {
+
+    let totalPrice = _reFormatPrice($('#temp-price').text());
+    totalPrice -= _reFormatPrice($('#voucher-product').text());
+    totalPrice -= _reFormatPrice($('#voucher-ship').text());
+    totalPrice += _reFormatPrice($('#delivery-price').attr('data-value'));
+    $('#total-price').text(_formatPrice(totalPrice))
+
+}
+
+function _formatPrice(value) {
+    return parseFloat(value).toLocaleString('vi-VN')
+}
+
+function _reFormatPrice(value) {
+    return parseFloat(value.replace(".", ""))
 }

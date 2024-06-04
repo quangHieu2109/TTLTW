@@ -19,6 +19,7 @@
   <script src="${pageContext.request.contextPath}/js/toast.js" type="module"></script>
   <script src="${pageContext.request.contextPath}/js/cart2.js" type="module"></script>
   <script src="${pageContext.request.contextPath}/js/address.js" type="text/javascript"></script>
+  <script src="${pageContext.request.contextPath}/js/voucher.js" type="text/javascript"></script>
   <script src="${pageContext.request.contextPath}/js/feeship.js" type="module"></script>
   <style>
     #add_address_content{
@@ -41,6 +42,71 @@
     #infoShip{
       max-height: 300px;
     }
+    #add_voucher_ship, #add_voucher_product{
+      width: 90%;
+      padding: 5px;
+      border: 1px solid #eae9e9;
+      border-radius: 5px;
+      margin: auto;
+      cursor: pointer;
+      margin-bottom: 5px;
+    }
+    #voucher_container{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(208, 208, 208, 0.94);
+      display: none;
+      z-index: 3;
+    }
+    #voucher_content{
+      width: 50%;
+      margin: auto;
+      height: 650px;
+      overflow: auto;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 50px;
+      background-color: #fff;
+
+    }
+    #voucher_body{
+
+
+    }
+    .voucher_item{
+      margin: 10px;
+      border:1px solid #ecebeb;
+      border-radius: 5px;
+      padding: 10px 5px;
+
+    }
+    input[name='0']:checked + div{
+      background-color: rgb(199 200 202 / 47%);
+    }
+    input[name='1']:checked + div{
+      background-color: rgb(199 200 202 / 47%);
+    }
+    .voucher_content-title{
+      display: block;
+      width: max-content;
+      font-size: 30px;
+      font-weight: 600;
+      margin: auto;
+
+    }
+    input[disabled][name='cartItem']:hover:after {
+      content: 'Số lượng trong kho không đủ';
+      position: absolute;
+      background-color: #333;
+      color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 12px;
+      z-index: 1;
+    }
   </style>
 </head>
 
@@ -53,7 +119,7 @@
   </div> <!-- container.// -->
 </section> <!-- section-pagetop.// -->
 
-<section class="section-content padding-y">
+<section class="section-content padding-y position-relative">
   <div class="container">
     <div id="main_content">
       <div class="row">
@@ -149,9 +215,19 @@
                 <div class="card-body">
                   <dl class="row mb-0">
                     <dt class="col-xxl-6 col-lg-12 col-6"><fmt:message key="tam_tinh" />:</dt>
-                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="temp-price">0</span>₫</dd>
+                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="temp-price" onchange="updateAplyVoucher()">0</span>₫</dd>
+                    <dt class="col-xxl-6 col-lg-12 col-6">Voucher:</dt>
+                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3">-<span id="voucher-product" onchange="updateAplyVoucher()">0</span>₫</dd>
+                    <div id="add_voucher_product" onclick="getVoucher(1)">
+                      <i class="bi bi-plus-square m-2"></i> Thêm voucher giảm giá
+                    </div>
                     <dt class="col-xxl-6 col-lg-12 col-6"><fmt:message key="phi_van_chuyen"/>:</dt>
-                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="delivery-price" data-value="0">---</span>₫</dd>
+                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><span id="delivery-price" data-value="0"  onchange="updateAplyVoucher()">---</span>₫</dd>
+                    <dt class="col-xxl-6 col-lg-12 col-6">Voucher:</dt>
+                    <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3">-<span id="voucher-ship">0</span>₫</dd>
+                    <div id="add_voucher_ship" onclick="getVoucher(0)">
+                      <i class="bi bi-plus-square m-2"></i> Thêm voucher freeship
+                    </div>
                     <dt class="col-xxl-6 col-lg-12 col-6"><fmt:message key="tong_cong"/>:</dt>
                     <dd class="col-xxl-6 col-lg-12 col-6 text-end mb-3"><strong><span id="total-price">0</span>₫</strong></dd>
                   </dl>
@@ -196,6 +272,20 @@
       </div>
     </div>
   </div> <!-- container -->
+  <div  id="voucher_container">
+    <div class="container" id="voucher_content">
+      <div class="row">
+
+        <span class="title voucher_content-title col-lg-11">Danh sách voucher</span>
+        <button type="button" class="btn col-lg-1" style="color: red; font-size: 30px; font-weight: 600" id="close_voucher_container">X</button>
+      </div>
+      <div class="container" id="voucher_body_ship"></div>
+      <div class="container" id="voucher_body_product">
+
+      </div>
+    </div>
+
+  </div>
 </section> <!-- section-content.// -->
 
 <jsp:include page="_footer.jsp"/>

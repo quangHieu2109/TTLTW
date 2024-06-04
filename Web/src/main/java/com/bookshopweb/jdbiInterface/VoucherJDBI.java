@@ -13,6 +13,8 @@ import java.util.List;
 public interface VoucherJDBI {
     @SqlQuery("select * from voucher")
     List<Voucher> getAll();
+    @SqlQuery("select * from voucher where type=:type")
+    List<Voucher> getByType(@Bind("type") int type);
 
     @SqlQuery("select * from voucher where id=:id")
     Voucher getById(@Bind("id") long id);

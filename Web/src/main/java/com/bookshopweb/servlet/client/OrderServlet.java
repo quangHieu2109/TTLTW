@@ -1,12 +1,15 @@
 package com.bookshopweb.servlet.client;
 
+import com.bookshopweb.beans.CartItem;
 import com.bookshopweb.beans.Order;
 import com.bookshopweb.beans.OrderItem;
 import com.bookshopweb.beans.User;
+import com.bookshopweb.dao.CartItemDAO;
 import com.bookshopweb.dto.OrderResponse;
 import com.bookshopweb.dao.OrderItemDAO;
 import com.bookshopweb.dao.OrderDAO;
 import com.bookshopweb.utils.Protector;
+import com.bookshopweb.utils.VoucherUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +17,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +30,7 @@ public class OrderServlet extends HttpServlet {
 
     private final OrderDAO orderDAO = new OrderDAO();
     private final OrderItemDAO orderItemDAO = new OrderItemDAO();
+    private final CartItemDAO cartItemDAO = new CartItemDAO();
 
     private static final int ORDERS_PER_PAGE = 3;
 
@@ -94,7 +100,50 @@ public class OrderServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = (User) req.getSession().getAttribute("currentUser");
+        int deliveryMethod = Integer.parseInt(req.getParameter("unitshipVal"));
+        long shipVoucherId ;
+        long productVoucherId ;
+        String[] cartItemIdsString = req.getParameterValues("cartItemIds");
+        List<Long> cartItemIds = VoucherUtils.convertToListLong(cartItemIdsString);
+        List<CartItem> cartItems = new ArrayList<>();
+        for(long id : cartItemIds){
+            cartItems.add(cartItemDAO.selectPrevalue(id));
+        }
+
+        double ship = Double.parseDouble(req.getParameter("ship"));
+        double shipVoucherDecrease =0, productVoucherDecrease=0;
+        try{
+            shipVoucherId = Long.parseLong(req.getParameter("shipVoucherId"));
+            shipVoucherDecrease = VoucherUtils.getDecrease(shipVoucherId, cartItemIdsString, ship);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException(e);
+        }
+        try{
+            productVoucherId = Long.parseLong(req.getParameter("productVoucherId"));
+            productVoucherDecrease = VoucherUtils.getDecrease(productVoucherId, cartItemIdsString, ship);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException(e);
+        }
+
+        Order order = new Order();
+        order.setId(Calendar.getInstance().getTimeInMillis());
+        order.setUserId(user.getId());
+        order.setStatus(0);
+        order.setDeliveryMethod(deliveryMethod);
+        order.setDeliveryPrice(ship);
+        order.setCreatedAt(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+
+        int rs = orderDAO.insert(order, "");
+        if(rs > 0){
+            for(CartItem cartItem : cartItems){
+                OrderItem orderItem = new OrderItem();
+            }
+        }
+
+
+    }
 
     private String check(List<String> list) {
         if (list.size() == 1) {

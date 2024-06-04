@@ -10,14 +10,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="update log manager">
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/utils/IPUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/ImportProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/OrderDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ImportProductDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/OrderDetailDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiInterface/ImportProductJDBI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiInterface/OrderDetailJDBI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/VoucherServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/utils/VoucherUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CartDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/CartDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/product/DeleteProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/product/DeleteProductServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SigninServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SigninServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/StatiscalProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/StatiscalProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/VoucherDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/VoucherDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dto/CartItemResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dto/CartItemResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiInterface/VoucherJDBI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiInterface/VoucherJDBI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartItemServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartItemServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/OrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/OrderServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/ProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/ProductServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/LogManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/LogManagerView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderDetailView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderDetailView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/cart2.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/cart2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/feeship.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/voucher.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/voucher.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +48,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
-        <option value="Interface" />
         <option value="JavaScript File" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -87,6 +107,7 @@
   "keyToString": {
     "Application.AccurancyUser.executor": "Run",
     "Application.CreateVoucherServlet.executor": "Run",
+    "Application.ImportProductDAO.executor": "Run",
     "Application.LogDAO.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.OrderItemDAO.executor": "Run",
@@ -154,12 +175,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.Main" />
+    <configuration name="ImportProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.ImportProductDAO" />
       <module name="BookShopWeb" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.bookshopweb.jdbiInterface.*" />
+          <option name="PATTERN" value="com.bookshopweb.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -206,7 +227,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 10.1.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 10.1.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.83" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="BookShopWeb:war">
@@ -294,20 +315,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.ImportProductDAO" />
       <item itemvalue="Application.CreateVoucherServlet" />
       <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.OrderItemDAO" />
       <item itemvalue="Application.ProductDAO" />
       <item itemvalue="Tomcat Server.Tomcat 10.1.20" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ImportProductDAO" />
+        <item itemvalue="Application.ProductDAO" />
         <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
         <item itemvalue="Application.CreateVoucherServlet" />
         <item itemvalue="Application.OrderItemDAO" />
-        <item itemvalue="Application.ProductDAO" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -389,6 +410,9 @@
       <workItem from="1716911977604" duration="1667000" />
       <workItem from="1717134060761" duration="13123000" />
       <workItem from="1717168707776" duration="9741000" />
+      <workItem from="1717422029782" duration="17737000" />
+      <workItem from="1717481628339" duration="1708000" />
+      <workItem from="1717484438872" duration="14392000" />
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />
@@ -549,8 +573,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/StatiscalProductDAO.java</url>
-          <line>198</line>
-          <properties class="com.bookshopweb.dao.StatiscalProductDAO">
+          <line>202</line>
+          <properties class="com.bookshopweb.dao.StatiscalProductDAO" method="main">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

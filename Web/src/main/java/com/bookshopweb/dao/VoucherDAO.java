@@ -18,6 +18,9 @@ public class VoucherDAO extends AbsDAO<Voucher> {
     public List<Voucher> getAll(){
         return voucherJDBI.getAll();
     }
+    public List<Voucher> getByType(int type){
+        return voucherJDBI.getByType(type);
+    }
     @Override
     public int insert(Voucher voucher, String ip) {
 

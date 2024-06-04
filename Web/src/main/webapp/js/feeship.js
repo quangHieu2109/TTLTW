@@ -49,7 +49,7 @@ async function updateDeliveryMethod() {
                 let currency = parseFloat(dt.GIA_CUOC); // Chuyển đổi giá trị tiền tệ sang số
                 currency = currency.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}); // Định dạng giá trị tiền tệ
 
-                s += '<div class="form-label"><input type="radio" name="infoship" class="m-2" value="' + dt.GIA_CUOC + '" >' + dt.TEN_DICHVU + '- Giá: ' + currency + ' - Thời gian giao: ' + dt.THOI_GIAN + '</div>';
+                s += '<div class="form-label"><input onchange="updateAplyVoucher()" type="radio" name="infoship" class="m-2" value="' + dt.GIA_CUOC + '" >' + dt.TEN_DICHVU + '- Giá: ' + currency + ' - Thời gian giao: ' + dt.THOI_GIAN + '</div>';
             });
             document.getElementById("infoShip").innerHTML = s;
         }

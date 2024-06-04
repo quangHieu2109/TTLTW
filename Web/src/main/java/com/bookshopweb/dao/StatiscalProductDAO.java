@@ -195,7 +195,11 @@ public class StatiscalProductDAO {
 
         return result;
     }
+public int getRemainingAmount(long productId){
+        int result =0;
 
+        return result;
+}
     public static void main(String[] args) {
         StatiscalProductDAO dao = new StatiscalProductDAO();
         for (StatisticalProduct s : dao.getSaleRate("2020-1-1","2025-1-1")) {

@@ -3,6 +3,7 @@ package com.bookshopweb.servlet.client;
 import com.bookshopweb.beans.Cart;
 import com.bookshopweb.beans.CartItem;
 import com.bookshopweb.beans.User;
+import com.bookshopweb.dao.ProductDAO;
 import com.bookshopweb.dto.CartItemRequest;
 import com.bookshopweb.dto.CartItemResponse;
 import com.bookshopweb.dto.CartResponse;
@@ -37,6 +38,7 @@ public class CartItemServlet extends HttpServlet {
     private final CartDAO cartDAO = new CartDAO();
     private final CartItemDAO cartItemDAO = new CartItemDAO();
     private final UserDAO userDAO = new UserDAO();
+    private final ProductDAO productDAO = new ProductDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -172,12 +174,14 @@ public class CartItemServlet extends HttpServlet {
         cartItem.setQuantity(quantity);
         System.out.println(cartItem);
         int rs = cartItemDAO.update(cartItem, "");
+        int productQuantity = productDAO.selectQuantity(cartItem.getProductId());
         JsonObject jsonResponse = new JsonObject();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         if(rs>0){
             response.setStatus(200);
             jsonResponse.addProperty("msg", successMessage);
+            jsonResponse.addProperty("productQuantity", productQuantity);
         }else{
             response.setStatus(400);
             jsonResponse.addProperty("msg", errorMessage);
