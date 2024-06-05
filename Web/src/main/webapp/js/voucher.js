@@ -3,7 +3,11 @@ function randomVoucherCode(){
         url: "/createVoucherSevlet?type=randomVoucherCode",
         type: "GET",
         success: function (response) {
+            console.log(response)
             $("#voucher-code").val(response.voucherCode)
+
+        },error: function (response) {
+            console.log(response)
 
         }
     })

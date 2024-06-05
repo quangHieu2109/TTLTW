@@ -6,6 +6,7 @@ import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.AccurancyDAO;
 import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.HashingUtils;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
 
@@ -115,7 +116,7 @@ public class SignupServlet extends HttpServlet {
                     Timestamp.from(Instant.now())
             );
 
-            Protector.of(() -> userDAO.insert(user,""))
+            Protector.of(() -> userDAO.insert(user, IPUtils.getIP(request)))
                     .done(r -> request.setAttribute("successMessage", successMessage))
                     .fail(e -> {
                         request.setAttribute("values", values);

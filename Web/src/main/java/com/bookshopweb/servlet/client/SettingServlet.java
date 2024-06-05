@@ -3,6 +3,7 @@ package com.bookshopweb.servlet.client;
 import com.bookshopweb.beans.Address;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.UserDAO;
+import com.bookshopweb.utils.IPUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -65,7 +66,7 @@ public class SettingServlet extends HttpServlet {
             request.setAttribute("errorMessage", errorMessage);
             request.setAttribute("user", user);
         } else {
-            userDAO.update(newUser,"");
+            userDAO.update(newUser, IPUtils.getIP(request));
 
             request.setAttribute("successMessage", successMessage);
             request.setAttribute("user", newUser);

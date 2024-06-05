@@ -12,6 +12,8 @@
   <fmt:setBundle basename="lang" />
   <jsp:include page="_meta.jsp"/>
   <title><fmt:message key="dang_nhap"/></title>
+  <script src="${pageContext.request.contextPath}/js/captcha.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6Ld7OPEpAAAAAH48Bhi161msl-sDAEk3UbiW_Jfw"></script>
 </head>
 
 <body>
@@ -58,6 +60,9 @@
             </div>
           </c:if>
         </div>
+        <div class="mb-3">
+
+          <div class="g-recaptcha" data-sitekey="6LfHQPEpAAAAAKNSYgVrsDKYtSpJ7KolulQX1dC4" data-callback='onSubmit'></div>
         <button type="submit" class="btn btn-primary w-100"><fmt:message key="dang_nhap"/></button>
       </form>
     </div> <!-- card-body.// -->

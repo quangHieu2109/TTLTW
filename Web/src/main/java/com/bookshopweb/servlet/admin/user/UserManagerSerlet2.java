@@ -4,6 +4,7 @@ import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.jdbiInterface.UserJDBI;
 import com.bookshopweb.mapper.UserMapper;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.JDBIUltis;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -76,7 +77,7 @@ public class UserManagerSerlet2 extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long id = Long.parseLong(req.getParameter("id"));
-        new UserDAO().delete(JDBIUltis.getJDBI().onDemand(UserJDBI.class).getById(id), "");
+        new UserDAO().delete(JDBIUltis.getJDBI().onDemand(UserJDBI.class).getById(id), IPUtils.getIP(req));
     }
 
     @Override
@@ -127,7 +128,7 @@ public class UserManagerSerlet2 extends HttpServlet {
             user.setFullname(fullname);
             user.setEmail(email);
             user.setRole(role);
-           int rs = userDAO.insert(user,"");
+           int rs = userDAO.insert(user, IPUtils.getIP(req));
             System.out.println(rs);
            if(rs>0){
                JsonObject jsonObject1 = new JsonObject();

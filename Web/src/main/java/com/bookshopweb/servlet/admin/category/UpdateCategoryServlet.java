@@ -2,6 +2,7 @@ package com.bookshopweb.servlet.admin.category;
 
 import com.bookshopweb.beans.Category;
 import com.bookshopweb.dao.CategoryDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.ImageUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
@@ -84,7 +85,7 @@ public class UpdateCategoryServlet extends HttpServlet {
                 ImageUtils.setServletContext(getServletContext());
                 ImageUtils.upload(request).ifPresent(category::setImageName);
             }
-            Protector.of(() -> categoryDAO.update(category,""))
+            Protector.of(() -> categoryDAO.update(category, IPUtils.getIP(request)))
                     .done(r -> {
                         request.setAttribute("category", category);
                         request.setAttribute("successMessage", successMessage);

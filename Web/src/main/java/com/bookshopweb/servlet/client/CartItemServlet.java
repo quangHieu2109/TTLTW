@@ -11,6 +11,7 @@ import com.bookshopweb.dto.SuccessMessage;
 import com.bookshopweb.dao.CartItemDAO;
 import com.bookshopweb.dao.CartDAO;
 import com.bookshopweb.dao.UserDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.JsonUtils;
 import com.bookshopweb.utils.Protector;
 
@@ -69,7 +70,7 @@ public class CartItemServlet extends HttpServlet {
             } else {
                 CartDAO cartDAO = new CartDAO();
                 Cart cart = new Cart(0L, userId, Timestamp.from(Instant.now()), null);
-                cartDAO.insert(cart,"");
+                cartDAO.insert(cart, IPUtils.getIP(request));
                 CartResponse cartResponse = new CartResponse(0L, userId, Collections.emptyList());
                 JsonUtils.out(response, cartResponse, HttpServletResponse.SC_OK);
             }
@@ -95,7 +96,7 @@ public class CartItemServlet extends HttpServlet {
             cartId = cartFromServer.get().getId();
         } else {
             Cart cart = new Cart(0L, cartItemRequest.getUserId(), Timestamp.from(Instant.now()), null);
-            cartId = Protector.of(() -> cartDAO.insert(cart,"")).get(0);
+            cartId = Protector.of(() -> cartDAO.insert(cart,IPUtils.getIP(request))).get(0);
         }
 
         String successMessage = "Đã thêm sản phẩm vào giỏ hàng thành công!";
@@ -122,7 +123,7 @@ public class CartItemServlet extends HttpServlet {
                 CartItem cartItem = cartItemFromServer.get();
                 cartItem.setQuantity(cartItem.getQuantity() + cartItemRequest.getQuantity());
                 cartItem.setUpdatedAt(Timestamp.from(Instant.now()));
-                Protector.of(() -> cartItemDAO.update(cartItem,""))
+                Protector.of(() -> cartItemDAO.update(cartItem,IPUtils.getIP(request)))
                         .done(r -> doneFunction.run())
                         .fail(e -> failFunction.run());
             } else {
@@ -134,7 +135,7 @@ public class CartItemServlet extends HttpServlet {
                         Timestamp.from(Instant.now()),
                         null
                 );
-                Protector.of(() -> cartItemDAO.insert(cartItem,""))
+                Protector.of(() -> cartItemDAO.insert(cartItem,IPUtils.getIP(request)))
                         .done(r -> doneFunction.run())
                         .fail(e -> failFunction.run());
             }
@@ -166,7 +167,7 @@ public class CartItemServlet extends HttpServlet {
             CartItem cartItem = cartItemFromServer.get();
             cartItem.setQuantity(cartItemRequest.getQuantity());
             cartItem.setUpdatedAt(Timestamp.from(Instant.now()));
-            Protector.of(() -> cartItemDAO.update(cartItem,""))
+            Protector.of(() -> cartItemDAO.update(cartItem,IPUtils.getIP(request)))
                     .done(r -> doneFunction.run())
                     .fail(e -> failFunction.run());
         } else {
@@ -191,7 +192,7 @@ public class CartItemServlet extends HttpServlet {
                 HttpServletResponse.SC_NOT_FOUND);
 
         if (cartItemId > 0L) {
-            Protector.of(() -> cartItemDAO.delete(cartItemDAO.selectPrevalue(cartItemId),""))
+            Protector.of(() -> cartItemDAO.delete(cartItemDAO.selectPrevalue(cartItemId), IPUtils.getIP(request)))
                     .done(r -> doneFunction.run())
                     .fail(e -> failFunction.run());
         } else {

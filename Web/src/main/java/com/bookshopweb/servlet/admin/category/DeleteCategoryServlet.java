@@ -2,6 +2,7 @@ package com.bookshopweb.servlet.admin.category;
 
 import com.bookshopweb.beans.Category;
 import com.bookshopweb.dao.CategoryDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.ImageUtils;
 import com.bookshopweb.utils.Protector;
 
@@ -28,7 +29,7 @@ public class DeleteCategoryServlet extends HttpServlet {
 
             Protector.of(() -> {
                         ImageUtils.setServletContext(getServletContext());
-                        categoryDAO.delete(categoryDAO.selectPrevalue(id),"");
+                        categoryDAO.delete(categoryDAO.selectPrevalue(id), IPUtils.getIP(request));
                         Optional.ofNullable(categoryFromServer.get().getImageName()).ifPresent(ImageUtils::delete);
                     })
                     .done(r -> request.getSession().setAttribute("successMessage", successMessage))

@@ -2,6 +2,7 @@ package com.bookshopweb.servlet.client.productreview;
 
 import com.bookshopweb.beans.ProductReview;
 import com.bookshopweb.dao.ProductReviewDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
 
@@ -59,7 +60,7 @@ public class AddProductReviewServlet extends HttpServlet {
                     Timestamp.from(Instant.now()),
                     null
             );
-            Protector.of(() -> productReviewDAO.insert(productReview,""))
+            Protector.of(() -> productReviewDAO.insert(productReview, IPUtils.getIP(request)))
                     .done(r -> {
                         request.getSession().setAttribute("successMessage", successMessage);
                         anchor.set("#review");

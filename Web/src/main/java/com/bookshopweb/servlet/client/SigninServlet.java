@@ -57,11 +57,13 @@ public class SigninServlet extends HttpServlet {
         int sumOfViolations = violations.values().stream().mapToInt(List::size).sum();
 
         if (sumOfViolations == 0 && userFromServer.isPresent()) {
+            request.getSession().setAttribute("countWrongPass",0);
             request.getSession().setAttribute("currentUser", userFromServer.get());
             response.sendRedirect(request.getContextPath() + "/");
         } else {
             request.setAttribute("values", values);
             request.setAttribute("violations", violations);
+            request.getSession().setAttribute("countWrongPass",Integer.valueOf(request.getSession().getAttribute("").toString())+1);
             request.getRequestDispatcher("/WEB-INF/views/signinView.jsp").forward(request, response);
         }
     }
