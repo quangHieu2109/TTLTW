@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 @WebServlet("/voucherServlet")
@@ -39,27 +40,30 @@ public class VoucherServlet extends HttpServlet {
             List<Voucher> vouchers = voucherDAO.getByType(voucherType);
             JsonArray vouchersJson = new JsonArray();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+            long now = Calendar.getInstance().getTimeInMillis();
             for(Voucher voucher: vouchers){
-                JsonObject voucherJson = new JsonObject();
-                voucherJson.addProperty("id", voucher.getId());
-                voucherJson.addProperty("voucherName", voucher.getVoucherName());
-                voucherJson.addProperty("percentDecrease", voucher.getPercentDecrease());
-                voucherJson.addProperty("maxDecrease", voucher.getMaxDecrease());
-                voucherJson.addProperty("minPrice", voucher.getMinPrice());
-                voucherJson.addProperty("voucherImage", voucher.getVoucherImage());
-                voucherJson.addProperty("startAt", dateFormat.format(voucher.getStartAt()));
-                voucherJson.addProperty("endAt", dateFormat.format(voucher.getEndAt()));
-                List<CategorysOfVoucher> categorysOfVouchers = categorysOfVoucherDAO.getByVoucherId(voucher.getId());
-                String categories = "Mọi sản phẩm";
-                if(categorysOfVouchers.size() >0){
-                    categories="";
-                    for(CategorysOfVoucher categorysOfVoucher: categorysOfVouchers){
-                        categories += categoryDAO.selectPrevalue(categorysOfVoucher.getCategoryId()).getName()+", ";
+                if(now >= voucher.getStartAt().getTime() && now <= voucher.getEndAt().getTime()){
+                    JsonObject voucherJson = new JsonObject();
+                    voucherJson.addProperty("id", voucher.getId());
+                    voucherJson.addProperty("voucherName", voucher.getVoucherName());
+                    voucherJson.addProperty("percentDecrease", voucher.getPercentDecrease());
+                    voucherJson.addProperty("maxDecrease", voucher.getMaxDecrease());
+                    voucherJson.addProperty("minPrice", voucher.getMinPrice());
+                    voucherJson.addProperty("voucherImage", voucher.getVoucherImage());
+                    voucherJson.addProperty("startAt", dateFormat.format(voucher.getStartAt()));
+                    voucherJson.addProperty("endAt", dateFormat.format(voucher.getEndAt()));
+                    List<CategorysOfVoucher> categorysOfVouchers = categorysOfVoucherDAO.getByVoucherId(voucher.getId());
+                    String categories = "Mọi sản phẩm";
+                    if(categorysOfVouchers.size() >0){
+                        categories="";
+                        for(CategorysOfVoucher categorysOfVoucher: categorysOfVouchers){
+                            categories += categoryDAO.selectPrevalue(categorysOfVoucher.getCategoryId()).getName()+", ";
+                        }
+                        categories = categories.substring(0, categories.length()-2);
                     }
-                    categories = categories.substring(0, categories.length()-2);
+                    voucherJson.addProperty("categories", categories);
+                    vouchersJson.add(voucherJson);
                 }
-                voucherJson.addProperty("categories", categories);
-                vouchersJson.add(voucherJson);
 
             }
             JsonObject jsonResponse = new JsonObject();

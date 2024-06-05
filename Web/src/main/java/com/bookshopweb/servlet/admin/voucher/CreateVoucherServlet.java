@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-@WebServlet("/createVoucherSevlet")
+@WebServlet("/admin/voucherManager/createVoucherSevlet")
 @MultipartConfig
 public class CreateVoucherServlet extends HttpServlet {
     private VoucherDAO voucherDAO = new VoucherDAO();

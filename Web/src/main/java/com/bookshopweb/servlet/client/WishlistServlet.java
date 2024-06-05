@@ -12,6 +12,7 @@ import com.bookshopweb.utils.JsonUtils;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "WishlistServlet", value = "/wishlist")
+@MultipartConfig
 public class WishlistServlet extends HttpServlet {
     private final WishlistItemDAO wishlistItemDAO = new WishlistItemDAO();
     private final ProductDAO productDAO = new ProductDAO();

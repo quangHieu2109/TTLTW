@@ -3,15 +3,12 @@ package com.bookshopweb.servlet.client;
 import com.bookshopweb.beans.Cart;
 import com.bookshopweb.beans.CartItem;
 import com.bookshopweb.beans.User;
-import com.bookshopweb.dao.ProductDAO;
+import com.bookshopweb.dao.*;
 import com.bookshopweb.dto.CartItemRequest;
 import com.bookshopweb.dto.CartItemResponse;
 import com.bookshopweb.dto.CartResponse;
 import com.bookshopweb.dto.ErrorMessage;
 import com.bookshopweb.dto.SuccessMessage;
-import com.bookshopweb.dao.CartItemDAO;
-import com.bookshopweb.dao.CartDAO;
-import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.JsonUtils;
 import com.bookshopweb.utils.Protector;
 import com.google.gson.JsonObject;
@@ -39,6 +36,7 @@ public class CartItemServlet extends HttpServlet {
     private final CartItemDAO cartItemDAO = new CartItemDAO();
     private final UserDAO userDAO = new UserDAO();
     private final ProductDAO productDAO = new ProductDAO();
+    private final CategoryDAO categoryDAO = new CategoryDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,7 +67,8 @@ public class CartItemServlet extends HttpServlet {
                         cartItem.getProduct().getDiscount(),
                         cartItem.getProduct().getQuantity(),
                         cartItem.getProduct().getImageName(),
-                        cartItem.getQuantity()
+                        cartItem.getQuantity(),
+                        categoryDAO.getByProductId(cartItem.getProductId()).get().getName()
                 )).collect(Collectors.toList());
 
                 CartResponse cartResponse = new CartResponse(cartId, userId, cartItemResponses);
@@ -97,11 +96,14 @@ public class CartItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        long userId = Long.parseLong(request.getParameter("userId"));
+        long productId = Long.parseLong(request.getParameter("productId"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         // Lấy đối tượng cartItemRequest từ JSON trong request
-        CartItemRequest cartItemRequest = JsonUtils.get(request, CartItemRequest.class);
+//        CartItemRequest cartItemRequest = JsonUtils.get(request, CartItemRequest.class);
 
         // Lấy đối tượng cart từ database theo userId từ cartItemRequest
-        Optional<Cart> cartFromServer = Protector.of(() -> cartDAO.getByUserId(cartItemRequest.getUserId()))
+        Optional<Cart> cartFromServer = Protector.of(() -> cartDAO.getByUserId(userId))
                 .get(Optional::empty);
 
         // Nhận cartId từ cartFromServer (nếu đã có) hoặc cart mới (nếu chưa có)
@@ -110,7 +112,7 @@ public class CartItemServlet extends HttpServlet {
         if (cartFromServer.isPresent()) {
             cartId = cartFromServer.get().getId();
         } else {
-            Cart cart = new Cart(0L, cartItemRequest.getUserId(), Timestamp.from(Instant.now()), null);
+            Cart cart = new Cart(0L, userId, Timestamp.from(Instant.now()), null);
             cartId = Protector.of(() -> cartDAO.insert(cart,"")).get(0);
         }
 
@@ -130,13 +132,13 @@ public class CartItemServlet extends HttpServlet {
         if (cartId > 0L) {
             // Lấy đối tượng cartItem từ database theo cartId và productId của cartItemRequest
             Optional<CartItem> cartItemFromServer = Protector.of(() -> cartItemDAO.getByCartIdAndProductId(
-                    cartId, cartItemRequest.getProductId()
+                    cartId, productId
             )).get(Optional::empty);
 
             // Nếu cartItem của cartId và productId này đã có trong database
             if (cartItemFromServer.isPresent()) {
                 CartItem cartItem = cartItemFromServer.get();
-                cartItem.setQuantity(cartItem.getQuantity() + cartItemRequest.getQuantity());
+                cartItem.setQuantity(cartItem.getQuantity() + quantity);
                 cartItem.setUpdatedAt(Timestamp.from(Instant.now()));
                 Protector.of(() -> cartItemDAO.update(cartItem,""))
                         .done(r -> doneFunction.run())
@@ -145,8 +147,8 @@ public class CartItemServlet extends HttpServlet {
                 CartItem cartItem = new CartItem(
                         0L,
                         cartId,
-                        cartItemRequest.getProductId(),
-                        cartItemRequest.getQuantity(),
+                        productId,
+                        quantity,
                         Timestamp.from(Instant.now()),
                         null
                 );

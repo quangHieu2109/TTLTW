@@ -51,7 +51,7 @@ function submitForm(event) {
     }
 
     $.ajax({
-        url: "/createVoucherSevlet",
+        url: "/admin/voucherManager/createVoucherSevlet",
         type: "POST",
         data: formData,
         processData: false,
@@ -135,6 +135,15 @@ function applyVoucher(type) {
     vouchers.each(function () {
         $(this).on('change', function () {
             getDecrease(type)
+            let selectedVoucher = $(`input[name='${type}']:checked`);
+            let cartItemIds = []
+            $("input[name='cartItem']:checked").each(function () {
+                cartItemIds.push($(this).val())
+            })
+            if (cartItemIds.length == 0) {
+                alert('Vui lòng chọn sản phẩm muốn áp dụng mã giảm giá')
+                selectedVoucher.prop('checked', false)
+            }
         });
     });
 }
@@ -158,7 +167,12 @@ function getDecrease(type) {
     if (cartItemIds.length == 0) {
         $('#voucher-ship').text(0)
         $('#voucher-product').text(0)
+
     } else if(selectedVoucher.val()>=0){
+        if(type ==0 && typeof $("input[name='infoship']:checked").val() == 'undefined'){
+            alert('Vui lòng chọn phương thức vận chuyển')
+            selectedVoucher.prop('checked', false)
+        }
         if ((type == 0 && $("input[name='infoship']:checked").val() > 0) || type ==1) {
             formData = new FormData();
             let ship = (type == 1) ? 0 : $("input[name='infoship']:checked").val()
@@ -174,16 +188,22 @@ function getDecrease(type) {
                 contentType: false,
                 success: function (response) {
                     console.log(response)
-                    if (type == 0) {
-                        $('#voucher-ship').attr('data-value' ,(response.decrease))
-                        $('#voucher-ship').text(_formatPrice(response.decrease))
-                    } else {
-                        $('#voucher-product').attr('data-value' ,(response.decrease))
-                        $('#voucher-product').text(_formatPrice(response.decrease))
+                    if(response.decrease >0){
+                        if (type == 0) {
+                            $('#voucher-ship').attr('data-value' ,(response.decrease))
+                            $('#voucher-ship').text(_formatPrice(response.decrease))
+                        } else {
+                            $('#voucher-product').attr('data-value' ,(response.decrease))
+                            $('#voucher-product').text(_formatPrice(response.decrease))
+                        }
+                        setTimeout(function() {
+                            updateToTalPrice()
+                        }, 500);
+                    }else{
+                        selectedVoucher.prop('checked', false)
+                        alert("Chưa đủ điều kiện để sử dụng mã")
                     }
-                    setTimeout(function() {
-                        updateToTalPrice()
-                    }, 500);
+
                 },
                 error: function (response) {
                     console.log(response)
@@ -226,6 +246,7 @@ function updateToTalPrice() {
     totalPrice += parseFloat($('#delivery-price').attr('data-value'));
     $('#total-price').attr('data-value', totalPrice)
     $('#total-price').text(_formatPrice(totalPrice))
+    console.log('totalPrice ',totalPrice)
 
 }
 

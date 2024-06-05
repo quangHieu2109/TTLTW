@@ -77,6 +77,12 @@
             <i class="bi bi-inboxes"></i> <fmt:message key="quan_ly_don_hang"/>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link ${fn:startsWith(servletPath, '/admin/orderManager') ? 'active' : ''}"
+             href="${pageContext.request.contextPath}/admin/voucherManager/createVoucherSevlet">
+            <img src="${pageContext.request.contextPath}/img/ticket-perforated.svg" alt=""> Voucher
+          </a>
+        </li>
       </ul>
       <c:choose>
         <c:when test="${not empty sessionScope.currentUser}">
