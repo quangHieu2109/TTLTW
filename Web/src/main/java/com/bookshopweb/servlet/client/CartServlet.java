@@ -9,6 +9,7 @@ import com.bookshopweb.dto.SuccessMessage;
 import com.bookshopweb.dao.CartDAO;
 import com.bookshopweb.dao.OrderItemDAO;
 import com.bookshopweb.dao.OrderDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.JsonUtils;
 import com.bookshopweb.utils.Protector;
 
@@ -52,7 +53,7 @@ public class CartServlet extends HttpServlet {
                 Timestamp.from(Instant.now()),
                 null
         );
-        orderDAO.insert(order,"");
+        orderDAO.insert(order, IPUtils.getIP(request));
 
         List<Order> o  = orderDAO.getOrderedPartByUserId(orderRequest.getUserId(),2,0);
         long orderId =  o.get(0).getId();
@@ -85,8 +86,7 @@ public class CartServlet extends HttpServlet {
 
             Protector.of(() -> {
                         orderItemDAO.bulkInsert(orderItems);
-                        cartDAO.delete(cartDAO.selectPrevalue(orderRequest.getCartId()),"");
-
+                        cartDAO.delete(cartDAO.selectPrevalue(orderRequest.getCartId()),IPUtils.getIP(request));
                     })
                     .done(r -> doneFunction.run())
                     .fail(e -> failFunction.run());

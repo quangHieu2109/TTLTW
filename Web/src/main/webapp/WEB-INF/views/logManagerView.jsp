@@ -13,8 +13,8 @@
     <title>Quản lý log</title>
     <link href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <script src=https://cdn.jsdelivr.net/npm/json-formatter-js></script>
 
-    <!-- Bootstrap v5.0.1 -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.js" type="text/javascript"></script>
 

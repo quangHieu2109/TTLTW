@@ -400,6 +400,23 @@ public class UserDAO extends AbsDAO<User> {
         }
         return userOptional;
     }
+    public List<User> getByRole(String role) {
+        List<User> users = new ArrayList<>();
+        String query = "SELECT * FROM user WHERE role = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, role);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    User user = mapResultSetToUser(resultSet);
+                    users.add(user);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exception
+        }
+        return users;
+    }
 
 
     private User mapResultSetToUser(ResultSet resultSet) throws SQLException {

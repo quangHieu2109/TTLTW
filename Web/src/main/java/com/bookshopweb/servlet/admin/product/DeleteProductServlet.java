@@ -4,6 +4,7 @@ import com.bookshopweb.beans.Category;
 import com.bookshopweb.beans.Product;
 import com.bookshopweb.dao.CategoryDAO;
 import com.bookshopweb.dao.ProductDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.ImageUtils;
 import com.bookshopweb.utils.Protector;
 
@@ -35,7 +36,10 @@ public class DeleteProductServlet extends HttpServlet {
             Protector.of(() -> {
                         ImageUtils.setServletContext(getServletContext());
                         categoryFromServer.ifPresent(category -> productDAO.deleteProductCategory(id, category.getId()));
-                        productDAO.delete(productDAO.selectPrevalue(id), request.getRemoteAddr());
+
+                    
+                        productDAO.delete(productDAO.selectPrevalue(id), IPUtils.getIP(request));
+
                         Optional.ofNullable(productFromServer.get().getImageName()).ifPresent(ImageUtils::delete);
                     })
                     .done(r -> request.getSession().setAttribute("successMessage", successMessage))

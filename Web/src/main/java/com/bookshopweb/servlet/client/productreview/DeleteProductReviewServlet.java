@@ -1,6 +1,7 @@
 package com.bookshopweb.servlet.client.productreview;
 
 import com.bookshopweb.dao.ProductReviewDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -25,7 +26,7 @@ public class DeleteProductReviewServlet extends HttpServlet {
         String successMessage = "Đã xóa đánh giá thành công!";
         String errorDeleteReviewMessage = "Đã có lỗi truy vấn!";
 
-        Protector.of(() -> productReviewDAO.delete(productReviewDAO.selectPrevalue(productReviewId),""))
+        Protector.of(() -> productReviewDAO.delete(productReviewDAO.selectPrevalue(productReviewId), IPUtils.getIP(request)))
                 .done(r -> request.getSession().setAttribute("successMessage", successMessage))
                 .fail(e -> request.getSession().setAttribute("errorDeleteReviewMessage", errorDeleteReviewMessage));
 

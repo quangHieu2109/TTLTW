@@ -6,6 +6,7 @@ import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.AccurancyDAO;
 import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.HashingUtils;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
 
@@ -27,6 +28,7 @@ public class SignupServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/signupView.jsp").forward(request, response);
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,6 +57,7 @@ public class SignupServlet extends HttpServlet {
                 .isNotNullAndEmpty()
                 .isNotBlankAtBothEnds()
                 .isAtMostOfLength(32)
+                .isStrongPassword(values.get("password"))
                 .toList());
         violations.put("fullnameViolations", Validator.of(values.get("fullname"))
                 .isNotNullAndEmpty()
@@ -115,7 +118,7 @@ public class SignupServlet extends HttpServlet {
                     Timestamp.from(Instant.now())
             );
 
-            Protector.of(() -> userDAO.insert(user,""))
+            Protector.of(() -> userDAO.insert(user, IPUtils.getIP(request)))
                     .done(r -> request.setAttribute("successMessage", successMessage))
                     .fail(e -> {
                         request.setAttribute("values", values);

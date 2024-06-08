@@ -7,6 +7,7 @@ import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.GoogleUserDAO;
 import com.bookshopweb.dto.UserGoogleDTO;
 import com.bookshopweb.dao.UserDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.google.gson.Gson;
 import org.apache.hc.client5.http.fluent.Form;
 import org.apache.hc.client5.http.fluent.Request;
@@ -50,7 +51,7 @@ public class SignInGoogleServlet extends HttpServlet {
             user.setRole("CUSTOMER");
 
 
-            userDAO.insert(user,"");
+            userDAO.insert(user, IPUtils.getIP(req));
             googleUserDAO.insert(googleUser);
 
             req.getSession().setAttribute("currentUser", user);

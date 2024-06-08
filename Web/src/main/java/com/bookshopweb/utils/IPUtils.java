@@ -1,9 +1,11 @@
 package com.bookshopweb.utils;
 
 import com.google.gson.Gson;
+
 import com.google.gson.JsonObject;
 import org.apache.hc.client5.http.fluent.Request;
 import org.apache.http.HttpHost;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -54,8 +56,6 @@ public class IPUtils {
                 String data = EntityUtils.toString(httpResponse.getEntity()).trim();
                 JSONObject jsonObject = new JSONObject(data);
                 ip = jsonObject.getString("ip");
-                ip = "15.235.136.176";
-
 
             }
         } catch (Exception e) {

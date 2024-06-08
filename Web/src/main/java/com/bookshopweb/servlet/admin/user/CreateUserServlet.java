@@ -4,6 +4,7 @@ import com.bookshopweb.beans.Address;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.HashingUtils;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
 
@@ -84,7 +85,7 @@ public class CreateUserServlet extends HttpServlet {
 
         if (sumOfViolations == 0) {
             user.setPassword(HashingUtils.hash(user.getPassword()));
-            Protector.of(() -> userDAO.insert(user,""))
+            Protector.of(() -> userDAO.insert(user, IPUtils.getIP(request)))
                     .done(r -> request.setAttribute("successMessage", successMessage))
                     .fail(e -> {
                         request.setAttribute("user", user);

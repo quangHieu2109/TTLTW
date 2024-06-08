@@ -9,6 +9,12 @@ import com.bookshopweb.dto.CartItemResponse;
 import com.bookshopweb.dto.CartResponse;
 import com.bookshopweb.dto.ErrorMessage;
 import com.bookshopweb.dto.SuccessMessage;
+
+import com.bookshopweb.dao.CartItemDAO;
+import com.bookshopweb.dao.CartDAO;
+import com.bookshopweb.dao.UserDAO;
+import com.bookshopweb.utils.IPUtils;
+
 import com.bookshopweb.utils.JsonUtils;
 import com.bookshopweb.utils.Protector;
 import com.google.gson.JsonObject;
@@ -76,7 +82,7 @@ public class CartItemServlet extends HttpServlet {
             } else {
                 CartDAO cartDAO = new CartDAO();
                 Cart cart = new Cart(0L, userId, Timestamp.from(Instant.now()), null);
-                cartDAO.insert(cart,"");
+                cartDAO.insert(cart, IPUtils.getIP(request));
                 CartResponse cartResponse = new CartResponse(0L, userId, Collections.emptyList());
                 JsonUtils.out(response, cartResponse, HttpServletResponse.SC_OK);
             }
@@ -112,8 +118,12 @@ public class CartItemServlet extends HttpServlet {
         if (cartFromServer.isPresent()) {
             cartId = cartFromServer.get().getId();
         } else {
+
             Cart cart = new Cart(0L, userId, Timestamp.from(Instant.now()), null);
-            cartId = Protector.of(() -> cartDAO.insert(cart,"")).get(0);
+     
+
+          
+            cartId = Protector.of(() -> cartDAO.insert(cart,IPUtils.getIP(request))).get(0);
         }
 
         String successMessage = "Đã thêm sản phẩm vào giỏ hàng thành công!";
@@ -140,7 +150,7 @@ public class CartItemServlet extends HttpServlet {
                 CartItem cartItem = cartItemFromServer.get();
                 cartItem.setQuantity(cartItem.getQuantity() + quantity);
                 cartItem.setUpdatedAt(Timestamp.from(Instant.now()));
-                Protector.of(() -> cartItemDAO.update(cartItem,""))
+                Protector.of(() -> cartItemDAO.update(cartItem,IPUtils.getIP(request)))
                         .done(r -> doneFunction.run())
                         .fail(e -> failFunction.run());
             } else {
@@ -152,7 +162,7 @@ public class CartItemServlet extends HttpServlet {
                         Timestamp.from(Instant.now()),
                         null
                 );
-                Protector.of(() -> cartItemDAO.insert(cartItem,""))
+                Protector.of(() -> cartItemDAO.insert(cartItem,IPUtils.getIP(request)))
                         .done(r -> doneFunction.run())
                         .fail(e -> failFunction.run());
             }
@@ -172,10 +182,11 @@ public class CartItemServlet extends HttpServlet {
         String successMessage = "Đã cập nhật số lượng của sản phẩm thành công!";
         String errorMessage = "Đã có lỗi truy vấn!";
 
+
         CartItem cartItem = cartItemDAO.selectPrevalue(cartItemId);
         cartItem.setQuantity(quantity);
         System.out.println(cartItem);
-        int rs = cartItemDAO.update(cartItem, "");
+        int rs = cartItemDAO.update(cartItem,IPUtils.getIP(request));
         int productQuantity = productDAO.selectQuantity(cartItem.getProductId());
         JsonObject jsonResponse = new JsonObject();
         response.setContentType("application/json");
@@ -187,6 +198,10 @@ public class CartItemServlet extends HttpServlet {
         }else{
             response.setStatus(400);
             jsonResponse.addProperty("msg", errorMessage);
+
+        } else {
+            failFunction.run();
+
         }
         response.getWriter().write(jsonResponse.toString());
 
@@ -209,7 +224,7 @@ public class CartItemServlet extends HttpServlet {
                 HttpServletResponse.SC_NOT_FOUND);
 
         if (cartItemId > 0L) {
-            Protector.of(() -> cartItemDAO.delete(cartItemDAO.selectPrevalue(cartItemId),""))
+            Protector.of(() -> cartItemDAO.delete(cartItemDAO.selectPrevalue(cartItemId), IPUtils.getIP(request)))
                     .done(r -> doneFunction.run())
                     .fail(e -> failFunction.run());
         } else {
