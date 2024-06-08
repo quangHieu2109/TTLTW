@@ -199,7 +199,7 @@ public class CartItemServlet extends HttpServlet {
             response.setStatus(400);
             jsonResponse.addProperty("msg", errorMessage);
 
-        } 
+        }
         response.getWriter().write(jsonResponse.toString());
 
     }
