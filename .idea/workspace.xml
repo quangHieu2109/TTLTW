@@ -9,36 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
     <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="update log manager">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dto/CartItemResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dto/CartItemResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/voucher/CreateVoucherServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/voucher/CreateVoucherServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartItemServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartItemServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/VoucherServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/VoucherServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/WishlistServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/WishlistServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/LogManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/LogManagerView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_headerAdmin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_headerAdmin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/cart2.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/cart2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/product.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/voucher.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/voucher.js" afterDir="false" />
-
-    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="update captcha">
-      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/template/templateEmail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AbsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/AbsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/service/SendMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/service/SendMail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/log/LogManagerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/log/LogManagerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignupServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/SignupServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/utils/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/utils/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/logManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/logManagerView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/logManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/logManager.js" afterDir="false" />
-
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +32,6 @@
         <option value="JavaScript File" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="HTML File" />
-        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -66,11 +44,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
+    &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;quangHieu2109&quot;
-  }
-}</component>
+    }
+    }</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -96,8 +74,8 @@
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1
-}</component>
+    &quot;associatedIndex&quot;: 1
+    }</component>
   <component name="ProjectId" id="2e2kV03FYkfoefUaEdoTYdevhk1" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -119,7 +97,6 @@
     &quot;Application.StatiscalProductDAO.executor&quot;: &quot;Run&quot;,
     &quot;Application.UserManagerSerlet2.executor&quot;: &quot;Run&quot;,
     &quot;Application.com.bookshopweb.servlet.admin.voucher.Main.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;Node.js.header.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -132,7 +109,7 @@
     &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20240326_0002&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Hung&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/GIGABYTE/IdeaProjects/TTLTW/Web/src/main/webapp/template&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dmx/OneDrive/Máy tính/New folder/TTLTW&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -146,14 +123,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\GIGABYTE\IdeaProjects\TTLTW\Web\src\main\webapp\template" />
       <recent name="D:\Program\JavaWeb\TTLTW\Web\src\main\webapp\WEB-INF\views" />
       <recent name="D:\Program\JavaWeb\TTLTW\Web\src\main\webapp\js" />
       <recent name="D:\Program\JavaWeb\TTLTW\Web" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\GIGABYTE\IdeaProjects\TTLTW\Web\src\main\webapp\js" />
-      <recent name="C:\Users\GIGABYTE\IdeaProjects\TTLTW\Web\src\main\webapp\template" />
       <recent name="C:\.EclipseWeb\TTLTW\Web\src\main\java\com\bookshopweb\beans" />
       <recent name="C:\.EclipseWeb\TTLTW\Web\src\main\webapp\img" />
     </key>
@@ -169,11 +143,7 @@
       </set>
     </option>
   </component>
-
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.83">
-
-  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.20">
-
     <configuration name="CreateVoucherServlet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bookshopweb.servlet.admin.voucher.CreateVoucherServlet" />
       <module name="BookShopWeb" />
@@ -187,21 +157,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
     <configuration name="ImportProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.ImportProductDAO" />
       <module name="BookShopWeb" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.bookshopweb.dao.*" />
-
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="OrderItemDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.OrderItemDAO" />
       <module name="BookShopWeb" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.bookshopweb.mapper.*" />
-
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -222,19 +196,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SendMail" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.service.SendMail" />
-      <module name="BookShopWeb" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.bookshopweb.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="com.bookshopweb.servlet.admin.voucher.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bookshopweb.servlet.admin.voucher.Main" />
       <module name="BookShopWeb" />
@@ -248,11 +209,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
     <configuration name="Tomcat 9.0.83" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.83" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-
-    <configuration name="Tomcat 10.1.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="BookShopWeb:war">
@@ -340,16 +297,11 @@
       </method>
     </configuration>
     <list>
-
       <item itemvalue="Application.ImportProductDAO" />
-
-      <item itemvalue="Application.SendMail" />
-
       <item itemvalue="Application.CreateVoucherServlet" />
       <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
       <item itemvalue="Application.OrderItemDAO" />
       <item itemvalue="Application.ProductDAO" />
-
       <item itemvalue="Tomcat Server.Tomcat 9.0.83" />
     </list>
     <recent_temporary>
@@ -359,25 +311,13 @@
         <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
         <item itemvalue="Application.CreateVoucherServlet" />
         <item itemvalue="Application.OrderItemDAO" />
-
-      <item itemvalue="Tomcat Server.Tomcat 10.1.20" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.SendMail" />
-        <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
-        <item itemvalue="Application.CreateVoucherServlet" />
-        <item itemvalue="Application.OrderItemDAO" />
-        <item itemvalue="Application.ProductDAO" />
-
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -452,26 +392,15 @@
       <workItem from="1716911977604" duration="1667000" />
       <workItem from="1717134060761" duration="13123000" />
       <workItem from="1717168707776" duration="9741000" />
-
       <workItem from="1717422029782" duration="17737000" />
       <workItem from="1717481628339" duration="1708000" />
       <workItem from="1717484438872" duration="26942000" />
-      <workItem from="1717567582111" duration="7706000" />
-
-      <workItem from="1717554059882" duration="4253000" />
-      <workItem from="1717561347237" duration="265000" />
-      <workItem from="1717594725319" duration="803000" />
-      <workItem from="1717635065291" duration="3915000" />
-      <workItem from="1717671182829" duration="457000" />
-      <workItem from="1717673558158" duration="2731000" />
-      <workItem from="1717737469158" duration="3438000" />
-      <workItem from="1717742268293" duration="1764000" />
-      <workItem from="1717822545279" duration="920000" />
-      <workItem from="1717823692086" duration="405000" />
-      <workItem from="1717824156582" duration="1982000" />
-      <workItem from="1717827176217" duration="176000" />
-      <workItem from="1717829007110" duration="4217000" />
-
+      <workItem from="1717567582111" duration="8948000" />
+      <workItem from="1717577658568" duration="55000" />
+      <workItem from="1717578060677" duration="621000" />
+      <workItem from="1717606510727" duration="510000" />
+      <workItem from="1717673784356" duration="1197000" />
+      <workItem from="1717848506660" duration="142000" />
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />
@@ -585,31 +514,7 @@
       <option name="project" value="LOCAL" />
       <updated>1714716727505</updated>
     </task>
-    <task id="LOCAL-00016" summary="update api get IP and merge from hieu">
-      <option name="closed" value="true" />
-      <created>1717381599991</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1717381599991</updated>
-    </task>
-    <task id="LOCAL-00017" summary="update api get IP and add recaptha">
-      <option name="closed" value="true" />
-      <created>1717561584748</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1717561584748</updated>
-    </task>
-    <task id="LOCAL-00018" summary="update captcha">
-      <option name="closed" value="true" />
-      <created>1717638984013</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1717638984013</updated>
-    </task>
-    <option name="localTasksCounter" value="19" />
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -649,23 +554,15 @@
     <MESSAGE value="user manager" />
     <MESSAGE value="log manager + order manager" />
     <MESSAGE value="update log manager" />
-    <MESSAGE value="update api get IP and merge from hieu" />
-    <MESSAGE value="update api get IP and add recaptha" />
-    <MESSAGE value="update captcha" />
-    <option name="LAST_COMMIT_MESSAGE" value="update captcha" />
+    <option name="LAST_COMMIT_MESSAGE" value="update log manager" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/StatiscalProductDAO.java</url>
-
           <line>202</line>
           <properties class="com.bookshopweb.dao.StatiscalProductDAO" method="main">
-
-          <line>198</line>
-          <properties class="com.bookshopweb.dao.StatiscalProductDAO">
-
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

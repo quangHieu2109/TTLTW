@@ -4,7 +4,6 @@ import com.bookshopweb.beans.CategorysOfVoucher;
 import com.bookshopweb.beans.Voucher;
 import com.bookshopweb.dao.CategorysOfVoucherDAO;
 import com.bookshopweb.dao.VoucherDAO;
-import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.ImageUtils;
 import com.google.gson.JsonObject;
 
@@ -66,14 +65,9 @@ public class CreateVoucherServlet extends HttpServlet {
             resp.setStatus(400);
             jsonResponse.addProperty("msg", "Mã voucher đã tồn tại, vui lòng chọn mã khác!");
         } else {
-
-
-
-            voucher = new Voucher(0L, voucherCode, voucherName, description, percentDecrease, maxDecrease, minPrice, type, voucherStartsAt, voucherEndAt, "");
-            ImageUtils.setServletContext(getServletContext());
-            ImageUtils.upload(req).ifPresent(voucher::setImage);
-            int rs = voucherDAO.insert(voucher, IPUtils.getIP(req));
-
+            voucher = new Voucher(0L, voucherCode, voucherName, description, quantity, percentDecrease, maxDecrease, minPrice, type, voucherStartsAt, voucherEndAt, "");
+            voucher.setVoucherImage(ImageUtils.uploadImage(req));
+            int rs = voucherDAO.insert(voucher, "");
             if(rs>0){
                 voucher = voucherDAO.getByVoucherCode(voucherCode);
                 if(categorysString != null){
