@@ -49,7 +49,7 @@ public class LogManagerServlet extends HttpServlet {
         resp.setStatus(200);
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        System.out.println(jsonRespone.toString());
+//        System.out.println(jsonRespone.toString());
         resp.getWriter().write(jsonRespone.toString());
     }
 }

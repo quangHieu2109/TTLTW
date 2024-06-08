@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     var table = $('#my_table').DataTable({
         processing: true,
@@ -23,3 +24,5 @@ $(document).ready(function() {
     });
 
 });
+
+

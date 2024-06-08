@@ -29,6 +29,7 @@ public class SignupServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/views/signupView.jsp").forward(request, response);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Lưu các parameter (tên-giá trị) vào map values
@@ -56,6 +57,7 @@ public class SignupServlet extends HttpServlet {
                 .isNotNullAndEmpty()
                 .isNotBlankAtBothEnds()
                 .isAtMostOfLength(32)
+                .isStrongPassword(values.get("password"))
                 .toList());
         violations.put("fullnameViolations", Validator.of(values.get("fullname"))
                 .isNotNullAndEmpty()
