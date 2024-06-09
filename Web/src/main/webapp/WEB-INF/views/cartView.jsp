@@ -118,7 +118,7 @@
     <h2 class="title-page"></h2>
   </div> <!-- container.// -->
 </section> <!-- section-pagetop.// -->
-
+<p id="idCheck" hidden="hidden">${requestScope.idCheck}</p>
 <section class="section-content padding-y position-relative">
   <div class="container">
     <div id="main_content">

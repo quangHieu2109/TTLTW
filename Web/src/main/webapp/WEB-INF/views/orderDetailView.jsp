@@ -165,8 +165,19 @@
                           onclick="return confirm('<fmt:message key="ban_co_muon_huy_don_hang"/>?')">
                     <fmt:message key="huy_don_hang"/>
                   </button>
+
                 </div> <!-- card-footer.// -->
               </form>
+              <form action="${pageContext.request.contextPath}/orderDetail" method="post">
+                <div class="card-footer py-3">
+                  <input type="hidden" name="type" value="buyagain">
+                  <input type="hidden" name="id" value="${requestScope.order.id}">
+                  <button class="btn btn-warning ${requestScope.order.status != 2 ? "disabled" : ""}">
+                    <fmt:message key="mua_lai"/>
+                  </button>
+                </div> <!-- card-footer.// -->
+              </form>
+
 
             </article>
           </main> <!-- col.// -->
