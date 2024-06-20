@@ -27,12 +27,28 @@ function loadCartItem() {
                 }
                 updateTotalProductPrice()
             }
+            autoCheckProduct($('#idCheck').text());
         },
         error: function (response) {
             console.log(response)
 
         }
     })
+
+}
+
+function autoCheckProduct(json) {
+    try {
+        json = JSON.parse(json)
+        for (let i = 0; i < json.data.length; i++) {
+            document.getElementById('isBuy' + json.data[i]).click()
+
+        }
+    } catch (e) {
+
+    }
+
+
 }
 
 export function updateTotalQuantity() {
@@ -291,6 +307,7 @@ $('#back').on('click', function () {
 
 })
 $(document).ready(function () {
+
     $('#voucher_container').on('click', function (event) {
         // Kiểm tra xem phần tử được click có nằm trong thẻ div B hay không
         if (event.target.closest('#voucher_content')) {
@@ -305,6 +322,7 @@ $(document).ready(function () {
         $('#voucher_container').css('display', 'none')
 
     });
+
 })
 
 function updateToTalPrice() {
@@ -316,6 +334,7 @@ function updateToTalPrice() {
     $('#total-price').text(_formatPrice(totalPrice))
 
 }
+
 function getDecrease(type) {
     console.log("type", type)
     let selectedVoucher = $(`input[name='${type}']:checked`);
@@ -329,12 +348,12 @@ function getDecrease(type) {
         $('#voucher-product').attr('data-value', 0)
         $('#voucher-ship').attr('data-value', 0)
 
-    } else if(selectedVoucher.val()>=0){
-        if(type ==0 && typeof $("input[name='infoship']:checked").val() == 'undefined'){
+    } else if (selectedVoucher.val() >= 0) {
+        if (type == 0 && typeof $("input[name='infoship']:checked").val() == 'undefined') {
             alert('Vui lòng chọn phương thức vận chuyển')
             selectedVoucher.prop('checked', false)
         }
-        if ((type == 0 && $("input[name='infoship']:checked").val() > 0) || type ==1) {
+        if ((type == 0 && $("input[name='infoship']:checked").val() > 0) || type == 1) {
             let formData = new FormData();
             let ship = (type == 1) ? 0 : $("input[name='infoship']:checked").val()
             formData.append('voucherId', selectedVoucher.val());
@@ -349,18 +368,18 @@ function getDecrease(type) {
                 contentType: false,
                 success: function (response) {
                     console.log(response)
-                    if(response.decrease >0){
+                    if (response.decrease > 0) {
                         if (type == 0) {
-                            $('#voucher-ship').attr('data-value' ,(response.decrease))
+                            $('#voucher-ship').attr('data-value', (response.decrease))
                             $('#voucher-ship').text(_formatPrice(response.decrease))
                         } else {
-                            $('#voucher-product').attr('data-value' ,(response.decrease))
+                            $('#voucher-product').attr('data-value', (response.decrease))
                             $('#voucher-product').text(_formatPrice(response.decrease))
                         }
-                        setTimeout(function() {
+                        setTimeout(function () {
                             updateToTalPrice()
                         }, 500);
-                    }else{
+                    } else {
                         selectedVoucher.prop('checked', false)
                         alert("Chưa đủ điều kiện để sử dụng mã")
                     }
@@ -374,3 +393,4 @@ function getDecrease(type) {
         }
     }
 }
+

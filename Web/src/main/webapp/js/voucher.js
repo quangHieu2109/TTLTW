@@ -261,3 +261,4 @@ function _formatPrice(value) {
 function _reFormatPrice(value) {
     return parseFloat(value.replace(".", ""))
 }
+
