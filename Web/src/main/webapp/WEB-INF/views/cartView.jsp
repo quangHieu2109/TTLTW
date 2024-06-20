@@ -186,7 +186,7 @@
               <div class="card mb-3">
                 <div class="card-body">
                   <b class="card-title"><fmt:message key="don_vi_van_chuyen"/></b>
-                  <select class="form-select" id="unit-ship">
+                  <select class="form-select" id="unit-ship" onchange="changeUnitShip()">
                     <option value="none" selected>---</option>
                     <option value="ViettelPost">ViettelPost</option>
                     <option value="GHN">GHN</option>

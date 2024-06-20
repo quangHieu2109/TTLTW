@@ -154,7 +154,13 @@ async function selectDistrict() {
     //     unit_ship.dispatchEvent(event);
     // }
 }
-
+function changeUnitShip(){
+    $('#delivery-price').text('---');
+    $('#delivery-price').attr('data-value', 0);
+    $('#voucher-ship').text(0);
+    $('#voucher-ship').attr('data-value', 0);
+    updateToTalPrice()
+}
 async function selectProvince() {
 
     await _getProvice().then(([status, data]) => {
@@ -298,6 +304,7 @@ function loadAddress() {
 }
 
 function setShipInfo() {
+    changeUnitShip()
     let unitshipVal = $("#unit-ship").val();
     let unit_ship = $("#unit-ship");
     let delivery = $('#delivery-price')
@@ -352,4 +359,16 @@ function setShipInfo() {
             }
         })
     }
+}
+
+function updateToTalPrice() {
+
+    let totalPrice = parseFloat($('#temp-price').attr('data-value'));
+    totalPrice -= parseFloat($('#voucher-product').attr('data-value'));
+    totalPrice -= parseFloat($('#voucher-ship').attr('data-value'));
+    totalPrice += parseFloat($('#delivery-price').attr('data-value'));
+    $('#total-price').attr('data-value', totalPrice)
+    $('#total-price').text(_formatPrice(totalPrice))
+    console.log('totalPrice ',totalPrice)
+
 }
