@@ -4,6 +4,7 @@ import com.bookshopweb.beans.Category;
 import com.bookshopweb.beans.Product;
 import com.bookshopweb.dao.CategoryDAO;
 import com.bookshopweb.dao.ProductDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.ImageUtils;
 import com.bookshopweb.utils.Protector;
 
@@ -25,6 +26,7 @@ public class DeleteProductServlet extends HttpServlet {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
         Optional<Product> productFromServer = Protector.of(() -> productDAO.selectById(id)).get();
 
+
         if (productFromServer.isPresent()) {
             String successMessage = String.format("Xóa sản phẩm #%s thành công!", id);
             String errorMessage = String.format("Xóa sản phẩm #%s thất bại!", id);
@@ -34,7 +36,10 @@ public class DeleteProductServlet extends HttpServlet {
             Protector.of(() -> {
                         ImageUtils.setServletContext(getServletContext());
                         categoryFromServer.ifPresent(category -> productDAO.deleteProductCategory(id, category.getId()));
-                        productDAO.delete(productDAO.selectPrevalue(id),"");
+
+                    
+                        productDAO.delete(productDAO.selectPrevalue(id), IPUtils.getIP(request));
+
                         Optional.ofNullable(productFromServer.get().getImageName()).ifPresent(ImageUtils::delete);
                     })
                     .done(r -> request.getSession().setAttribute("successMessage", successMessage))

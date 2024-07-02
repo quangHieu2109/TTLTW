@@ -2,6 +2,7 @@ package com.bookshopweb.dao;
 
 import com.bookshopweb.beans.AbsModel;
 import com.bookshopweb.beans.Log;
+import com.bookshopweb.service.SendMail;
 import com.bookshopweb.utils.JDBCUtils;
 
 import java.sql.Connection;
@@ -32,9 +33,9 @@ public abstract class AbsDAO<T extends AbsModel> implements IDAO<T> {
 
     @Override
     public int delete(T t, String ip) {
-
         Log log = new Log(ip, 4, "Delete on table "+t.getResource(), t.toJson(), "null", t.getCreateAt());
         logDAO.insert(log);
+        SendMail.sendLogForAdmin(log);
         return  0;
     }
 

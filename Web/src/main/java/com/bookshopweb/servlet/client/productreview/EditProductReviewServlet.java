@@ -5,6 +5,7 @@ import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.ProductReviewDAO;
 import com.bookshopweb.dao.ProductDAO;
 import com.bookshopweb.dao.UserDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
 
@@ -79,7 +80,7 @@ public class EditProductReviewServlet extends HttpServlet {
         String errorMessage = "Đã có lỗi truy vấn!";
 
         if (sumOfViolations == 0) {
-            Protector.of(() -> productReviewDAO.update(productReview,""))
+            Protector.of(() -> productReviewDAO.update(productReview, IPUtils.getIP(request)))
                     .done(r -> request.setAttribute("successMessage", successMessage))
                     .fail(e -> request.setAttribute("errorMessage", errorMessage));
         } else {

@@ -2,12 +2,14 @@ package com.bookshopweb.servlet.client;
 
 import com.bookshopweb.beans.Order;
 import com.bookshopweb.beans.OrderItem;
+import com.bookshopweb.beans.User;
 import com.bookshopweb.dto.ErrorMessage;
 import com.bookshopweb.dto.OrderRequest;
 import com.bookshopweb.dto.SuccessMessage;
 import com.bookshopweb.dao.CartDAO;
 import com.bookshopweb.dao.OrderItemDAO;
 import com.bookshopweb.dao.OrderDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.JsonUtils;
 import com.bookshopweb.utils.Protector;
 
@@ -31,6 +33,8 @@ public class CartServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("currentUser");
+
         request.getRequestDispatcher("/WEB-INF/views/cartView.jsp").forward(request, response);
     }
 
@@ -49,12 +53,12 @@ public class CartServlet extends HttpServlet {
                 Timestamp.from(Instant.now()),
                 null
         );
-        orderDAO.insert(order,"");
+        orderDAO.insert(order, IPUtils.getIP(request));
 
         List<Order> o  = orderDAO.getOrderedPartByUserId(orderRequest.getUserId(),2,0);
         long orderId =  o.get(0).getId();
-        System.out.println(o.size());
-        System.out.println("Order ID: " + orderId);
+//        System.out.println(o.size());
+//        System.out.println("Order ID: " + orderId);
         String successMessage = "Đã đặt hàng và tạo đơn hàng thành công!";
         String errorMessage = "Đã có lỗi truy vấn!";
 
@@ -82,8 +86,7 @@ public class CartServlet extends HttpServlet {
 
             Protector.of(() -> {
                         orderItemDAO.bulkInsert(orderItems);
-                        cartDAO.delete(cartDAO.selectPrevalue(orderRequest.getCartId()),"");
-
+                        cartDAO.delete(cartDAO.selectPrevalue(orderRequest.getCartId()),IPUtils.getIP(request));
                     })
                     .done(r -> doneFunction.run())
                     .fail(e -> failFunction.run());

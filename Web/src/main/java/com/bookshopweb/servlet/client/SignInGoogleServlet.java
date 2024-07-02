@@ -7,6 +7,7 @@ import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.GoogleUserDAO;
 import com.bookshopweb.dto.UserGoogleDTO;
 import com.bookshopweb.dao.UserDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.google.gson.Gson;
 import org.apache.hc.client5.http.fluent.Form;
 import org.apache.hc.client5.http.fluent.Request;
@@ -37,6 +38,7 @@ public class SignInGoogleServlet extends HttpServlet {
         String accessToken = getToken(req.getParameter("code"));
         UserGoogleDTO userGoogleDTO = getUserInfo(accessToken);
         GoogleUserDAO googleUserDAO = new GoogleUserDAO();
+       if(userDAO.getUserByEmail(userGoogleDTO.getEmail()) ==null){
         GoogleUser googleUser = googleUserDAO.selectByEmail(userGoogleDTO.getEmail());
         long id = new Random().nextInt(9)*10000 + Calendar.getInstance().getTimeInMillis();
         if (googleUser == null) {
@@ -47,9 +49,9 @@ public class SignInGoogleServlet extends HttpServlet {
             user.setFullname(userGoogleDTO.getName());
             user.setEmail(userGoogleDTO.getEmail());
             user.setRole("CUSTOMER");
-            user.setAddress(new Address(1, id, null, null, null, null));
 
-            userDAO.insert(user,"");
+
+            userDAO.insert(user, IPUtils.getIP(req));
             googleUserDAO.insert(googleUser);
 
             req.getSession().setAttribute("currentUser", user);
@@ -58,6 +60,10 @@ public class SignInGoogleServlet extends HttpServlet {
             System.out.println(userDAO.getByGoogle(googleUser).isGoogleUser());
             req.getSession().setAttribute("currentUser", currentUser);
         }
+       }else{
+           User currentUser = userDAO.getUserByEmail(userGoogleDTO.getEmail());
+           req.getSession().setAttribute("currentUser", currentUser);
+       }
 
 
 

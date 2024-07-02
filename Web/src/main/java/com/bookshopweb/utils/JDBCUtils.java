@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class JDBCUtils {
+    public static final String username = "root";
+    public static final String password = "";
     private static Connection conn;
     public static void connection(){
         if(conn == null){
@@ -14,8 +16,7 @@ public class JDBCUtils {
 
                 // Các thông số
                 String url = "jdbc:mySQL://localhost:3306/bookshopdb";
-                String username = "root";
-                String password = "";
+
 
                 // Tạo kết nối
                 conn = DriverManager.getConnection(url, username, password);

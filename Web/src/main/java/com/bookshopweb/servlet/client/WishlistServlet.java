@@ -8,10 +8,12 @@ import com.bookshopweb.dto.SuccessMessage;
 import com.bookshopweb.dto.WishlistItemRequest;
 import com.bookshopweb.dao.ProductDAO;
 import com.bookshopweb.dao.WishlistItemDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.JsonUtils;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "WishlistServlet", value = "/wishlist")
+@MultipartConfig
 public class WishlistServlet extends HttpServlet {
     private final WishlistItemDAO wishlistItemDAO = new WishlistItemDAO();
     private final ProductDAO productDAO = new ProductDAO();
@@ -48,7 +51,7 @@ public class WishlistServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Protector.of(() -> wishlistItemDAO.delete(wishlistItemDAO.selectPrevalue(id),""));
+        Protector.of(() -> wishlistItemDAO.delete(wishlistItemDAO.selectPrevalue(id),IPUtils.getIP(request)));
         response.sendRedirect(request.getContextPath() + "/wishlist");
     }
 
@@ -72,7 +75,7 @@ public class WishlistServlet extends HttpServlet {
         wishlistItem.setUserId(wishlistItemRequest.getUserId());
         wishlistItem.setProductId(wishlistItemRequest.getProductId());
 
-        Protector.of(() -> wishlistItemDAO.insert(wishlistItem,""))
+        Protector.of(() -> wishlistItemDAO.insert(wishlistItem, IPUtils.getIP(request)))
                 .done(r -> doneFunction.run())
                 .fail(e -> failFunction.run());
     }

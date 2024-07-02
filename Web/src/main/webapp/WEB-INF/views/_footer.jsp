@@ -7,6 +7,7 @@
     <fmt:setLocale value="en_US" />
   </c:if>
   <fmt:setBundle basename="lang" />
+
   <section class="footer-top py-5 bg-light">
     <div class="container">
       <div class="row">
@@ -37,7 +38,7 @@
             <div class="input-group w-100">
               <input type="text" class="form-control" placeholder="<fmt:message key="email_cua_ban"/> ...">
               <button class="btn btn-primary" type="button">
-                <fmt:message key="dang_ki"/>
+                <a href="#"><fmt:message key="dang_ki"/></a>
               </button>
             </div>
           </form>

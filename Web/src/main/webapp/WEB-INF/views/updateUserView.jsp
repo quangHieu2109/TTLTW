@@ -167,25 +167,25 @@
             </div>
           </c:if>
         </div>
-        <div class="mb-3">
-          <label for="user-address" class="form-label"><fmt:message key="dia_chi"/> <span class="text-danger">*</span></label>
-          <input type="text"
-                 class="form-control ${not empty requestScope.violations.addressViolations
-                   ? 'is-invalid' : (not empty requestScope.user.address ? 'is-valid' : '')}"
-                 id="user-address"
-                 name="address"
-                 value="${requestScope.user.address}"
-                 required>
-          <c:if test="${not empty requestScope.violations.addressViolations}">
-            <div class="invalid-feedback">
-              <ul class="list-unstyled">
-                <c:forEach var="violation" items="${requestScope.violations.addressViolations}">
-                  <li>${violation}</li>
-                </c:forEach>
-              </ul>
-            </div>
-          </c:if>
-        </div>
+<%--        <div class="mb-3">--%>
+<%--          <label for="user-address" class="form-label"><fmt:message key="dia_chi"/> <span class="text-danger">*</span></label>--%>
+<%--          <input type="text"--%>
+<%--                 class="form-control ${not empty requestScope.violations.addressViolations--%>
+<%--                   ? 'is-invalid' : (not empty requestScope.user.address ? 'is-valid' : '')}"--%>
+<%--                 id="user-address"--%>
+<%--                 name="address"--%>
+<%--                 value="${requestScope.user.address}"--%>
+<%--                 required>--%>
+<%--          <c:if test="${not empty requestScope.violations.addressViolations}">--%>
+<%--            <div class="invalid-feedback">--%>
+<%--              <ul class="list-unstyled">--%>
+<%--                <c:forEach var="violation" items="${requestScope.violations.addressViolations}">--%>
+<%--                  <li>${violation}</li>--%>
+<%--                </c:forEach>--%>
+<%--              </ul>--%>
+<%--            </div>--%>
+<%--          </c:if>--%>
+<%--        </div>--%>
         <div class="mb-3">
           <label for="user-role" class="form-label"><fmt:message key="quyen"/> <span class="text-danger">*</span></label>
           <select class="form-select ${not empty requestScope.violations.roleViolations

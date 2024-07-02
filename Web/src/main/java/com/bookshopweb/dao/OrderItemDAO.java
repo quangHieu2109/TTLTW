@@ -60,7 +60,10 @@ package com.bookshopweb.dao;
 import com.bookshopweb.beans.Order;
 import com.bookshopweb.beans.OrderItem;
 import com.bookshopweb.beans.Product;
+import com.bookshopweb.jdbiInterface.OrderItemJDBI;
+import com.bookshopweb.mapper.OrderItemMapper;
 import com.bookshopweb.utils.JDBCUtils;
+import com.bookshopweb.utils.JDBIUltis;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -68,6 +71,44 @@ import java.util.List;
 
 public class OrderItemDAO extends AbsDAO<OrderItem> {
     Connection conn = JDBCUtils.getConnection();
+    static OrderItemJDBI orderItemJDBI = JDBIUltis.getJDBI().onDemand(OrderItemJDBI.class);
+
+    public List<OrderItem> getByOrderId(long orderId){
+        List<OrderItem> result = new ArrayList<>();
+        result = JDBIUltis.getJDBI().withHandle(handel ->
+                handel.createQuery("select * from order_item where orderId="+orderId)
+                        .map(new OrderItemMapper()).list());
+        return result;
+    }
+    public List<OrderItem> getByOrderIdLimit(long orderId, int start, int length){
+        return JDBIUltis.getJDBI().withHandle(handle ->
+                handle.createQuery("select * from order_item where orderId="+orderId+" limit "+start+","+length)
+                .map(new OrderItemMapper())
+                .list());
+    }
+    public int getQuantityByOrderId(long orderID){
+        return orderItemJDBI.getQuantityByOrderId(orderID);
+    }
+    public int getTotalPriceByOrderId(long orderId){
+        return orderItemJDBI.getTotalPriceByOrderId(orderId);
+    }
+    public int deleteByOrderId(long orderId) {
+
+        int result = 0;
+        try{
+            String sql = "delete from order_item where orderId=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1,orderId);
+            result = ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     public OrderItem selectPrevalue(Long id){
         OrderItem result = null;
         try {
@@ -94,6 +135,10 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
         }
         return  result;
     }
+
+
+
+
     public List<OrderItem> selectByOrder(Order order){
         List<OrderItem> result = new ArrayList<>();
         try {
@@ -263,23 +308,23 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
         }
         return productNames;
     }
-    public List<OrderItem> getByOrderId(long orderId) {
-        List<OrderItem> orderItems = new ArrayList<>();
-        String query = "SELECT * FROM order_item WHERE orderId = ?";
-        try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setLong(1, orderId);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    OrderItem orderItem = mapResultSetToOrderItem(resultSet);
-                    orderItems.add(orderItem);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Handle exception
-        }
-        return orderItems;
-    }
+//    public List<OrderItem> getByOrderId(long orderId) {
+//        List<OrderItem> orderItems = new ArrayList<>();
+//        String query = "SELECT * FROM order_item WHERE orderId = ?";
+//        try (PreparedStatement statement = conn.prepareStatement(query)) {
+//            statement.setLong(1, orderId);
+//            try (ResultSet resultSet = statement.executeQuery()) {
+//                while (resultSet.next()) {
+//                    OrderItem orderItem = mapResultSetToOrderItem(resultSet);
+//                    orderItems.add(orderItem);
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            // Handle exception
+//        }
+//        return orderItems;
+//    }
     public void bulkInsert(List<OrderItem> orderItems) {
         String query = "INSERT INTO order_item (orderId, productId, price, discount, quantity, createdAt, updatedAt) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -316,5 +361,10 @@ public class OrderItemDAO extends AbsDAO<OrderItem> {
         // Thực hiện các thao tác khác để map dữ liệu từ ResultSet vào đối tượng Product
         orderItem.setProduct(product);
         return orderItem;
+    }
+
+    public static void main(String[] args) {
+        OrderItemDAO orderItemDAO = new OrderItemDAO();
+        System.out.println(orderItemDAO.getQuantityByOrderId(3));
     }
 }

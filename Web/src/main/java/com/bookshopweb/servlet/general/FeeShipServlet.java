@@ -54,7 +54,7 @@ public class FeeShipServlet extends HttpServlet {
                         if(oDistrict.getDistrictName().toLowerCase().contains(district.toLowerCase())){
                             districtID = oDistrict.getDistrictID()+"";
                             wardsGHN = ghnApi.getWards(districtID);
-                            System.out.println(wardsGHN);
+//                            System.out.println(wardsGHN);
                             for(GHNApi.Ward oWard : wardsGHN){
                                 if(oWard.getWardName().toLowerCase().contains(ward.toLowerCase())){
                                     wardID = oWard.getWardCode();

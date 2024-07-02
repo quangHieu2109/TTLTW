@@ -67,12 +67,27 @@ import com.bookshopweb.utils.JDBCUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
 public class CartItemDAO extends AbsDAO<CartItem> {
     Connection conn = JDBCUtils.getConnection();
+    public int deleteByCartId(long cartId) {
+
+        int result = 0;
+        try{
+            String sql = "delete from cart_item where cartId=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1,cartId);
+            result = ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
     public List<CartItem> selectByCart(Cart cart){
         List<CartItem> result = new ArrayList<>();
         Connection conn = JDBCUtils.getConnection();
