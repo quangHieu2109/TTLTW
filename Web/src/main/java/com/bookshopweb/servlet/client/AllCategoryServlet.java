@@ -19,6 +19,7 @@ public class AllCategoryServlet extends HttpServlet {
     private final CategoryDAO categoryDAO = new CategoryDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         List<Category> categories = Protector.of(() -> categoryDAO.getAll())
                 .get(ArrayList::new);
         request.setAttribute("categories", categories);

@@ -46,7 +46,7 @@ public class SendMail {
         }
 
         adminEmail = adminEmail.substring(0,adminEmail.length()-1);
-        System.out.println(adminEmail);
+//        System.out.println(adminEmail);
         if(log.getCurValue()==null){
             log.setCurValue("");
         }
