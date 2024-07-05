@@ -26,10 +26,11 @@ public class LogManagerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int page = Integer.parseInt(req.getParameter("page"))-1;
+        int level = Integer.parseInt(req.getParameter("level"));
         int start = 10*page;
         int length = 10;
         JsonArray jsonArray = new JsonArray();
-        List<Log> logs = logDAO.selectByPage(start, length);
+        List<Log> logs = logDAO.selectByLevelLimit(level, start, length);
         for(Log log:logs){
 
             JsonObject jsonObject = new JsonObject();
@@ -44,7 +45,7 @@ public class LogManagerServlet extends HttpServlet {
             jsonArray.add(jsonObject);
 
         }
-        int totalPage = (logDAO.getQuantity() %10 ==0)?logDAO.getQuantity()/10:(logDAO.getQuantity()/10)+1;
+        int totalPage = (logDAO.getQuantityByLevel(level) %10 ==0)?logDAO.getQuantityByLevel(level)/10:(logDAO.getQuantityByLevel(level)/10)+1;
         JsonObject jsonRespone = new JsonObject();
         jsonRespone.add("data", jsonArray);
         jsonRespone.addProperty("totalPage", totalPage);

@@ -1,16 +1,23 @@
 var curPage = 1;
+var curLevel = 1;
 var totalPage;
 $(document).ready(function () {
-        loadData()
+        loadData(1)
     }
 )
 
-function loadData() {
+function loadData(level) {
+    if(curLevel != level){
+        curLevel = level;
+        curPage = 1;
+    }
+
     $.ajax({
         url: "/logManagerServlet",
         type: "POST",
         data: {
-            page: curPage
+            page: curPage,
+            level: level
         },
         success: function (response) {
             totalPage = response.totalPage;
@@ -72,6 +79,6 @@ function changePage(page) {
     if (page > 0 && page < totalPage + 1) {
         curPage = page;
         $('#' + page).prop('checked', true)
-        loadData();
+        loadData(curLevel);
     }
 }

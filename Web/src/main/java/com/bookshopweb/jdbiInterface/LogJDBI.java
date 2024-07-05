@@ -17,12 +17,16 @@ public interface LogJDBI {
     int insertLog(@BindBean Log log);
     @SqlQuery("select count(*) from log")
     int getQuantity();
+    @SqlQuery("select count(*) from log where levelLog=:levelLog")
+    int getQuantityByLevel(@Bind("levelLog") int levelLog);
     @SqlUpdate("update log set levelLog=:levelLog where id=:id")
     int updateLog(@BindBean Log log);
     @SqlQuery("select * from log")
     List<Log> selectAll();
     @SqlQuery("select * from log limit :start,:length")
     List<Log> selectByPage(@Bind("start")int start,@Bind("length") int length );
+    @SqlQuery("select * from log where levelLog=:levelLog limit :start,:length")
+    List<Log> selectByLevelLimit(@Bind("levelLog")int levelLog,@Bind("start")int start,@Bind("length") int length );
     @SqlUpdate("delete from log where id=:id")
     int deleteLog(@BindBean Log log);
 }

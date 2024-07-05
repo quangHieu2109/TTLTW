@@ -87,8 +87,8 @@ function detail(id) {
             <article class="card mb-4">
 
               <header class="card-header">
-                <strong class="d-inline-block me-4">Mã đơn hàng: ${response.orderId}</strong>
-                <span>Ngày mua: ${response.createdAt}</span>
+                <strong class="d-inline-block me-4">${response.orderId}</strong>
+                <span>${response.createdAt}</span>
                 
                     <span class="badge bg-danger float-end">${response.status}</span>
                  
@@ -97,25 +97,25 @@ function detail(id) {
               <div class="card-body pb-0">
                 <div class="row">
                   <div class="col-lg-8">
-                    <h6 class="text-muted">Thông tin người nhận</h6>
+                    <h6 class="text-muted">${response.receiverInfo}</h6>
                     <p class="lh-lg">
                         ${response.fullname} <br>
-                          Số điện thoại: ${response.phoneNumber} <br>
+                          ${response.phoneNumber} <br>
                     </p>
                   </div>
                   <div class="col-lg-4">
-                    <h6 class="text-muted">Hình thức thanh toán</h6>
+                    <h6 class="text-muted">${response.paymentMethod}</h6>
                     <span class="text-success">
                     <i class="fab fa-lg fa-cc-visa"></i>
-                    ${response.deliveryMethod == 1 ? 'Giao hàng tiêu chuẩn' : 'Giao hàng nhanh'}
+                    ${response.deliveryMethod }
 
                   </span>
                     <p class="lh-lg">
-                      Tạm tính: ${response.tempPrice}₫ <br>
-                      Phí vận chuyển: ${response.deliveryPrice}₫
+                     ${response.tempPrice}₫ <br>
+                     ${response.deliveryPrice}₫
                       <br>
                       <strong>
-                        Tổng cộng: ${response.totalPrice}₫
+                       ${response.totalPrice}₫
                       </strong>
                     </p>
                   </div>
@@ -128,9 +128,9 @@ function detail(id) {
                 <table class="cart-table table table-borderless">
                   <thead class="text-muted">
                   <tr class="small text-uppercase">
-                    <th scope="col" style="min-width: 280px;">Sản phẩm</th>
-                    <th scope="col" style="min-width: 150px;">Giá</th>
-                    <th scope="col" style="min-width: 150px;">Số lượng</th>
+                    <th scope="col" style="min-width: 280px;">${response.product}</th>
+                    <th scope="col" style="min-width: 150px;">${response.price}</th>
+                    <th scope="col" style="min-width: 150px;">${response.quantity}</th>
                   </tr>
                   </thead>
                   <tbody id="cart_items">

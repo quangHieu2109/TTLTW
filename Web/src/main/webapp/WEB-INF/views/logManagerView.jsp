@@ -63,13 +63,39 @@
       background-color: #0d6efd;
       color: #fff;
     }
+     input[type="radio"]:checked + label {
+       background-color: #52e74c; /* Màu sắc bạn muốn áp dụng khi label được chọn */
+     }
+     a{
+       text-decoration: none;
+     }
   </style>
 </head>
 <body>
 <jsp:include page="_headerAdmin.jsp"></jsp:include>
+<div class="row justify-content-around">
+  <div class="w-auto">
+    <input type="radio" name="category" value="level1" id="level1" checked hidden>
+    <label for="level1" class="btn p-3 pt-1 pb-1 mt-2" onclick="loadData(1)">Level 1</label>
+  </div>
+  <div class="w-auto">
+    <input type="radio" name="category" value="level2" id="level2" hidden>
+    <label for="level2" class="btn p-3 pt-1 pb-1 mt-2" onclick="loadData(2)">Level 2</label>
+  </div>
+  <div class="w-auto">
+    <input type="radio" name="category" value="level3" id="level3" hidden>
+    <label for="level3" class="btn p-3 pt-1 pb-1 mt-2" onclick="loadData(3)">Level  3</label>
+  </div>
+  <div class="w-auto">
+    <input type="radio" name="category" value="level4" id="level4" hidden>
+    <label for="level4" class="btn p-3 pt-1 pb-1 mt-2" onclick="loadData(4)">Level 4</label>
+  </div>
+
+
+</div>
 <div class="container mt-4">
   <main class="table-responsive-xl mb-5">
-  <table id="my_table" class="table table-bordered table-striped table-hover align-middle">
+  <table id="my_table" class="table table-bordered align-middle">
     <thead>
     <tr>
       <th scope="col" class="w-10">ID</th>

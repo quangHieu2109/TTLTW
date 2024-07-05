@@ -50,7 +50,7 @@
         <li class="nav-item">
           <a class="nav-link ${fn:startsWith(servletPath, '/logManager') ? 'active' : ''}"
              href="${pageContext.request.contextPath}/logManagerServlet">
-            <i class="bi bi-people"></i> Quản lý log
+            <i class="bi bi-people"></i> <fmt:message key="quan_ly_log"/>
           </a>
         </li>
         <li class="nav-item">

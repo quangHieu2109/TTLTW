@@ -16,9 +16,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 @WebServlet(value = "/orderManagerServlet2")
 public class OrderManagerServlet2 extends HttpServlet {
@@ -34,6 +37,16 @@ public class OrderManagerServlet2 extends HttpServlet {
 
     }
     protected void getDetail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String baseName="lang_vi_VN";
+//        session.setAttribute("lang","en");
+
+        Locale.setDefault(new Locale("vi_VN"));
+        if(session.getAttribute("lang") != null && session.getAttribute("lang").toString().equals("en")){
+//            Locale.setDefault(new Locale("en_US"));
+            baseName = "lang_en_US";
+        }
+        ResourceBundle resources = ResourceBundle.getBundle(baseName);
         long orderId = Long.parseLong(req.getParameter("orderId"));
         NumberFormat formatter = NumberFormat.getInstance();
         OrderDAO orderDAO = new OrderDAO();
@@ -65,32 +78,38 @@ public class OrderManagerServlet2 extends HttpServlet {
         String status ="";
         switch (order.getStatus()){
             case 0:
-                status="Đặt hàng thành công";
+                status="dat_hang_thanh_cong";
                 break;
             case 1:
-                status="Đang giao hàng";
+                status="dang_giao_hang";
                 break;
             case 2:
-                status="Giao hàng thành công";
+                status="giao_hang_thanh_cong";
                 break;
             case 3:
-                status="Đã hủy";
+                status="da_huy";
                 break;
             case 4:
-                status="Trả hàng";
+                status="tra_hang";
                 break;
 
         }
+        String deliveryMethod = order.getDeliveryMethod() ==0?"giao_hang_tieu_chuan":"giao_hang_nhanh";
         jsonResopne.add("products", jsonArray);
-        jsonResopne.addProperty("orderId", order.getId());
-        jsonResopne.addProperty("createdAt", order.getCreateAt().toString());
-        jsonResopne.addProperty("status", status);
+        jsonResopne.addProperty("orderId",resources.getString("ma_don_hang")+" : "+ order.getId());
+        jsonResopne.addProperty("receiverInfo",resources.getString("thong_tin_nguoi_nhan"));
+        jsonResopne.addProperty("paymentMethod",resources.getString("hinh_thuc_thanh_toan"));
+        jsonResopne.addProperty("product",resources.getString("san_pham"));
+        jsonResopne.addProperty("price",resources.getString("gia"));
+        jsonResopne.addProperty("quantity",resources.getString("so_luong"));
+        jsonResopne.addProperty("createdAt", resources.getString("ngay_mua")+" : "+order.getCreateAt().toString());
+        jsonResopne.addProperty("status", resources.getString(status));
         jsonResopne.addProperty("fullname", user.getFullname());
-        jsonResopne.addProperty("phoneNumber", user.getPhoneNumber());
-        jsonResopne.addProperty("deliveryMethod", order.getDeliveryMethod());
-        jsonResopne.addProperty("tempPrice", formatter.format((int)order.getTotalPrice()));
-        jsonResopne.addProperty("totalPrice", formatter.format((int)order.getTotalPrice()+order.getDeliveryPrice()));
-        jsonResopne.addProperty("deliveryPrice", formatter.format((int)order.getDeliveryPrice()));
+        jsonResopne.addProperty("phoneNumber",resources.getString("so_dien_thoai")+" : "+ user.getPhoneNumber());
+        jsonResopne.addProperty("deliveryMethod", resources.getString(deliveryMethod));
+        jsonResopne.addProperty("tempPrice", resources.getString("tam_tinh")+" : "+formatter.format((int)order.getTotalPrice()));
+        jsonResopne.addProperty("totalPrice", resources.getString("tong_cong")+" : "+formatter.format((int)order.getTotalPrice()+order.getDeliveryPrice()));
+        jsonResopne.addProperty("deliveryPrice", resources.getString("phi_van_chuyen")+" : "+formatter.format((int)order.getDeliveryPrice()));
 
 
         resp.setStatus(200);
