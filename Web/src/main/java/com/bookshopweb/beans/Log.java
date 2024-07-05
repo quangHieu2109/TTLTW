@@ -9,7 +9,7 @@ public class Log {
     private long id;
     private String ip="";
     private int levelLog;
-    private String resource="";
+    private String res ="";
     private  String preValue="";
     private   String curValue="";
     private Timestamp createAt;
@@ -18,22 +18,22 @@ public class Log {
     public Log() {
     }
 
-    public Log(long id, String ip, int levelLog, String resource, String preValue, String curValue, Timestamp createAt, Timestamp updateAt) {
+    public Log(long id, String ip, int levelLog, String res, String preValue, String curValue, Timestamp createAt, Timestamp updateAt) {
         this.id = id;
         this.ip = ip;
         this.levelLog = levelLog;
-        this.resource = resource;
+        this.res = res;
         this.preValue = preValue;
         this.curValue = curValue;
         this.createAt = createAt;
         this.updateAt = updateAt;
     }
-    public Log(String ip, int levelLog, String resource, String preValue, String curValue, Timestamp createAt) {
+    public Log(String ip, int levelLog, String res, String preValue, String curValue, Timestamp createAt) {
         long id = Calendar.getInstance().getTimeInMillis() + new Random().nextInt(100)*1000;
         this.id = id;
         this.ip = ip;
         this.levelLog = levelLog;
-        this.resource = resource;
+        this.res = res;
         this.preValue = preValue;
         this.curValue = curValue;
         this.createAt = createAt;
@@ -54,8 +54,8 @@ public class Log {
         this.levelLog = levelLog;
     }
 
-    public void setResource(String resource) {
-        this.resource = resource;
+    public void setRes(String res) {
+        this.res = res;
     }
 
     public void setPreValue(String preValue) {
@@ -86,8 +86,8 @@ public class Log {
         return levelLog;
     }
 
-    public String getResource() {
-        return resource;
+    public String getRes() {
+        return res;
     }
 
     public String getPreValue() {
@@ -112,7 +112,7 @@ public class Log {
                 "id=" + id +
                 ", ip='" + ip + '\'' +
                 ", levelLog=" + levelLog +
-                ", resource='" + resource + '\'' +
+                ", resource='" + res + '\'' +
                 ", preValue='" + preValue + '\'' +
                 ", curValue='" + curValue + '\'' +
                 ", createAt=" + createAt +

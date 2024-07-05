@@ -12,7 +12,7 @@ import java.util.List;
 @RegisterBeanMapper(Log.class)
 public interface LogJDBI {
     @SqlUpdate("insert into log(id, ip, levelLog, res, preValue, curValue, createAt, updateAt) " +
-            "values(:id, :ip, :levelLog, :resource, :preValue, :curValue, :createAt, :updateAt )"
+            "values(:id, :ip, :levelLog, :res, :preValue, :curValue, :createAt, :updateAt )"
     )
     int insertLog(@BindBean Log log);
     @SqlQuery("select count(*) from log")

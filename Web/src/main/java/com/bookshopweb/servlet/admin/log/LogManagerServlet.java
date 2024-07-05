@@ -16,25 +16,27 @@ import java.util.List;
 
 @WebServlet("/logManagerServlet")
 public class LogManagerServlet extends HttpServlet {
+    LogJDBI logDAO = JDBIUltis.getJDBI().onDemand(LogJDBI.class);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        req.getRequestDispatcher("/WEB-INF/views/logManagerView.jsp").forward(req, resp);
         req.getRequestDispatcher("/WEB-INF/views/logManagerView.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int draw = Integer.parseInt(req.getParameter("draw"));
-        int start = Integer.parseInt(req.getParameter("start"));
-        int length = Integer.parseInt(req.getParameter("length"));
+        int page = Integer.parseInt(req.getParameter("page"))-1;
+        int start = 10*page;
+        int length = 10;
         JsonArray jsonArray = new JsonArray();
-        List<Log> logs = JDBIUltis.getJDBI().onDemand(LogJDBI.class).selectByPage(start, length);
+        List<Log> logs = logDAO.selectByPage(start, length);
         for(Log log:logs){
-            System.out.println(log);
+
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("id", log.getId());
             jsonObject.addProperty("ip", log.getIp());
             jsonObject.addProperty("levelLog", log.getLevelLog());
-            jsonObject.addProperty("res", log.getResource());
+            jsonObject.addProperty("res", log.getRes());
             jsonObject.addProperty("preValue", log.getPreValue());
             jsonObject.addProperty("curValue", log.getCurValue());
             jsonObject.addProperty("createAt", log.getCreateAt().toString());
@@ -42,10 +44,10 @@ public class LogManagerServlet extends HttpServlet {
             jsonArray.add(jsonObject);
 
         }
+        int totalPage = (logDAO.getQuantity() %10 ==0)?logDAO.getQuantity()/10:(logDAO.getQuantity()/10)+1;
         JsonObject jsonRespone = new JsonObject();
         jsonRespone.add("data", jsonArray);
-        jsonRespone.addProperty("recordsTotal", logs.size());
-        jsonRespone.addProperty("recordsFiltered", JDBIUltis.getJDBI().onDemand(LogJDBI.class).getQuantity());
+        jsonRespone.addProperty("totalPage", totalPage);
         resp.setStatus(200);
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");

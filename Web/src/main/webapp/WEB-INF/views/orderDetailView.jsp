@@ -40,6 +40,9 @@
                 <strong class="d-inline-block me-4"><fmt:message key="ma_don_hang"/>: ${requestScope.order.id}</strong>
                 <span><fmt:message key="ngay_mua"/>: ${requestScope.createdAt}</span>
                 <c:choose>
+                  <c:when test="${requestScope.order.status == 0}">
+                    <span class="badge bg-warning text-dark float-end"><fmt:message key="dat_hang_thanh_cong"/></span>
+                  </c:when>
                   <c:when test="${requestScope.order.status == 1}">
                     <span class="badge bg-warning text-dark float-end"><fmt:message key="dang_giao_hang"/></span>
                   </c:when>
@@ -49,6 +52,9 @@
                   <c:when test="${requestScope.order.status == 3}">
                     <span class="badge bg-danger float-end"><fmt:message key="huy_don_hang"/></span>
                   </c:when>
+                  <c:when test="${requestScope.order.status == 4}">
+                    <span class="badge bg-danger float-end"><fmt:message key="tra_hang"/></span>
+                  </c:when>
                 </c:choose>
               </header> <!-- card-header.// -->
 
@@ -57,8 +63,8 @@
                   <div class="col-lg-8">
                     <h6 class="text-muted"><fmt:message key="dia_chi_nguoi_nhan"/></h6>
                     <p class="lh-lg">
-<%--                        ${sessionScope.currentUser.fullname} <br>--%>
-<%--                          <fmt:message key="so_dien_thoai"/>: ${sessionScope.currentUser.phoneNumber} <br>--%>
+                        ${sessionScope.currentUser.fullname} <br>
+                          <fmt:message key="so_dien_thoai"/>: ${sessionScope.currentUser.phoneNumber} <br>
 <%--                          <fmt:message key="dia_chi"/>: ${sessionScope.currentUser.address}--%>
                     </p>
                   </div>
@@ -161,7 +167,7 @@
                   <a href="#" class="btn btn-primary me-2"><fmt:message key="theo_doi_don_hang"/></a>
                   <input type="hidden" name="id" value="${requestScope.order.id}">
                   <button type="submit"
-                          class="btn btn-danger ${requestScope.order.status != 1 ? "disabled" : ""}"
+                          class="btn btn-danger ${requestScope.order.status !=0 ? "disabled" : ""}"
                           onclick="return confirm('<fmt:message key="ban_co_muon_huy_don_hang"/>?')">
                     <fmt:message key="huy_don_hang"/>
                   </button>

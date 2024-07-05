@@ -6,7 +6,6 @@ import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.IPUtils;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Date;
@@ -61,7 +60,7 @@ public class SendMail {
             content = content.replace("{ID}", log.getId() + "");
             content = content.replace("{IP}", IPUtils.getIPInfo(log.getIp()).getCountry());
             content = content.replace("{level}",log.getLevelLog()+"");
-            content = content.replace("{resource}",log.getResource());
+            content = content.replace("{resource}",log.getRes());
             content = content.replace("{prevalue}", log.getPreValue());
             content = content.replace("{curvalue}",log.getCurValue());
             Properties props = new Properties();

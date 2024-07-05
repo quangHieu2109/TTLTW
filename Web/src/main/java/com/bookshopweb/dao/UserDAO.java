@@ -68,6 +68,7 @@ import com.bookshopweb.beans.Address;
 import com.bookshopweb.beans.GoogleUser;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.beans.WishlistItem;
+import com.bookshopweb.jdbiInterface.UserJDBI;
 import com.bookshopweb.utils.JDBCUtils;
 import com.bookshopweb.utils.JDBIUltis;
 
@@ -78,6 +79,9 @@ import java.util.Optional;
 
 public class UserDAO extends AbsDAO<User> {
     Connection conn = JDBCUtils.getConnection();
+    public User getUserByPhoneNumber(String phoneNumber){
+        return JDBIUltis.getJDBI().onDemand(UserJDBI.class).getByPhoneNumber(phoneNumber);
+    }
     public User selectPrevalue(Long id){
         User result = null;
         try {

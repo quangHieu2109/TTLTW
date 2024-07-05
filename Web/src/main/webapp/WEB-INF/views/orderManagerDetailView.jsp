@@ -34,12 +34,12 @@
 
           <dt class="col-md-3"><fmt:message key="ngay_tao"/></dt>
           <dd class="col-md-9">
-            ${requestScope.order.createdAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
+            ${requestScope.order.createdAt}
           </dd>
 
           <dt class="col-md-3"><fmt:message key="ngay_cap_nhat"/></dt>
           <dd class="col-md-9">
-            ${requestScope.order.updatedAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
+            ${requestScope.order.updatedAt}
           </dd>
 
           <dt class="col-md-3"><fmt:message key="nguoi_dat_nhan"/></dt>

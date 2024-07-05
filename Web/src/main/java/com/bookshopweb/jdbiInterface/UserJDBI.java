@@ -16,6 +16,8 @@ public interface UserJDBI {
     List<User> selectAll();
     @SqlQuery("select * from user where id= :id")
     User getById(@Bind("id") long id);
+    @SqlQuery("select * from user where phoneNumber= :phoneNumber")
+    User getByPhoneNumber(@Bind("phoneNumber") String phoneNumber);
     @SqlUpdate("insert into user(id, username, password, fullname, email, phoneNumber, gender, role, createAt) " +
             "values(:id, :username, :password, :fullname, :email, :phoneNumber, :gender, :role, :createAt)")
     void addUsser(@BindBean User user);
