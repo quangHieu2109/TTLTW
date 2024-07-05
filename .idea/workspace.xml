@@ -11,16 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="update sql">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/service/SendMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/service/SendMail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/AllCategoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/AllCategoryServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/OrderDetailServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/OrderDetailServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_en_US.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_en_US.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_vi_VN.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_vi_VN.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/logManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/logManagerView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderDetailView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderDetailView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/cart2.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/cart2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/voucher.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/voucher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/StatisticalProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/beans/StatisticalProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/StatiscalProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/StatiscalProductDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +137,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.83">
+  <component name="RunManager" selected="Application.StatiscalProductDAO">
     <configuration name="CreateVoucherServlet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bookshopweb.servlet.admin.voucher.CreateVoucherServlet" />
       <module name="BookShopWeb" />
@@ -172,12 +164,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderItemDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.OrderItemDAO" />
+    <configuration name="ProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.ProductDAO" />
       <module name="BookShopWeb" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.bookshopweb.mapper.*" />
+          <option name="PATTERN" value="com.bookshopweb.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -185,8 +177,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.ProductDAO" />
+    <configuration name="StatiscalProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.StatiscalProductDAO" />
       <module name="BookShopWeb" />
       <extension name="coverage">
         <pattern>
@@ -299,20 +291,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.StatiscalProductDAO" />
       <item itemvalue="Application.ImportProductDAO" />
       <item itemvalue="Application.CreateVoucherServlet" />
       <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
-      <item itemvalue="Application.OrderItemDAO" />
       <item itemvalue="Application.ProductDAO" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.83" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StatiscalProductDAO" />
         <item itemvalue="Application.ImportProductDAO" />
         <item itemvalue="Application.ProductDAO" />
         <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
         <item itemvalue="Application.CreateVoucherServlet" />
-        <item itemvalue="Application.OrderItemDAO" />
       </list>
     </recent_temporary>
   </component>

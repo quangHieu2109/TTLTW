@@ -13,21 +13,27 @@ public class StatiscalProductDAO {
     public List<StatisticalProduct> getAll() {
         List<StatisticalProduct> result = new ArrayList<>();
         try {
-            String sql = "SELECT pd.id, pd.name,  \n" +
-                    "COALESCE((SELECT SUM(product_import.quanlity) FROM product_import \n" +
-                    "WHERE product_import.productId=pd.id), 0) AS import_quatity,\n" +
-                    "COALESCE((SELECT SUM(order_item.quantity) \n" +
-                    "FROM order_item \n" +
-                    "INNER JOIN orders ON order_item.orderId = orders.id \n" +
-                    "WHERE order_item.productId = pd.id AND orders.status != 3 ), 0) AS sell_quantityitem, \n" +
-                    "COALESCE((SELECT SUM(order_item.price) \n" +
-                    "FROM order_item \n" +
-                    "INNER JOIN orders ON order_item.orderId = orders.id \n" +
-                    "WHERE order_item.productId = pd.id AND orders.status != 3), 0) AS total_sell_price,\n" +
-                    "COALESCE((SELECT SUM(product_import.quanlity * product_import.price) \n" +
-                    "FROM product_import \n" +
-                    "WHERE product_import.productId=pd.id), 0) AS total_import_price\n" +
-                    "FROM product pd";
+            String sql = "SELECT pd.id, pd.name,\n" +
+                    "                  COALESCE((SELECT SUM(product_import.quanlity) FROM product_import \n" +
+                    "                    WHERE product_import.productId=pd.id), 0) AS import_quatity,\n" +
+                    "                  COALESCE((SELECT SUM(order_item.quantity) \n" +
+                    "                    FROM order_item \n" +
+                    "                    INNER JOIN orders ON order_item.orderId = orders.id \n" +
+                    "                    WHERE order_item.productId = pd.id AND orders.status != 3 ), 0) AS sell_quantityitem, \n" +
+                    "                  COALESCE((SELECT SUM(order_item.quantity) \n" +
+                    "                    FROM order_item \n" +
+                    "                    INNER JOIN orders ON order_item.orderId = orders.id \n" +
+                    "                    WHERE order_item.productId = pd.id AND orders.status = 3 ), 0) AS refund_quantityitem,\n" +
+                    "                  COALESCE((SELECT ROUND(SUM(order_item.price) ,0)\n" +
+                    "                    FROM order_item\n" +
+                    "                    INNER JOIN orders ON order_item.orderId = orders.id \n" +
+                    "                    WHERE order_item.productId = pd.id AND orders.status != 3  AND orders.status != 4), 0) AS total_sell_price,\n" +
+                    "                 \n" +
+                    "                  \n" +
+                    "                  COALESCE((SELECT ROUND(SUM(product_import.quanlity * product_import.price),0) \n" +
+                    "                    FROM product_import\n" +
+                    "                    WHERE product_import.productId=pd.id), 0) AS total_import_price\n" +
+                    "                    FROM product pd;";
             PreparedStatement st = conn.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             result = getFromResultset(rs);
@@ -74,6 +80,7 @@ public class StatiscalProductDAO {
                 int quantitySell = rs.getInt("sell_quantityitem");
                 int totalQuantityImport = rs.getInt("total_import_quatity");
                 int totalQuantitySell = rs.getInt("total_sell_quantityitem");
+
                 result.add(new StatisticalProduct(id, name, totalQuantityImport-totalQuantitySell, quantitySell));
 
             }
@@ -85,6 +92,57 @@ public class StatiscalProductDAO {
     }
     // Thống kê tỉ lệ nhập so với tỉ lệ bán, số lượng tồn kho
     public List<StatisticalProduct> getSaleRate(String start, String end) {
+        List<StatisticalProduct> result = new ArrayList<>();
+        try {
+            String sql =
+                    "SELECT pd.id, pd.name,  \n" +
+
+                            "COALESCE((SELECT SUM(order_item.quantity)\n" +
+                            "              FROM order_item \n" +
+                            "              INNER JOIN orders ON order_item.orderId = orders.id\n" +
+                            "              WHERE order_item.productId = pd.id AND orders.status != 3 \n" +
+                            "  AND (orders.createdAt BETWEEN ? AND ?)), 0) AS sell_quantityitem,\n" +
+                            "COALESCE((SELECT SUM(order_item.quantity)\n" +
+                            "              FROM order_item \n" +
+                            "              INNER JOIN orders ON order_item.orderId = orders.id\n" +
+                            "              WHERE order_item.productId = pd.id AND orders.status != 3 \n" +
+                            "  ), 0) AS total_sell_quantityitem,\n" +
+                            "COALESCE((SELECT SUM(product_import.quanlity) \n" +
+                            "FROM product_import\n" +
+                            "WHERE product_import.productId=pd.id \n" +
+                            "AND (product_import.importAt BETWEEN ? AND ?)), 0) AS import_quatity, "+
+
+                            " COALESCE((SELECT SUM(product_import.quanlity) \n" +
+                            "               FROM product_import\n" +
+                            "               WHERE product_import.productId=pd.id \n" +
+                            "  ), 0) AS total_import_quatity" +
+                            "\n" +
+                            "FROM product pd\n";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, start);
+            st.setString(2, end);
+            st.setString(3, start);
+            st.setString(4, end);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                long id = rs.getLong("id");
+                String name = rs.getString("name");
+                int quantitySell = rs.getInt("sell_quantityitem");
+                int totalQuantityImport = rs.getInt("total_import_quatity");
+                int totalQuantitySell = rs.getInt("total_sell_quantityitem");
+                int quantityImport = rs.getInt("import_quatity");
+                double saleRate = (quantityImport >0)?quantitySell/quantityImport:1;
+                result.add(new StatisticalProduct(id, name, quantityImport, quantitySell, totalQuantityImport-totalQuantitySell, saleRate));
+
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+    // Thống kê thông tin về số lượng nhập, số lượng tồn kho của những sản phẩm không bán được trong 1 khoảng thời gian
+    public List<StatisticalProduct> getCanntSale(String start, String end) {
         List<StatisticalProduct> result = new ArrayList<>();
         try {
             String sql =
@@ -148,7 +206,7 @@ public class StatiscalProductDAO {
                             "              WHERE order_item.productId = pd.id AND orders.status != 3 \n" +
                             "  AND (orders.createdAt BETWEEN ? AND ?)), 0) AS sell_quantityitem,\n" +
                             "\n" +
-                            " COALESCE((SELECT SUM(order_item.price)\n" +
+                            " COALESCE((SELECT ROUND(SUM(order_item.price) ,0)\n" +
                             "              FROM order_item \n" +
                             "              INNER JOIN orders ON order_item.orderId = orders.id\n" +
                             "              WHERE order_item.productId = pd.id AND orders.status != 3 \n" +
@@ -187,7 +245,10 @@ public class StatiscalProductDAO {
                 int sellQuantity = rs.getInt("sell_quantityitem");
                 double totalSellPrice = rs.getDouble("total_sell_price");
                 double totalImportPrice = rs.getDouble("total_import_price");
-                result.add(new StatisticalProduct(productId, name, importQuantity, sellQuantity, totalImportPrice, totalSellPrice));
+                int totalRefund = rs.getInt("refund_quantityitem");
+                int remaining = importQuantity - sellQuantity;
+                double rating = sellQuantity >0?importQuantity/sellQuantity:0;
+                result.add(new StatisticalProduct(productId, name, importQuantity, sellQuantity, totalImportPrice, totalSellPrice, remaining, rating, totalRefund));
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -202,7 +263,7 @@ public int getRemainingAmount(long productId){
 }
     public static void main(String[] args) {
         StatiscalProductDAO dao = new StatiscalProductDAO();
-        for (StatisticalProduct s : dao.getSaleRate("2020-1-1","2025-1-1")) {
+        for (StatisticalProduct s : dao.getAll()) {
             System.out.println(s);
         }
     }
