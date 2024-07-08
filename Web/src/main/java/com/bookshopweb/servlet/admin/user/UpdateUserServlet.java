@@ -1,8 +1,10 @@
 package com.bookshopweb.servlet.admin.user;
 
+import com.bookshopweb.beans.Address;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.HashingUtils;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
 
@@ -46,7 +48,6 @@ public class UpdateUserServlet extends HttpServlet {
         user.setEmail(request.getParameter("email"));
         user.setPhoneNumber(request.getParameter("phoneNumber"));
         user.setGender(Protector.of(() -> Integer.parseInt(request.getParameter("gender"))).get(0));
-        user.setAddress(request.getParameter("address"));
         user.setRole(request.getParameter("role"));
 
         Map<String, List<String>> violations = new HashMap<>();
@@ -82,10 +83,6 @@ public class UpdateUserServlet extends HttpServlet {
         violations.put("genderViolations", Validator.of(user.getGender())
                 .isNotNull()
                 .toList());
-        violations.put("addressViolations", Validator.of(user.getAddress())
-                .isNotNullAndEmpty()
-                .isNotBlankAtBothEnds()
-                .toList());
         violations.put("roleViolations", Validator.of(user.getRole())
                 .isNotNull()
                 .toList());
@@ -101,7 +98,7 @@ public class UpdateUserServlet extends HttpServlet {
             } else {
                 user.setPassword(HashingUtils.hash(user.getPassword()));
             }
-            Protector.of(() -> userDAO.update(user,""))
+            Protector.of(() -> userDAO.update(user, IPUtils.getIP(request)))
                     .done(r -> {
                         user.setPassword("");
                         request.setAttribute("user", user);

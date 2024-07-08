@@ -2,6 +2,7 @@ package com.bookshopweb.servlet.admin.user;
 
 import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.UserDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.Protector;
 
 import javax.servlet.ServletException;
@@ -25,7 +26,7 @@ public class DeleteUserServlet extends HttpServlet {
             String successMessage = String.format("Xóa người dùng #%s thành công!", id);
             String errorMessage = String.format("Xóa người dùng #%s thất bại!", id);
 
-            Protector.of(() -> userDAO.delete(userDAO.selectPrevalue(id),""))
+            Protector.of(() -> userDAO.delete(userDAO.selectPrevalue(id), IPUtils.getIP(request)))
                     .done(r -> request.getSession().setAttribute("successMessage", successMessage))
                     .fail(e -> request.getSession().setAttribute("errorMessage", errorMessage));
         }

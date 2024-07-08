@@ -100,4 +100,17 @@ public class CartItem extends AbsModel<CartItem> {
     public Timestamp getCreateAt() {
         return createdAt;
     }
+
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "id=" + id +
+                ", cartId=" + cartId +
+                ", productId=" + productId +
+                ", quantity=" + quantity +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", product=" + product +
+                '}';
+    }
 }

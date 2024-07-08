@@ -46,13 +46,13 @@
                   <p>${sessionScope.currentUser.email}</p>
                 </div>
                 <hr>
-                <div>
-                  <p class="bi bi-map d-block lh-lg">
-                    <fmt:message key="dia_chi"/>:
-                    <br>
-                      ${sessionScope.currentUser.address}
-                  </p>
-                </div>
+<%--                <div>--%>
+<%--                  <p class="bi bi-map d-block lh-lg">--%>
+<%--                    <fmt:message key="dia_chi"/>:--%>
+<%--                    <br>--%>
+<%--&lt;%&ndash;                      ${sessionScope.currentUser.address}&ndash;%&gt;--%>
+<%--                  </p>--%>
+<%--                </div>--%>
                 <article class="card-group">
                   <figure class="card bg-light">
                     <div class="p-3">

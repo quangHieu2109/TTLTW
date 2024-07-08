@@ -4,6 +4,7 @@ import com.bookshopweb.beans.Category;
 import com.bookshopweb.beans.Product;
 import com.bookshopweb.dao.CategoryDAO;
 import com.bookshopweb.dao.ProductDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.ImageUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
@@ -194,7 +195,7 @@ public class UpdateProductServlet extends HttpServlet {
                     .get(Optional::empty);
 
             Protector.of(() -> {
-                        productDAO.update(product,"");
+                        productDAO.update(product, IPUtils.getIP(request));
                         if (categoryFromServer.isPresent()) {
                             productDAO.updateProductCategory(product.getId(), categoryId);
                         } else {

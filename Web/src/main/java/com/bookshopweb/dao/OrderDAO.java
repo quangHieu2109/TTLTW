@@ -69,7 +69,9 @@
 package com.bookshopweb.dao;
 
 import com.bookshopweb.beans.Order;
+import com.bookshopweb.jdbiInterface.OrderJDBI;
 import com.bookshopweb.utils.JDBCUtils;
+import com.bookshopweb.utils.JDBIUltis;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -78,6 +80,40 @@ import java.util.Optional;
 
 public class OrderDAO extends AbsDAO<Order> {
     Connection conn = JDBCUtils.getConnection();
+    static OrderJDBI orderJDBI = JDBIUltis.getJDBI().onDemand(OrderJDBI.class);
+    public List<Order> getByStatus(int status){
+        return orderJDBI.getByStatus(status);
+    }
+    public int getQuantity(int status){
+        return orderJDBI.getQuantityByStatus(status);
+    }
+    public List<Order> getByStatusLimit(int status, int start, int length){
+        return orderJDBI.getByStatusLimit(status, start, length);
+    }
+    public int updateStatus(int status, long id){
+        return orderJDBI.updateStatus(status, id);
+    }
+    public int deleteByUserId(long userId) {
+
+        int result = 0;
+        try{
+            if(getOrderByUserId(userId).size() >0) {
+                for (Order order : getOrderByUserId(userId)) {
+                    new OrderItemDAO().deleteByOrderId(order.getId());
+                }
+            }
+            String sql = "delete from orders where userId=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1,userId);
+            result = ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
     @Override
     public Order selectPrevalue(Long id) {
         Order result = null;
@@ -220,7 +256,24 @@ public class OrderDAO extends AbsDAO<Order> {
         }
         return orders;
     }
+    public List<Order> getOrderByUserId(long userId) {
+        List<Order> orders = new ArrayList<>();
+        String query = "SELECT * FROM orders WHERE userId = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setLong(1, userId);
 
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Order order = mapResultSetToOrder(resultSet);
+                    orders.add(order);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exception
+        }
+        return orders;
+    }
     public List<Order> getOrderedPartByUserId(long userId, int limit, int offset) {
         List<Order> orders = new ArrayList<>();
         String query = "SELECT * FROM orders WHERE userId = ? ORDER BY orders.createdAt DESC LIMIT ? OFFSET ?";

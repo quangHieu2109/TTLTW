@@ -15,6 +15,7 @@ public class Connection {
     private HttpUriRequest request;
     private String baseUrl = "";
     private HttpClient client;
+    @Deprecated
     public Connection(String baseUrl) {
         client = HttpClients.createDefault();
         this.baseUrl = baseUrl;

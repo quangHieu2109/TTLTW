@@ -34,6 +34,13 @@ public class Validator<T> {
         violation.ifPresent(violations::add);
         return this;
     }
+    public Validator<T> isNotConttain(String other) {
+        Optional<String> violation = Optional.ofNullable(o)
+                .filter(obj -> String.valueOf(obj).contains(other))
+                .map(obj -> "Vui lòng chọn giá trị phù hợp");
+        violation.ifPresent(violations::add);
+        return this;
+    }
 
     public Validator<T> isNotEmpty() {
         Optional<String> violation = Optional.ofNullable(o)
@@ -108,6 +115,16 @@ public class Validator<T> {
                 .filter(obj -> !(Double.parseDouble(String.valueOf(o)) >= number))
                 .map(obj -> String.format("%s phải lớn hơn %s", subjectName, number));
         violation.ifPresent(violations::add);
+        return this;
+    }
+    public Validator<T> isStrongPassword(String password) {
+
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
+        Optional<String>    violation = Optional.ofNullable(password)
+                .filter(obj -> !password.matches(regex))
+                .map(obj -> "Mật khẩu phải chứa ít nhất 1 chữ thường, 1 chữ hoa, 1 số, 1 ký tự đặc biệt và không chứa khoảng trắng");
+        violation.ifPresent(violations::add);
+
         return this;
     }
 }

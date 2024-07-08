@@ -1,8 +1,12 @@
 package com.bookshopweb.servlet.client;
 
+import com.bookshopweb.beans.AccurancyUser;
+import com.bookshopweb.beans.Address;
 import com.bookshopweb.beans.User;
+import com.bookshopweb.dao.AccurancyDAO;
 import com.bookshopweb.dao.UserDAO;
 import com.bookshopweb.utils.HashingUtils;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
 
@@ -14,10 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @WebServlet(name = "SignupServlet", value = "/signup")
 public class SignupServlet extends HttpServlet {
@@ -27,6 +28,7 @@ public class SignupServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/signupView.jsp").forward(request, response);
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +40,7 @@ public class SignupServlet extends HttpServlet {
         values.put("email", request.getParameter("email"));
         values.put("phoneNumber", request.getParameter("phoneNumber"));
         values.put("gender", request.getParameter("gender"));
-        values.put("address", request.getParameter("address"));
+
         values.put("policy", request.getParameter("policy"));
 
         // Kiểm tra các parameter, lưu các vi phạm (nếu có) vào map violations
@@ -55,6 +57,7 @@ public class SignupServlet extends HttpServlet {
                 .isNotNullAndEmpty()
                 .isNotBlankAtBothEnds()
                 .isAtMostOfLength(32)
+                .isStrongPassword(values.get("password"))
                 .toList());
         violations.put("fullnameViolations", Validator.of(values.get("fullname"))
                 .isNotNullAndEmpty()
@@ -73,17 +76,32 @@ public class SignupServlet extends HttpServlet {
         violations.put("genderViolations", Validator.of(values.get("gender"))
                 .isNotNull()
                 .toList());
-        violations.put("addressViolations", Validator.of(values.get("address"))
-                .isNotNullAndEmpty()
-                .isNotBlankAtBothEnds()
-                .toList());
+//        violations.put("numberhouseViolations", Validator.of(values.get("numberhouse"))
+//                .isNotNullAndEmpty()
+//                .isNotBlankAtBothEnds()
+//                .toList());
+//        violations.put("provinceViolations", Validator.of(values.get("province"))
+//                .isNotNullAndEmpty()
+//                .isNotBlankAtBothEnds()
+//                .isNotConttain("none")
+//                .toList());
+//        violations.put("districtViolations", Validator.of(values.get("district"))
+//                .isNotNullAndEmpty()
+//                .isNotBlankAtBothEnds()
+//                .isNotConttain("none")
+//                .toList());
+//        violations.put("wardViolations", Validator.of(values.get("ward"))
+//                .isNotNullAndEmpty()
+//                .isNotBlankAtBothEnds()
+//                .isNotConttain("none")
+//                .toList());
         violations.put("policyViolations", Validator.of(values.get("policy"))
                 .isNotNull()
                 .toList());
 
         // Tính tổng các vi phạm sau kiểm tra (nếu có)
         int sumOfViolations = violations.values().stream().mapToInt(List::size).sum();
-        String successMessage = "Đã đăng ký thành công!";
+        String successMessage = "Đã đăng ký thành công! Vui lòng đăng nhập và xác thực tài khoản!";
         String errorMessage = "Đã có lỗi truy vấn!";
 
         // Khi không có vi phạm trong kiểm tra các parameter
@@ -96,22 +114,27 @@ public class SignupServlet extends HttpServlet {
                     values.get("email"),
                     values.get("phoneNumber"),
                     Protector.of(() -> Integer.parseInt(values.get("gender"))).get(0),
-                    values.get("address"),
                     "CUSTOMER",
                     Timestamp.from(Instant.now())
             );
-            Protector.of(() -> userDAO.insert(user,""))
+
+            Protector.of(() -> userDAO.insert(user, IPUtils.getIP(request)))
                     .done(r -> request.setAttribute("successMessage", successMessage))
                     .fail(e -> {
                         request.setAttribute("values", values);
                         request.setAttribute("errorMessage", errorMessage);
                     });
+            AccurancyUser accurancyUser = new AccurancyUser(user.getUsername());
+            accurancyUser.setEndAt(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+            new AccurancyDAO().insertAccurancy(accurancyUser);
+//            request.getRequestDispatcher("/WEB-INF/views/accuracyView.jsp").forward(request, response);
         } else {
             // Khi có vi phạm
             request.setAttribute("values", values);
             request.setAttribute("violations", violations);
-        }
 
+        }
         request.getRequestDispatcher("/WEB-INF/views/signupView.jsp").forward(request, response);
+
     }
 }

@@ -1,7 +1,9 @@
 package com.bookshopweb.servlet.client;
 
+import com.bookshopweb.beans.Address;
 import com.bookshopweb.beans.User;
 import com.bookshopweb.dao.UserDAO;
+import com.bookshopweb.utils.IPUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +26,7 @@ public class SettingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("currentUser");
+
         request.setAttribute("user", user);
         request.getRequestDispatcher("WEB-INF/views/settingView.jsp").forward(request, response);
     }
@@ -39,7 +42,7 @@ public class SettingServlet extends HttpServlet {
         values.put("email", request.getParameter("email"));
         values.put("phoneNumber", request.getParameter("phoneNumber"));
         values.put("gender", request.getParameter("gender"));
-        values.put("address", request.getParameter("address"));
+
 
         User newUser = new User(
                 user.getId(),
@@ -49,7 +52,7 @@ public class SettingServlet extends HttpServlet {
                 values.get("email"),
                 values.get("phoneNumber"),
                 Integer.parseInt(values.get("gender")),
-                values.get("address"),
+
                 "CUSTOMER",
                 Timestamp.from(Instant.now())
         );
@@ -63,7 +66,8 @@ public class SettingServlet extends HttpServlet {
             request.setAttribute("errorMessage", errorMessage);
             request.setAttribute("user", user);
         } else {
-            userDAO.update(newUser,"");
+            userDAO.update(newUser, IPUtils.getIP(request));
+
             request.setAttribute("successMessage", successMessage);
             request.setAttribute("user", newUser);
             request.getSession().setAttribute("currentUser", newUser);

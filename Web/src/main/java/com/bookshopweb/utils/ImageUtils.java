@@ -1,9 +1,11 @@
 
 package com.bookshopweb.utils;
 
+import com.bookshopweb.api.APISaveImage;
 import org.jetbrains.annotations.NotNull;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import java.io.IOException;
@@ -57,7 +59,14 @@ public class ImageUtils {
         }
         return imageName;
     }
+    public static String uploadImage(HttpServletRequest request) throws ServletException, IOException {
 
+        String imageName = "";
+        Part filePart = request.getPart("image");
+        imageName = APISaveImage.uploadImageAndGetLink(filePart.getInputStream(), "");
+
+        return imageName;
+    }
     public static void delete(@NotNull String imageName) {
         Path imagePath = IMAGE_DIR.resolve(imageName).normalize();
         try {

@@ -75,6 +75,25 @@ import java.util.Optional;
 public class CartDAO extends AbsDAO<Cart> {
 
     Connection conn = JDBCUtils.getConnection();
+    public int deleteByUserId(long userId) {
+
+        int result = 0;
+        try{
+            if(selectByUserId(userId) != null) {
+                new CartItemDAO().deleteByCartId(selectByUserId(userId).getId());
+            }
+            String sql = "delete from cart where userId=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1,userId);
+            result = ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
     public Cart selectPrevalue(Long id){
         Cart result = null;
         CartItemDAO dao = new CartItemDAO();
@@ -93,6 +112,30 @@ public class CartDAO extends AbsDAO<Cart> {
 
             }
 
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+    public Cart selectByUserId(long userId){
+        Cart result = null;
+        CartItemDAO dao = new CartItemDAO();
+        try {
+            String sql="select * from cart where userId=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setLong(1, userId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                long id = rs.getLong("id");
+                Timestamp createdAt = rs.getTimestamp("createdAt");
+                Timestamp updatedAt = rs.getTimestamp("updatedAt");
+                result = new Cart(id, userId, createdAt, updatedAt);
+//                result.addCartItem(dao.selectByCart(result));
+
+            }
+            rs.close();
+            st.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -123,7 +166,6 @@ public class CartDAO extends AbsDAO<Cart> {
         return result;
     }
     @Override
-
     public int insert(Cart cart, String ip) {
 
         int result = 0;

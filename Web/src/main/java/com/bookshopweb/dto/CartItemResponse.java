@@ -12,6 +12,8 @@ public class CartItemResponse {
     private final int productQuantity;
     private final String productImageName;
     private final int quantity;
+    private final String category;
+
 
     public CartItemResponse(long id,
                             long cartId,
@@ -21,7 +23,7 @@ public class CartItemResponse {
                             double productDiscount,
                             int productQuantity,
                             String productImageName,
-                            int quantity) {
+                            int quantity, String category) {
         this.id = id;
         this.cartId = cartId;
         this.productId = productId;
@@ -31,6 +33,7 @@ public class CartItemResponse {
         this.productQuantity = productQuantity;
         this.productImageName = productImageName;
         this.quantity = quantity;
+        this.category = category;
     }
 
     public long getId() {
@@ -67,6 +70,10 @@ public class CartItemResponse {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     @Override

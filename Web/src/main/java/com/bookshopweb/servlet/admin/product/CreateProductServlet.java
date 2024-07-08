@@ -4,6 +4,7 @@ import com.bookshopweb.beans.Category;
 import com.bookshopweb.beans.Product;
 import com.bookshopweb.dao.CategoryDAO;
 import com.bookshopweb.dao.ProductDAO;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.ImageUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.Validator;
@@ -123,7 +124,7 @@ public class CreateProductServlet extends HttpServlet {
             ImageUtils.setServletContext(getServletContext());
             ImageUtils.upload(request).ifPresent(product::setImageName);
             Protector.of(() -> {
-                        long productId = productDAO.insert(product,"");
+                        long productId = productDAO.insert(product, IPUtils.getIP(request));
                         productDAO.insertProductCategory(productId, categoryId);
                     })
                     .done(r -> request.setAttribute("successMessage", successMessage))
