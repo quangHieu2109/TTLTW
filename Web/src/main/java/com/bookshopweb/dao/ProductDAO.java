@@ -77,7 +77,8 @@ public class ProductDAO extends AbsDAO<Product>{
                     "    COALESCE((SELECT SUM(order_item.quantity)\n" +
                     "              FROM order_item \n" +
                     "              INNER JOIN orders ON order_item.orderId = orders.id\n" +
-                    "              WHERE order_item.productId = ? AND orders.status != 3), 0) AS conLai";
+                    "              WHERE order_item.productId = ? AND orders.status != 3 " +
+                    "              ), 0) AS conLai";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setLong(1, id);
             st.setLong(2, id);

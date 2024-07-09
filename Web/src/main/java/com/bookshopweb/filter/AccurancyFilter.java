@@ -33,7 +33,9 @@ public class AccurancyFilter implements Filter {
             if(currentUser == null){
                 chain.doFilter(request, response);
             }else{
+                //Kiểm tra xem tài khoản đã xác thực hay chưa
                 if(currentUser.isAccuracy()){
+                    //Đã xác thực sẽ chuyển đến trang chủ
                     if(request.getRequestURI().equals("/accuracyView.jsp")){
                         response.sendRedirect(request.getContextPath()+"/");
                     }else {
@@ -41,6 +43,8 @@ public class AccurancyFilter implements Filter {
                         chain.doFilter(request, response);
                     }
                 }else{
+                    // Tài khoản chưa xác thực thì sẽ gửi 1 mã xác thực đến email
+                    // Và chuyển người dùng đến trang xác thực
                     AccurancyUser accurancyUser = new AccurancyDAO().getByUserName(currentUser.getUsername());
                     if(Calendar.getInstance().getTimeInMillis() > accurancyUser.getEndAt().getTime()){
 

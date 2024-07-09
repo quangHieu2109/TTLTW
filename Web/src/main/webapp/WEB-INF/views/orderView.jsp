@@ -56,6 +56,9 @@
                     <td><fmt:formatNumber pattern="#,##0" value="${order.total}"/>₫</td>
                     <td>
                       <c:choose>
+                        <c:when test="${order.status == 0}">
+                          <span class="badge bg-info text-dark"><fmt:message key="dat_hang_thanh_cong"/></span>
+                        </c:when>
                         <c:when test="${order.status == 1}">
                           <span class="badge bg-warning text-dark"><fmt:message key="dang_giao_hang"/></span>
                         </c:when>
@@ -64,6 +67,9 @@
                         </c:when>
                         <c:when test="${order.status == 3}">
                           <span class="badge bg-danger"><fmt:message key="huy_don_hang"/></span>
+                        </c:when>
+                        <c:when test="${order.status == 4}">
+                          <span class="badge bg-danger"><fmt:message key="tra_hang"/></span>
                         </c:when>
                       </c:choose>
                     </td>

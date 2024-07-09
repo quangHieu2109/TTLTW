@@ -255,14 +255,21 @@ export function _formatPrice(value) {
 
 function convertCartItemToHTML(cartItem) {
     let disable = "";
-    // console.log("productQuantity ", )
+    // Kiểm tra xem số lượng sản phẩm trong giỏ hàng có lớn hơn
+    // số lượng còn lại trong kho hay không
     if (cartItem.productQuantity < cartItem.quantity) {
         disable = 'disabled';
     }
     return `
     <tr id="tr${cartItem.id}">
     <td>
-    <input id="isBuy${cartItem.id}" type="checkbox" value="${cartItem.id}" name="cartItem" class="form-check" style="width: 30px" onchange="updateAplyVoucher()" ${disable} title="Số lượng trong kho không đủ">
+<!--    checkbox để lựa chọn đặt hàng-->
+    <input id="isBuy${cartItem.id}" type="checkbox" value="${cartItem.id}" 
+    name="cartItem" 
+    class="form-check"
+    style="width: 30px" 
+    onchange="updateAplyVoucher()" ${disable} 
+    title="Số lượng trong kho không đủ">
     </td>
       <td>
         <figure class="itemside">

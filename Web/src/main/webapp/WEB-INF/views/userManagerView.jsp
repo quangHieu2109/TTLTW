@@ -16,6 +16,8 @@
 </head>
 
 <body>
+<jsp:include page="_headerAdmin.jsp"/>
+
 <section class="section-content">
   <div class="container">
     <c:if test="${not empty sessionScope.successMessage}">

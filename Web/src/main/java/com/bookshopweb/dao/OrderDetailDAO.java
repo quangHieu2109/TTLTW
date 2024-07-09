@@ -1,5 +1,6 @@
 package com.bookshopweb.dao;
 
+import com.bookshopweb.beans.Order;
 import com.bookshopweb.beans.OrderDetail;
 import com.bookshopweb.jdbiInterface.OrderDetailJDBI;
 import com.bookshopweb.utils.JDBIUltis;
@@ -25,5 +26,12 @@ public class OrderDetailDAO {
     }
     public int updateProductVoucherId(long productVoucherId, long orderId){
         return orderDetailJDBI.updateProductVoucherId(productVoucherId, orderId);
+    }
+
+    public static void main(String[] args) {
+       OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+       OrderDAO orderDAO = new OrderDAO();
+       Order order = orderDAO.selectPrevalue(Long.parseLong("1717525929835"));
+        System.out.println(orderDetailDAO.getByOrderId(order.getId()));
     }
 }

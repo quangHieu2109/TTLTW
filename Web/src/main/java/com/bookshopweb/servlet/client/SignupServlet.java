@@ -80,25 +80,6 @@ public class SignupServlet extends HttpServlet {
         violations.put("genderViolations", Validator.of(values.get("gender"))
                 .isNotNull()
                 .toList());
-//        violations.put("numberhouseViolations", Validator.of(values.get("numberhouse"))
-//                .isNotNullAndEmpty()
-//                .isNotBlankAtBothEnds()
-//                .toList());
-//        violations.put("provinceViolations", Validator.of(values.get("province"))
-//                .isNotNullAndEmpty()
-//                .isNotBlankAtBothEnds()
-//                .isNotConttain("none")
-//                .toList());
-//        violations.put("districtViolations", Validator.of(values.get("district"))
-//                .isNotNullAndEmpty()
-//                .isNotBlankAtBothEnds()
-//                .isNotConttain("none")
-//                .toList());
-//        violations.put("wardViolations", Validator.of(values.get("ward"))
-//                .isNotNullAndEmpty()
-//                .isNotBlankAtBothEnds()
-//                .isNotConttain("none")
-//                .toList());
         violations.put("policyViolations", Validator.of(values.get("policy"))
                 .isNotNull()
                 .toList());
@@ -128,11 +109,9 @@ public class SignupServlet extends HttpServlet {
                         request.setAttribute("values", values);
                         request.setAttribute("errorMessage", errorMessage);
                     });
-            if(request.getAttribute("errorMessage") != null){
                 AccurancyUser accurancyUser = new AccurancyUser(user.getUsername());
                 accurancyUser.setEndAt(new Timestamp(Calendar.getInstance().getTimeInMillis()));
                 new AccurancyDAO().insertAccurancy(accurancyUser);
-            }
 //            request.getRequestDispatcher("/WEB-INF/views/accuracyView.jsp").forward(request, response);
         } else {
             // Khi có vi phạm
