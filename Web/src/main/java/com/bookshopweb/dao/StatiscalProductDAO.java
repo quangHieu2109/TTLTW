@@ -209,7 +209,7 @@ public class StatiscalProductDAO {
           "       AND orders.status != 4 " +
           "       AND (orders.createdAt BETWEEN ? " +
           "       AND ?)), 0) AS sell_quantityitem, " +
-          " COALESCE((SELECT ROUND(SUM(order_item.price) ,0) " +
+          " COALESCE((SELECT ROUND(SUM(order_item.price * order_item.quantity) ,0) " +
           "       FROM order_item  " +
           "       INNER JOIN orders ON order_item.orderId = orders.id " +
           "       WHERE order_item.productId = pd.id " +
@@ -251,7 +251,7 @@ public class StatiscalProductDAO {
                     "    MAX(orders.createdAt) AS lastOrderTime " +
                     "FROM user " +
                     "INNER JOIN orders ON user.id = orders.userId " +
-                    "WHERE orders.`status` != 3 AND orders.`status`!=4 " +
+                    "WHERE orders.`status` = 2 " +
                     "GROUP BY user.id, user.username) AS tmp " +
                     "WHERE TIMESTAMPADD(MONTH, ?, tmp.lastOrderTime) < CURRENT_TIMESTAMP()";
             PreparedStatement st = conn.prepareStatement(sql);
@@ -297,8 +297,8 @@ public int getRemainingAmount(long productId){
 }
     public static void main(String[] args) {
         StatiscalProductDAO dao = new StatiscalProductDAO();
-        for (StatisticalCustomer s : dao.getCustomersNotReorder(5)) {
-            System.out.println(s);
+        for(StatisticalProduct p : dao.getRevenue("2020-1-1","2024-12-1")){
+            System.out.println(p);
         }
     }
 }

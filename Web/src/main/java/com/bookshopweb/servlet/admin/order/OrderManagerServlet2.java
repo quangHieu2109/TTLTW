@@ -44,11 +44,9 @@ public class OrderManagerServlet2 extends HttpServlet {
     protected void getDetail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String baseName = "lang_vi_VN";
-//        session.setAttribute("lang","en");
 
         Locale.setDefault(new Locale("vi_VN"));
         if (session.getAttribute("lang") != null && session.getAttribute("lang").toString().equals("en")) {
-//            Locale.setDefault(new Locale("en_US"));
             baseName = "lang_en_US";
         }
         ResourceBundle resources = ResourceBundle.getBundle(baseName);

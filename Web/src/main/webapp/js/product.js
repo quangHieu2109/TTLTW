@@ -95,28 +95,29 @@ function buyNowBtnEvent() {
 
 }
 
+//Thêm sản phẩm vào giỏ hàng
 function addCartItemBtnEvent() {
   $.ajax({
-    url: contextPathMetaTag.content + "/cartItem",
+    url:"/cartItem",
     type: 'POST',
     data:{
-      userId: currentUserIdMetaTag.content,
       productId: productIdMetaTag.content,
       quantity: quantityInput.value,
     },
     success: function (response) {
+      //Cập nhật số lượng trong giỏ hàng
       updateTotalQuantity()
+      //Thông báo thành công
       createToast(toastComponent(
-          SUCCESS_ADD_CART_ITEM_MESSAGE(quantityInput.value, productTitleElement.innerText), "success"));
+          SUCCESS_ADD_CART_ITEM_MESSAGE(quantityInput.value,
+              productTitleElement.innerText), "success"));
     },
     error: function (response) {
       console.log(response)
-
+      //Thông báo thất bại
       createToast(toastComponent(FAILED_ADD_CART_ITEM_MESSAGE, "danger"));
-
     }
   })
-
 }
 
 // MAIN

@@ -120,6 +120,7 @@ public class Validator<T> {
         violation.ifPresent(violations::add);
         return this;
     }
+    //Kiểm tra mật khẩu có đủ mạnh không
     public Validator<T> isStrongPassword(String password) {
 
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
