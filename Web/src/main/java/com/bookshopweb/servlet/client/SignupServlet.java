@@ -57,7 +57,9 @@ public class SignupServlet extends HttpServlet {
                 .isNotNullAndEmpty()
                 .isNotBlankAtBothEnds()
                 .isAtMostOfLength(32)
+                .isAtLeastOfLength(6)
                 .isStrongPassword(values.get("password"))
+                .hasPattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$","password")
                 .toList());
         violations.put("fullnameViolations", Validator.of(values.get("fullname"))
                 .isNotNullAndEmpty()
@@ -67,11 +69,13 @@ public class SignupServlet extends HttpServlet {
                 .isNotNullAndEmpty()
                 .isNotBlankAtBothEnds()
                 .hasPattern("^[^@]+@[^@]+\\.[^@]+$", "email")
+                .isExistsEmail(values.get("email"))
                 .toList());
         violations.put("phoneNumberViolations", Validator.of(values.get("phoneNumber"))
                 .isNotNullAndEmpty()
                 .isNotBlankAtBothEnds()
                 .hasPattern("^\\d{10,11}$", "số điện thoại")
+                .isExistsPhoneNumber(values.get("phoneNumber"))
                 .toList());
         violations.put("genderViolations", Validator.of(values.get("gender"))
                 .isNotNull()
@@ -117,16 +121,18 @@ public class SignupServlet extends HttpServlet {
                     "CUSTOMER",
                     Timestamp.from(Instant.now())
             );
-
+            System.out.println(IPUtils.getIP(request));
             Protector.of(() -> userDAO.insert(user, IPUtils.getIP(request)))
                     .done(r -> request.setAttribute("successMessage", successMessage))
                     .fail(e -> {
                         request.setAttribute("values", values);
                         request.setAttribute("errorMessage", errorMessage);
                     });
-            AccurancyUser accurancyUser = new AccurancyUser(user.getUsername());
-            accurancyUser.setEndAt(new Timestamp(Calendar.getInstance().getTimeInMillis()));
-            new AccurancyDAO().insertAccurancy(accurancyUser);
+            if(request.getAttribute("errorMessage") != null){
+                AccurancyUser accurancyUser = new AccurancyUser(user.getUsername());
+                accurancyUser.setEndAt(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+                new AccurancyDAO().insertAccurancy(accurancyUser);
+            }
 //            request.getRequestDispatcher("/WEB-INF/views/accuracyView.jsp").forward(request, response);
         } else {
             // Khi có vi phạm
@@ -137,4 +143,5 @@ public class SignupServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/views/signupView.jsp").forward(request, response);
 
     }
+
 }

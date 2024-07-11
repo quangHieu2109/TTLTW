@@ -9,29 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="update sql">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_2_56_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_22_2024_3_10_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_22_2024_2_09_PM__Changes_.xml" afterDir="false" />
+    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="update statiscal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/service/SendMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/service/SendMail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/AllCategoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/AllCategoryServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/OrderDetailServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/OrderDetailServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiInterface/LogJDBI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/jdbiInterface/LogJDBI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/log/LogManagerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/log/LogManagerServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/order/OrderManagerServlet2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/order/OrderManagerServlet2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_en_US.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_en_US.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_vi_VN.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_vi_VN.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_headerAdmin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/_headerAdmin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/logManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/logManagerView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderDetailView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderDetailView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/cart2.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/cart2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/voucher.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/voucher.js" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartItemServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/client/CartItemServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/LogManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/LogManagerView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/cartView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/address.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderManagerView2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/orderManagerView2.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/logManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/logManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/js/orderManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/js/orderManager.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +111,7 @@
     &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20240326_0002&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Hung&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dmx/OneDrive/Máy tính/New folder/TTLTW&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Program/JavaWeb/TTLTW&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -183,12 +172,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderItemDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.OrderItemDAO" />
+    <configuration name="ProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.ProductDAO" />
       <module name="BookShopWeb" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.bookshopweb.mapper.*" />
+          <option name="PATTERN" value="com.bookshopweb.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -196,8 +185,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.ProductDAO" />
+    <configuration name="StatiscalProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookshopweb.dao.StatiscalProductDAO" />
       <module name="BookShopWeb" />
       <extension name="coverage">
         <pattern>
@@ -310,20 +299,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.StatiscalProductDAO" />
       <item itemvalue="Application.ImportProductDAO" />
       <item itemvalue="Application.CreateVoucherServlet" />
       <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
-      <item itemvalue="Application.OrderItemDAO" />
       <item itemvalue="Application.ProductDAO" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.83" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StatiscalProductDAO" />
         <item itemvalue="Application.ImportProductDAO" />
         <item itemvalue="Application.ProductDAO" />
         <item itemvalue="Application.com.bookshopweb.servlet.admin.voucher.Main" />
         <item itemvalue="Application.CreateVoucherServlet" />
-        <item itemvalue="Application.OrderItemDAO" />
       </list>
     </recent_temporary>
   </component>
@@ -415,6 +404,12 @@
       <workItem from="1717606510727" duration="510000" />
       <workItem from="1717673784356" duration="1197000" />
       <workItem from="1717848506660" duration="142000" />
+      <workItem from="1719033366119" duration="612000" />
+      <workItem from="1719931302773" duration="5595000" />
+      <workItem from="1719983770277" duration="4121000" />
+      <workItem from="1719995320873" duration="5030000" />
+      <workItem from="1720013148838" duration="7665000" />
+      <workItem from="1720102762713" duration="7115000" />
       <workItem from="1717855254847" duration="1300000" />
       <workItem from="1717906714416" duration="10854000" />
     </task>
@@ -530,7 +525,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714716727505</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="update statiscal">
+      <option name="closed" value="true" />
+      <created>1720157445599</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1720157445599</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update statiscal">
+      <option name="closed" value="true" />
+      <created>1720157555373</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1720157555373</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,7 +581,8 @@
     <MESSAGE value="user manager" />
     <MESSAGE value="log manager + order manager" />
     <MESSAGE value="update log manager" />
-    <option name="LAST_COMMIT_MESSAGE" value="update log manager" />
+    <MESSAGE value="update statiscal" />
+    <option name="LAST_COMMIT_MESSAGE" value="update statiscal" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -28,11 +28,12 @@ CREATE TABLE IF NOT EXISTS `accuracyuser` (
   PRIMARY KEY (`id`),
   KEY `username` (`username`),
   CONSTRAINT `accuracyuser_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table bookshopdb.accuracyuser: ~1 rows (approximately)
 INSERT INTO `accuracyuser` (`id`, `username`, `accuracyCode`, `endAt`) VALUES
-	(8, 'user11', '660833', '2024-05-31 06:40:04');
+	(8, 'user11', '660833', '2024-05-31 06:40:04'),
+	(10, 'user1111', '335476', '2024-07-03 05:32:53');
 
 -- Dumping structure for table bookshopdb.address
 CREATE TABLE IF NOT EXISTS `address` (
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`id`),
   KEY `idx_cart_user` (`userId`),
   CONSTRAINT `fk_cart_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table bookshopdb.cart: ~5 rows (approximately)
 INSERT INTO `cart` (`id`, `userId`, `createdAt`, `updatedAt`) VALUES
@@ -73,7 +74,8 @@ INSERT INTO `cart` (`id`, `userId`, `createdAt`, `updatedAt`) VALUES
 	(2, 5, '2021-12-18 13:35:59', NULL),
 	(8, 1, '2024-04-04 15:40:17', NULL),
 	(14, 2, '2024-05-21 04:28:31', NULL),
-	(15, 3, '2024-05-21 06:10:19', NULL);
+	(15, 3, '2024-05-21 06:10:19', NULL),
+	(16, 1714833219717, '2024-06-05 09:04:29', NULL);
 
 -- Dumping structure for table bookshopdb.cart_item
 CREATE TABLE IF NOT EXISTS `cart_item` (
@@ -89,9 +91,9 @@ CREATE TABLE IF NOT EXISTS `cart_item` (
   KEY `idx_cart_item_product` (`productId`),
   CONSTRAINT `fk_cart_item_cart` FOREIGN KEY (`cartId`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_cart_item_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.cart_item: ~10 rows (approximately)
+-- Dumping data for table bookshopdb.cart_item: ~12 rows (approximately)
 INSERT INTO `cart_item` (`id`, `cartId`, `productId`, `quantity`, `createdAt`, `updatedAt`) VALUES
 	(1, 2, 55, 3, '2021-07-13 03:21:51', NULL),
 	(2, 2, 36, 2, '2021-07-05 00:21:45', NULL),
@@ -102,7 +104,9 @@ INSERT INTO `cart_item` (`id`, `cartId`, `productId`, `quantity`, `createdAt`, `
 	(16, 1, 99, 1, '2024-04-05 09:41:52', NULL),
 	(27, 14, 99, 1, '2024-05-21 04:32:43', NULL),
 	(31, 8, 37, 5, '2024-06-04 08:20:24', NULL),
-	(35, 8, 22, 3, '2024-06-04 18:34:31', NULL);
+	(37, 8, 78, 7, '2024-06-05 07:45:52', '2024-06-05 07:45:52'),
+	(38, 8, 99, 1, '2024-06-05 07:35:45', NULL),
+	(41, 8, 93, 1, '2024-07-03 14:57:52', NULL);
 
 -- Dumping structure for table bookshopdb.category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -177,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.log: ~375 rows (approximately)
+-- Dumping data for table bookshopdb.log: ~369 rows (approximately)
 INSERT INTO `log` (`id`, `ip`, `levelLog`, `res`, `preValue`, `curValue`, `createAt`, `updateAt`) VALUES
 	(171155319043, '', 1, 'Hiu', '', '', '2024-04-28 10:28:08', '2024-04-09 10:28:06'),
 	(1711553190592, '123123', 1, 'Update on table User', '{"id":10,"username":"hiu","password":"111","fullname":"Quang Hieu","email":"","phoneNumber":"123123123","gender":1,"address":"","role":"","createAt":"Mar 27, 2024, 10:25:59 PM"}', '{"id":10,"username":"hiu","password":"111","fullname":"Quang Hieu","email":"","phoneNumber":"123123123","gender":1,"address":"","role":""}', '2024-04-28 08:33:18', '2024-03-27 15:25:59'),
@@ -553,7 +557,31 @@ INSERT INTO `log` (`id`, `ip`, `levelLog`, `res`, `preValue`, `curValue`, `creat
 	(1717526987977, '', 3, 'Update on table CartItem', '{"id":36,"cartId":8,"productId":17,"quantity":2,"createdAt":"Jun 5, 2024, 1:42:35 AM"}', '{"id":36,"cartId":8,"productId":17,"quantity":1,"createdAt":"Jun 5, 2024, 1:42:35 AM"}', '2024-06-04 18:42:35', '2024-06-04 18:48:45'),
 	(1717527003877, '', 3, 'Update on table CartItem', '{"id":36,"cartId":8,"productId":17,"quantity":1,"createdAt":"Jun 5, 2024, 1:48:46 AM"}', '{"id":36,"cartId":8,"productId":17,"quantity":2,"createdAt":"Jun 5, 2024, 1:48:46 AM"}', '2024-06-04 18:48:46', '2024-06-04 18:48:58'),
 	(1717527022328, '', 4, 'Delete on table CartItem', '{"id":36,"cartId":8,"productId":17,"quantity":2,"createdAt":"Jun 5, 2024, 1:48:58 AM"}', 'null', '2024-06-04 18:48:58', '2024-06-04 18:49:13'),
-	(1717527037280, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717526953253,"productId":17,"price":90044.0,"discount":20.0,"quantity":2,"createdAt":"Jun 5, 2024, 1:49:13 AM"}', '2024-06-04 18:49:13', '2024-06-04 18:49:13');
+	(1717527037280, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1717526953253,"productId":17,"price":90044.0,"discount":20.0,"quantity":2,"createdAt":"Jun 5, 2024, 1:49:13 AM"}', '2024-06-04 18:49:13', '2024-06-04 18:49:13'),
+	(1717570155212, '', 3, 'Update on table CartItem', '{"id":35,"cartId":8,"productId":22,"quantity":3,"createdAt":"Jun 5, 2024, 1:34:31 AM"}', '{"id":35,"cartId":8,"productId":22,"quantity":4,"createdAt":"Jun 5, 2024, 1:34:31 AM"}', '2024-06-04 18:34:31', '2024-06-05 06:47:39'),
+	(1717572938833, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":8,"productId":78,"quantity":1,"createdAt":"Jun 5, 2024, 2:35:10 PM"}', '2024-06-05 07:35:10', '2024-06-05 07:35:10'),
+	(1717572970419, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":8,"productId":99,"quantity":1,"createdAt":"Jun 5, 2024, 2:35:45 PM"}', '2024-06-05 07:35:45', '2024-06-05 07:35:45'),
+	(1717572970683, '', 3, 'Update on table CartItem', '{"id":37,"cartId":8,"productId":78,"quantity":1,"createdAt":"Jun 5, 2024, 2:35:10 PM"}', '{"id":37,"cartId":8,"productId":78,"quantity":2,"createdAt":"Jun 5, 2024, 2:35:10 PM","updatedAt":"Jun 5, 2024, 2:35:17 PM","product":{"id":78,"name":"Sách Kenegy","price":104405.0,"discount":0.0,"quantity":392,"totalBuy":406,"author":"Carrie Boone","pages":150,"publisher":"NXB Đại học Sư phạm TP.HCM","yearPublishing":2011,"description":"Pariatur ex labore deserunt non deserunt aliqua non reprehenderit elit fugiat elit officia reprehenderit laboris. Irure veniam veniam fugiat aliqua officia ullamco ex sit. Qui esse consequat ipsum sunt et aliqua exercitation Lorem deserunt tempor sunt ullamco. Esse fugiat laborum ut Lorem ad fugiat reprehenderit. Exercitation consequat cupidatat anim sint exercitation est dolor mollit ut cillum non eiusmod eu voluptate. Labore elit sunt labore velit ad anim. Dolor id aliquip et anim sint sint proident duis in sint.\\r\\nUllamco ad id deserunt reprehenderit deserunt ad laborum ad. Laboris id amet dolor ad ex ut id. Exercitation et velit duis amet elit.\\r\\n","imageName":"temp-7329036107498680084.jpg","shop":1,"createdAt":"Jan 4, 2022, 10:35:13 AM"}}', '2024-06-05 07:35:10', '2024-06-05 07:35:17'),
+	(1717573016834, '', 3, 'Update on table CartItem', '{"id":37,"cartId":8,"productId":78,"quantity":2,"createdAt":"Jun 5, 2024, 2:35:17 PM","updatedAt":"Jun 5, 2024, 2:35:17 PM"}', '{"id":37,"cartId":8,"productId":78,"quantity":3,"createdAt":"Jun 5, 2024, 2:35:17 PM","updatedAt":"Jun 5, 2024, 2:35:17 PM","product":{"id":78,"name":"Sách Kenegy","price":104405.0,"discount":0.0,"quantity":392,"totalBuy":406,"author":"Carrie Boone","pages":150,"publisher":"NXB Đại học Sư phạm TP.HCM","yearPublishing":2011,"description":"Pariatur ex labore deserunt non deserunt aliqua non reprehenderit elit fugiat elit officia reprehenderit laboris. Irure veniam veniam fugiat aliqua officia ullamco ex sit. Qui esse consequat ipsum sunt et aliqua exercitation Lorem deserunt tempor sunt ullamco. Esse fugiat laborum ut Lorem ad fugiat reprehenderit. Exercitation consequat cupidatat anim sint exercitation est dolor mollit ut cillum non eiusmod eu voluptate. Labore elit sunt labore velit ad anim. Dolor id aliquip et anim sint sint proident duis in sint.\\r\\nUllamco ad id deserunt reprehenderit deserunt ad laborum ad. Laboris id amet dolor ad ex ut id. Exercitation et velit duis amet elit.\\r\\n","imageName":"temp-7329036107498680084.jpg","shop":1,"createdAt":"Jan 4, 2022, 10:35:13 AM"}}', '2024-06-05 07:35:17', '2024-06-05 07:35:17'),
+	(1717573050150, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":8,"productId":16,"quantity":1,"createdAt":"Jun 5, 2024, 2:35:54 PM"}', '2024-06-05 07:35:54', '2024-06-05 07:35:54'),
+	(1717573415262, '', 4, 'Delete on table CartItem', '{"id":39,"cartId":8,"productId":16,"quantity":1,"createdAt":"Jun 5, 2024, 2:35:54 PM"}', 'null', '2024-06-05 07:35:54', '2024-06-05 07:43:07'),
+	(1717573550134, '', 3, 'Update on table CartItem', '{"id":37,"cartId":8,"productId":78,"quantity":4,"createdAt":"Jun 5, 2024, 2:45:12 PM","updatedAt":"Jun 5, 2024, 2:45:12 PM"}', '{"id":37,"cartId":8,"productId":78,"quantity":5,"createdAt":"Jun 5, 2024, 2:45:12 PM","updatedAt":"Jun 5, 2024, 2:45:16 PM","product":{"id":78,"name":"Sách Kenegy","price":104405.0,"discount":0.0,"quantity":392,"totalBuy":406,"author":"Carrie Boone","pages":150,"publisher":"NXB Đại học Sư phạm TP.HCM","yearPublishing":2011,"description":"Pariatur ex labore deserunt non deserunt aliqua non reprehenderit elit fugiat elit officia reprehenderit laboris. Irure veniam veniam fugiat aliqua officia ullamco ex sit. Qui esse consequat ipsum sunt et aliqua exercitation Lorem deserunt tempor sunt ullamco. Esse fugiat laborum ut Lorem ad fugiat reprehenderit. Exercitation consequat cupidatat anim sint exercitation est dolor mollit ut cillum non eiusmod eu voluptate. Labore elit sunt labore velit ad anim. Dolor id aliquip et anim sint sint proident duis in sint.\\r\\nUllamco ad id deserunt reprehenderit deserunt ad laborum ad. Laboris id amet dolor ad ex ut id. Exercitation et velit duis amet elit.\\r\\n","imageName":"temp-7329036107498680084.jpg","shop":1,"createdAt":"Jan 4, 2022, 10:35:13 AM"}}', '2024-06-05 07:45:12', '2024-06-05 07:45:16'),
+	(1717573570727, '', 3, 'Update on table CartItem', '{"id":37,"cartId":8,"productId":78,"quantity":5,"createdAt":"Jun 5, 2024, 2:45:16 PM","updatedAt":"Jun 5, 2024, 2:45:16 PM"}', '{"id":37,"cartId":8,"productId":78,"quantity":6,"createdAt":"Jun 5, 2024, 2:45:16 PM","updatedAt":"Jun 5, 2024, 2:45:20 PM","product":{"id":78,"name":"Sách Kenegy","price":104405.0,"discount":0.0,"quantity":392,"totalBuy":406,"author":"Carrie Boone","pages":150,"publisher":"NXB Đại học Sư phạm TP.HCM","yearPublishing":2011,"description":"Pariatur ex labore deserunt non deserunt aliqua non reprehenderit elit fugiat elit officia reprehenderit laboris. Irure veniam veniam fugiat aliqua officia ullamco ex sit. Qui esse consequat ipsum sunt et aliqua exercitation Lorem deserunt tempor sunt ullamco. Esse fugiat laborum ut Lorem ad fugiat reprehenderit. Exercitation consequat cupidatat anim sint exercitation est dolor mollit ut cillum non eiusmod eu voluptate. Labore elit sunt labore velit ad anim. Dolor id aliquip et anim sint sint proident duis in sint.\\r\\nUllamco ad id deserunt reprehenderit deserunt ad laborum ad. Laboris id amet dolor ad ex ut id. Exercitation et velit duis amet elit.\\r\\n","imageName":"temp-7329036107498680084.jpg","shop":1,"createdAt":"Jan 4, 2022, 10:35:13 AM"}}', '2024-06-05 07:45:16', '2024-06-05 07:45:20'),
+	(1717573596163, '', 3, 'Update on table CartItem', '{"id":37,"cartId":8,"productId":78,"quantity":3,"createdAt":"Jun 5, 2024, 2:35:17 PM","updatedAt":"Jun 5, 2024, 2:35:17 PM"}', '{"id":37,"cartId":8,"productId":78,"quantity":4,"createdAt":"Jun 5, 2024, 2:35:17 PM","updatedAt":"Jun 5, 2024, 2:45:12 PM","product":{"id":78,"name":"Sách Kenegy","price":104405.0,"discount":0.0,"quantity":392,"totalBuy":406,"author":"Carrie Boone","pages":150,"publisher":"NXB Đại học Sư phạm TP.HCM","yearPublishing":2011,"description":"Pariatur ex labore deserunt non deserunt aliqua non reprehenderit elit fugiat elit officia reprehenderit laboris. Irure veniam veniam fugiat aliqua officia ullamco ex sit. Qui esse consequat ipsum sunt et aliqua exercitation Lorem deserunt tempor sunt ullamco. Esse fugiat laborum ut Lorem ad fugiat reprehenderit. Exercitation consequat cupidatat anim sint exercitation est dolor mollit ut cillum non eiusmod eu voluptate. Labore elit sunt labore velit ad anim. Dolor id aliquip et anim sint sint proident duis in sint.\\r\\nUllamco ad id deserunt reprehenderit deserunt ad laborum ad. Laboris id amet dolor ad ex ut id. Exercitation et velit duis amet elit.\\r\\n","imageName":"temp-7329036107498680084.jpg","shop":1,"createdAt":"Jan 4, 2022, 10:35:13 AM"}}', '2024-06-05 07:35:17', '2024-06-05 07:45:12'),
+	(1717573603536, '', 3, 'Update on table CartItem', '{"id":37,"cartId":8,"productId":78,"quantity":6,"createdAt":"Jun 5, 2024, 2:45:20 PM","updatedAt":"Jun 5, 2024, 2:45:20 PM"}', '{"id":37,"cartId":8,"productId":78,"quantity":7,"createdAt":"Jun 5, 2024, 2:45:20 PM","updatedAt":"Jun 5, 2024, 2:45:52 PM","product":{"id":78,"name":"Sách Kenegy","price":104405.0,"discount":0.0,"quantity":392,"totalBuy":406,"author":"Carrie Boone","pages":150,"publisher":"NXB Đại học Sư phạm TP.HCM","yearPublishing":2011,"description":"Pariatur ex labore deserunt non deserunt aliqua non reprehenderit elit fugiat elit officia reprehenderit laboris. Irure veniam veniam fugiat aliqua officia ullamco ex sit. Qui esse consequat ipsum sunt et aliqua exercitation Lorem deserunt tempor sunt ullamco. Esse fugiat laborum ut Lorem ad fugiat reprehenderit. Exercitation consequat cupidatat anim sint exercitation est dolor mollit ut cillum non eiusmod eu voluptate. Labore elit sunt labore velit ad anim. Dolor id aliquip et anim sint sint proident duis in sint.\\r\\nUllamco ad id deserunt reprehenderit deserunt ad laborum ad. Laboris id amet dolor ad ex ut id. Exercitation et velit duis amet elit.\\r\\n","imageName":"temp-7329036107498680084.jpg","shop":1,"createdAt":"Jan 4, 2022, 10:35:13 AM"}}', '2024-06-05 07:45:20', '2024-06-05 07:45:52'),
+	(1717573648980, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":8,"productId":46,"quantity":1,"createdAt":"Jun 5, 2024, 2:47:02 PM"}', '2024-06-05 07:47:02', '2024-06-05 07:47:02'),
+	(1717573824253, '', 2, 'Insert on table CartItem', 'null', '{"id":0,"cartId":8,"productId":93,"quantity":1,"createdAt":"Jun 5, 2024, 2:50:19 PM"}', '2024-06-05 07:50:19', '2024-06-05 07:50:19'),
+	(1717573900966, '', 3, 'Update on table CartItem', '{"id":35,"cartId":8,"productId":22,"quantity":4,"createdAt":"Jun 5, 2024, 1:47:39 PM"}', '{"id":35,"cartId":8,"productId":22,"quantity":5,"createdAt":"Jun 5, 2024, 1:47:39 PM","updatedAt":"Jun 5, 2024, 2:50:11 PM","product":{"id":22,"name":"Sách Inquala","price":116529.0,"discount":0.0,"quantity":433,"totalBuy":367,"author":"Hilda Crane","pages":238,"publisher":"NXB Đại học Quốc gia Hà Nội","yearPublishing":1998,"description":"Esse ipsum minim voluptate consectetur exercitation dolor. Ex ut anim ad elit non consequat cupidatat anim minim est elit in deserunt Lorem. Est duis minim consectetur sunt duis non.\\r\\nLorem labore proident laborum consequat officia commodo reprehenderit ad Lorem minim incididunt aute in esse. Ex eiusmod ut eiusmod mollit consectetur qui enim sit labore Lorem reprehenderit enim consectetur. Nisi anim veniam sint tempor fugiat pariatur in est sint excepteur.\\r\\n","imageName":"temp-12235989262213754276.jpg","shop":1,"createdAt":"Jan 24, 2022, 8:00:39 AM"}}', '2024-06-05 06:47:39', '2024-06-05 07:50:11'),
+	(1717578229275, '', 2, 'Insert on table User', 'null', '{"id":0,"username":"admin","password":"21232F297A57A5A743894A0E4A801FC3","fullname":"Admin Test","email":"admin@admin.com","phoneNumber":"0917294910","gender":0,"role":"CUSTOMER","createAt":"Jun 5, 2024, 4:02:37 PM","googleUser":false,"accuracy":true}', '2024-06-05 09:02:37', '2024-06-05 09:02:38'),
+	(1717578281395, '', 2, 'Insert on table Cart', 'null', '{"id":0,"userId":1714833219717,"createdAt":"Jun 5, 2024, 4:04:29 PM","listCartItem":[]}', '2024-06-05 09:04:29', '2024-06-05 09:04:29'),
+	(1719986696178, '42.112.79.162', 2, 'Insert on table User', 'null', '{"id":0,"username":"user13333","password":"16DEDE70EF3D625C8A073E422784DCA9","fullname":"Hiếu Ngô Quang Hiếu","email":"hiu@123.com","phoneNumber":"0361235351","gender":0,"role":"CUSTOMER","createAt":"Jul 3, 2024, 1:04:10 PM","googleUser":false,"accuracy":true}', '2024-07-03 06:04:10', '2024-07-03 06:04:12'),
+	(1720018393563, '', 2, 'Insert on table Order', 'null', '{"id":1720018358556,"userId":1,"status":0,"deliveryMethod":1,"deliveryPrice":38500.0,"createdAt":"Jul 3, 2024, 9:52:38 PM","totalPrice":0.0}', '2024-07-03 14:52:38', '2024-07-03 14:52:38'),
+	(1720018393689, '', 4, 'Delete on table CartItem', '{"id":40,"cartId":8,"productId":46,"quantity":1,"createdAt":"Jun 5, 2024, 2:47:02 PM"}', 'null', '2024-06-05 07:47:02', '2024-07-03 14:52:38'),
+	(1720018401685, '42.112.79.162', 3, 'Update on table CartItem', '{"id":41,"cartId":8,"productId":93,"quantity":1,"createdAt":"Jun 5, 2024, 2:50:19 PM"}', '{"id":41,"cartId":8,"productId":93,"quantity":1111,"createdAt":"Jun 5, 2024, 2:50:19 PM"}', '2024-06-05 07:50:19', '2024-07-03 14:51:53'),
+	(1720018411579, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1720018358556,"productId":22,"price":116529.0,"discount":0.0,"quantity":5,"createdAt":"Jul 3, 2024, 9:52:38 PM"}', '2024-07-03 14:52:38', '2024-07-03 14:52:38'),
+	(1720018411656, '', 4, 'Delete on table CartItem', '{"id":35,"cartId":8,"productId":22,"quantity":5,"createdAt":"Jun 5, 2024, 2:50:12 PM","updatedAt":"Jun 5, 2024, 2:50:11 PM"}', 'null', '2024-06-05 07:50:12', '2024-07-03 14:52:38'),
+	(1720018455592, '', 2, 'Insert on table OrderItem', 'null', '{"id":0,"orderId":1720018358556,"productId":46,"price":384754.0,"discount":20.0,"quantity":1,"createdAt":"Jul 3, 2024, 9:52:38 PM"}', '2024-07-03 14:52:38', '2024-07-03 14:52:38'),
+	(1720018746481, '42.112.79.162', 3, 'Update on table CartItem', '{"id":41,"cartId":8,"productId":93,"quantity":1111,"createdAt":"Jul 3, 2024, 9:51:53 PM"}', '{"id":41,"cartId":8,"productId":93,"quantity":1,"createdAt":"Jul 3, 2024, 9:51:53 PM"}', '2024-07-03 14:51:53', '2024-07-03 14:57:52');
 
 -- Dumping structure for table bookshopdb.orders
 CREATE TABLE IF NOT EXISTS `orders` (
@@ -567,13 +595,13 @@ CREATE TABLE IF NOT EXISTS `orders` (
   PRIMARY KEY (`id`),
   KEY `idx_orders_user` (`userId`),
   CONSTRAINT `fk_orders_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1717526953254 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1720018358557 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.orders: ~31 rows (approximately)
+-- Dumping data for table bookshopdb.orders: ~32 rows (approximately)
 INSERT INTO `orders` (`id`, `userId`, `status`, `deliveryMethod`, `deliveryPrice`, `createdAt`, `updatedAt`) VALUES
 	(1, 4, 1, 1, 10000, '2024-05-05 10:26:45', '2024-04-29 08:18:08'),
 	(2, 5, 4, 2, 50000, '2024-05-05 10:34:37', NULL),
-	(3, 4, 2, 1, 10000, '2024-04-29 16:01:20', NULL),
+	(3, 4, 4, 1, 10000, '2024-07-03 16:12:56', NULL),
 	(4, 5, 4, 2, 50000, '2024-05-05 08:24:57', NULL),
 	(5, 4, 2, 1, 10000, '2024-04-29 16:10:15', NULL),
 	(6, 4, 1, 2, 50000, '2024-05-05 08:25:04', NULL),
@@ -601,7 +629,8 @@ INSERT INTO `orders` (`id`, `userId`, `status`, `deliveryMethod`, `deliveryPrice
 	(30, 1, 1, 1, 15000, '2024-05-21 09:30:14', NULL),
 	(1717525929835, 1, 0, 1, 216000, '2024-06-04 18:32:09', NULL),
 	(1717526036853, 1, 0, 1, 38001, '2024-06-04 18:33:56', NULL),
-	(1717526953253, 1, 0, 1, 38001, '2024-06-04 18:49:13', NULL);
+	(1717526953253, 1, 0, 1, 38001, '2024-06-04 18:49:13', NULL),
+	(1720018358556, 1, 0, 1, 38500, '2024-07-03 14:52:38', NULL);
 
 -- Dumping structure for table bookshopdb.order_detail
 CREATE TABLE IF NOT EXISTS `order_detail` (
@@ -620,13 +649,14 @@ CREATE TABLE IF NOT EXISTS `order_detail` (
   CONSTRAINT `FK__orders` FOREIGN KEY (`orderId`) REFERENCES `orders` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_order_detail_voucher` FOREIGN KEY (`shipVoucherId`) REFERENCES `voucher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_order_detail_voucher_2` FOREIGN KEY (`productVoucherId`) REFERENCES `voucher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1717526953254 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1720018358557 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.order_detail: ~3 rows (approximately)
+-- Dumping data for table bookshopdb.order_detail: ~4 rows (approximately)
 INSERT INTO `order_detail` (`orderId`, `addressId`, `shipVoucherId`, `shipVoucherDecrease`, `productVoucherId`, `productVoucherDecrease`, `totalPrice`) VALUES
 	(1717525929835, 33, NULL, 0, NULL, 0, 2152767.4),
 	(1717526036853, 33, 9, -19000.5, 11, 0, 868828.5000000002),
-	(1717526953253, 33, NULL, 0, 11, 0, 144070.4);
+	(1717526953253, 33, NULL, 0, 11, 0, 144070.4),
+	(1720018358556, 36, 9, -19250, 12, -100000, 771198.2);
 
 -- Dumping structure for table bookshopdb.order_item
 CREATE TABLE IF NOT EXISTS `order_item` (
@@ -643,9 +673,9 @@ CREATE TABLE IF NOT EXISTS `order_item` (
   KEY `idx_order_item_product` (`productId`),
   CONSTRAINT `fk_order_item_orders` FOREIGN KEY (`orderId`) REFERENCES `orders` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_item_product` FOREIGN KEY (`productId`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.order_item: ~76 rows (approximately)
+-- Dumping data for table bookshopdb.order_item: ~78 rows (approximately)
 INSERT INTO `order_item` (`id`, `orderId`, `productId`, `price`, `discount`, `quantity`, `createdAt`, `updatedAt`) VALUES
 	(1, 1, 78, 286587, 0, 4, '2021-06-26 20:11:05', NULL),
 	(2, 2, 21, 29619, 0, 2, '2021-03-26 03:39:47', NULL),
@@ -722,7 +752,9 @@ INSERT INTO `order_item` (`id`, `orderId`, `productId`, `price`, `discount`, `qu
 	(84, 1717526036853, 17, 90044, 20, 3, '2024-06-04 18:33:56', NULL),
 	(85, 1717526036853, 31, 231331, 20, 3, '2024-06-04 18:33:56', NULL),
 	(86, 1717526036853, 22, 116529, 0, 1, '2024-06-04 18:33:56', NULL),
-	(87, 1717526953253, 17, 90044, 20, 2, '2024-06-04 18:49:13', NULL);
+	(87, 1717526953253, 17, 90044, 20, 2, '2024-06-04 18:49:13', NULL),
+	(88, 1720018358556, 22, 116529, 0, 5, '2024-07-03 14:52:38', NULL),
+	(89, 1720018358556, 46, 384754, 20, 1, '2024-07-03 14:52:38', NULL);
 
 -- Dumping structure for table bookshopdb.product
 CREATE TABLE IF NOT EXISTS `product` (
@@ -1269,9 +1301,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `uq_username` (`username`),
   UNIQUE KEY `uq_email` (`email`),
   UNIQUE KEY `uq_phoneNumber` (`phoneNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=1714833219717 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=133620766698527080 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table bookshopdb.user: ~7 rows (approximately)
+-- Dumping data for table bookshopdb.user: ~13 rows (approximately)
 INSERT INTO `user` (`id`, `username`, `password`, `fullname`, `email`, `phoneNumber`, `gender`, `role`, `createAt`) VALUES
 	(1, 'user1', '202CB962AC59075B964B07152D234B70', 'Dunn Mcpherson', 'dunnmcpherson@recrisys.com', '0989894900', b'0', 'ADMIN', '2024-04-26 07:43:42'),
 	(2, 'user2', '202CB962AC59075B964B07152D234B70', 'Foreman Carter', 'foremancarter@recrisys.com', '0993194154', b'0', 'EMPLOYEE', '2024-03-27 14:08:39'),
@@ -1279,7 +1311,13 @@ INSERT INTO `user` (`id`, `username`, `password`, `fullname`, `email`, `phoneNum
 	(4, 'user4', '202CB962AC59075B964B07152D234B70', 'Juliette Mcdowell', 'juliettemcdowell@recrisys.com', '0911925643', b'1', 'CUSTOMER', '2024-03-27 14:08:39'),
 	(5, 'user5', '202CB962AC59075B964B07152D234B70', 'Vilma Spencer', 'vilmaspencer@recrisys.com', '0987509391', b'1', 'CUSTOMER', '2024-03-27 14:08:39'),
 	(6, 'hao', '32791E666FEF96B588DB16200D5FDA94', 'Quang Hiu', 'abc@gmail.com', '0123123123', b'0', 'CUSTOMER', '2024-03-27 14:08:39'),
-	(1714833219716, 'user11', '202CB962AC59075B964B07152D234B70', 'HIu', 'hh@fm.cm', '0912123123', b'0', 'CUSTOMER', '2024-05-31 06:40:04');
+	(9, 'user111', '123', 'Quang Hiu', 'hiu@g.com', '(NULL)', b'0', 'CUSTOMER', '2024-06-05 15:55:58'),
+	(1714833219716, 'user11', '202CB962AC59075B964B07152D234B70', 'HIu', 'hh@fm.cm', '0912123123', b'0', 'CUSTOMER', '2024-05-31 06:40:04'),
+	(1714833219717, 'admin', '21232F297A57A5A743894A0E4A801FC3', 'Admin Test', 'admin@admin.com', '0917294910', b'0', 'ADMIN', '2024-06-05 09:03:53'),
+	(133620766698527070, 'user122', '123', 'Quang Hiu Ne', 'hiu@1g.com', NULL, b'0', 'CUSTOMER', '2024-06-05 15:57:49'),
+	(133620766698527071, 'user1111', 'D3C5B51332FE9ABB655B37CACF906228', 'Hiếu Ngô Quang Hiếu', 'hao@ASD.H', '0366123535', b'0', 'CUSTOMER', '2024-07-03 05:32:53'),
+	(133620766698527078, 'user12211', 'F58CA236DBC252D47D100636E72F2CBD', 'Hiếu Ngô Quang Hiếu', 'hao@ASD.VVV', '0366123135', b'0', 'CUSTOMER', '2024-07-03 05:46:40'),
+	(133620766698527079, 'user13333', '16DEDE70EF3D625C8A073E422784DCA9', 'Hiếu Ngô Quang Hiếu', 'hiu@123.com', '0361235351', b'0', 'CUSTOMER', '2024-07-03 06:04:12');
 
 -- Dumping structure for table bookshopdb.voucher
 CREATE TABLE IF NOT EXISTS `voucher` (
@@ -1301,10 +1339,10 @@ CREATE TABLE IF NOT EXISTS `voucher` (
 
 -- Dumping data for table bookshopdb.voucher: ~4 rows (approximately)
 INSERT INTO `voucher` (`id`, `voucher_code`, `voucher_name`, `description`, `quantity`, `percent_decrease`, `max_decrease`, `min_price`, `type`, `createAt`, `startAt`, `endAt`, `voucher_image`) VALUES
-	(9, '5YfYL7', 'Freeship', '', 50, 50, 50000, 100000, 0, '2024-06-04 17:01:54', '2024-06-04 17:00:00', '2024-06-05 17:00:00', 'https://i.imgur.com/hDFplsi.png'),
-	(10, 'OWHhiU', 'Freeship', '', 50, 50, 100000, 100000, 0, '2024-06-04 17:02:11', '2024-06-04 17:00:00', '2024-06-05 17:00:00', 'https://i.imgur.com/fLcIV7T.png'),
-	(11, 'i3s8u2', 'Mã giảm giá sản phẩm', '', 100, 50, 150000, 100000, 1, '2024-06-04 17:02:36', '2024-06-04 17:00:00', '2024-06-05 17:00:00', 'https://i.imgur.com/zseqFPm.png'),
-	(12, 'yQn8YR', 'Mã giảm giá sản phẩm', '', 100, 50, 100000, 100000, 1, '2024-06-04 17:02:55', '2024-06-04 17:00:00', '2024-06-05 17:00:00', 'https://i.imgur.com/iwQ4otE.png');
+	(9, '5YfYL7', 'Freeship', '', 50, 50, 50000, 100000, 0, '2024-06-04 17:01:54', '2024-06-04 17:00:00', '2024-07-12 17:00:00', 'https://i.imgur.com/hDFplsi.png'),
+	(10, 'OWHhiU', 'Freeship', '', 50, 50, 100000, 100000, 0, '2024-06-04 17:02:11', '2024-06-04 17:00:00', '2024-10-05 17:00:00', 'https://i.imgur.com/fLcIV7T.png'),
+	(11, 'i3s8u2', 'Mã giảm giá sản phẩm', '', 100, 50, 150000, 100000, 1, '2024-06-04 17:02:36', '2024-05-04 17:00:00', '2024-05-05 17:00:00', 'https://i.imgur.com/zseqFPm.png'),
+	(12, 'yQn8YR', 'Mã giảm giá sản phẩm', '', 100, 50, 100000, 100000, 1, '2024-06-04 17:02:55', '2024-06-04 17:00:00', '2024-09-05 17:00:00', 'https://i.imgur.com/iwQ4otE.png');
 
 -- Dumping structure for table bookshopdb.wishlist_item
 CREATE TABLE IF NOT EXISTS `wishlist_item` (

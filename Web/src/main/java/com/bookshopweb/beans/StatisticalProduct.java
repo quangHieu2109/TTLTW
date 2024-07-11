@@ -13,6 +13,18 @@ public class StatisticalProduct {
     private double saleRate;
     private int quantityRefund;
 
+    public StatisticalProduct(long productId, String productName, int importQuatity, int sellQuantity, double totalImportPrice, double totalSellPrice, int quantityRemaining, double saleRate, int quantityRefund) {
+        this.productId = productId;
+        this.productName = productName;
+        this.importQuatity = importQuatity;
+        this.sellQuantity = sellQuantity;
+        this.totalImportPrice = totalImportPrice;
+        this.totalSellPrice = totalSellPrice;
+        this.quantityRemaining = quantityRemaining;
+        this.saleRate = saleRate;
+        this.quantityRefund = quantityRefund;
+    }
+
     public StatisticalProduct(long productId, String productName, int importQuatity, int sellQuantity, double totalImportPrice, double totalSellPrice) {
         this.productId = productId;
         this.productName = productName;

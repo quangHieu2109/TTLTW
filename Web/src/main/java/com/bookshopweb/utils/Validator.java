@@ -1,5 +1,8 @@
 package com.bookshopweb.utils;
 
+import com.bookshopweb.beans.User;
+import com.bookshopweb.dao.UserDAO;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -123,6 +126,25 @@ public class Validator<T> {
         Optional<String>    violation = Optional.ofNullable(password)
                 .filter(obj -> !password.matches(regex))
                 .map(obj -> "Mật khẩu phải chứa ít nhất 1 chữ thường, 1 chữ hoa, 1 số, 1 ký tự đặc biệt và không chứa khoảng trắng");
+        violation.ifPresent(violations::add);
+
+        return this;
+    }
+
+    public Validator<T> isExistsEmail(String email) {
+        User user = new UserDAO().getUserByEmail(email);
+        Optional<String>    violation = Optional.ofNullable(email)
+                .filter(obj -> user != null)
+                .map(obj -> "Email đã được đăng ký trước đó");
+        violation.ifPresent(violations::add);
+
+        return this;
+    }
+    public Validator<T> isExistsPhoneNumber(String phoneNumber) {
+        User user = new UserDAO().getUserByPhoneNumber(phoneNumber);
+        Optional<String>    violation = Optional.ofNullable(phoneNumber)
+                .filter(obj -> user != null)
+                .map(obj -> "Số điện thoại đã được đăng ký trước đó");
         violation.ifPresent(violations::add);
 
         return this;
