@@ -69,7 +69,9 @@ public class FeeShipServlet extends HttpServlet {
             }
 //            System.out.println(wardID);
 //            System.out.println(districtID);
-            List<GHNApi.InfoShip> infoShips = ghnApi.getInfoShip(shopDistrictID, shopWardID, Integer.valueOf(districtID), wardID, weight, height, length, width);
+            //Giao hàng nhanh
+            List<GHNApi.InfoShip> infoShips = ghnApi.getInfoShip(shopDistrictID, shopWardID,
+                    Integer.valueOf(districtID), wardID, weight, height, length, width);
             String json = "{\"infoShips\":" + gson.toJson(infoShips) + "}";
             resp.getWriter().write(json);
             resp.getWriter().close();
@@ -92,8 +94,11 @@ public class FeeShipServlet extends HttpServlet {
                     break;
                 }
             }
-
-            List<ViettelPostApi.InfoShip> infoShips = vietelPostApi.getInfoShips(weight, 0, 0, shopProvinceID + "", shopDistrictID + "", provinceID, districtID, null);
+            //ViettelPost
+            List<ViettelPostApi.InfoShip> infoShips = vietelPostApi.getInfoShips(weight,
+                    0, 0,
+                    shopProvinceID + "", shopDistrictID + "",
+                    provinceID, districtID, null);
             String jsonInfoShips = "{\"infoShips\":" + gson.toJson(infoShips) + "}";
             resp.getWriter().write(jsonInfoShips);
             resp.getWriter().flush();

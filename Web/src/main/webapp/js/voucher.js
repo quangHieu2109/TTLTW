@@ -75,7 +75,8 @@ function submitForm(event) {
 }
 
 function getVoucher(type) {
-
+   let voucher_body_product = $('#voucher_body_product')
+   let voucher_body_ship = $('#voucher_body_ship')
     $('#voucher_container').css('display', 'block')
     let get = false;
     if(type == 0){
@@ -89,40 +90,35 @@ function getVoucher(type) {
     }
 
     if(get){
-        console.log('getvoucher ',type)
+        //Lấy danh sách các voucher từ server
         $.ajax({
             url: "/voucherServlet?type=getVouchers&voucherType=" + type,
             type: 'GET',
             success: function (repsonse) {
                 let vouchers = repsonse.vouchers;
-                if (type == 1) {
-                    $('#voucher_body_product').empty();
-
-                    if (vouchers.length == 0) {
-                        $('#voucher_body_product').append(`<div class="w-100 h-100 d-flex justify-content-center align-content-center">Hiện không có voucher nào khả dụng</div>`)
-
+                if (type === 1) {
+                    voucher_body_product.empty();
+                    if (vouchers.length === 0) {
+                        $('#voucher_body_product').append(`<div class="w-100 h-100 d-flex justify-content-center
+                            align-content-center">Hiện không có voucher nào khả dụng</div>`)
                     } else {
                         for (let i = 0; i < vouchers.length; i++) {
                             $('#voucher_body_product').append(convertVoucherToHTML(vouchers[i], type))
                         }
                         applyVoucher(type)
-
                     }
                 } else {
-                    $('#voucher_body_ship').empty();
-
-                    if (vouchers.length == 0) {
-                        $('#voucher_body_ship').append(`<div class="w-100 h-100 d-flex justify-content-center align-content-center">Hiện không có voucher nào khả dụng</div>`)
-
+                    voucher_body_ship.empty();
+                    if (vouchers.length === 0) {
+                        $('#voucher_body_ship').append(`<div class="w-100 h-100 d-flex justify-content-center 
+                            align-content-center">Hiện không có voucher nào khả dụng</div>`)
                     } else {
                         for (let i = 0; i < vouchers.length; i++) {
                             $('#voucher_body_ship').append(convertVoucherToHTML(vouchers[i], type))
                         }
                         applyVoucher(type)
-
                     }
                 }
-
             },
             error: function (response) {
                 console.log(response)
@@ -135,7 +131,6 @@ function getVoucher(type) {
 
 function applyVoucher(type) {
     const vouchers = $(`input[name='${type}']`);
-
     vouchers.each(function () {
         $(this).on('change', function () {
             getDecrease(type)
@@ -183,7 +178,6 @@ function getDecrease(type) {
             formData.append('voucherId', selectedVoucher.val());
             formData.append('cartItemIds', cartItemIds);
             formData.append('ship', ship);
-            console.log('voucherId', selectedVoucher.val())
             $.ajax({
                 url: "/voucherServlet",
                 type: 'POST',
@@ -191,7 +185,6 @@ function getDecrease(type) {
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    console.log(response)
                     if(response.decrease >0){
                         if (type == 0) {
                             $('#voucher-ship').attr('data-value' ,(response.decrease))
@@ -207,7 +200,6 @@ function getDecrease(type) {
                         selectedVoucher.prop('checked', false)
                         alert("Chưa đủ điều kiện để sử dụng mã")
                     }
-
                 },
                 error: function (response) {
                     console.log(response)
@@ -217,7 +209,8 @@ function getDecrease(type) {
         }
     }
 }
-
+//Hiển thị danh sách các voucher cho người dùng từ dữ liệu
+// của server
 function convertVoucherToHTML(voucher, type) {
     return `
         <input type="radio" value="${voucher.id}" name="${type}" id="voucher${voucher.id}" hidden>
@@ -231,15 +224,12 @@ function convertVoucherToHTML(voucher, type) {
             <span class="title">Cho đơn hàng từ: ${_formatPrice(voucher.minPrice)}đ</span>
             <span class="title">Từ ngày ${voucher.startAt} đến hết ${voucher.endAt}</span>
             <span class="title">Áp dụng cho: ${voucher.categories}</span>
-            
         </div>
         <div class="col-lg-2">
-             <label for="voucher${voucher.id}" class="btn btn-primary align-content-center w-100 h-100">Chọn</label>
+             <label for="voucher${voucher.id}" class="btn btn-primary 
+             align-content-center w-100 h-100">Chọn</label>
         </div>
-    
-    
-    </div>
-    `;
+    </div>`;
 }
 
 function updateToTalPrice() {

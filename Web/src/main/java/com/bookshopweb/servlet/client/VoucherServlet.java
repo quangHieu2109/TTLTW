@@ -42,7 +42,7 @@ public class VoucherServlet extends HttpServlet {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
             long now = Calendar.getInstance().getTimeInMillis();
             for(Voucher voucher: vouchers){
-                if(now >= voucher.getStartAt().getTime() && now <= voucher.getEndAt().getTime()){
+                if(now >= voucher.getStartAt().getTime() && now <= voucher.getEndAt().getTime() && voucher.getQuantity()>0){
                     JsonObject voucherJson = new JsonObject();
                     voucherJson.addProperty("id", voucher.getId());
                     voucherJson.addProperty("voucherName", voucher.getVoucherName());
@@ -76,9 +76,9 @@ public class VoucherServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("voucherId"+req.getParameter("voucherId"));
-        System.out.println("cartItemIdsString"+Arrays.toString(req.getParameterValues("cartItemIds")));
-        System.out.println("ship"+req.getParameter("ship"));
+//        System.out.println("voucherId"+req.getParameter("voucherId"));
+//        System.out.println("cartItemIdsString"+Arrays.toString(req.getParameterValues("cartItemIds")));
+//        System.out.println("ship"+req.getParameter("ship"));
         long voucherId = Long.parseLong(req.getParameter("voucherId"));
         String[] cartItemIdsString = req.getParameterValues("cartItemIds");
         double ship = Double.parseDouble(req.getParameter("ship"));

@@ -7,30 +7,21 @@ $(document).ready(function () {
 )
 
 function loadData(level) {
-    if(curLevel != level){
-        curLevel = level;
-        curPage = 1;
-    }
-
     $.ajax({
         url: "/logManagerServlet",
         type: "POST",
         data: {
-            page: curPage,
-            level: level
+            page: curPage, level: level
         },
         success: function (response) {
             totalPage = response.totalPage;
             let data = response.data;
             let start = Math.max(1, curPage - 2);
             let end = Math.min(curPage + 2, totalPage)
-            let paging = $('#paging');
-            paging.empty();
+            let paging = $('#paging'); paging.empty();
             let preDisabled = curPage == 1 ? "disabled" : "";
             let nextDisabled = curPage == totalPage ? "disabled" : "";
-
-            let tableBody = $('#table_body');
-            tableBody.empty();
+            let tableBody = $('#table_body'); tableBody.empty();
             for (let i = 0; i < data.length; i++) {
                 let curData = data[i]
                 let tr = `<tr class="level${curData.levelLog}">

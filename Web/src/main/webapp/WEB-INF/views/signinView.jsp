@@ -84,7 +84,7 @@
     <div class="card mx-auto" style="max-width: 380px">
 
         <a id="siginInWithGoogle" href="https://accounts.google.com/o/oauth2/v2/auth?
-					client_id=847546457050-7ccq01atin7m0ke5v2nva6u7i3k7bn6r.apps.googleusercontent.com
+			client_id=847546457050-7ccq01atin7m0ke5v2nva6u7i3k7bn6r.apps.googleusercontent.com
 &response_type=code&scope=profile+email+https://www.googleapis.com/auth/user.gender.read+https://www.googleapis.com/auth/user.phonenumbers.read&redirect_uri=http://localhost:8080/googlehandle"
            class="btn"><img style="max-width: 30px;max-height: 30px;" src="./img/iconGoogle.png"><fmt:message
                 key="dang_nhap_bang_google"/></a>

@@ -102,7 +102,7 @@ public class CartItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        long userId = Long.parseLong(request.getParameter("userId"));
+        long userId = ((User) request.getSession().getAttribute("currentUser")).getId();
         long productId = Long.parseLong(request.getParameter("productId"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         // Lấy đối tượng cartItemRequest từ JSON trong request

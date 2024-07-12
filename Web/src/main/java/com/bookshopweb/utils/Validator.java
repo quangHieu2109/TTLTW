@@ -120,12 +120,14 @@ public class Validator<T> {
         violation.ifPresent(violations::add);
         return this;
     }
+    //Kiểm tra mật khẩu có đủ mạnh không
     public Validator<T> isStrongPassword(String password) {
 
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
         Optional<String>    violation = Optional.ofNullable(password)
                 .filter(obj -> !password.matches(regex))
-                .map(obj -> "Mật khẩu phải chứa ít nhất 1 chữ thường, 1 chữ hoa, 1 số, 1 ký tự đặc biệt và không chứa khoảng trắng");
+                .map(obj -> "Mật khẩu phải chứa ít nhất 1 chữ thường, 1 chữ hoa," +
+                        " 1 số, 1 ký tự đặc biệt và không chứa khoảng trắng");
         violation.ifPresent(violations::add);
 
         return this;

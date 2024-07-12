@@ -73,6 +73,7 @@
 </head>
 <body>
 <jsp:include page="_headerAdmin.jsp"></jsp:include>
+<%--Navbar chứa các button tương ứng với từng level log--%>
 <div class="row justify-content-around">
   <div class="w-auto">
     <input type="radio" name="category" value="level1" id="level1" checked hidden>
@@ -90,9 +91,9 @@
     <input type="radio" name="category" value="level4" id="level4" hidden>
     <label for="level4" class="btn p-3 pt-1 pb-1 mt-2" onclick="loadData(4)">Level 4</label>
   </div>
-
-
 </div>
+
+<%--Table hiển thị các log--%>
 <div class="container mt-4">
   <main class="table-responsive-xl mb-5">
   <table id="my_table" class="table table-bordered align-middle">

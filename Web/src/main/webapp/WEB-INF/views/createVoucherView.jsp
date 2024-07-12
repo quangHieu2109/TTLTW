@@ -33,7 +33,7 @@
 <section class="section-content">
   <div class="container">
     <header class="section-heading py-4">
-      <h3 class="section-title"><fmt:message key="them_san_pham"/></h3>
+      <h3 class="section-title"><fmt:message key="them_voucher"/></h3>
     </header> <!-- section-heading.// -->
 
     <main class="row mb-5">
@@ -50,7 +50,7 @@
           </div>
         </c:if>
         <div class="mb-3">
-          <label for="voucher-name" class="form-label">Tên voucher <span class="text-danger">*</span></label>
+          <label for="voucher-name" class="form-label"><fmt:message key="ten_voucher"/> <span class="text-danger">*</span></label>
             <label class="form-label" id="voucher-name_error"></label>
             <input type="text"
                  class="form-control "
@@ -59,7 +59,7 @@
                  required>
         </div>
         <div class="mb-3">
-          <label for="voucher-code" class="form-label">Mã voucher <span class="text-danger">*</span></label>
+          <label for="voucher-code" class="form-label"><fmt:message key="ma_voucher"/> <span class="text-danger">*</span></label>
           <label class="form-label text-danger" id="voucher-code_error"></label>
           <div class="input-group">
                 <input type="text"
@@ -71,79 +71,79 @@
           </div>
         </div>
         <div class="mb-3">
-          <label class="form-label">Thể loại hàng hóa áp dụng</label>
+          <label class="form-label"><fmt:message key="the_loai_hang_hoa_ap_dung"/></label>
           <div class="ml-20px">
             <div class="row ">
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="1" id="ctg1">
-                <label for="ctg1" class=" w-maxcontent">Sách giáo khoa</label>
+                <label for="ctg1" class=" w-maxcontent"><fmt:message key="sach_giao_khoa"/></label>
               </div>
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="2" id="ctg2">
-                <label for="ctg2" class=" w-maxcontent">Sách khoa học</label>
+                <label for="ctg2" class=" w-maxcontent"><fmt:message key="sach_khoa_hoc"/></label>
               </div>
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="3" id="ctg3">
-                <label for="ctg3" class=" w-maxcontent">Truyện tranh</label>
+                <label for="ctg3" class=" w-maxcontent"><fmt:message key="truyen_tranh"/></label>
               </div>
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="4" id="ctg4">
-                <label for="ctg4" class=" w-maxcontent">Tiểu thuyết</label>
+                <label for="ctg4" class=" w-maxcontent"><fmt:message key="tieu_thuyet"/></label>
               </div>
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="5" id="ctg5">
-                <label for="ctg5" class=" w-maxcontent">Truyện ngắn</label>
+                <label for="ctg5" class=" w-maxcontent"><fmt:message key="truyen_ngan"/></label>
               </div>
             </div>
             <div class="row ">
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="6" id="ctg6">
-                <label for="ctg6" class=" w-maxcontent">Truyện dài</label>
+                <label for="ctg6" class=" w-maxcontent"><fmt:message key="truyen_dai"/></label>
               </div>
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="7" id="ctg7">
-                <label for="ctg7" class=" w-maxcontent">Sách giáo trình</label>
+                <label for="ctg7" class=" w-maxcontent"><fmt:message key="sach_giao_trinh"/></label>
               </div>
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="8" id="ctg8">
-                <label for="ctg8" class=" w-maxcontent">Báo in</label>
+                <label for="ctg8" class=" w-maxcontent"><fmt:message key="bao_in"/></label>
               </div>
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="9" id="ctg9">
-                <label for="ctg9" class=" w-maxcontent">Tạp chí</label>
+                <label for="ctg9" class=" w-maxcontent"><fmt:message key="tap_chi"/></label>
               </div>
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="10" id="ctg10">
-                <label for="ctg10" class=" w-maxcontent">Tập san</label>
+                <label for="ctg10" class=" w-maxcontent"><fmt:message key="tap_san"/></label>
               </div>
             </div>
             <div class="row ">
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="11" id="ctg11">
-                <label for="ctg11" class=" w-maxcontent">Sách nấu ăn</label>
+                <label for="ctg11" class=" w-maxcontent"><fmt:message key="sach_nau_an"/></label>
               </div>
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="12" id="ctg12">
-                <label for="ctg12" class=" w-maxcontent">Sách kỹ thuật</label>
+                <label for="ctg12" class=" w-maxcontent"><fmt:message key="sach_ky_thuat"/></label>
               </div>
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="13" id="ctg13">
-                <label for="ctg13" class=" w-maxcontent">Sách nông nghiệp</label>
+                <label for="ctg13" class=" w-maxcontent"><fmt:message key="sach_nong_nghiep"/></label>
               </div>
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="14" id="ctg14">
-                <label for="ctg14" class=" w-maxcontent">Sách thiếu nhi</label>
+                <label for="ctg14" class=" w-maxcontent"><fmt:message key="sach_thieu_nhi"/></label>
               </div>
               <div class="row w-maxcontent col-lg-2 ml-0">
                 <input type="checkbox" name="categorys" class="form-check w-maxcontent" value="15" id="ctg15">
-                <label for="ctg15" class=" w-maxcontent">Sách kỹ năng sống</label>
+                <label for="ctg15" class=" w-maxcontent"><fmt:message key="sach_ky_nang_song"/></label>
               </div>
             </div>
           </div>
           </div>
 
         <div class="mb-3">
-          <label class="form-label d-block">Loại Voucher <span class="text-danger">*</span></label>
+          <label class="form-label d-block"><fmt:message key="loai_voucher"/> <span class="text-danger">*</span></label>
           <div class="form-check d-inline-block me-4">
             <input class="form-check-input "
                    type="radio"
@@ -164,7 +164,7 @@
           </div>
         </div>
         <div class="mb-3">
-          <label for="voucher-description" class="form-label">Mô tả voucher</label>
+          <label for="voucher-description" class="form-label"><fmt:message key="mo_ta_voucher"/></label>
             <label id="voucher-description_error" class="form-label text-danger"></label>
             <textarea class="form-control "
                     id="voucher-description"
@@ -173,7 +173,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label text-danger" id="quantity_erro"></label>
-          <label for="quantity" class="form-label">Số lượng<span class="text-danger">*</span></label>
+          <label for="quantity" class="form-label"><fmt:message key="so_luong"/><span class="text-danger">*</span></label>
 
             <input type="number"
                    class="form-control "
@@ -187,7 +187,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label text-danger" id="percent-decrease_erro"></label>
-          <label for="percent-decrease" class="form-label">Phần trăm giảm <span class="text-danger">*</span></label>
+          <label for="percent-decrease" class="form-label"><fmt:message key="phan_tram_giam"/> <span class="text-danger">*</span></label>
           <div class="input-group ">
             <input type="number"
                    class="form-control "
@@ -203,7 +203,7 @@
 
         <div class="mb-3">
           <label class="form-label text-danger" id="max-decrease_erro"></label>
-          <label for="max-decrease" class="form-label">Giảm tối đa <span class="text-danger">*</span></label>
+          <label for="max-decrease" class="form-label"><fmt:message key="giam_toi_da"/> <span class="text-danger">*</span></label>
           <div class="input-group ">
             <input type="number"
                    class="form-control "
@@ -218,7 +218,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label text-danger" id="min-price_erro"></label>
-          <label for="min-price" class="form-label">Đơn giá tối thiểu<span class="text-danger">*</span></label>
+          <label for="min-price" class="form-label"><fmt:message key="don_gia_toi_thieu"/><span class="text-danger">*</span></label>
           <div class="input-group ">
             <input type="number"
                    class="form-control "
@@ -233,7 +233,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="voucher-imageName" class="form-label">Ảnh voucher</label>
+          <label for="voucher-imageName" class="form-label"><fmt:message key="anh_voucher"/></label>
             <label id="voucher-imageName_error" class="form-label text-danger"></label>
             <input type="file"
                  class="form-control"
@@ -244,7 +244,7 @@
 
 
         <div class="mb-3">
-          <label for="voucher-startsAt" class="form-label">Ngày bắt đầu</label>
+          <label for="voucher-startsAt" class="form-label"><fmt:message key="ngay_bat_dau"/></label>
             <label id="voucher-startsAt_error" class="form-label text-danger"></label>
             <input type="datetime-local"
                  class="form-control "
@@ -253,7 +253,7 @@
                  value="">
         </div>
         <div class="mb-3">
-          <label for="voucher-endAt" class="form-label">Ngày kết thúc</label>
+          <label for="voucher-endAt" class="form-label"><fmt:message key="ngay_ket_thuc"/></label>
             <label id="voucher-endAt_error" class="form-label text-danger"></label>
             <input type="datetime-local"
                  class="form-control "
@@ -266,13 +266,13 @@
         </button>
         <button type="reset"
                 class="btn btn-warning me-2 mb-3"
-                onclick="return confirm('Bạn có muốn để giá trị mặc định?')">
+
           <fmt:message key="mac_dinh"/>
         </button>
         <a class="btn btn-danger mb-3"
-           href="${pageContext.request.contextPath}/admin/productManager"
+
            role="button"
-           onclick="return confirm('Bạn có muốn hủy?')">
+
           <fmt:message key="huy"/>
         </a>
       </form>

@@ -42,12 +42,15 @@ public class VoucherUtils {
         }
         List<CategorysOfVoucher> categorysOfVouchers = categorysOfVoucherDAO.getByVoucherId(voucherId);
         double totalPrice = 0;
+        //categorysOfVouchers.size() ==0 tức là voucher áp dụng cho mọi thể loại sản phẩm
         if(categorysOfVouchers.size() ==0){
             for(CartItem cartItem: cartItems){
                 Product product = productDAO.getByIdProduct(cartItem.getProductId());
                 totalPrice += cartItem.getQuantity() *(product.getPrice() *(1-product.getDiscount()/100));
             }
         }else{
+            //voucher chỉ áp dụng cho 1 số thể loại nhất định
+            //nên phải kiểm tra xem đơn hàng có sản phẩm phù hợp hay không
             List<Long> categoryIds = new ArrayList<>();
             for(CategorysOfVoucher categorysOfVoucher: categorysOfVouchers){
                 categoryIds.add(categorysOfVoucher.getCategoryId());
