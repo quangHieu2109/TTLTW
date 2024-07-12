@@ -86,6 +86,11 @@
             <img src="${pageContext.request.contextPath}/img/ticket-perforated.svg" alt=""> Voucher
           </a>
         </li>
+        <a class="nav-link ${fn:startsWith(servletPath, '/admin/statiscalManager') ? 'active' : ''}"
+           href="${pageContext.request.contextPath}/admin/statiscalManager/product">
+          <i class="bi bi-graph-up"></i> <fmt:message key="quan_ly_thong_ke"/>
+        </a>
+        </li>
       </ul>
       <c:choose>
         <c:when test="${not empty sessionScope.currentUser}">
