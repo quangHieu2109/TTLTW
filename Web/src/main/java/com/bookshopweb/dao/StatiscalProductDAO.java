@@ -92,70 +92,16 @@ public class StatiscalProductDAO {
         return result;
     }
 
-    // Lấy số lượng tồn kho và sô lượng bán trong 1 khoảng thời gian
+    // Lấy số lượng tồn kho và sô lượng bán , số lượng nhập
     // để biết số lượng tồn kho có đủ để bán hay không => có cần nhập thêm không
-    public List<StatisticalProduct> getUnsold(int limit, int offset, String start, String end) {
-        List<StatisticalProduct> result = new ArrayList<>();
-        try {
-            String sql = "SELECT " +
-                    "    pd.id, " +
-                    "    pd.name, " +
-                    "    COALESCE(( " +
-                    "        SELECT SUM(order_item.quantity) " +
-                    "        FROM order_item " +
-                    "        INNER JOIN orders ON order_item.orderId = orders.id " +
-                    "        WHERE order_item.productId = pd.id " +
-                    "        AND orders.status != 3 " +
-                    "        AND (orders.createdAt BETWEEN ? AND ?) " +
-                    "    ), 0) AS sell_quantityitem, " +
-                    "    COALESCE(( " +
-                    "        SELECT SUM(order_item.quantity) " +
-                    "        FROM order_item " +
-                    "        INNER JOIN orders ON order_item.orderId = orders.id " +
-                    "        WHERE order_item.productId = pd.id " +
-                    "        AND orders.status != 3 " +
-                    "    ), 0) AS total_sell_quantityitem, " +
-                    "    COALESCE(( " +
-                    "        SELECT SUM(product_import.quanlity) " +
-                    "        FROM product_import " +
-                    "        WHERE product_import.productId = pd.id " +
-                    "    ), 0) AS total_import_quantity " +
-                    "FROM " +
-                    "    product pd " +
-                    "HAVING " +
-                    "    sell_quantityitem = 0 " +
-                    "LIMIT ? OFFSET ?";
-
-            PreparedStatement st = conn.prepareStatement(sql);
-            st.setString(1, start);
-            st.setString(2, end);
-            st.setInt(3, limit);
-            st.setInt(4, offset);
-
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                long id = rs.getLong("id");
-                String name = rs.getString("name");
-                int quantitySell = rs.getInt("sell_quantityitem");
-                int totalQuantityImport = rs.getInt("total_import_quantity"); // Sửa đổi tên cột
-                int totalQuantitySell = rs.getInt("total_sell_quantityitem");
-
-                result.add(new StatisticalProduct(id, name, totalQuantityImport - totalQuantitySell, quantitySell));
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Error querying database", e);
-        }
-        return result;
-    }
-    public List<StatisticalProduct> getUnsold2(int limit, int offset, String start, String end) {
+    public List<StatisticalProduct> getUnsold(int limit, int offset) {
         List<StatisticalProduct> result = new ArrayList<>();
         try {
             String sql = "SELECT " +
                     "    p.id, " +
                     "    p.name, " +
                     "    COALESCE(SUM(oi.quantity), 0) AS total_sold, " +
-                    "    COALESCE(SUM(pi.quanlity), 0) AS total_import, " +  // Sửa từ quantity thành quanlity ở đây
+                    "    COALESCE(SUM(pi.quanlity), 0) AS total_import, " +
                     "    (COALESCE(SUM(pi.quanlity), 0) - COALESCE(SUM(oi.quantity), 0)) AS quantity_remaining " +
                     "FROM " +
                     "    product p " +
@@ -168,32 +114,33 @@ public class StatiscalProductDAO {
                     "    INNER JOIN orders o ON oi.orderId = o.id " +
                     "    WHERE " +
                     "        o.status != 3 " +
-                    "        AND o.createdAt BETWEEN ? AND ? " +
                     "    GROUP BY " +
                     "        oi.productId " +
                     ") oi ON p.id = oi.productId " +
                     "LEFT JOIN (" +
                     "    SELECT " +
                     "        productId, " +
-                    "        SUM(quanlity) AS quanlity " +  // Sửa từ quantity thành quanlity ở đây
+                    "        SUM(quanlity) AS quanlity " +
                     "    FROM " +
                     "        product_import " +
                     "    GROUP BY " +
                     "        productId " +
                     ") pi ON p.id = pi.productId " +
+                    "WHERE EXISTS (" +
+                    "    SELECT 1 FROM order_item WHERE productId = p.id AND quantity > 0" +
+                    ") " +
                     "GROUP BY " +
                     "    p.id, p.name " +
                     "HAVING " +
-                    "    quantity_remaining > 0 " +
-                    "ORDER BY " +
-                    "    total_sold DESC " +
+                    "    quantity_remaining > 0" +
+                    " ORDER BY "+
+                    " total_sold DESC " +
                     "LIMIT ? OFFSET ?";
 
             PreparedStatement st = conn.prepareStatement(sql);
-            st.setString(1, start);
-            st.setString(2, end);
-            st.setInt(3, limit);
-            st.setInt(4, offset);
+
+            st.setInt(1, limit);
+            st.setInt(2, offset);
 
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -202,15 +149,16 @@ public class StatiscalProductDAO {
                 int quantityRemaining = rs.getInt("quantity_remaining");
                 int totalQuantityImport = rs.getInt("total_import");
                 int totalQuantitySell = rs.getInt("total_sold");
-
-                result.add(new StatisticalProduct(id, name, totalQuantityImport - totalQuantitySell, quantityRemaining));
+                double saleRate = totalQuantityImport > 0 ? (double) totalQuantitySell / totalQuantityImport : 1.0;
+                saleRate = Double.parseDouble(String.format("%.3f", saleRate));
+                result.add(new StatisticalProduct(id, name, totalQuantityImport, totalQuantitySell, quantityRemaining, saleRate));
             }
-
         } catch (SQLException e) {
-            throw new RuntimeException("Error querying database", e);
+            throw new RuntimeException("Lỗi truy vấn cơ sở dữ liệu", e);
         }
         return result;
     }
+
 
 
     public List<StatisticalProduct> getUnsoldOrdered(int limit, int offset, String start, String end, String orderBy, String orderDir) {
@@ -431,7 +379,7 @@ public class StatiscalProductDAO {
         return result;
     }
     //Thống kê những khách hàng đã từng mua hàng nhưng không quay lại trong 1 khoảng thời gian
-    public List<StatisticalCustomer> getCustomersNotReorder(int numOfMonth){
+    public List<StatisticalCustomer> getCustomersNotReorder(int limit, int offset, int numOfMonth, String orderBy, String orderDir){
         List<StatisticalCustomer> result = new ArrayList<>();
 
         try {
@@ -445,9 +393,13 @@ public class StatiscalProductDAO {
                     "INNER JOIN orders ON user.id = orders.userId " +
                     "WHERE orders.`status` = 2 " +
                     "GROUP BY user.id, user.username) AS tmp " +
-                    "WHERE TIMESTAMPADD(MONTH, ?, tmp.lastOrderTime) < CURRENT_TIMESTAMP()";
+                    "WHERE TIMESTAMPADD(MONTH, ?, tmp.lastOrderTime) < CURRENT_TIMESTAMP()"+
+                    "ORDER BY " + orderBy + " " + orderDir + " " +
+                    "LIMIT ? OFFSET ?";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setInt(1, numOfMonth);
+            st.setInt(2, limit);
+            st.setInt(3, offset);
             ResultSet rs = st.executeQuery();
             while(rs.next()){
                 long userId = rs.getLong("userId");
@@ -483,16 +435,22 @@ public class StatiscalProductDAO {
         return result;
     }
     public int count() {
-        String query = "SELECT COUNT(id) FROM product_import";
-        try (PreparedStatement statement = conn.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-            if (resultSet.next()) {
-                return resultSet.getInt(1);
+        int count = 0;
+        try {
+            String sql = "SELECT COUNT(DISTINCT oi.productId) AS count " +
+                    "FROM order_item oi " +
+                    "INNER JOIN orders o ON oi.orderId = o.id " ;
+            PreparedStatement st = conn.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("count");
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Lỗi khi đếm số lượng sản phẩm đã bán trong khoảng thời gian", e);
         }
-        return 0;
+        return count;
+
     }
     public int countProductsSoldByTime(String start, String end) {
         int count = 0;
@@ -516,6 +474,32 @@ public class StatiscalProductDAO {
         }
         return count;
     }
+    public int countUser(int months) {
+        int userCount = 0;
+
+        try {
+            String sql = "SELECT COUNT(*) AS userCount " +
+                    "FROM (SELECT user.id AS userId, " +
+                    "             MAX(orders.createdAt) AS lastOrderTime " +
+                    "      FROM user " +
+                    "      INNER JOIN orders ON user.id = orders.userId " +
+                    "      WHERE orders.status = 2 " +
+                    "      GROUP BY user.id) AS tmp " +
+                    "WHERE TIMESTAMPADD(MONTH, ?, tmp.lastOrderTime) < CURRENT_TIMESTAMP()";
+
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1, months);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                userCount = rs.getInt("userCount");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return userCount;
+    }
 public int getRemainingAmount(long productId){
         int result =0;
 
@@ -532,13 +516,14 @@ public int getRemainingAmount(long productId){
 
     public static void main(String[] args) {
         StatiscalProductDAO p = new StatiscalProductDAO();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
-        LocalDate startDate = LocalDate.parse("1-2-2024", formatter);
-        LocalDate endDate = LocalDate.parse("1-1-2025", formatter);
-
-// Format lại thành định dạng yêu cầu của SQL
-        String sqlStartDate = startDate.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        String sqlEndDate = endDate.atTime(LocalTime.MAX).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        System.out.println(p.getUnsoldOrdered(10,1,sqlStartDate,sqlEndDate,"total_sold","DESC"));
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
+//        LocalDate startDate = LocalDate.parse("1-2-2024", formatter);
+//        LocalDate endDate = LocalDate.parse("1-1-2025", formatter);
+//
+//// Format lại thành định dạng yêu cầu của SQL
+//        String sqlStartDate = startDate.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+//        String sqlEndDate = endDate.atTime(LocalTime.MAX).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+//        System.out.println(p.getUnsoldOrdered(10,1,sqlStartDate,sqlEndDate,"total_sold","DESC"));
+        System.out.println(p.countUser(3));
     }
 }

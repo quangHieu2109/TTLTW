@@ -38,16 +38,16 @@ public class StatiscalProManagerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int totalProducts ;
-        String startYear = req.getParameter("startYear");
-        String   endYear = req.getParameter("endYear");
+        String startYear = Protector.of(() -> req.getParameter("startYear")).get("");
+        String   endYear =  Protector.of(() -> req.getParameter("endYear")).get("");
         Optional<String> orderParam = Optional.ofNullable(req.getParameter("order"));
         String orderBy = orderParam.map(statiscalProduct::getFirst).orElse("total_sold");
         String orderDir = orderParam.map(statiscalProduct::getLast).orElse("DESC");
 
 
         // Nếu không có tiêu chí lọc
-        if (startYear == null ||endYear == null) {
-            totalProducts = 0;
+        if (startYear.isEmpty() ||endYear.isEmpty()) {
+            totalProducts = Protector.of(() -> statiscalProduct.count()).get(0);
         } else {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate startDate = LocalDate.parse(startYear, formatter);
@@ -76,8 +76,9 @@ public class StatiscalProManagerServlet extends HttpServlet {
         List<StatisticalProduct> products;
 
         // Nếu không có tiêu chí lọc
-        if (startYear == null ||endYear == null) {
-            products =null;
+        if (startYear.isEmpty() ||endYear.isEmpty()) {
+            products = Protector.of(() -> statiscalProduct.getUnsold(
+                    STATISCAL_PRODUCT_PER_PAGE, offset)).get(ArrayList::new);
         } else {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate startDate = LocalDate.parse(startYear, formatter);

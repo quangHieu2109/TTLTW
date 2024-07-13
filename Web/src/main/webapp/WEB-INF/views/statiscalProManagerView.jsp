@@ -17,9 +17,27 @@
 
 <body>
 <jsp:include page="_headerAdmin.jsp"/>
+
 <section class="section-content padding-y">
     <div class="container">
         <div class="row">
+            <header class="section-heading py-4 d-flex justify-content-center">
+                <h3 class="section-title"><fmt:message key="thong_ke_san_pham"/></h3>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <nav class="header">
+                                <a class="btn btn-outline-primary mr-2 " href="${pageContext.request.contextPath}/admin/statiscalManager/product"
+                                   role="button"><fmt:message key="thong_ke_san_pham"/></a>
+                                <a class="btn btn-outline-primary mr-2" href="${pageContext.request.contextPath}/admin/statiscalManager/user"
+                                   role="button"><fmt:message key="thong_ke_khach_hang"/></a>
+                                <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/admin/statiscalManager/product"
+                                   role="button"><fmt:message key="thong_ke"/></a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header>
             <aside class="mb-md-0 mb-3">
                 <div class="card">
                     <form action="${pageContext.request.contextPath}/admin/statiscalManager/product" method="get" class="row g-3">
@@ -184,6 +202,7 @@
         </div> <!-- row.// -->
     </div> <!-- container.//  -->
 </section> <!-- section-content.// -->
+
 <jsp:include page="_footerAdmin.jsp"/>
 
 </body>
