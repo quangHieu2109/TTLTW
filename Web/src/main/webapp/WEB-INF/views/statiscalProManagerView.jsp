@@ -31,7 +31,7 @@
                                    role="button"><fmt:message key="thong_ke_san_pham"/></a>
                                 <a class="btn btn-outline-primary mr-2" href="${pageContext.request.contextPath}/admin/statiscalManager/user"
                                    role="button"><fmt:message key="thong_ke_khach_hang"/></a>
-                                <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/admin/statiscalManager/product"
+                                <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/admin/statiscalManager/productImport"
                                    role="button"><fmt:message key="thong_ke"/></a>
                             </nav>
                         </div>
