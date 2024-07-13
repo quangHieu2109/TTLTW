@@ -22,7 +22,7 @@
     <div class="container">
         <div class="row">
             <header class="section-heading py-4 d-flex justify-content-center">
-                <h3 class="section-title"><fmt:message key="thong_ke_khach_hang"/></h3>
+                <h3 class="section-title"><fmt:message key="thong_ke"/></h3>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col">
@@ -40,21 +40,24 @@
             </header>
             <aside class="mb-md-0 mb-3">
                 <div class="card">
-                    <form action="${pageContext.request.contextPath}/admin/statiscalManager/user" method="get" class="row g-3">
+                    <form action="${pageContext.request.contextPath}/admin/statiscalManager/productImport" method="get" class="row g-3">
                         <div class="col-6">
                             <article class="filter-group">
                                 <header class="card-header">
                                     <a data-bs-toggle="collapse" href="#collapse_1" aria-expanded="true" aria-controls="collapse_1">
                                         <i class="float-end bi bi-chevron-down"></i>
-                                        <h6 class="title fw-bold"><fmt:message key="khoang_thoi_gian_da_khong_mua_hang_gan_day"/></h6>
+                                        <h6 class="title fw-bold"><fmt:message key="moc_thoi_gian"/></h6>
                                     </a>
                                 </header>
                                 <div class="filter-content collapse show" id="collapse_1">
                                     <div class="card-body pt-0">
                                         <div class="form-group">
-                                            <label for="months"><fmt:message key="so_thang"/></label>
-                                            <input type="number" class="form-control"  id="months" name="months" value=${param.months} min="0"
-                                                   max="12" step="1" required>
+                                            <label for="startYear"><fmt:message key="tu"/></label>
+                                            <input type="date" class="form-control" id="startYear" name="startYear" value="${param.startYear}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="endYear"><fmt:message key="den"/></label>
+                                            <input type="date" class="form-control" id="endYear" name="endYear" value="${param.endYear}" required>
                                         </div>
                                     </div> <!-- card-body.// -->
                                 </div>
@@ -73,15 +76,15 @@
                                 <div class="filter-content collapse show" id="collapse_2">
                                     <div class="card-body pt-0">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" value="lastOrderTime-ASC" name="order" id="radio_order_1" ${requestScope.order == 'lastOrderTime-ASC' ? 'checked' : ''}>
+                                            <input class="form-check-input" type="radio" value="createAt-DESC" name="order" id="radio_order_1" ${requestScope.order == 'createAt-DESC' ? 'checked' : ''}>
                                             <label class="form-check-label" for="radio_order_1">
-                                                <fmt:message key="don_hang_cu_nhat"/>
+                                                <fmt:message key="moi_nhat"/>
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" value="lastOrderTime-DESC" name="order" id="radio_order_2" ${requestScope.order == 'lastOrderTime-DESC' ? 'checked' : ''}>
+                                            <input class="form-check-input" type="radio" value="createAt-ASC" name="order" id="radio_order_2" ${requestScope.order == 'createAt-ASC' ? 'checked' : ''}>
                                             <label class="form-check-label" for="radio_order_2">
-                                                <fmt:message key="don_hang_gan_nhat"/>
+                                                <fmt:message key="cu_nhat"/>
                                             </label>
                                         </div>
                                     </div> <!-- card-body.// -->
@@ -106,32 +109,40 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">ID</th>
-                        <th scope="col"><fmt:message key="ho_va_ten"/></th>
-                        <th scope="col" style="width: 110px;"><fmt:message key="ma_don_hang"/></th>
-                        <th scope="col" style="width: 110px;"><fmt:message key="thoi_diem_mua_hang_lan_cuoi"/></th>
-                        <th scope="col" style="width: 110px;"><fmt:message key="thao_tac"/></th>
+                        <th scope="col"><fmt:message key="ma_san_pham"/></th>
+                        <th scope="col"><fmt:message key="ma_nguoi_nhap"/></th>
+                        <th scope="col" style="width: 110px;"><fmt:message key="ngay_san_pham_duoc_them_lan_dau"/></th>
+                        <th scope="col" style="width: 110px;"><fmt:message key="so_luong"/></th>
+                        <th scope="col" style="width: 110px;"><fmt:message key="gia"/></th>
+                        <th scope="col" style="width: 110px;"><fmt:message key="ngay_nhap_san_pham"/></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="user" varStatus="loop" items="${requestScope.users}">
+                    <c:forEach var="product" varStatus="loop" items="${requestScope.productsImport}">
                         <tr>
                             <th scope="row">${loop.index + 1}</th>
-                            <td>${user.userId}</td>
+                            <td>${product.id}</td>
                             <td>
-                                <a href="${pageContext.request.contextPath}/admin/userManager/detail?id=${user.userId}"
-                                   target="_blank">${user.userName}</a>
+                                <a href="${pageContext.request.contextPath}/admin/productManager/detail?id=${product.productId}"
+                                   target="_blank"> ${product.productId}</a>
+                                   </td>
+                            <td>
+                                <a href="${pageContext.request.contextPath}/admin/userManager/detail?id=${product.userId}"
+                                   target="_blank">${product.userId}</a>
                             </td>
                             <td>
-                                    ${user.lasOrderId}
+                                <fmt:formatDate value="${product.importAt}" pattern="yyyy-MM-dd HH:mm:ss"/>
                             </td>
                             <td>
-                                <fmt:formatDate value="${user.lastOrderTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                    ${product.quantity}
+                            </td>
+                            <td>
+                                <fmt:formatNumber value="${product.price}" type="number" minFractionDigits="0" maxFractionDigits="0"/> VNĐ
+                            </td>
+                            <td>
+                                <fmt:formatDate value="${product.createAt}" pattern="yyyy-MM-dd HH:mm:ss"/>
                             </td>
 
-                            <td class="text-center text-nowrap">
-                                <a class="btn btn-primary me-2" href="${pageContext.request.contextPath}/admin/orderManager/detail?id=${user.lasOrderId}" role="button" ><fmt:message key="xem"/>
-                                </a>
-                            </td>
                                 <%--                <td class="text-center text-nowrap">--%>
                                 <%--                    <a class="btn btn-primary me-2"--%>
                                 <%--                       href="${pageContext.request.contextPath}/admin/categoryManager/detail?id=${product.id}"--%>
@@ -161,7 +172,7 @@
                     <ul class="pagination justify-content-center">
                         <li class="page-item ${requestScope.page == 1 ? 'disabled' : ''}">
                             <a class="page-link"
-                               href="${pageContext.request.contextPath}/admin/statiscalManager/user?page=${requestScope.page - 1}&months=${requestScope.months}&order=${requestScope.order}">
+                               href="${pageContext.request.contextPath}/admin/statiscalManager/productImport?page=${requestScope.page - 1}&startYear=${requestScope.startYear}&endYear=${requestScope.endYear}&order=${requestScope.order}">
                                 <fmt:message key="trang_truoc"/>
                             </a>
                         </li>
@@ -176,7 +187,7 @@
                                 <c:otherwise>
                                     <li class="page-item">
                                         <a class="page-link"
-                                           href="${pageContext.request.contextPath}/admin/statiscalManager/user?page=${i}&months=${requestScope.months}&order=${requestScope.order}">
+                                           href="${pageContext.request.contextPath}/admin/statiscalManager/productImport?page=${i}&startYear=${requestScope.startYear}&endYear=${requestScope.endYear}&order=${requestScope.order}">
                                                 ${i}
                                         </a>
                                     </li>
@@ -186,7 +197,7 @@
 
                         <li class="page-item ${requestScope.page == requestScope.totalPages ? 'disabled' : ''}">
                             <a class="page-link"
-                               href="${pageContext.request.contextPath}/admin/statiscalManager/user?page=${requestScope.page + 1}&months=${requestScope.months}&order=${requestScope.order}">
+                               href="${pageContext.request.contextPath}/admin/statiscalManager/productImport?page=${requestScope.page + 1}&startYear=${requestScope.startYear}&endYear=${requestScope.endYear}&order=${requestScope.order}">
                                 <fmt:message key="trang_sau"/>
                             </a>
                         </li>
@@ -196,6 +207,7 @@
         </div> <!-- row.// -->
     </div> <!-- container.//  -->
 </section> <!-- section-content.// -->
+
 <jsp:include page="_footerAdmin.jsp"/>
 
 </body>

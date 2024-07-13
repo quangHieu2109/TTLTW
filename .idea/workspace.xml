@@ -9,17 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="update StatisticalDAO and create StatiscalVIew">
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/statiscal/StatiscalPIManagerServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/statiscal/StatiscalUserManagerServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/statiscalUserManagerView.jsp" afterDir="false" />
+    <list default="true" id="148bd4f5-d17e-4502-a8a9-c5bd3cbdba46" name="Changes" comment="Update StatiscalUserVIew">
+      <change afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/statiscalPIManagerView.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/StatiscalProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/StatiscalProductDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/statiscal/StatiscalProManagerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/statiscal/StatiscalProManagerServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ImportProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/dao/ImportProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/statiscal/StatiscalPIManagerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/java/com/bookshopweb/servlet/admin/statiscal/StatiscalPIManagerServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_en_US.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_en_US.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_vi_VN.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/classes/lang_vi_VN.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/statiscalProManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/statiscalProManagerView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/statiscalUserManagerView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Web/src/main/webapp/WEB-INF/views/statiscalUserManagerView.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +31,8 @@
         <option value="Interface" />
         <option value="HTTP Request" />
         <option value="Class" />
-        <option value="Jsp File" />
         <option value="JavaScript File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -424,7 +423,8 @@
       <workItem from="1720862006305" duration="2631000" />
       <workItem from="1720865668811" duration="4190000" />
       <workItem from="1720870100799" duration="94000" />
-      <workItem from="1720870976740" duration="5936000" />
+      <workItem from="1720870976740" duration="8231000" />
+      <workItem from="1720881912218" duration="2643000" />
     </task>
     <task id="LOCAL-00002" summary="update DAO Servlet">
       <option name="closed" value="true" />
@@ -578,7 +578,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720797199726</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Update StatiscalUserVIew">
+      <option name="closed" value="true" />
+      <created>1720877243444</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1720877243444</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -622,7 +630,8 @@
     <MESSAGE value="update log MG + order MG" />
     <MESSAGE value="update Statistical" />
     <MESSAGE value="update StatisticalDAO and create StatiscalVIew" />
-    <option name="LAST_COMMIT_MESSAGE" value="update StatisticalDAO and create StatiscalVIew" />
+    <MESSAGE value="Update StatiscalUserVIew" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update StatiscalUserVIew" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
