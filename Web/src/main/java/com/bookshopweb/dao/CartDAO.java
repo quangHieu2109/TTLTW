@@ -111,8 +111,7 @@ public class CartDAO extends AbsDAO<Cart> {
                 result.addCartItem(dao.selectByCart(result));
 
             }
-            rs.close();
-            st.close();
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -159,8 +158,7 @@ public class CartDAO extends AbsDAO<Cart> {
                 result.addCartItem(dao.selectByCart(result));
 
             }
-            rs.close();
-            st.close();
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);

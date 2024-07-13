@@ -6,6 +6,7 @@
 <html lang="vi">
 
 <head>
+  <jsp:include page="_headerAdmin.jsp"/>
   <fmt:setLocale value="vi_VN" />
   <c:if test="${sessionScope.lang!=null&&sessionScope.lang=='en'}">
     <fmt:setLocale value="en_US" />
@@ -16,8 +17,6 @@
 </head>
 
 <body>
-<jsp:include page="_headerAdmin.jsp"/>
-
 <section class="section-content">
   <div class="container">
     <c:if test="${not empty sessionScope.successMessage}">

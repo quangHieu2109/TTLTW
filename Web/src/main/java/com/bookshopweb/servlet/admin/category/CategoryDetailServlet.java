@@ -20,7 +20,7 @@ public class CategoryDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Protector.of(() -> Long.parseLong(request.getParameter("id"))).get(0L);
-        Optional<Category> categoryFromServer = Protector.of(() -> categoryDAO.selectPrevalue(id)).get();
+        Optional<Category> categoryFromServer = Protector.of(() -> categoryDAO.getById(id)).get(Optional::empty);
 
         if (categoryFromServer.isPresent()) {
             Category category = categoryFromServer.get();
