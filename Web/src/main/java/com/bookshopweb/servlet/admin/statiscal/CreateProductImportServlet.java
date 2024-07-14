@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -26,7 +27,6 @@ import java.util.List;
 @WebServlet(name = "CreateProductImportServlet", value = "/admin/statiscalManager/create")
 public class CreateProductImportServlet extends HttpServlet {
     private final ImportProductDAO importProductDAO = new ImportProductDAO();
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String successMessage = "Thêm thành công!";
@@ -38,10 +38,9 @@ public class CreateProductImportServlet extends HttpServlet {
                 for (FileItem item : multiparts) {
                     if (!item.isFormField()) {
                         String fileName = new File(item.getName()).getName();
-                        String filePath = "C:\\uploads\\" + fileName;
+                        String filePath = Paths.get(request.getServletContext().getRealPath("/"),"img/")+ fileName;
                         File uploadFile = new File(filePath);
                         item.write(uploadFile);
-
                         // Đọc dữ liệu từ file Excel
                         try (InputStream fis = new FileInputStream(uploadFile)) {
                             Workbook workbook = new XSSFWorkbook(fis);
@@ -60,7 +59,6 @@ public class CreateProductImportServlet extends HttpServlet {
                                             break;
                                         }
                                     }
-
                                     if (firstDataColumn != -1) {
                                         long productId = (long) getNumericCellValue(row.getCell(firstDataColumn));
                                         long userId = (long) getNumericCellValue(row.getCell(firstDataColumn + 1));
@@ -70,7 +68,8 @@ public class CreateProductImportServlet extends HttpServlet {
                                         Timestamp createAt = getTimestampCellValue(row.getCell(firstDataColumn + 5));
 
                                         Protector.of(() -> {
-                                                    importProductDAO.insert(new ImportProduct(importProductDAO.getMaxId(), productId, userId, importAt, quantity, price, createAt), IPUtils.getIP(request));
+                                                    importProductDAO.insert(new ImportProduct(importProductDAO.getMaxId(), productId, userId,
+                                                            importAt, quantity, price, createAt), IPUtils.getIP(request));
                                                 })
                                                 .done(r -> request.setAttribute("successMessage", successMessage))
                                                 .fail(e -> request.setAttribute("errorMessage", errorMessage));
