@@ -21,7 +21,18 @@
 <section class="section-content padding-y">
     <div class="container">
         <div class="row">
-            <header class="section-heading py-4 d-flex justify-content-center">
+            <c:if test="${not empty requestScope.successMessage}">
+                <div class="alert alert-success mb-3" role="alert">
+                        ${requestScope.successMessage}
+                </div>
+            </c:if>
+            <c:if test="${not empty requestScope.errorMessage}">
+                <div class="alert alert-danger mb-3" role="alert">
+                        ${requestScope.errorMessage}
+                </div>
+            </c:if>
+
+            <header class="section-heading py-4 d-flex justify-content-between">
                 <h3 class="section-title"><fmt:message key="thong_ke"/></h3>
                 <div class="container-fluid">
                     <div class="row">
@@ -37,6 +48,14 @@
                         </div>
                     </div>
                 </div>
+
+                <form class="col-lg-6" method="POST" action="${pageContext.request.contextPath}/admin/statiscalManager/create"
+                      enctype="multipart/form-data">
+                        <input type="file" name="file" accept=".xls,.xlsx" required>
+                        <button type="submit" class="btn btn-primary me-2 mb-3">
+                            <fmt:message key="nhap_hang"/>
+                        </button>
+                </form>
             </header>
             <aside class="mb-md-0 mb-3">
                 <div class="card">

@@ -6,10 +6,8 @@ import com.bookshopweb.jdbiInterface.ImportProductJDBI;
 import com.bookshopweb.utils.JDBCUtils;
 import com.bookshopweb.utils.JDBIUltis;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -27,6 +25,10 @@ public class ImportProductDAO extends  AbsDAO<ImportProduct>{
          super.insert(product, ip);
          return importProductJDBI.addProductImport(product);
     }
+    public int getMaxId(){
+        return importProductJDBI.getMaxId()+1;
+    }
+
     public int countTotalImports() {
         int totalCount = 0;
         try (
@@ -157,6 +159,15 @@ public class ImportProductDAO extends  AbsDAO<ImportProduct>{
 //            System.out.println(product);
 ////            importProductDAO.insert(importProduct, "");
 //        }
-
+        ImportProduct product = new ImportProduct();
+        product.setId(importProductDAO.getMaxId());
+        product.setProductId(1);
+        product.setUserId(1);
+        product.setImportAt(Timestamp.valueOf("2021-03-23 08:22:50"));
+        product.setQuantity(50);
+        product.setPrice(300.99);
+        product.setCreateAt(Timestamp.valueOf(LocalDateTime.now()));
+        importProductDAO.insert(product,"");
+        System.out.println("Generated ID: " + product.getId());
     }
 }
