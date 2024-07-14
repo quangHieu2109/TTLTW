@@ -23,7 +23,6 @@ import java.util.Optional;
 @WebServlet(name = "StatiscalPIManagerServlet", value = "/admin/statiscalManager/productImport")
 public class StatiscalPIManagerServlet extends HttpServlet {
     private final ImportProductDAO importProductDAO = new ImportProductDAO();
-    private final UserDAO userDAO = new UserDAO();
     private static final int PRODUCT_IMPORT_PER_PAGE = 10;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
