@@ -15,10 +15,11 @@ public abstract class AbsDAO<T extends AbsModel> implements IDAO<T> {
 
     @Override
     public abstract T selectPrevalue(Long id) ;
-
+    //Class Abstract DAO
     @Override
     public int insert(T t, String ip) {
-        Log log = new Log(ip, 2,"Insert on table "+ t.getResource(), "null", t.toJson(), t.getCreateAt());
+        Log log = new Log(ip, 2,"Insert on table "+ t.getResource(),
+                "null", t.toJson(), t.getCreateAt());
         logDAO.insert(log);
         return 0;
     }
@@ -26,15 +27,18 @@ public abstract class AbsDAO<T extends AbsModel> implements IDAO<T> {
     @Override
     public int update(T t, String ip) {
         T preValue = selectPrevalue(t.getId());
-        Log log = new Log(ip, 3, "Update on table "+t.getResource(), preValue.toJson(), t.toJson(), t.getCreateAt());
+        Log log = new Log(ip, 3, "Update on table "+t.getResource(),
+                preValue.toJson(), t.toJson(), t.getCreateAt());
         logDAO.insert(log);
         return 0;
     }
 
     @Override
     public int delete(T t, String ip) {
-        Log log = new Log(ip, 4, "Delete on table "+t.getResource(), t.toJson(), "null", t.getCreateAt());
+        Log log = new Log(ip, 4, "Delete on table "+t.getResource(),
+                t.toJson(), "null", t.getCreateAt());
         logDAO.insert(log);
+        //Gửi mail thông báo đến admin
         SendMail.sendLogForAdmin(log);
         return  0;
     }

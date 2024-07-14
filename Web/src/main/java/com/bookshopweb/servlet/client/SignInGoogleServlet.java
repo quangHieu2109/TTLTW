@@ -40,20 +40,16 @@ public class SignInGoogleServlet extends HttpServlet {
         GoogleUserDAO googleUserDAO = new GoogleUserDAO();
        if(userDAO.getUserByEmail(userGoogleDTO.getEmail()) ==null){
         GoogleUser googleUser = googleUserDAO.selectByEmail(userGoogleDTO.getEmail());
-        long id = new Random().nextInt(9)*10000 + Calendar.getInstance().getTimeInMillis();
+        long id = Calendar.getInstance().getTimeInMillis();
         if (googleUser == null) {
             googleUser = new GoogleUser(userGoogleDTO.getEmail(), id);
             User user = new User();
             user.setId(id);
-//            user.setUsername(userGoogleDTO.getFamily_name());
             user.setFullname(userGoogleDTO.getName());
             user.setEmail(userGoogleDTO.getEmail());
             user.setRole("CUSTOMER");
-
-
             userDAO.insert(user, IPUtils.getIP(req));
             googleUserDAO.insert(googleUser);
-
             req.getSession().setAttribute("currentUser", user);
         }else{
             User currentUser = userDAO.getByGoogle(googleUser);
@@ -64,15 +60,7 @@ public class SignInGoogleServlet extends HttpServlet {
            User currentUser = userDAO.getUserByEmail(userGoogleDTO.getEmail());
            req.getSession().setAttribute("currentUser", currentUser);
        }
-
-
-
-
         resp.sendRedirect(req.getContextPath() + "/");
-//            userDAO.insert(user);
-
-//        }
-//        System.out.println(userGoogleDTO);
     }
 
     public String getToken(String code) throws IOException {// lấy access token từ code do google trả về

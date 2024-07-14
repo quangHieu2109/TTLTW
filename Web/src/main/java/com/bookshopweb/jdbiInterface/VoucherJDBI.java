@@ -29,4 +29,7 @@ public interface VoucherJDBI {
     @SqlUpdate("delete from voucher where id=:id")
     int removeVoucher(@Bind("id") long id);
 
+    @SqlUpdate("update voucher set quantity=:quantity where id=:id")
+    int decreaseQuantity(@BindBean Voucher voucher);
+
 }

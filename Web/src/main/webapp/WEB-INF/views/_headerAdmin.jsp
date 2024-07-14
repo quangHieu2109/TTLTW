@@ -11,6 +11,9 @@
   <fmt:setBundle basename="lang" />
   <section class="header-main border-bottom">
     <div class="container">
+      <div class="w-75 m-auto d-flex justify-content-end">
+        <span onclick="changeLanguage()" style="cursor: pointer"><i class="bi bi-translate"></i><fmt:message key="lang"/></span>
+      </div>
       <div class="row align-items-center">
         <div class="col py-3">
           <a class="text-body" href="${pageContext.request.contextPath}/admin">
@@ -50,7 +53,7 @@
         <li class="nav-item">
           <a class="nav-link ${fn:startsWith(servletPath, '/logManager') ? 'active' : ''}"
              href="${pageContext.request.contextPath}/logManagerServlet">
-            <i class="bi bi-people"></i> Quản lý log
+            <i class="bi bi-people"></i> <fmt:message key="quan_ly_log"/>
           </a>
         </li>
         <li class="nav-item">
@@ -83,6 +86,11 @@
             <img src="${pageContext.request.contextPath}/img/ticket-perforated.svg" alt=""> Voucher
           </a>
         </li>
+        <a class="nav-link ${fn:startsWith(servletPath, '/admin/statiscalManager') ? 'active' : ''}"
+           href="${pageContext.request.contextPath}/admin/statiscalManager/product">
+          <i class="bi bi-graph-up"></i> <fmt:message key="quan_ly_thong_ke"/>
+        </a>
+        </li>
       </ul>
       <c:choose>
         <c:when test="${not empty sessionScope.currentUser}">
@@ -100,3 +108,14 @@
     </div>
   </div> <!-- container.// -->
 </nav> <!-- navbar-main.// -->
+<script>
+  function changeLanguage(){
+    $.ajax({
+      url:"/changeLanguage",
+      type:"GET",
+      success:function(){
+        window.location.reload()
+      }
+    })
+  }
+</script>

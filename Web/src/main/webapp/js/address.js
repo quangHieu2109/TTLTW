@@ -322,8 +322,9 @@ function setShipInfo() {
         let address = $('input[name="address"]:checked').val()
         let province = address.split('-')[0], district = address.split('-')[1],
             ward = address.split('-')[2];
-        let url = "province=" + province + "&district=" + district + "&ward=" + ward + "&quantity=" + quantity + "&weight=" + weight + "&length=" + length + "&width=" + width + "&height=" + height + "&unitShip=" + unitshipVal;
-
+        let url = "province=" + province + "&district=" + district +
+            "&ward=" + ward + "&quantity=" + quantity + "&weight=" + weight +
+            "&length=" + length + "&width=" + width + "&height=" + height + "&unitShip=" + unitshipVal;
         $.ajax({
             url: '/feeship?' + url,
             type: 'GET',
@@ -332,10 +333,14 @@ function setShipInfo() {
                 let data = response.infoShips;
                 let s = '';
                 data.forEach(function (dt) {
-                    let currency = parseFloat(dt.GIA_CUOC); // Chuyển đổi giá trị tiền tệ sang số
-                    currency = currency.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}); // Định dạng giá trị tiền tệ
-
-                    s += '<div class="form-label"><input onchange="updateAplyVoucher()" type="radio" name="infoship" class="m-2" value="' + dt.GIA_CUOC + '" >' + dt.TEN_DICHVU + '- Giá: ' + currency + ' - Thời gian giao: ' + dt.THOI_GIAN + '</div>';
+                    // Chuyển đổi giá trị tiền tệ sang số
+                    let currency = parseFloat(dt.GIA_CUOC);
+                    // Định dạng giá trị tiền tệ
+                    currency = currency.toLocaleString('vi-VN',
+                        {style: 'currency', currency: 'VND'});
+                    s += '<div class="form-label"><input onchange="updateAplyVoucher()" ' +
+                        'type="radio" name="infoship" class="m-2" value="' + dt.GIA_CUOC + '" ' +
+                        '>' + dt.TEN_DICHVU + '- Giá: ' + currency + ' - Thời gian giao: ' + dt.THOI_GIAN + '</div>';
                     $('#infoShip').empty()
                     $('#infoShip').append(s)
 
@@ -344,7 +349,6 @@ function setShipInfo() {
                 radios = Array.from(radios);
                 radios.forEach(function(radio) {
                     radio.addEventListener('change', function(){
-
                         delivery.text(parseFloat(radio.value).toLocaleString('vi-VN'));
                         delivery.attr('data-value', radio.value);
                         let temp_price = parseFloat($('#temp-price').text().replaceAll('.', ""))

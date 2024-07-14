@@ -15,6 +15,9 @@
   <input type="hidden" value="${accuracy}" id="accuracy">
   <section class="header-main border-bottom">
     <div class="container">
+      <div class="w-75 m-auto d-flex justify-content-end">
+        <span onclick="changeLanguage()" style="cursor: pointer"><i class="bi bi-translate"></i><fmt:message key="lang"/></span>
+      </div>
       <div class="row align-items-center">
         <div class="col-lg-3 py-3">
           <a class="text-body" href="${pageContext.request.contextPath}/">
@@ -128,3 +131,14 @@
     </div>
   </div> <!-- container.// -->
 </nav> <!-- navbar-main.// -->
+<script>
+  function changeLanguage(){
+    $.ajax({
+      url:"/changeLanguage",
+      type:"GET",
+      success:function(){
+        window.location.reload()
+      }
+    })
+  }
+</script>

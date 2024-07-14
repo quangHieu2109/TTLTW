@@ -3,6 +3,7 @@ package com.bookshopweb.servlet.client;
 import com.bookshopweb.beans.*;
 import com.bookshopweb.dao.*;
 import com.bookshopweb.dto.OrderResponse;
+import com.bookshopweb.utils.IPUtils;
 import com.bookshopweb.utils.Protector;
 import com.bookshopweb.utils.VoucherUtils;
 
@@ -27,6 +28,7 @@ public class OrderServlet extends HttpServlet {
     private final CartItemDAO cartItemDAO = new CartItemDAO();
     private final ProductDAO productDAO = new ProductDAO();
     private final OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+    private final VoucherDAO voucherDAO = new VoucherDAO();
 
     private static final int ORDERS_PER_PAGE = 3;
 
@@ -50,8 +52,7 @@ public class OrderServlet extends HttpServlet {
             if (page < 1 || page > totalPages) {
                 page = 1;
             }
-//
-//            // Tính mốc truy vấn (offset)
+        // Tính mốc truy vấn (offset)
             int offset = (page - 1) * ORDERS_PER_PAGE;
 
             // Lấy danh sách order, lấy với số lượng là ORDERS_PER_PAGE và tính từ mốc offset
@@ -98,10 +99,10 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("currentUser");
-        System.out.println("unitshipVal "+ req.getParameter("unitshipVal"));
-        System.out.println("addressId "+ req.getParameter("addressId"));
-        System.out.println("cartItemIds "+ Arrays.toString(req.getParameterValues("cartItemIds")));
-        System.out.println("ship "+ req.getParameter("ship"));
+//        System.out.println("unitshipVal "+ req.getParameter("unitshipVal"));
+//        System.out.println("addressId "+ req.getParameter("addressId"));
+//        System.out.println("cartItemIds "+ Arrays.toString(req.getParameterValues("cartItemIds")));
+//        System.out.println("ship "+ req.getParameter("ship"));
 //        System.out.println("unitshipVal "+ req.getParameter("unitshipVal"));
         int deliveryMethod = Integer.parseInt(req.getParameter("unitshipVal"));
         long shipVoucherId = Long.parseLong(req.getParameter("shipVoucherId"));
@@ -132,7 +133,7 @@ public class OrderServlet extends HttpServlet {
         order.setDeliveryPrice(ship);
         order.setCreatedAt(new Timestamp(Calendar.getInstance().getTimeInMillis()));
         double totalPrice =0;
-        int rs = orderDAO.insert(order, "");
+        int rs = orderDAO.insert(order, IPUtils.getIP(req));
         if(rs > 0){
             for(CartItem cartItem : cartItems){
                 Product product = productDAO.selectPrevalue(cartItem.getProductId());
@@ -160,12 +161,15 @@ public class OrderServlet extends HttpServlet {
             orderDetailDAO.addOrderDetailNoVoucher(orderDetail);
             if(shipVoucherId > 0){
                 orderDetailDAO.updateShipVoucherId(shipVoucherId, orderDetail.getOrderId());
+                voucherDAO.decreaseQuantity(shipVoucherId);
             }
             if(productVoucherId > 0){
                 orderDetailDAO.updateProductVoucherId(productVoucherId, orderDetail.getOrderId());
+                voucherDAO.decreaseQuantity(productVoucherId);
+
             }
             for(CartItem cartItem : cartItems){
-                cartItemDAO.delete(cartItem, "");
+                cartItemDAO.delete(cartItem, IPUtils.getIP(req));
             }
         }
 

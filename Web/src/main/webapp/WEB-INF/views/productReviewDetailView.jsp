@@ -41,12 +41,12 @@
 
           <dt class="col-md-3"><fmt:message key="ngay_tao"/></dt>
           <dd class="col-md-9">
-            ${requestScope.productReview.createdAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
+            ${requestScope.productReview.createdAt.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
           </dd>
 
           <dt class="col-md-3"><fmt:message key="ngay_cap_nhat"/></dt>
           <dd class="col-md-9">
-            ${requestScope.productReview.updatedAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
+            ${requestScope.productReview.updatedAt.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
           </dd>
 
           <dt class="col-md-3"><fmt:message key="so_sao"/></dt>

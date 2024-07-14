@@ -34,7 +34,7 @@
             ${requestScope.productReview.product.name}
           </a>
         </strong>
-        <fmt:message key="luc"/> ${requestScope.productReview.createdAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
+        <fmt:message key="luc"/> ${requestScope.productReview.createdAt.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}
       </p>
       <form class="col-lg-6" method="POST" action="${pageContext.request.contextPath}/editProductReview">
         <c:if test="${not empty requestScope.successMessage}">
